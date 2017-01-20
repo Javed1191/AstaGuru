@@ -1,0 +1,77 @@
+apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
+
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "24.0.0"
+    useLibrary 'org.apache.http.legacy'
+    defaultConfig {
+        applicationId "com.infomanav.astaguru"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+
+        multiDexEnabled true
+    }
+
+    dexOptions {
+        incremental true
+        javaMaxHeapSize "4g"
+    }
+
+
+
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/maven/com.squareup.picasso/picasso/pom.xml'
+        exclude 'META-INF/maven/com.squareup.picasso/picasso/pom.properties'
+        exclude 'META-INF/maven/com/squareup/picasso/Action$RequestWeakReference.class'
+
+
+
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile files('libs/volley.jar')
+    compile project(':kprogresshud')
+    compile project(':library')
+    compile project(':baseLibrary')
+    compile files('libs/YouTubeAndroidPlayerApi.jar')
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:design:23.4.0'
+    compile 'com.android.support:cardview-v7:23.4.0'
+    compile 'io.jsonwebtoken:jjwt:0.6.0'
+    compile 'com.nineoldandroids:library:2.4.0'
+    compile 'com.daimajia.androidanimations:library:1.0.3@aar'
+    compile 'com.jakewharton:butterknife:8.4.0'
+    compile 'com.google.android.gms:play-services-maps:9.4.0'
+    compile 'com.github.bluejamesbond:textjustify-android:2.1.6'
+    compile 'com.google.code.gson:gson:2.2.4'
+    compile 'com.baoyz.swipemenulistview:library:1.3.0'
+    compile 'in.srain.cube:grid-view-with-header-footer:1.0.12'
+
+    testCompile 'junit:junit:4.12'
+    apt 'com.jakewharton:butterknife-compiler:8.4.0'
+    compile project(':library_GridScroll')
+
+//    compile group: 'org.apache.httpcomponents' , name: 'httpclient-android' , version: '4.3.5.1'
+//    compile('org.apache.httpcomponents:httpmime:4.3') {
+//        exclude module: "httpclient"
+//    }
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.v4.view.ViewPager
+        android:id="@+id/mViewPageryoutube"
+        custom:padding_left="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="190dp" />
+    <com.infomanav.astaguru.CirclePageIndicator
+        android:id="@+id/indicatoryoutube"
+        android:layout_width="fill_parent"
+        android:paddingLeft="17dp"
+
+        android:paddingTop="3dp"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view_pager"
+        />
+
+</LinearLayout>

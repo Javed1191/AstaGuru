@@ -1,0 +1,45 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <!--<android.support.v7.widget.CardView-->
+    <!--android:id="@+id/card_main"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center"-->
+    <!--card_view:cardElevation="3dp"-->
+    <!--android:paddingBottom="20dp"-->
+    <!--card_view:cardUseCompatPadding="true">-->
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/cat_back"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+
+
+
+        <com.infomanav.astaguru.WorkSansRegular
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:padding="10dp"
+            android:layout_height="wrap_content"
+
+            android:gravity="center"
+            android:text="Auction Name"
+            android:textColor="@color/colorBodyText" />
+
+
+
+
+    </LinearLayout>
+    <!--</android.support.v7.widget.CardView>-->
+</LinearLayout>

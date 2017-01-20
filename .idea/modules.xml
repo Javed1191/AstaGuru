@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/AstaGuruProject.iml" filepath="$PROJECT_DIR$/AstaGuruProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Justification_library/Justification_library.iml" filepath="$PROJECT_DIR$/Justification_library/Justification_library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/baseLibrary/baseLibrary.iml" filepath="$PROJECT_DIR$/baseLibrary/baseLibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/flipanimationexample/flipanimationexample.iml" filepath="$PROJECT_DIR$/flipanimationexample/flipanimationexample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kprogresshud/kprogresshud.iml" filepath="$PROJECT_DIR$/kprogresshud/kprogresshud.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library_GridScroll/library_GridScroll.iml" filepath="$PROJECT_DIR$/library_GridScroll/library_GridScroll.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library_swip_menu/library_swip_menu.iml" filepath="$PROJECT_DIR$/library_swip_menu/library_swip_menu.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mylibrary/mylibrary.iml" filepath="$PROJECT_DIR$/mylibrary/mylibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/supertoasts/supertoasts.iml" filepath="$PROJECT_DIR$/supertoasts/supertoasts.iml" />
+    </modules>
+  </component>
+</project>

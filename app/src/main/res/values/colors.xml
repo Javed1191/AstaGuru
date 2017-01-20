@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#000000</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#A78D68</color>
+    <color name="colorBodyText">#606060</color>
+    <color name="colorLink">#A78D68</color>
+    <color name="btn_bg_brown">#a78d6a</color>
+    <color name="btn_bg_white">#ffffff</color>
+
+
+    <color name="holo_blue_dark">#ff0099cc</color>
+    <color name="view_divider_color">#BABABA</color>
+    <color name="view_divider_color_2">#DADADA</color>
+
+    <color name="btn_border">#CDCDCD</color>
+
+    606060
+
+</resources>

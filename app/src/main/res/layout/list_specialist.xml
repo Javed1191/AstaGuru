@@ -1,0 +1,67 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp">
+
+    <!--<android.support.v7.widget.CardView-->
+        <!--android:id="@+id/card_specialist"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--card_view:cardElevation="3dp"-->
+
+        <!--card_view:cardUseCompatPadding="true">-->
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingBottom="20dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/country_photo"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:contentDescription="@string/action_settings"
+                android:scaleType="centerCrop"
+                android:src="@drawable/client_relation" />
+
+            <com.infomanav.astaguru.WorkSansMedium
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="14sp"
+                android:paddingBottom="3dp"
+                android:paddingTop="3dp"
+                android:text="Sunny Chandiramani"
+                android:textColor="@color/colorPrimary" />
+
+
+            <com.infomanav.astaguru.WorkSansRegular
+                android:id="@+id/tv_post"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="12sp"
+                android:text="Client Reations"
+                android:textColor="@color/colorBodyText" />
+
+
+            <ImageView
+                android:id="@+id/img_email"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginTop="10dp"
+                android:contentDescription="@string/action_settings"
+                android:src="@drawable/icon_email" />
+
+        </LinearLayout>
+    <!--</android.support.v7.widget.CardView>-->
+
+</LinearLayout>

@@ -1,0 +1,294 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!--<android.support.v7.widget.CardView-->
+    <!--android:id="@+id/card_main"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="left"-->
+    <!--android:paddingBottom="20dp"-->
+    <!--card_view:cardElevation="3dp"-->
+    <!--card_view:cardUseCompatPadding="true">-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_margin="10dp"
+        android:background="@drawable/list_bg"
+        android:gravity="left"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/grid_image"
+            android:layout_width="90dp"
+            android:layout_marginLeft="5dp"
+            android:layout_gravity="center"
+
+
+            android:layout_height="105dp"
+            android:src="@drawable/img_past_1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <!--<com.infomanav.astaguru.WorkSansRegular-->
+
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentLeft="true"-->
+                <!--android:gravity="left"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:text="Lot1 "-->
+                <!--android:textColor="@color/colorBodyText" />-->
+
+                <com.infomanav.astaguru.WorkSansRegular
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="9sp"
+                    android:background="@drawable/rounded_rectangle"
+                    android:text="Lot1 "
+                    android:textColor="#ffffff" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+
+                    android:gravity="right"
+                    android:layout_alignParentRight="true"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/c"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:background="@drawable/icon_addgallary"
+                        android:gravity="left"
+                        />
+
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <com.infomanav.astaguru.WorkSansMedium
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:layout_gravity="left"
+                android:text="Morderen Indian Art"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold" />
+
+            <com.infomanav.astaguru.WorkSansRegular
+                android:id="@+id/grid_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:gravity="left"
+                android:text="Total Sale Value"
+                android:textColor="@color/colorBodyText" />
+
+            <!--<LinearLayout-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="left"-->
+            <!--android:layout_marginTop="7dp"-->
+            <!--android:gravity="left"-->
+            <!--android:orientation="horizontal">-->
+
+            <!--<LinearLayout-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+
+            <!--android:gravity="center"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<com.infomanav.astaguru.WorkSansRegular-->
+
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="left"-->
+            <!--android:gravity="center"-->
+            <!--android:text="Current Bid"-->
+            <!--android:textColor="@color/colorBodyText" />-->
+
+            <!--<RelativeLayout-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+
+            <!--android:gravity="center"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<ImageView-->
+            <!--android:id="@+id/iv_one"-->
+            <!--android:layout_width="10dp"-->
+            <!--android:layout_height="10dp"-->
+            <!--android:background="@drawable/rupee"-->
+            <!--android:gravity="left"-->
+
+            <!--android:layout_marginTop="3dp"-->
+            <!--android:text="Total Sale Value"-->
+            <!--android:textColor="@color/colorBodyText" />-->
+
+            <!--<com.infomanav.astaguru.WorkSansRegular-->
+
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_toRightOf="@+id/iv_one"-->
+            <!--android:gravity="center"-->
+            <!--android:textStyle="bold"-->
+            <!--android:layout_marginLeft="5dp"-->
+            <!--android:text="13,15,200"-->
+            <!--android:textColor="@color/colorBodyText" />-->
+
+            <!--</RelativeLayout>-->
+
+            <!--</LinearLayout>-->
+            <!--<View-->
+            <!--android:layout_width="0.01dp"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:layout_marginLeft="5sp"-->
+
+            <!--android:background="@drawable/line"/>-->
+            <!--<LinearLayout-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_marginLeft="10dp"-->
+
+            <!--android:gravity="center"-->
+            <!--android:orientation="vertical">-->
+            <!--<com.infomanav.astaguru.WorkSansRegular-->
+
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+
+            <!--android:gravity="center"-->
+            <!--android:text="Next Valid Bid"-->
+            <!--android:textColor="@color/colorBodyText" />-->
+
+            <!--<RelativeLayout-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+
+            <!--android:gravity="center"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<ImageView-->
+            <!--android:id="@+id/iv_two"-->
+            <!--android:layout_width="10dp"-->
+            <!--android:layout_height="10dp"-->
+            <!--android:background="@drawable/rupee"-->
+            <!--android:gravity="center"-->
+            <!--android:layout_marginTop="3dp"-->
+
+            <!--android:textColor="@color/colorBodyText" />-->
+
+            <!--<com.infomanav.astaguru.WorkSansRegular-->
+
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_toRightOf="@+id/iv_two"-->
+            <!--android:gravity="center"-->
+            <!--android:layout_marginLeft="5dp"-->
+            <!--android:textStyle="bold"-->
+            <!--android:text="20,60,200"-->
+            <!--android:textColor="@color/colorBodyText" />-->
+
+            <!--</RelativeLayout>-->
+
+
+            <!--</LinearLayout>-->
+            <!--</LinearLayout>-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="7dp"
+
+
+
+                android:orientation="horizontal">
+
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginLeft="5dp"
+
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/iv_two"
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:background="@drawable/rupee"
+                            android:layout_marginTop="4dp"
+                            android:gravity="center"
+
+                            />
+
+                        <com.infomanav.astaguru.WorkSansRegular
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/iv_two"
+                            android:gravity="center"
+                            android:id="@+id/tv_nextbid"
+                            android:textStyle="bold"
+                            android:text="20,60,200"
+                            android:textColor="#000000" />
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+    </LinearLayout>
+    <!--</android.support.v7.widget.CardView>-->
+</LinearLayout>

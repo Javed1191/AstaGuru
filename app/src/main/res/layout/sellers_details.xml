@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"   >
+            <com.infomanav.astaguru.WorkSansMedium
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tool_text"
+                android:gravity="left"
+                android:textColor="#ffffff"
+                android:text="Management"
+                android:textStyle="bold"
+                android:textSize="20dp" />
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <ImageView
+
+                        android:id="@+id/img_first_name"
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:layout_marginTop="2dp"
+                        android:src="@drawable/icon_first_name" />
+
+                    <TextView
+
+                        android:id="@+id/tv_first_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/img_first_name"
+                        android:text="Name"
+                        android:textColor="@color/colorBodyText" />
+
+                    <EditText
+                        android:id="@+id/edt_first_name"
+                        style="@style/Edittext_Style"
+                        android:layout_below="@+id/img_first_name"
+                        android:layout_marginLeft="11dp"
+
+                        android:layout_marginTop="10dp"
+                        android:layout_toRightOf="@+id/img_first_name"
+                        android:hint="Your Complete Name"
+                        android:inputType="textCapWords" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/colorBodyText" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/img_last_name"
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:layout_marginTop="2dp"
+                        android:src="@drawable/icon_email" />
+
+                    <TextView
+                        android:id="@+id/tv_last_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/img_last_name"
+                        android:text="Email Id"
+                        android:textColor="@color/colorBodyText" />
+
+                    <EditText
+                        android:id="@+id/edt_last_name"
+                        style="@style/Edittext_Style"
+                        android:layout_below="@+id/img_last_name"
+                        android:layout_marginLeft="11dp"          android:layout_marginTop="10dp"
+
+                        android:layout_toRightOf="@+id/img_last_name"
+                        android:hint="Enter Your Last Name"
+                        android:inputType="textCapWords" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/colorBodyText" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/img_city"
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:layout_marginTop="2dp"
+                        android:src="@drawable/icon_subject" />
+
+                    <TextView
+                        android:id="@+id/tv_city"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/img_city"
+                        android:text="Subject"
+                        android:textColor="@color/colorBodyText" />
+
+                    <EditText
+                        android:id="@+id/edt_city"
+                        style="@style/Edittext_Style"
+                        android:layout_below="@+id/img_city"
+                        android:layout_marginLeft="11dp"          android:layout_marginTop="10dp"
+                        android:layout_toRightOf="@+id/img_city"
+                        android:hint="Enter the Subject"
+                        android:inputType="textCapWords"
+
+                        />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/colorBodyText" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/img_state"
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:layout_marginTop="2dp"
+                        android:src="@drawable/icon_description" />
+
+                    <TextView
+                        android:id="@+id/tv_state"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/img_state"
+                        android:text="Discription"
+                        android:textColor="@color/colorBodyText" />
+
+                    <EditText
+                        android:id="@+id/edt_state"
+                        style="@style/Edittext_Style"
+                        android:layout_below="@+id/img_state"
+                        android:layout_marginLeft="11dp"          android:layout_marginTop="10dp"
+                        android:layout_toRightOf="@+id/img_state"
+                        android:hint="Describe the item you want to sell"
+                        android:inputType="textCapWords" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/colorBodyText" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/img_zip"
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:layout_marginTop="2dp"
+                        android:src="@drawable/icon_upload" />
+
+                    <TextView
+                        android:id="@+id/tv_zip"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/img_zip"
+                        android:text="Upload Your File"
+                        android:textColor="@color/colorBodyText" />
+
+
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingTop="10dp"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:text="Choose File"
+                        android:id="@+id/btn_select_file"
+                        android:layout_marginLeft="20dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+
+                         android:background="@drawable/button_bg_stroke"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/img_zip"
+                        android:text=" No File Selected"
+                        android:textColor="@color/colorBodyText" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/colorBodyText" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/img_mobile"
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:layout_marginTop="2dp"
+                        android:src="@drawable/icon_contact" />
+
+                    <TextView
+                        android:id="@+id/tv_mobile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/img_mobile"
+                        android:text="Contact"
+                        android:textColor="@color/colorBodyText" />
+
+                    <EditText
+                        android:id="@+id/edt_mobile"
+                        style="@style/Edittext_Style"
+                        android:layout_below="@+id/img_mobile"
+                        android:layout_marginLeft="11dp"
+                        android:layout_toRightOf="@+id/img_mobile"          android:layout_marginTop="10dp"
+                        android:hint="Your contact details"
+                        android:inputType="phone"
+                        android:maxLength="10" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/colorBodyText" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/img_telephone"
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:layout_marginTop="2dp"
+                        android:src="@drawable/icon_note" />
+
+                    <TextView
+                        android:id="@+id/tv_telephone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/img_telephone"
+                        android:text="Note"
+                        android:textColor="@color/colorBodyText" />
+
+                    <EditText
+                        android:id="@+id/edt_telephone"
+                        style="@style/Edittext_Style"
+                        android:layout_below="@+id/img_telephone"          android:layout_marginTop="10dp"
+                        android:layout_marginLeft="11dp"
+                        android:layout_toRightOf="@+id/img_telephone"
+                        android:hint="Your Note(if any) "
+                        android:inputType="text"
+                        android:maxLength="10" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/colorBodyText" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/img_fax"
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:layout_marginTop="2dp"
+                        android:src="@drawable/icon_eyer" />
+
+                    <TextView
+                        android:id="@+id/tv_fax"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/img_fax"
+                        android:text="How Did You Hear About Us?"
+                        android:textColor="@color/colorBodyText" />
+
+                    <Spinner
+
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+android:prompt="@string/selectsource"
+                        android:id="@+id/spinner"
+                        android:layout_marginLeft="11dp"
+                        android:layout_alignParentTop="true"
+
+                        android:layout_centerHorizontal="true"
+
+                        android:layout_marginTop="30dp" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/colorBodyText" />
+            </LinearLayout>
+
+
+
+            <Button
+                android:id="@+id/btn_proceed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="15dp"
+                android:background="@drawable/custom_btn_sign_in"
+                android:paddingLeft="10dp"
+                android:layout_marginLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="Submit"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

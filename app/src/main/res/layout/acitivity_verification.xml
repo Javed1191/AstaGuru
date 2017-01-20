@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <com.infomanav.astaguru.WorkSansMedium
+                android:id="@+id/tool_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:text="Management"
+                android:textColor="#ffffff"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+
+
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+
+
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+
+
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_margin="10dp">
+
+                <ImageView
+                    android:id="@+id/iv_user"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginTop="7dp"
+                    android:background="@drawable/icon_mobile" />
+
+                <com.infomanav.astaguru.WorkSansRegular
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/iv_user"
+                    android:gravity="center_vertical"
+                    android:text="Mobile Number"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/edt_mobile"
+                    style="@style/Edittext_Style"
+                    android:layout_below="@+id/iv_user"
+                    android:layout_marginLeft="28dp"
+                    android:layout_marginTop="10dp"
+                    android:editable="false"
+
+                />
+
+                <com.infomanav.astaguru.WorkSansRegular
+                    android:id="@+id/tv_mobile_verify"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:gravity="right|center_vertical"
+                    android:text="Verify"
+                    android:textColor="@color/colorLink"
+                    android:textSize="15sp" />
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/lin_otm_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <com.infomanav.astaguru.WorkSansRegular
+                    android:id="@+id/tv_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rel_edt"
+
+                    android:gravity="center_vertical"
+                    android:text="We have sent verification code  to your mobile number.Please check your inbox and put 4 digit verification code here"
+                    android:textSize="15sp" />
+
+                <com.infomanav.astaguru.WorkSansRegular
+                    android:id="@+id/tv_otp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/tv_text"
+
+                    android:gravity="center_vertical"
+                    android:text="Enter 4 digit OTP"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_otp"
+
+                    android:orientation="horizontal"
+
+                    >
+
+                    <EditText
+                        android:id="@+id/edt_one"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:inputType="number"
+                        android:maxLength="1"
+
+
+                        />
+
+                    <EditText
+                        android:id="@+id/edt_two"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="1dp"
+
+                        android:layout_gravity="center"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:inputType="number"
+                        android:maxLength="1"
+
+                        />
+
+                    <EditText
+                        android:id="@+id/edt_three"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="1dp"
+                        android:layout_gravity="center"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:inputType="number"
+                        android:maxLength="1"
+
+                        />
+
+                    <EditText
+                        android:id="@+id/edt_four"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="1dp"
+
+                        android:layout_gravity="center"
+                        android:inputType="number"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:maxLength="1"
+
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:gravity="right"
+                        android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/btn_mobile_verify"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="40dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:background="#000000"
+                        android:padding="10dp"
+                        android:text="Verify"
+                        android:textColor="#ffffff" />
+                </LinearLayout>
+                </LinearLayout>
+                <com.infomanav.astaguru.WorkSansRegular
+                    android:id="@+id/tv_mob_not_verify"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:gravity="right|center_vertical"
+                    android:visibility="gone"
+                    android:text="Invalid Otp"
+                    android:textColor="@color/CLR_RED"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@android:color/darker_gray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/rel_edt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp">
+
+                    <ImageView
+                        android:id="@+id/iv_user_email"
+                        android:layout_width="15dp"
+
+                        android:layout_height="15dp"
+                        android:layout_marginTop="7dp"
+                        android:background="@drawable/icon_email" />
+
+                    <com.infomanav.astaguru.WorkSansRegular
+                        android:id="@+id/tv_emailtext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/iv_user_email"
+                        android:gravity="center_vertical"
+                        android:text="Email "
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/edt_emailid"
+                        style="@style/Edittext_Style"
+                        android:layout_below="@+id/iv_user_email"
+                        android:layout_marginLeft="29dp"
+                        android:layout_marginTop="10dp"
+                        android:editable="false"
+
+                    />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:gravity="right"
+                        android:layout_height="wrap_content">
+                    <com.infomanav.astaguru.WorkSansRegular
+                        android:id="@+id/tv_email_verify"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:gravity="right|center_vertical"
+                        android:text="Verify"
+                        android:textColor="@color/colorLink"
+                        android:textSize="15sp" />
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/lin_otm_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="35dp"
+                    android:orientation="vertical"
+
+                    android:visibility="gone">
+
+                    <com.infomanav.astaguru.WorkSansRegular
+                        android:id="@+id/tv_textemail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/rel_edt"
+
+                        android:gravity="center_vertical"
+                        android:text="We have sent verification code to your email id. Please check your inbox and put 4 digit verification code here"
+                        android:textSize="15sp" />
+
+                    <com.infomanav.astaguru.WorkSansRegular
+                        android:id="@+id/tv_otpemail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_below="@+id/tv_textemail"
+
+                        android:gravity="center_vertical"
+                        android:text="Enter 4 digit OTP"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_otpemail"
+
+                        android:orientation="horizontal"
+
+                        >
+
+                        <EditText
+                            android:id="@+id/edt_email_one"
+                            android:layout_width="30dp"
+                            android:layout_height="wrap_content"
+
+                            android:inputType="number"
+                            android:maxLength="1"
+                            android:layout_gravity="center"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+
+
+                            />
+
+                        <EditText
+                            android:id="@+id/edt_email_two"
+                            android:layout_width="30dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="1dp"
+
+                            android:inputType="number"
+                            android:maxLength="1"
+                            android:layout_gravity="center"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+
+                            />
+
+                        <EditText
+                            android:id="@+id/edt_email_three"
+                            android:layout_width="30dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="1dp"
+
+                            android:inputType="number"
+                            android:layout_gravity="center"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:maxLength="1"
+
+                            />
+
+                        <EditText
+                            android:id="@+id/edt_email_four"
+                            android:layout_width="30dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="1dp"
+
+                            android:layout_gravity="center"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:inputType="number"
+
+                            android:maxLength="1"
+
+                            />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:gravity="right"
+                            android:layout_height="wrap_content">
+                        <Button
+                            android:id="@+id/btn_email_verify"
+                            android:layout_width="100dp"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="40dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="10dp"
+                            android:background="#000000"
+                            android:padding="10dp"
+                            android:text="Verify"
+                            android:textColor="#ffffff" />
+                    </LinearLayout>
+                    </LinearLayout>
+                    <com.infomanav.astaguru.WorkSansRegular
+                        android:id="@+id/tv_email_not_verify"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:gravity="right|center_vertical"
+                        android:visibility="gone"
+                        android:text="Invalid Otp"
+                        android:textColor="@color/CLR_RED"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@android:color/darker_gray" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
+
+
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:background="#000000"
+                    android:padding="10dp"
+                    android:text="Back"
+                    android:textColor="#ffffff" />
+
+
+                <Button
+                    android:id="@+id/btn_proceed"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@+id/button"
+                    android:background="#000000"
+                    android:padding="10dp"
+                    android:text="Proceed"
+                    android:textColor="#ffffff"
+
+                    />
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</ScrollView>
+</LinearLayout>

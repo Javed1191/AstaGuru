@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"   >
+            <com.infomanav.astaguru.WorkSansMedium
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tool_text"
+                android:gravity="left"
+                android:textColor="#ffffff"
+                android:text="Management"
+                android:textStyle="bold"
+                android:textSize="20dp" />
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <com.infomanav.astaguru.WorkSansRegular
+        android:padding="10dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign in to your AstaGuru account to place bids \nand buy artworks"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:focusableInTouchMode="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <ImageView
+
+                        android:id="@+id/img_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:src="@drawable/icon_email" />
+
+                    <com.infomanav.astaguru.WorkSansRegular
+
+                        android:id="@+id/tv_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/img_email"
+                        android:text="User Name"
+                        android:textColor="@color/colorBodyText" />
+
+
+                    <EditText
+                        style="@style/Edittext_Style"
+                        android:id="@+id/edt_emaillogin"
+                        android:layout_marginLeft="19dp"
+                        android:textSize="12dp"
+                        android:layout_below="@+id/tv_email"
+
+                        android:hint="Enter Your User Name"
+                        />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/colorBodyText" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/img_password"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:src="@drawable/icon_password" />
+
+                    <com.infomanav.astaguru.WorkSansRegular
+                        android:id="@+id/tv_last_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/img_password"
+                        android:text="Password"
+                        android:textColor="@color/colorBodyText" />
+
+
+                    <EditText
+                        style="@style/Edittext_Style"
+                        android:id="@+id/edt_passwordlogin"
+                        android:layout_marginLeft="19dp"
+                        android:layout_below="@+id/tv_last_name"
+                        android:inputType="textPassword"
+                        android:hint="Password"
+                        android:textSize="12dp"
+                        />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/colorBodyText" />
+            </LinearLayout>
+
+            <com.custom.baselibrary.CustomButton
+                android:id="@+id/btn_sign_in"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/custom_btn_sign_in"
+                android:text="Sign In"
+                android:textColor="@android:color/white" />
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.infomanav.astaguru.WorkSansRegular
+                android:id="@+id/tv_forgot_pass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/img_re_password"
+                android:text="Forgot Password?"
+                android:textColor="@color/colorLink" />
+
+        </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <com.infomanav.astaguru.WorkSansRegular
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/img_re_password"
+                    android:text="New to AstaGuru?"
+                    android:textColor="@color/colorPrimary" />
+
+                <com.infomanav.astaguru.WorkSansRegular
+                    android:id="@+id/tv_sign_up"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/img_re_password"
+                    android:text=" Sign Up"
+                    android:textColor="@color/colorLink" />
+
+                <com.infomanav.astaguru.WorkSansRegular
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/img_re_password"
+                    android:text=" Now"
+                    android:textColor="@color/colorPrimary" />
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

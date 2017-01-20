@@ -1,0 +1,203 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:gravity="center"
+    android:layout_gravity="center"
+    android:layout_height="wrap_content">
+
+    <!--<android.support.v7.widget.CardView-->
+        <!--android:id="@+id/card_main"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:paddingBottom="20dp"-->
+        <!--card_view:cardElevation="3dp"-->
+        <!--card_view:cardUseCompatPadding="true">-->
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="@drawable/grid_bg"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/grid_image_purchase"
+                android:layout_width="90dp"
+                android:layout_marginTop="10dp"
+                android:layout_height="90dp"
+                android:src="@drawable/img_past_1" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.01dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/line" />
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_gravity="left"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <com.infomanav.astaguru.WorkSansRegular
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="9sp"
+                    android:background="@drawable/rounded_rectangle"
+                    android:text="Lot1 "
+                    android:textColor="#ffffff" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:layout_alignParentRight="true"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/c"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:background="@drawable/icon_remove"
+                        android:gravity="left"
+                        />
+                    <ImageView
+                        android:id="@+id/iv_conce"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_marginLeft="13dp"
+                        android:layout_toRightOf="@+id/c"
+                        android:background="@drawable/icon_i"
+                        android:gravity="center"
+                        />
+
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.01dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/line" />
+
+            <com.infomanav.astaguru.WorkSansMedium
+                android:id="@+id/tv_purchase_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Morderen Indian Art"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold" />
+
+            <com.infomanav.astaguru.WorkSansRegular
+                android:id="@+id/grid_text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:gravity="center"
+                android:text="Prathama Milna"
+                android:textColor="@color/colorBodyText" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <com.infomanav.astaguru.WorkSansRegular
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:gravity="center"
+                        android:text="Winning Bid"
+                        android:textColor="@color/colorBodyText" />
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <com.infomanav.astaguru.WorkSansRegular
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/iv_two"
+                            android:gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:textStyle="bold"
+                            android:text="₹"
+                            android:textColor="@color/colorBodyText" />
+
+                        <com.infomanav.astaguru.WorkSansRegular
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/iv_two"
+                            android:gravity="center"
+                            android:textStyle="bold"
+                            android:text="20,60,200"
+                            android:textColor="#000000" />
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.01dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/line" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+
+                <com.infomanav.astaguru.WorkSansRegular
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:gravity="center"
+                    android:text="Auction Closed"
+                    android:textColor="#e63c3c" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+    <!--</android.support.v7.widget.CardView>-->
+</LinearLayout>

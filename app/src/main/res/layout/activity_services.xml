@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:background="#ffffff"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"   >
+            <com.infomanav.astaguru.WorkSansMedium
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tool_text"
+                android:gravity="left"
+                android:textColor="#ffffff"
+                android:text="Management"
+                android:textStyle="bold"
+                android:textSize="20dp" />
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <com.infomanav.astaguru.WorkSansMedium
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:textStyle="bold"
+                    android:id="@+id/tv_axuction"
+                    android:text="Auction"
+                    android:textColor="@color/colorBodyText"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/iv_Auction"
+                    android:layout_width="25dp"
+
+                    android:layout_height="25dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:background="@drawable/plus" />
+
+
+
+            </RelativeLayout>
+
+            <WebView
+                android:layout_width="match_parent"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:visibility="gone"
+                android:id="@+id/wb_auction_one"
+                android:layout_height="wrap_content"></WebView>
+            <WebView
+                android:layout_width="match_parent"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:visibility="gone"
+                android:id="@+id/wb_auction_two"
+                android:layout_height="wrap_content"></WebView>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <com.infomanav.astaguru.WorkSansMedium
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:textStyle="bold"
+                    android:id="@+id/tv_Consulctation"
+                    android:layout_toRightOf="@+id/img_email"
+                    android:text="Consultation"
+                    android:textColor="@color/colorBodyText"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/iv_Consultation"
+                    android:layout_width="25dp"
+
+                    android:layout_height="25dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:background="@drawable/plus" />
+
+
+            </RelativeLayout>
+
+            <WebView
+                android:layout_width="match_parent"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:visibility="gone"
+                android:id="@+id/wb_Consultation_one"
+                android:layout_height="wrap_content"></WebView>
+            <WebView
+                android:layout_width="match_parent"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:visibility="gone"
+                android:id="@+id/wb_Consultation_two"
+                android:layout_height="wrap_content"></WebView>
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <com.infomanav.astaguru.WorkSansMedium
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/tvRestoration"
+                    android:textStyle="bold"
+                    android:layout_toRightOf="@+id/img_email"
+                    android:text="Restoration"
+                    android:textColor="@color/colorBodyText"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/iv_Restoration"
+                    android:layout_width="25dp"
+
+                    android:layout_height="25dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:background="@drawable/plus" />
+
+
+
+            </RelativeLayout>
+
+            <WebView
+                android:layout_width="match_parent"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:visibility="gone"
+                android:id="@+id/wb_Restoration_one"
+                android:layout_height="wrap_content"></WebView>
+            <WebView
+                android:layout_width="match_parent"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:visibility="gone"
+                android:id="@+id/wb_Restoration_two"
+                android:layout_height="wrap_content"></WebView>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <com.infomanav.astaguru.WorkSansMedium
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/tv_Valucation"
+                    android:textStyle="bold"
+                    android:layout_toRightOf="@+id/img_email"
+                    android:text="Valuation"
+                    android:textColor="@color/colorBodyText"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:layout_width="25dp"
+android:id="@+id/iv_Valuation"
+                    android:layout_height="25dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:background="@drawable/plus" />
+
+
+                <com.infomanav.astaguru.WorkSansRegular
+                    android:layout_width="match_parent"
+                    android:layout_below="@+id/tv_Valucation"
+                    android:id="@+id/tv_Valuation"
+                    android:visibility="gone"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="" />
+            </RelativeLayout>
+
+            <WebView
+                android:layout_width="match_parent"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:visibility="gone"
+                android:id="@+id/wb_valuation_one"
+                android:layout_height="wrap_content"></WebView>
+            <WebView
+                android:layout_width="match_parent"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:visibility="gone"
+                android:id="@+id/wb_valuation_two"
+                android:layout_height="wrap_content"></WebView>
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

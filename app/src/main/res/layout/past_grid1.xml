@@ -1,0 +1,183 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:layout_height="wrap_content">
+
+    <!--<android.support.v7.widget.CardView-->
+        <!--android:id="@+id/card_main"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center"-->
+        <!--card_view:cardElevation="3dp"-->
+        <!--android:paddingBottom="20dp"-->
+        <!--card_view:cardUseCompatPadding="true">-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:padding="15dp"-->
+            <!--android:background="@drawable/grid_bg"-->
+            <!--android:gravity="center"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<ImageView-->
+                <!--android:id="@+id/grid_image"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:src="@drawable/img_past_1" />-->
+
+            <!--<com.infomanav.astaguru.WorkSansMedium-->
+                <!--android:id="@+id/auction_name"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:gravity="center"-->
+                <!--android:textSize="15dp"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:singleLine="true"-->
+                <!--android:text="Morderen Indian Art"-->
+                <!--android:textColor="@color/colorPrimary"-->
+                <!--android:textStyle="bold" />-->
+
+            <!--<com.infomanav.astaguru.WorkSansRegular-->
+                <!--android:id="@+id/grid_text1"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:gravity="center"-->
+                <!--android:text="Total Sale Value"-->
+                <!--android:textColor="@color/colorBodyText" />-->
+
+            <!--<RelativeLayout-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+
+                <!--android:gravity="center"-->
+                <!--android:orientation="vertical">-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/iv_two"-->
+                    <!--android:layout_width="10dp"-->
+                    <!--android:layout_height="10dp"-->
+                    <!--android:layout_marginTop="4dp"-->
+                    <!--android:background="@drawable/rupee"-->
+                    <!--android:gravity="center"-->
+
+                  <!--/>-->
+
+                <!--<com.infomanav.astaguru.WorkSansRegular-->
+
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_toRightOf="@+id/iv_two"-->
+                    <!--android:gravity="center_vertical"-->
+<!--android:id="@+id/tv_total_value"-->
+                    <!--android:textStyle="bold"-->
+                    <!--android:text="24,97,52,955"-->
+                    <!--android:textColor="#000000" />-->
+
+            <!--</RelativeLayout>-->
+
+
+            <!--<com.infomanav.astaguru.WorkSansRegular-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:id="@+id/tv_date"-->
+                <!--android:gravity="center"-->
+                <!--android:text="21st - 22nd Mar, 2016"-->
+                <!--android:textColor="@color/colorLink" />-->
+        <!--</LinearLayout>-->
+
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+
+        android:background="@drawable/grid_bg"
+        android:padding="20dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/grid_image"
+            android:layout_width="match_parent"
+            android:layout_height="105dp"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:src="@drawable/img_upcoming" />
+
+
+
+        <com.infomanav.astaguru.WorkSansRegular
+            android:id="@+id/auction_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:singleLine="true"
+
+            android:gravity="center"
+            android:text="Auction Name"
+            android:textColor="@color/colorBodyText" />
+
+
+        <com.infomanav.astaguru.WorkSansRegular
+            android:id="@+id/grid_text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+
+            android:gravity="center"
+            android:text="Total Sale Value"
+            android:textColor="@color/colorBodyText" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_two"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/rupee"
+                android:gravity="center"
+
+                />
+
+            <com.infomanav.astaguru.WorkSansRegular
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/iv_two"
+                android:gravity="center_vertical"
+                android:id="@+id/tv_total_value"
+                android:textStyle="bold"
+                android:text="24,97,52,955"
+                android:textColor="#000000" />
+
+        </RelativeLayout>
+        <com.infomanav.astaguru.WorkSansRegular
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:id="@+id/tv_date"
+            android:singleLine="true"
+            android:paddingBottom="5dp"
+            android:text="March 2016"
+            android:textColor="@color/colorLink" />
+    </LinearLayout>
+    <!--</android.support.v7.widget.CardView>-->
+</LinearLayout>

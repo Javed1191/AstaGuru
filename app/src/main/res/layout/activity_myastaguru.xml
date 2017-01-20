@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"   >
+            <com.infomanav.astaguru.WorkSansMedium
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tool_text"
+                android:gravity="left"
+                android:text="Management"
+                android:textStyle="bold"
+                android:textSize="20dp" />
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <com.infomanav.astaguru.WorkSansRegular
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+android:layout_marginTop="30dp"
+     android:layout_gravity="center"
+        android:text="Update,manage your AstaGuru Profile and also track"
+        android:textSize="13sp" />
+
+    <com.infomanav.astaguru.WorkSansRegular
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="your shortlisted lots and purchases"
+        android:textSize="13sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.01dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/line"
+        ></View>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_marginTop="45dp"
+        android:layout_gravity="left"
+        android:layout_marginLeft="35dp"
+        android:layout_height="wrap_content"
+        >
+
+        <ImageView
+            android:id="@+id/iv_descricpation"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/icon_my_profile" />
+
+        <com.infomanav.astaguru.WorkSansMedium
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/iv_descricpation"
+android:id="@+id/tv_my_profile"
+            android:gravity="center_vertical"
+            android:text="My Profile"
+            android:textSize="15sp" />
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="left"
+        android:layout_marginLeft="35dp"
+        android:layout_height="wrap_content"
+        >
+
+        <ImageView
+            android:id="@+id/iv_gallary"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/icon_auction_gallery" />
+
+        <com.infomanav.astaguru.WorkSansMedium
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/iv_gallary"
+android:id="@+id/tv_gallary"
+            android:gravity="center_vertical"
+            android:text="My Auction Gallary"
+            android:textSize="15sp" />
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="35dp"
+        android:layout_gravity="left"
+        android:layout_height="wrap_content"
+        >
+
+        <ImageView
+            android:id="@+id/iv_my_purchase"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/icon_purchase" />
+
+        <com.infomanav.astaguru.WorkSansMedium
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/iv_my_purchase"
+android:id="@+id/tv_purchaes"
+            android:gravity="center_vertical"
+            android:text="My Purchases"
+            android:textSize="15sp" />
+
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_signout"
+        android:background="#000000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+android:textColor="#ffffff"
+        android:padding="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="35dp"
+        android:textAllCaps="false"
+
+        android:text="Sign Out" />
+</LinearLayout>
+
