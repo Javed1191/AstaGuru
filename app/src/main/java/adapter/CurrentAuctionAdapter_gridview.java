@@ -463,7 +463,7 @@ public class CurrentAuctionAdapter_gridview extends ArrayAdapter<Current_Auction
 
                     ObjectAnimator anim = (ObjectAnimator) AnimatorInflater.loadAnimator(mContext, R.animator.card_flip_left_in);
                     anim.setTarget(lin_back);
-                    anim.setDuration(200);
+                    anim.setDuration(700);
                     anim.start();
                 }
 
