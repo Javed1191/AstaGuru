@@ -16,12 +16,12 @@
 
     <ImageView
         android:id="@+id/iv_close_img"
-        android:layout_width="50dp"
+        android:layout_width="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_margin="25dp"
-        android:background="@drawable/icon_close"
-        android:layout_height="50dp" />
+        android:layout_margin="5dp"
+        android:src="@drawable/icon_cancel"
+        android:layout_height="wrap_content" />
 
 
 </RelativeLayout>

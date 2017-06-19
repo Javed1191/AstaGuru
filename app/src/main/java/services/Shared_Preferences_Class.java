@@ -10,7 +10,7 @@ public class Shared_Preferences_Class
 	public static final int MODE = Context.MODE_PRIVATE;
 	
 	public static final String APP_USER_ID = "app_user_id";
-	
+	public static final String FCM_ID = "fcm_id";
 	public static final String EMPLOYEE_CODE = "employee_code";
 	public static final String EMPLOYEE_NAME = "employee_name";
 	public static final String EMPLOYEE_EMAIL = "employee_email";

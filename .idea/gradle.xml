@@ -5,20 +5,20 @@
       <GradleProjectSettings>
         <option name="distributionType" value="LOCAL" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleHome" value="F:\android-studio-ide-145.2878421-windows_updated\android-studio\gradle\gradle-2.14.1" />
+        <option name="gradleHome" value="D:/android-studio-ide-145.2878421-windows_updated/android-studio/gradle/gradle-2.14.1" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/DismissibleImageViewlibrary" />
             <option value="$PROJECT_DIR$/Justification_library" />
+            <option value="$PROJECT_DIR$/androidviewbadger" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/baseLibrary" />
-            <option value="$PROJECT_DIR$/flipanimationexample" />
             <option value="$PROJECT_DIR$/kprogresshud" />
             <option value="$PROJECT_DIR$/library" />
             <option value="$PROJECT_DIR$/library_GridScroll" />
             <option value="$PROJECT_DIR$/library_swip_menu" />
             <option value="$PROJECT_DIR$/mylibrary" />
-            <option value="$PROJECT_DIR$/supertoasts" />
+            <option value="$PROJECT_DIR$/smscount" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

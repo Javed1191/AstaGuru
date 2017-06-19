@@ -3,26 +3,22 @@ package com.infomanav.astaguru;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.LayoutAnimationController;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.ListView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,9 +29,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-import adapter.PastAuctionAdapter;
-
 import adapter.Upcomingadpter;
+import model_classes.Upcoming_Model;
+import services.Application_Constants;
 import services.ServiceHandler;
 import services.Utility;
 
@@ -49,11 +45,13 @@ public class FragmentUpcoming extends Fragment
 	int[] myImageList = new int[]{R.drawable.img_past_1, R.drawable.img_past_2,R.drawable.img_past_3,R.drawable.img_past_4,R.drawable.img_past_5,
 			R.drawable.img_past_6};
 
-	private String strPastAuctionUrl ="http://54.169.222.181/api/v2/guru/_table/AuctionList?api_key=c6935db431c0609280823dc52e092388a9a35c5f8793412ff89519e967fd27ed&filter=status=upcomming";
+	private String strPastAuctionUrl = Application_Constants.Main_URL+"getAuctionList?api_key="+ Application_Constants.API_KEY+"&filter=status=upcomming";
 	MainActivity mainActivity;
 	private Utility utility;
 	private GridView gridview;
 	Context context;
+	private TextView tv_no_data_found;
+
 	public FragmentUpcoming()
 	{
 	}
@@ -70,6 +68,8 @@ public class FragmentUpcoming extends Fragment
 		mainActivity = (MainActivity) getActivity();
 
 		gridview = (GridView) view.findViewById(R.id.gridviewupcom);
+		tv_no_data_found = (TextView) view.findViewById(R.id.tv_no_data_found);
+
 		utility = new Utility(getActivity());
 		context = getActivity();
 
@@ -87,15 +87,23 @@ public class FragmentUpcoming extends Fragment
 
 		gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				TextView tv =(TextView) parent.findViewById(R.id.grid_text);
-				String name = appsList.get(position).getAuctionname();
-				String str_id = appsList.get(position).getAuctionId();
-				Intent intent = new Intent(getContext(),Past_Auction_SubActivity.class);
-				intent.putExtra("str_auction",name);
-				intent.putExtra("str_id",str_id);
-				intent.putExtra("auction","upcomming");
-				startActivity(intent);
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+			{
+				final Upcoming_Model apps = appsList.get(position);
+
+				if(Integer.parseInt(apps.getUpcomingCountVal())>0)
+				{
+					TextView tv =(TextView) parent.findViewById(R.id.grid_text);
+					String name = appsList.get(position).getAuctionname();
+					String str_id = appsList.get(position).getAuctionId();
+					Intent intent = new Intent(getContext(),Past_Auction_SubActivity.class);
+					intent.putExtra("str_auction",name);
+					intent.putExtra("str_id",str_id);
+					intent.putExtra("auction","upcomming");
+					startActivity(intent);
+				}
+
+
 
 			}
 		});
@@ -130,7 +138,7 @@ public class FragmentUpcoming extends Fragment
 					//Toast.makeText(MainActivity.this, "Json responce"+result, Toast.LENGTH_SHORT).show();
 					String str_json = result;
 					String str_status, str_msg;
-					String  AuctionId,Auctionname,Date,	DollarRate,image,auctiondate,auctiontitle;
+					String  AuctionId,Auctionname,Date,	DollarRate,image,auctiondate,auctiontitle,upcomingCountVal = "";
 					appsList = new ArrayList<>();
 					try {
 						if (str_json != null)
@@ -142,28 +150,38 @@ public class FragmentUpcoming extends Fragment
 							{
 								JSONArray jsonArray = new JSONArray();
 								jsonArray = jobject.getJSONArray("resource");
-
-								for(int i=0; i<jsonArray.length();i++)
+								if(jsonArray.length()>0)
 								{
-									JSONObject Obj = jsonArray.getJSONObject(i);
+									tv_no_data_found.setVisibility(View.GONE);
+									gridview.setVisibility(View.VISIBLE);
 
-									AuctionId = Obj.getString("AuctionId");
-									Auctionname = Obj.getString("Auctionname");
-									Date = Obj.getString("Date");
-									DollarRate = Obj.getString("DollarRate");
-									image = Obj.getString("image");
-									auctiondate = Obj.getString("auctiondate");
-									auctiontitle = Obj.getString("auctiontitle");
+									for(int i=0; i<jsonArray.length();i++)
+									{
+										JSONObject Obj = jsonArray.getJSONObject(i);
 
-									Upcoming_Model country = new Upcoming_Model(auctiontitle,  auctiondate,AuctionId,Auctionname,image);
-									appsList.add(country);
+										AuctionId = Obj.getString("AuctionId");
+										Auctionname = Obj.getString("Auctionname");
+										Date = Obj.getString("Date");
+										DollarRate = Obj.getString("DollarRate");
+										image = Obj.getString("image");
+										auctiondate = Obj.getString("auctiondate");
+										auctiontitle = Obj.getString("auctiontitle");
+										upcomingCountVal = Obj.getString("upcomingCountVal");
 
-								}
+										Upcoming_Model country = new Upcoming_Model(auctiontitle,  Date,AuctionId,Auctionname,image,upcomingCountVal);
+										appsList.add(country);
+
+									}
                                /* ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this,android.R.layout.simple_list_item_1,list_name);
                                 mAutoCompleteTextView.setAdapter(adapter);*/
 
-								gridview.setAdapter(new Upcomingadpter(context,appsList));
-
+									gridview.setAdapter(new Upcomingadpter(context,appsList));
+								}
+								else
+								{
+									tv_no_data_found.setVisibility(View.VISIBLE);
+									gridview.setVisibility(View.GONE);
+								}
 
 							}
 							else

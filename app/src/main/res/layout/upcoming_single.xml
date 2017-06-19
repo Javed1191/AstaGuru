@@ -27,8 +27,8 @@
 
         <ImageView
             android:id="@+id/grid_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="105dp"
             android:src="@drawable/img_upcoming" />
 
 
@@ -54,6 +54,7 @@
             android:gravity="center"
             android:id="@+id/tv_date"
             android:paddingBottom="5dp"
+            android:textSize="10sp"
             android:text="March 2016"
             android:textColor="@color/colorLink" />
     </LinearLayout>

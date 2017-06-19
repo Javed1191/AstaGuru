@@ -5,10 +5,11 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.3'
+        classpath 'com.android.tools.build:gradle:2.3.3'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        classpath 'com.google.gms:google-services:3.0.0'
 
-//        classpath 'com.android.tools.build:gradle:1.+'
+// classpath 'com.android.tools.build:gradle:1.+'
 //        classpath 'org.codehaus.groovy:groovy-backports-compat23:2.3.5'
 //        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.0'
 //        classpath 'com.github.dcendents:android-maven-plugin:1.2'

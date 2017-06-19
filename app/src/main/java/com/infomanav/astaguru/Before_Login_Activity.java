@@ -38,8 +38,7 @@ public class Before_Login_Activity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_before_login);
         init();
-       /* getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.action_bar_text);*/
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -68,10 +67,6 @@ public class Before_Login_Activity extends AppCompatActivity
         }
         ButterKnife.bind(this);
 
-
-
-
-
         btn_signin.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -81,9 +76,6 @@ public class Before_Login_Activity extends AppCompatActivity
                 Intent intent = new Intent(Before_Login_Activity.this,LoginActivity.class);
                 intent.putExtra("str_from","test");
                 startActivity(intent);
-                finish();
-
-
 
             }
         });
@@ -95,11 +87,7 @@ public class Before_Login_Activity extends AppCompatActivity
 
                 Intent intent = new Intent(Before_Login_Activity.this,RegistrationActivity.class);
                 startActivity(intent);
-                finish();
-
-
-
-            }
+                        }
         });
     }
 
@@ -107,7 +95,6 @@ public class Before_Login_Activity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.default_main, menu);
         return true;
     }
@@ -115,27 +102,18 @@ public class Before_Login_Activity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_close)
         {
-//            Intent intent = new Intent(Before_Login_Activity.this,LoginActivity.class);
-//            startActivity(intent);
             finish();
         }
-
-
         return super.onOptionsItemSelected(item);
     }
     @Override
     public void onBackPressed() {
 
-//        Intent intent = new Intent(Before_Login_Activity.this,MainActivity.class);
-//        startActivity(intent);
         finish();
     }
 

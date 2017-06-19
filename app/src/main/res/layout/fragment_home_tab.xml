@@ -37,7 +37,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/selector_tab_indicator_blue"
-            android:elevation="10dp" />
+            />
 
         <View
             android:id="@+id/view3"
@@ -45,7 +45,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/selector_tab_indicator_blue"
-            android:elevation="10dp" />
+            />
 
         <View
             android:id="@+id/view4"
@@ -53,21 +53,19 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/selector_tab_indicator_blue"
-            android:elevation="10dp" />
+            />
     </LinearLayout>
 
     <android.support.design.widget.TabLayout
+        android:layout_marginTop="-4dp"
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="6dp"
-
+        android:elevation="0dp"
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:tabIndicatorHeight="0dp"
         app:tabMode="fixed"
-
-
         app:tabSelectedTextColor="@color/colorLink"
         app:tabTextColor="@color/colorPrimary" />
 

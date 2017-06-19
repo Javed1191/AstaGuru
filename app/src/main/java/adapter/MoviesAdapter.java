@@ -17,7 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
-import com.infomanav.astaguru.Current_Auction_Model;
+import model_classes.Current_Auction_Model;
 import com.infomanav.astaguru.MainActivity;
 import com.infomanav.astaguru.R;
 

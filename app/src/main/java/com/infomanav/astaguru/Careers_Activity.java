@@ -1,6 +1,5 @@
 package com.infomanav.astaguru;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -13,10 +12,11 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
@@ -30,58 +30,33 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.internal.http.multipart.MultipartEntity;
+import com.kaopiz.kprogresshud.KProgressHUD;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.mime.HttpMultipartMode;
-import org.apache.http.entity.mime.content.FileBody;
-import org.apache.http.entity.mime.content.InputStreamBody;
-import org.apache.http.entity.mime.content.StringBody;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.params.CoreProtocolPNames;
-import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.StringTokenizer;
 
 import adapter.Careeer_Adpter;
-import adapter.CurrentAuctionAdapter_listview;
 import butterknife.ButterKnife;
-import services.CustomMultiPartEntity;
-import services.FilePath;
+import services.Application_Constants;
 import services.MultipartUtility;
 import services.ServiceHandler;
-import services.UploadProgressListener;
 import services.Utility;
 
 /**
@@ -91,55 +66,40 @@ import services.Utility;
 public class Careers_Activity extends AppCompatActivity
 {
 
-
-    private static final int PICK_FILE_REQUEST = 1;
-    private static final String TAG = MainActivity.class.getSimpleName();
-    private String selectedFilePath;
-    private String SERVER_URL = "http://mobile.adwallz.co/beta/astaguru/PHPMailer-master/examples/smtp.php?";
-    ImageView ivAttachment;
-    Button bUpload;
-    TextView tvFileName;
-    ProgressDialog dialog;
-
-
    private int  PICK_IMAGE_REQUEST = 1;
 
-ProgressDialog dialogProfile;
+    private KProgressHUD hud;
     Model_Careeer country;
     ArrayList<Model_Careeer> appsList;
     ImageView img_user_pic;
-    ProgressDialog progressDialog;
-    File file_1;
-    long imageSize = 0;
+
     private Button btn_why_astaguru,btn_vacancies;
     ScrollView sc_form,sc_why_asta;
-String uploadedFileName;
+
     WebView wb_whyastaguru;
     Context context;
     Careeer_Adpter careeer_adpter;
-StringTokenizer tokens;
 
     ListView listView;
     Utility utility;
     Button btn_proceed;
-    ProgressDialog pDialog;
     Spinner spn_source,spn_post;
 
     EditText edt_email,edt_first_name,edt_msg;
     String str_post_name,str_source,str_image_path="";
     Button btn_select_file;
-
+    List<String> JobTitle;
     byte[]  byteArray;
-    String strname,stremail,str_msg;
-    File imageFile,file1;
+    String encodedImage;
+    File imageFile;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_careers);
         context = Careers_Activity.this;
         utility = new Utility(context);
-       /* getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.action_bar_text);*/
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -158,7 +118,7 @@ StringTokenizer tokens;
             window.setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
         }
         ButterKnife.bind(this);
-        listView = (ListView) findViewById(R.id.listView);
+        listView = (ListView)findViewById(R.id.listView);
 
         spn_post = (Spinner) findViewById(R.id.spn_post);
         spn_source = (Spinner) findViewById(R.id.spn_source);
@@ -168,39 +128,28 @@ StringTokenizer tokens;
         tool_text.setText("Careers");
 
 
-        Typeface type = Typeface.createFromAsset(getAssets(), "WorkSans-Medium.otf");
+        Typeface type = Typeface.createFromAsset(getAssets(),"WorkSans-Medium.otf");
         tool_text.setTypeface(type);
 
-//
-        wb_whyastaguru = (WebView) findViewById(R.id.wb_whyastaguru);
+        wb_whyastaguru = (WebView)findViewById(R.id.wb_whyastaguru) ;
         wb_whyastaguru.loadUrl("file:///android_asset/whyastaguru.html");
 
 
-        // Spinner Drop down elements
-        List<String> categories = new ArrayList<String>();
-        categories.add("  Client Relation Excecutive");
-        categories.add("  Relation Manager");
-        categories.add("  Client Relation Excecutive");
-        categories.add("  Relation Manager");
-        categories.add("  Client Relation Excecutive");
-        // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
 
-        // Drop down layout style - list view with radio button
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        // attaching data adapter to spinner
-        spn_post.setAdapter(dataAdapter);
+
+
+
+
 
 
         List<String> categories1 = new ArrayList<String>();
-        categories1.add("  Select Resource");
-        categories1.add("  News Paper");
-        categories1.add("  TV Shows");
-        categories1.add("  Friends");
-        categories1.add("  Facebook");
-        categories1.add("  Others");
-        ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories1);
+        categories1.add("Select Resource");
+        categories1.add("News Paper");
+        categories1.add("Friends");
+        categories1.add("Facebook");
+        categories1.add("Others");
+        ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(this,R.layout.spinner_row, categories1);
 
         // Drop down layout style - list view with radio button
         dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -211,7 +160,7 @@ StringTokenizer tokens;
         spn_source.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                str_source = parent.getItemAtPosition(position).toString();
+                str_source =  parent.getItemAtPosition(position).toString();
             }
 
             @Override
@@ -223,7 +172,7 @@ StringTokenizer tokens;
         spn_post.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                str_post_name = parent.getItemAtPosition(position).toString();
+               str_post_name = parent.getItemAtPosition(position).toString();
             }
 
             @Override
@@ -231,11 +180,18 @@ StringTokenizer tokens;
 
             }
         });
-        btn_why_astaguru.setOnClickListener(new View.OnClickListener() {
+        btn_why_astaguru.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 sc_why_asta.setVisibility(View.VISIBLE);
                 listView.setVisibility(View.GONE);
+                sc_form.setVisibility(View.GONE);
+                btn_why_astaguru.setBackgroundColor(getResources().getColor(R.color.btn_reachus));
+                btn_vacancies.setBackgroundColor(getResources().getColor(R.color.btn_bg_white));
+                btn_vacancies.setTextColor(getResources().getColor(R.color.btn_reachus));
+                btn_why_astaguru.setTextColor(getResources().getColor(R.color.btn_bg_white));
 
 //                btn_why_astaguru.setBackgroundColor(getResources().getColor(R.color.btn_bg_brown));
 //                btn_vacancies.setBackgroundColor(getResources().getColor(R.color.btn_bg_white));
@@ -243,11 +199,19 @@ StringTokenizer tokens;
 
             }
         });
-        btn_vacancies.setOnClickListener(new View.OnClickListener() {
+        btn_vacancies.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 sc_why_asta.setVisibility(View.GONE);
                 listView.setVisibility(View.VISIBLE);
+
+
+                btn_vacancies.setBackgroundColor(getResources().getColor(R.color.btn_reachus));
+                btn_why_astaguru.setBackgroundColor(getResources().getColor(R.color.btn_bg_white));
+                btn_why_astaguru.setTextColor(getResources().getColor(R.color.btn_reachus));
+                btn_vacancies.setTextColor(getResources().getColor(R.color.btn_bg_white));
 
 //                btn_vacancies.setBackgroundColor(getResources().getColor(R.color.btn_bg_brown));
 //                btn_why_astaguru.setBackgroundColor(getResources().getColor(R.color.btn_bg_white));
@@ -256,68 +220,210 @@ StringTokenizer tokens;
             }
         });
 
+        edt_first_name.setFilters(new InputFilter[] {
+                new InputFilter() {
+                    @Override
+                    public CharSequence filter(CharSequence cs, int start,
+                                               int end, Spanned spanned, int dStart, int dEnd) {
+                        // TODO Auto-generated method stub
+                        if(cs.equals("")){ // for backspace
+                            return cs;
+                        }
+                        if(cs.toString().matches("[a-zA-Z ]+")){
+                            return cs;
+                        }
+                        return "";
+                    }
+                }
+        });
+
         btn_proceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                 strname = edt_first_name.getText().toString();
-               stremail = edt_email.getText().toString();
-                str_msg = edt_msg.getText().toString();
+                String strname = edt_first_name.getText().toString();
+                String stremail = edt_email.getText().toString();
+                String str_msg = edt_msg.getText().toString();
 
-                if (strname.isEmpty()) {
+
+                if(strname.isEmpty())
+                {
                     edt_first_name.requestFocus();
                     edt_first_name.setError("Enter First Name");
-                } else if (stremail.isEmpty()) {
+                }
+                else if(stremail.isEmpty())
+                {
                     edt_email.requestFocus();
                     edt_email.setError("Enter Emaild Id");
-                } else if (!utility.checkEmail(stremail)) {
+                }
+                else if(!utility.checkEmail(stremail))
+                {
                     edt_email.requestFocus();
                     edt_email.setError("Enter Valid Emaild Id");
-                } else if (str_post_name.isEmpty()) {
+                }
+
+                else if(str_post_name.isEmpty())
+                {
                     Toast.makeText(getApplicationContext(), "Pls Select Post", Toast.LENGTH_SHORT).show();
-                } else if (selectedFilePath.isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "Pls Select File", Toast.LENGTH_SHORT).show();
-                } else if (str_msg.isEmpty()) {
+                }
+                else if(str_image_path.isEmpty())
+                {
+                    Toast.makeText(getApplicationContext(), "Please Upload Resume", Toast.LENGTH_SHORT).show();
+                }
+                else if(str_msg.isEmpty())
+                {
                     edt_msg.requestFocus();
                     edt_msg.setError("Enter User Name");
-                } else if (str_source.equals("Select Resource")) {
+                }
+
+                else if(str_source.equals("Select Resource"))
+                {
                     Toast.makeText(getApplicationContext(), "Pls Select Source", Toast.LENGTH_SHORT).show();
-                } else {
-                    if (selectedFilePath != null)
-                    {
-//                        progressDialog = createDialog();
-//                        progressDialog.show();
-//                        new ChangeProfilePic(strname,stremail,str_post_name,str_image_path,str_msg,str_source).execute();
+                }
+                else
+                {
 
-                        new ImageUploader().execute();
-
-                    }
-                    else
-                    {
-                        Toast.makeText(Careers_Activity.this, "Please choose a File First", Toast.LENGTH_SHORT).show();
-                    }
-
-//                    new ChangeProfilePic(strname,stremail,str_post_name,str_image_path,str_msg,str_source).execute();
+                    new ApplyForJob(strname,stremail,str_post_name,str_image_path,str_msg,str_source).execute();
                 }
 
 
             }
         });
 
+
         btn_select_file.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                showFileChooser();
 
-                Intent i = new Intent(
-                        Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 
-                startActivityForResult(i, PICK_IMAGE_REQUEST);
+//                Intent i = new Intent(Intent.ACTION_PICK);
+//                i.setType("file/*");
+//                startActivityForResult(i, PICK_IMAGE_REQUEST);
+
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("file/*");
+                intent.addCategory(Intent.CATEGORY_OPENABLE);
+                // Only the system receives the ACTION_OPEN_DOCUMENT, so no need to test.
+                startActivityForResult(intent, PICK_IMAGE_REQUEST);
+
+
             }
         });
 
+//
+//        iv_plus.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                if (tv_job.getVisibility() == View.VISIBLE) {
+//                    tv_job.setVisibility(View.GONE);
+//                    iv_plus.setBackgroundResource(R.drawable.plus);
+//                } else {
+//                    tv_job.setVisibility(View.VISIBLE);
+//                    iv_plus.setBackgroundResource(R.drawable.minus);
+//                }
+//            }
+//        });
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        // TODO Auto-generated method stub
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(data!=null)
+        {
+            if (requestCode == PICK_IMAGE_REQUEST)
+            {
+
+                Uri uri = data.getData();
+
+                str_image_path = getRealPathFromURI(uri);
+
+                try {
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), uri);
+                    // Log.d(TAG, String.valueOf(bitmap));
+
+                    img_user_pic.setImageBitmap(bitmap);
+
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 90, stream);
+
+
+                    byteArray= stream.toByteArray();
+                    // String  imageString= Base64.encode(byteArray);
+
+                    encodedImage = Base64.encodeToString(byteArray, Base64.DEFAULT);
+                    // String url_image = str_change_profile_url+userId;
+                    // new post_Async(url_image).execute();
+
+                    // btn_submit_photo.setVisibility(View.VISIBLE);
+
+
+                    if(utility.checkInternet())
+                    {
+
+                        BitmapDrawable drawable = (BitmapDrawable) img_user_pic.getDrawable();
+                        Bitmap bitmap1 = drawable.getBitmap();
+
+
+                        if (drawable == null) {
+                            bitmap1 = BitmapFactory.decodeResource(getResources(), R.drawable.action_man);
+                        }
+
+
+                        File filesDir = getFilesDir();
+                        imageFile = new File(filesDir, "user_image.jpg");
+
+                        OutputStream os;
+                        try {
+                            os = new FileOutputStream(imageFile);
+                            bitmap1.compress(Bitmap.CompressFormat.JPEG, 100, os);
+                            os.flush();
+                            os.close();
+                        } catch (Exception e) {
+                            Log.e(getClass().getSimpleName(), "Error writing bitmap", e);
+                        }
+
+                    }
+
+                }
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+
+
 
     }
+
+    public String getPath(Uri uri)
+    {
+        String[] projection = { MediaStore.Images.Media.DATA };
+        Cursor cursor = managedQuery(uri, projection, null, null, null);
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        return cursor.getString(column_index);
+    }
+
+    private String getRealPathFromURI(Uri contentURI) {
+        String result;
+        Cursor cursor = getContentResolver().query(contentURI, null, null, null, null);
+        if (cursor == null) { // Source is Dropbox or other similar local file path
+            result = contentURI.getPath();
+        } else {
+            cursor.moveToFirst();
+            int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+            result = cursor.getString(idx);
+            cursor.close();
+        }
+        return result;
+    }
+
 
 
     @Override
@@ -367,7 +473,7 @@ StringTokenizer tokens;
 
         if (utility.checkInternet()) {
 
-            String strPastAuctionUrl = "http://54.169.222.181/api/v2/guru/_table/jobs?api_key=c6935db431c0609280823dc52e092388a9a35c5f8793412ff89519e967fd27ed";
+            String strPastAuctionUrl = Application_Constants.Main_URL+"jobs?api_key="+ Application_Constants.API_KEY;
             System.out.println("strPastAuctionUrl " + strPastAuctionUrl);
             final Map<String, String> params = new HashMap<String, String>();
 
@@ -387,7 +493,8 @@ StringTokenizer tokens;
                         if (str_json != null)
                         {
                             JSONObject jobject = new JSONObject(str_json);
-
+                            String jobTitle;
+                            JobTitle = new ArrayList<String>();
                             if (jobject.length() > 0)
                             {
                                 JSONArray jsonArray = new JSONArray();
@@ -401,7 +508,7 @@ StringTokenizer tokens;
 
 
                                     String jobID = Obj.getString("jobID");
-                                    String jobTitle = Obj.getString("jobTitle");
+                                     jobTitle = Obj.getString("jobTitle");
                                     String jobDesc = Obj.getString("jobDesc");
                                     String businessUnit = Obj.getString("businessUnit");
                                     String jobResponsibility = Obj.getString("jobResponsibility");
@@ -411,7 +518,7 @@ StringTokenizer tokens;
                                     String jobSalary = Obj.getString("jobSalary");
                                     String jobExperience = Obj.getString("jobExperience");
 
-
+                                    JobTitle.add(jobTitle);
                                     country = new Model_Careeer( jobID,  jobTitle,  jobDesc,businessUnit,jobResponsibility,functionalSkills,technicalSkills,joiningTime,jobSalary,jobExperience,false,false);
                                     appsList.add(country);
 
@@ -419,6 +526,12 @@ StringTokenizer tokens;
 
                                 careeer_adpter = new Careeer_Adpter(context, R.layout.current_listview, appsList,sc_form,listView);
                                 listView.setAdapter(careeer_adpter);
+
+
+
+                                ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(context,R.layout.spinner_row, JobTitle);
+                                dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                spn_post.setAdapter(dataAdapter);
 
 
                             } else {
@@ -439,229 +552,142 @@ StringTokenizer tokens;
     }
 
 
+    class ApplyForJob extends AsyncTask<String, String, String>
+    {
+        String str_status;
+        String url;
+       String strname,stremail,str_post_name,str_image_path,str_msgmsg,str_source;
+        String str_quickly_id,str_address,json_responce;
+        public  ApplyForJob( String strname,String stremail, String str_post_name, String str_image_path,String str_msg,String str_source)
+        {
+            this.strname=strname;
+            this.stremail=stremail;
+            this.str_post_name=str_post_name;
+            this.str_image_path=str_image_path;
+            this.str_msgmsg=str_msg;
+            this.str_source=str_source;
 
 
-    private ProgressDialog createDialog(){
-        ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Please wait.. Uploading File");
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-        progressDialog.setCancelable(false);
+        }
+        @Override
+        protected void onPreExecute()
+        {
+            // TODO Auto-generated method stub
+            super.onPreExecute();
 
-        return progressDialog;
-    }
-    private void showFileChooser() {
-        Intent intent = new Intent();
-        //sets the select file to all types of files
-        intent.setType("*/*");
-        //allows to select data and return it
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        //starts new activity to select file and return data
-        startActivityForResult(Intent.createChooser(intent,"Choose File to Upload.."),PICK_FILE_REQUEST);
-    }
+            hud = KProgressHUD.create(context)
+                    .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                    .setDimAmount(0.5f);
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == Activity.RESULT_OK){
-            if(requestCode == PICK_FILE_REQUEST){
-                if(data == null){
-                    //no data present
-                    return;
+            hud.show();
+
+
+        }
+
+        @Override
+        protected String doInBackground(String... params)
+        {
+            // TODO Auto-generated method stub
+
+
+            String charset = "UTF-8";
+
+            String url  = "http://mobile.adwallz.co/beta/astaguru/PHPMailer-master/examples/smtp.php?";
+
+            // File uploadFile1 = new File(str_image_path);
+            try {
+                MultipartUtility multipart = new MultipartUtility(url, charset);
+                multipart.addFormField("strname",strname);
+                multipart.addFormField("stremail",stremail);
+                multipart.addFormField("str_post_name", str_post_name);
+                multipart.addFormField("str_msgmsg", str_msgmsg);
+                multipart.addFormField("str_source", str_source);
+                multipart.addFilePart("imageFile", imageFile);
+
+
+                System.out.println("json_responce" + strname);
+                System.out.println("json_responce" + stremail);
+                System.out.println("json_responce" + str_post_name);
+                System.out.println("json_responce" + str_msgmsg);
+                System.out.println("json_responce" + str_source);
+                System.out.println("json_responce" + imageFile);
+
+
+
+                json_responce= multipart.finish();
+
+
+
+            } catch (IOException ex) {
+                System.err.println(ex);
+            }
+
+            try {
+                if(json_responce!=null)
+                {
+
+                    System.out.println("json_responce" + json_responce);
+
+                    JSONObject jobject = new JSONObject(json_responce);
+                    //JSONObject str_status_obj =jobject.getJSONObject("STATUS");
+
+                    str_status = jobject.getString("status");
+
+
+
+                    if(str_status.equalsIgnoreCase("success"))
+                    {
+//                        Toast.makeText(context, "Application Submitted Succesfully", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                    else if(str_status.equalsIgnoreCase("error"))
+                    {
+
+                    }
+                }
+                else
+                {
+//                    Toast.makeText(context, "This may be server issue", Toast.LENGTH_SHORT).show();
                 }
 
-
-                Uri selectedFileUri = data.getData();
-                selectedFilePath = FilePath.getPath(this,selectedFileUri);
-                Log.i(TAG,"Selected File Path:" + selectedFilePath);
-
-                imageSize = this.getFileSize(selectedFilePath);
-
-                if(selectedFilePath != null && !selectedFilePath.equals("")){
-//                    tvFileName.setText(selectedFilePath);
-                }else{
-                    Toast.makeText(this,"Cannot upload file to server",Toast.LENGTH_SHORT).show();
-                }
-            }
-        }
-    }
-
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        // TODO Auto-generated method stub
-//        super.onActivityResult(requestCode, resultCode, data);
-//
-//
-//        if (requestCode == PICK_IMAGE_REQUEST) {
-//
-//            Uri uri = data.getData();
-//
-//            str_image_path = getPath(uri);
-//
-//
-//            File filesDir = getFilesDir();
-//            imageFile = new File(filesDir, "user_image.jpg");
-//
-//
-//        }
-//
-//
-//    }
-
-    public String getPath(Uri uri)
-    {
-        String[] projection = { MediaStore.Images.Media.DATA };
-        Cursor cursor = managedQuery(uri, projection, null, null, null);
-        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-        cursor.moveToFirst();
-        return cursor.getString(column_index);
-    }
-
-
-
-    private long getFileSize(String imagePath){
-        long length = 0;
-
-        try {
-
-            File file = new File(imagePath);
-            length = file.length();
-            length = length / 1024;
-
-        } catch (Exception e) {
-
-            e.printStackTrace();
-        }
-
-        return length;
-    }
-
-
-    private class ImageUploader extends AsyncTask<Void, Integer, Boolean> implements UploadProgressListener
-    {
-        @Override
-        protected Boolean doInBackground(Void... params)
-        {
-            try
+            } catch (JSONException e)
             {
-                InputStream inputStream = new FileInputStream(new File(selectedFilePath));
-                byte[] data = this.convertToByteArray(inputStream);
-
-                HttpClient httpClient = new DefaultHttpClient();
-                httpClient.getParams().setParameter(CoreProtocolPNames.USER_AGENT,System.getProperty("http.agent"));
-
-                HttpPost httpPost = new HttpPost(SERVER_URL);
-
-                StringBody dataString = new StringBody("This is the sample image");
-
-                InputStreamBody inputStreamBody = new InputStreamBody(new ByteArrayInputStream(data),"test.jpg");
-
-                CustomMultiPartEntity  multipartEntity = new CustomMultiPartEntity();
-
-
-                multipartEntity.setUploadProgressListener(this);
-
-                multipartEntity.addPart("strname",dataString);
-                multipartEntity.addPart("stremail",dataString);
-                multipartEntity.addPart("str_post_name",dataString);
-                multipartEntity.addPart("str_msg",dataString);
-                multipartEntity.addPart("str_source",dataString);
-                multipartEntity.addPart("imageFile",inputStreamBody);
-
-                httpPost.setEntity(multipartEntity);
-
-                HttpResponse httpResponse = httpClient.execute(httpPost);
-
-                // THE RESPONSE FROM SERVER
-                String stringResponse =  EntityUtils.toString(httpResponse.getEntity());
-
-                // DISPLAY RESPONSE OF THE SERVER
-                Log.d("data from server",stringResponse);
-                System.out.println("json_responce" + stringResponse);
-
-
-            }
-            catch (FileNotFoundException e1)
-            {
-                e1.printStackTrace();
-
-                return false;
-
-            }
-            catch (ClientProtocolException e)
-            {
+                // TODO Auto-generated catch block
                 e.printStackTrace();
-
-                return false;
-
-            }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-
-                return false;
             }
 
-            return true;
+            return null;
         }
 
         @Override
-        public void transferred(long num)
+        protected void onPostExecute(String result)
         {
+            // TODO Auto-generated method stub
+            //pDialog.dismiss();
+            hud.dismiss();
 
-            // COMPUTE DATA UPLOADED BY PERCENT
+            super.onPostExecute(result);
 
-            long dataUploaded = ((num / 1024) * 100 ) / imageSize;
-
-            this.publishProgress((int)dataUploaded);
-
-        }
-
-        private byte[] convertToByteArray(InputStream inputStream) throws IOException
-        {
-
-            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-
-            int next = inputStream.read();
-            while (next > -1)
-
+            if(str_status.equalsIgnoreCase("success"))
             {
-                bos.write(next);
-                next = inputStream.read();
+                Toast.makeText(context, str_status,Toast.LENGTH_SHORT).show();
+
+                listView.setVisibility(View.VISIBLE);
+                sc_form.setVisibility(View.GONE);
+
             }
-
-            bos.flush();
-
-            return bos.toByteArray();
-        }
-
-
-
-        @Override
-        protected void onProgressUpdate(Integer... values)
-        {
-            super.onProgressUpdate(values);
-
-            // UPDATE THE PROGRESS DIALOG
-
-            progressDialog.setProgress(values[0]);
-
-
-
-        }
-
-        @Override
-        protected void onPostExecute(Boolean uploaded) {
-            super.onPostExecute(uploaded);
-            if( uploaded)
+            else if(str_status.equalsIgnoreCase("error"))
             {
-                progressDialog.dismiss();
-                Toast.makeText(Careers_Activity.this, "File Uploaded", Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(context, str_status, Toast.LENGTH_SHORT).show();
+
             }
             else
             {
-                progressDialog.setMessage("Uploading Failed");
-                progressDialog.setCancelable(true);
+                //Toast.makeText(getApplicationContext(), str_msg,Toast.LENGTH_SHORT).show();
             }
+
 
         }
 

@@ -3,6 +3,7 @@ package adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -20,17 +21,22 @@ import services.SessionData;
  */
 public class HomeTabAdapter extends FragmentStatePagerAdapter {
     int mNumOfTabs;
-    private String url_string;
-
+    private String url_string,fragment,key,auction,type;
     SessionData data;
     Context context;
     FragmentCurrentAuction fragmentCurrent;
-    public HomeTabAdapter(Context context,FragmentManager fm, int NumOfTabs,String url_string)
+    private TabLayout tabLayout;
+    public HomeTabAdapter(Context context,FragmentManager fm, int NumOfTabs,String url_string,String fragment,String key,String auction, String type)
     {
         super(fm);
         this.mNumOfTabs = NumOfTabs;
         this.url_string=url_string;
         this.context=context;
+        this.fragment=fragment;
+        this.key=key;
+        this.auction=auction;
+        this.type=type;
+
 
     }
 
@@ -44,13 +50,29 @@ public class HomeTabAdapter extends FragmentStatePagerAdapter {
             case 1:
 
                 data = new SessionData(context);
-                if (data.getObjectAsString("Filter_Data").equals("yes"))
-                {
 
-                     fragmentCurrent = new FragmentCurrentAuction();
+                fragmentCurrent = new FragmentCurrentAuction();
+                Bundle bundle = new Bundle();
+                bundle.putString("url_string", url_string);
+                bundle.putString("type",type);
+                bundle.putString("fragment", fragment);
+                bundle.putString("key", key);
+                bundle.putString("auction", auction);
+                System.out.println("int_stradpter" + url_string);
+                fragmentCurrent.setArguments(bundle);
+
+                // this is becoouse when we are comming from search to current fragment than it get arguments what we haev sent in search and it always show that search result only
+                type = "current";
+
+               /* if (data.getObjectAsString("Filter_Data").equals("yes"))
+                {
+                    fragmentCurrent = new FragmentCurrentAuction();
                     Bundle bundle = new Bundle();
                     bundle.putString("url_string", url_string);
-
+                    bundle.putString("type",type);
+                    bundle.putString("fragment", fragment);
+                    bundle.putString("key", key);
+                    bundle.putString("auction", auction);
                     System.out.println("int_stradpter" + url_string);
                     fragmentCurrent.setArguments(bundle);
 
@@ -58,7 +80,7 @@ public class HomeTabAdapter extends FragmentStatePagerAdapter {
                 else
                 {
                     fragmentCurrent = new FragmentCurrentAuction();
-                }
+                }*/
 
 
 

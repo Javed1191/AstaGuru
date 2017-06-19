@@ -102,7 +102,7 @@ public class HomeTabActivity extends AppCompatActivity
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
         FragmentManager fm = getSupportFragmentManager();
-        final HomeTabAdapter adapter = new HomeTabAdapter(context,fm, tabLayout.getTabCount(),url_string);
+        final HomeTabAdapter adapter = new HomeTabAdapter(context,fm, tabLayout.getTabCount(),url_string,"","","","");
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 

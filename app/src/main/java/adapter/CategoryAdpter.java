@@ -1,23 +1,17 @@
 package adapter;
 
 import android.content.Context;
-import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.infomanav.astaguru.Category_Model;
+import model_classes.Category_Model;
 import com.infomanav.astaguru.MainActivity;
 import com.infomanav.astaguru.R;
-import com.infomanav.astaguru.UpcomingAuction;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
-
-import services.Application_Constants;
 
 /**
  * Created by android-javed on 03-10-2016.

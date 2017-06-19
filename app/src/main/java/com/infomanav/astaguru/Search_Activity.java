@@ -2,7 +2,6 @@ package com.infomanav.astaguru;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -29,8 +28,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import adapter.AuctionGallaryAdpter;
-import adapter.Search_Adpter;
+import model_classes.Model_Search;
+import services.Application_Constants;
 import services.ServiceHandler;
 import services.SessionData;
 import services.Utility;
@@ -41,7 +40,7 @@ import services.Utility;
 
 public class Search_Activity extends AppCompatActivity {
 
-    ArrayList<Model_Search> appsList;
+    ArrayList<model_classes.Model_Search> appsList;
 
     private Utility utility;
     private GridView gridview;
@@ -49,7 +48,6 @@ public class Search_Activity extends AppCompatActivity {
     String str_userid;
 
     Model_Search Model_Search;
-    Search_Adpter search_adpter;
     SessionData sessionData;
     String str_search;
 
@@ -122,9 +120,15 @@ public class Search_Activity extends AppCompatActivity {
                 str_search = edt_search.getText().toString().trim();
                 if (str_search != null && !str_search.isEmpty())
                 {
-                    GetSearchResult("Upcomming");
-                    lin_text.setVisibility(View.GONE);
-                    gridview.setVisibility(View.VISIBLE);
+                   // GetSearchResult("current");
+                  //  lin_text.setVisibility(View.GONE);
+                  //  gridview.setVisibility(View.VISIBLE);
+
+                    Intent intent = new Intent(Search_Activity.this,MainActivity.class);
+                    intent.putExtra("type","search");
+                    intent.putExtra("key",str_search);
+                    intent.putExtra("auction","current");
+                    startActivity(intent);
                 }
                 else
                 {
@@ -141,9 +145,15 @@ public class Search_Activity extends AppCompatActivity {
                 str_search = edt_search.getText().toString().trim();
                 if (str_search != null && !str_search.isEmpty())
                 {
-                    GetSearchResult("Upcomming");
-                    lin_text.setVisibility(View.GONE);
+                   // GetSearchResult("Upcomming");
+                    //lin_text.setVisibility(View.GONE);
                     gridview.setVisibility(View.VISIBLE);
+
+                    Intent intent = new Intent(Search_Activity.this,Past_Auction_SubActivity.class);
+                    intent.putExtra("type","search");
+                    intent.putExtra("key",str_search);
+                    intent.putExtra("auction","Upcomming");
+                    startActivity(intent);
                 }
                 else
                 {
@@ -162,10 +172,16 @@ public class Search_Activity extends AppCompatActivity {
                 if (str_search != null && !str_search.isEmpty())
                 {
 
-                    GetSearchResult("Past");
+                   // GetSearchResult("Past");
 
-                    lin_text.setVisibility(View.GONE);
+                  //  lin_text.setVisibility(View.GONE);
                     gridview.setVisibility(View.VISIBLE);
+
+                    Intent intent = new Intent(Search_Activity.this,Past_Auction_SubActivity.class);
+                    intent.putExtra("type","search");
+                    intent.putExtra("key",str_search);
+                    intent.putExtra("auction","Past");
+                    startActivity(intent);
                 }
                 else
                 {
@@ -192,124 +208,12 @@ public class Search_Activity extends AppCompatActivity {
 
 
 
-        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                String str_id = appsList.get(position).getStr_productid();
-                Intent intent = new Intent(context,Search_Lot_Details.class);
-                intent.putExtra("str_status",str_status);
-                System.out.println("str_status" + str_status);
-                intent.putExtra("str_id",str_id);
-                startActivity(intent);
-
-            }
-        });
 
     }
 
 
 
-    private void GetSearchResult(String auction) {
-
-        if (utility.checkInternet()) {
-
-            String Auction_Type = auction;
-
-            String strPastAuctionUrl = "http://54.169.222.181/api/v2/guru/_proc/spSearch("+str_search+","+Auction_Type+")?api_key=c6935db431c0609280823dc52e092388a9a35c5f8793412ff89519e967fd27ed";
-
-            System.out.println("strPastAuctionUrl " + strPastAuctionUrl);
-            final Map<String, String> params = new HashMap<String, String>();
-
-            ServiceHandler serviceHandler = new ServiceHandler(context);
-
-
-            serviceHandler.registerUser(params, strPastAuctionUrl, new ServiceHandler.VolleyCallback() {
-                @Override
-                public void onSuccess(String result) {
-                    System.out.println("str_get_category_url Json responce" + result);
-
-                    String str_json = result;
-
-
-                    try {
-                        if (str_json != null)
-                        {
-                            JSONArray jsonArray = new JSONArray(str_json);
-                            if (jsonArray.length() > 0)
-                            {
-
-
-                                for (int i = 0; i < jsonArray.length(); i++) {
-                                    JSONObject Obj = jsonArray.getJSONObject(i);
-
-
-                                    str_productid = Obj.getString("productid");
-                                    str_title = Obj.getString("title");
-//                                    str_description = Obj.getString("description");
-                                    str_description = "no data for this";
-                                    str_artistid = Obj.getString("artistid");
-                                    str_thumbnail = Obj.getString("thumbnail");
-                                    str_image = Obj.getString("image");
-                                    str_productsize = Obj.getString("productsize");
-                                    str_small_img = Obj.getString("smallimage");
-
-//                                    JSONObject object = Obj.getJSONObject("artist_by_artistid");
-                                    str_FirstName = Obj.getString("FirstName");
-                                    str_LastName = Obj.getString("LastName");
-                                    pricers = Obj.getString("Bidpricers");
-                                    priceus = Obj.getString("Bidpriceus");
-                                    str_Bidclosingtime = Obj.getString("Bidclosingtime");
-
-                                    medium = Obj.getString("medium");
-                                    productsize = Obj.getString("productsize");
-                                    estamiate = Obj.getString("estamiate");
-                                    DollarRate = Obj.getString("DollarRate");
-                                    reference = Obj.getString("reference");
-                                    str_status = Obj.getString("status");
-                                    bidartistuserid = "12";
-                                    String newtext = reference.trim();
-
-                                    System.out.println("str_status" + str_status);
-                                    str_Profile = "Profile";
-
-                                    artist_name = str_FirstName+str_LastName;
-
-
-//                                    JSONObject obj_category_by_categoryid = Obj.getJSONObject("category_by_categoryid");
-
-                                    str_category = Obj.getString("category");
-
-
-
-
-                                    Model_Search  = new Model_Search( str_productid,  str_category,  artist_name,  str_Profile,  str_small_img,  str_productsize,  str_image,  str_thumbnail,  str_artistid,  str_description,  str_title,str_Bidclosingtime,true,pricers,priceus,medium, productsize,estamiate,DollarRate,newtext,bidartistuserid);
-                                    appsList.add(Model_Search);
-
-                                }
-
-                                search_adpter = new Search_Adpter(context,R.layout.search_single,appsList,false);
-                                gridview.setAdapter(search_adpter);
-
-
-
-                            } else {
-                                Toast.makeText(context, "Result Not Found", Toast.LENGTH_SHORT).show();
-                                gridview.setVisibility(View.GONE);
-                            }
-                        } else {
-                            Toast.makeText(context, "Result Not Found", Toast.LENGTH_SHORT).show();
-                        }
-
-                    } catch (JSONException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                }
-            });
-        }
-
-    }
 
 
     @Override

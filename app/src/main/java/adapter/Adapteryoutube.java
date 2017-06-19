@@ -10,6 +10,8 @@ import com.google.android.youtube.player.YouTubePlayerSupportFragment;
 class Adapteryoutube extends FragmentStatePagerAdapter
 {
 
+
+
 		private String[] getVids()
 		{
 			return new String[]{"ORgucLTtTDI", "WzQ2RvSLR4o","dQw4w9WgXcQ"};

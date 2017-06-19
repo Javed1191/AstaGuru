@@ -14,6 +14,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import adapter.MyPurchasesAdpter;
+import model_classes.MyPurchases_Model;
+import services.Application_Constants;
 import services.ServiceHandler;
 import services.Utility;
 
@@ -26,7 +28,7 @@ public class Purchase_Details_Activity extends AppCompatActivity {
     ArrayList<MyPurchases_Model> appsList;
     String[] mydateList = new String[]{"July, 2016", "September, 2016", "September, 2016", "September, 2016", "December, 2016"};
 
-    private String strPastAuctionUrl = "http://54.169.244.245/api/v2/guru/_table/AuctionList?api_key=c6935db431c0609280823dc52e092388a9a35c5f8793412ff89519e967fd27ed";
+    private String strPastAuctionUrl = Application_Constants.Main_URL+"AuctionList?api_key="+ Application_Constants.API_KEY;
     private Utility utility;
     private GridView gridview;
     String img;

@@ -51,12 +51,16 @@
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
-
+    <ImageView
+        android:id="@+id/grid_image"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:scaleType="centerCrop"
+        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="5dp"
         android:gravity="center"
         android:orientation="horizontal"
         android:padding="5dp">
@@ -65,10 +69,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="5dp"
             android:id="@+id/lin_filter"
             android:layout_weight="1"
-            android:gravity="center"
+            android:gravity="left"
             android:orientation="horizontal">
 
             <com.infomanav.astaguru.WorkSansRegular
@@ -77,8 +80,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_marginLeft="3dp"
                 android:gravity="center"
+                android:layout_gravity="left"
                 android:text="Filter"
                 android:textColor="#000000"
                 android:textSize="12sp"
@@ -104,7 +107,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:gravity="left"
+            android:gravity="center"
+            android:id="@+id/tv_auction_anyalsis"
             android:layout_marginRight="2dp"
             android:text="Auction Analysis"
             android:textColor="#a78e69"
@@ -197,6 +201,23 @@
         android:layout_height="0.01dp"
         android:background="@drawable/line" />
 
+
+    <LinearLayout
+        android:id="@+id/lay_records_not_found"
+        android:visibility="gone"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.infomanav.astaguru.WorkSansMedium
+            android:id="@+id/tv_no_data_found"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="20sp"
+            android:text="Records Not Found"/>
+        </LinearLayout>
+
     <GridView
         android:id="@+id/gridviewpastsub"
         android:layout_width="fill_parent"
@@ -211,12 +232,9 @@
         android:verticalSpacing="5dp" />
 
 
-    <!--<com.baoyz.swipemenulistview.SwipeMenuListView-->
-    <!--android:id="@+id/listView"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent" />-->
 
-    <ListView
+
+    <com.baoyz.swipemenulistview.SwipeMenuListView
         android:id="@+id/listviewpastsub"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -224,9 +242,9 @@
         android:layout_marginRight="5dp"
         android:layout_marginTop="5dp"
         android:columnWidth="150dp"
-        android:divider="@null"
+        android:divider="@color/colorAccent"
         android:gravity="center"
-        android:horizontalSpacing="10dp"
+        android:horizontalSpacing="30dp"
         android:numColumns="auto_fit"
         android:stretchMode="columnWidth"
         android:verticalSpacing="10dp" />

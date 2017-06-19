@@ -11,6 +11,7 @@ import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
@@ -24,9 +25,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.ExpandableListAdapter;
-import android.widget.ExpandableListView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,35 +39,31 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import android.widget.AdapterView.OnItemClickListener;
-import adapter.CustomExpandableListAdapter;
+
+import model_classes.Country;
+import model_classes.Upcoming_Model;
+import services.Application_Constants;
 import services.ServiceHandler;
 import services.SessionData;
 import services.Utility;
-import views.OnTaskCompleted;
-
-import static android.R.attr.data;
 
 public class Filter_Activity extends AppCompatActivity implements OnItemClickListener{
     private Utility utility;
-    ListView expandableListView;
-    ExpandableListAdapter expandableListAdapter;
-    List<String> expandableListTitle;
-    HashMap<String, List<String>> expandableListDetail;
     ArrayList<Upcoming_Model> appsList;
     MyCustomAdapter dataAdapter = null;
     List<String> list_artist;
     List<String> list_category;
     FragmentCurrentAuction currentAuction;
-    Button btn_clear;
+    Button btn_clear,btn_refine;
     ListView listView;
-    ArrayList<Country> countryList;
-    private String strPastAuctionUrl ="http://54.169.222.181/api/v2/guru/_table/artistincurrentauction?api_key=c6935db431c0609280823dc52e092388a9a35c5f8793412ff89519e967fd27ed";
+    ArrayList<Country> countryList,filterlist;
+    private String strCurrentAuctionUrl = Application_Constants.Main_URL+"artistincurrentauction?api_key="+ Application_Constants.API_KEY;
+    private String strPastAuctionFilterUrl="";
     Country country;
     Context context;
-    String artistid, ArtistName, Date, DollarRate, image, auctiondate, auctiontitle;
-    public OnTaskCompleted taskCompleted;
+    String artistid, FirstName, image,  LastName;
     SessionData sessionData;
-    String filter_type,str_fillter_checked_id="";
+    String filter_type,str_fillter_checked_id="",Auction_id="",Auctionname="";
     public String[] separated;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +77,14 @@ public class Filter_Activity extends AppCompatActivity implements OnItemClickLis
 
         Intent intent  = getIntent();
 
-        filter_type = intent.getStringExtra("filter");
+        if(intent.getExtras()!=null)
+        {
+            filter_type = intent.getStringExtra("filter");
+            Auction_id = intent.getStringExtra("Auction_id");
+            Auctionname = intent.getStringExtra("Auctionname");
+            filterlist = (ArrayList<Country>) intent.getSerializableExtra("filterlist");
+        }
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -91,10 +94,8 @@ public class Filter_Activity extends AppCompatActivity implements OnItemClickLis
 
         setSupportActionBar(toolbar);
 
-
         TextView tool_text = (TextView) toolbar.findViewById(R.id.tool_text);
-        tool_text.setText("Filter Artist");
-
+        tool_text.setText(Html.fromHtml(Auctionname));
 
         Typeface type = Typeface.createFromAsset(getAssets(),"WorkSans-Medium.otf");
         tool_text.setTypeface(type);
@@ -106,15 +107,59 @@ public class Filter_Activity extends AppCompatActivity implements OnItemClickLis
             window.setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
         }
 
+        if(filter_type.equalsIgnoreCase("past"))
+        {
+            if(Auctionname.equalsIgnoreCase("Collectibles Auction"))
+            {
+                strPastAuctionFilterUrl = Application_Constants.Main_URL_Procedure+"spGetAuctionCategory("+filter_type+","+Auction_id+")?api_key="+Application_Constants.API_KEY;
+            }
+            else
+            {
+                strPastAuctionFilterUrl = Application_Constants.Main_URL_Procedure+"spGetArtistincurrentauction("+filter_type+","+Auction_id+")?api_key="+ Application_Constants.API_KEY;
+            }
 
-        getUpcomingAuction();
-        checkButtonClick();
+            Log.i("Past Fillter",strPastAuctionFilterUrl);
+            checkButtonClick();
+            getPastAuctionFillter();
+        }
+        else if(filter_type.equalsIgnoreCase("upcomming"))
+        {
+            if(Auctionname.equalsIgnoreCase("Collectibles Auction"))
+            {
+                strPastAuctionFilterUrl = Application_Constants.Main_URL_Procedure+"spGetAuctionCategory("+filter_type+","+Auction_id+")?api_key="+ Application_Constants.API_KEY;
+            }
+            else
+            {
+                strPastAuctionFilterUrl = Application_Constants.Main_URL_Procedure+"spGetArtistincurrentauction("+filter_type+","+Auction_id+")?api_key="+ Application_Constants.API_KEY;
+            }
+            checkButtonClick();
+            getPastAuctionFillter();
+        }
+        else
+        {
+            checkButtonClick();
+            if(Auctionname.equalsIgnoreCase("Collectibles Auction"))
+            {
+                strPastAuctionFilterUrl = Application_Constants.Main_URL_Procedure+"spGetAuctionCategory("+filter_type+","+Auction_id+")?api_key="+ Application_Constants.API_KEY;
+                getPastAuctionFillter();
+            }
+            else
+            {
+                getUpcomingAuction();
+            }
+
+        }
+
+
+       // getUpcomingAuction();
+
 
 
     }
 
 
-    private void getUpcomingAuction() {
+
+    private void getPastAuctionFillter() {
 
         if (utility.checkInternet()) {
 
@@ -125,7 +170,7 @@ public class Filter_Activity extends AppCompatActivity implements OnItemClickLis
             ServiceHandler serviceHandler = new ServiceHandler(context);
 
 
-            serviceHandler.registerUser(params, strPastAuctionUrl, new ServiceHandler.VolleyCallback() {
+            serviceHandler.registerUser(params, strPastAuctionFilterUrl, new ServiceHandler.VolleyCallback() {
                 @Override
                 public void onSuccess(String result) {
                     System.out.println("str_get_category_url Json responce" + result);
@@ -152,6 +197,128 @@ public class Filter_Activity extends AppCompatActivity implements OnItemClickLis
                     list_artist = new ArrayList<String>();
                     list_category = new ArrayList<String>();
 
+                    countryList = new ArrayList<Country>();
+                    try {
+                        if (str_json != null) {
+                            JSONArray jsonArray = new JSONArray(str_json);
+                            if (jsonArray.length() > 0)
+                            {
+
+                                for (int i = 0; i < jsonArray.length(); i++)
+                                {
+                                    JSONObject Obj = jsonArray.getJSONObject(i);
+
+                                    FirstName = Obj.getString("FirstName");
+                                    LastName = Obj.getString("LastName");
+                                    artistid = Obj.getString("artistid");
+                                    String artist_name = FirstName + " " + LastName;
+
+
+
+                                    if(filterlist.size()>0)
+                                    {
+                                        if(filterlist.get(i).isSelected())
+                                        {
+                                            country = new Country(artistid,artist_name,LastName,true);
+                                            countryList.add(country);
+                                        }
+                                        else
+                                        {
+                                            country = new Country(artistid,artist_name,LastName,false);
+                                            countryList.add(country);
+                                        }
+                                    }
+                                    else {
+                                        country = new Country(artistid,artist_name,LastName,false);
+                                        countryList.add(country);
+                                    }
+
+
+                                   /* if(separated!=null)
+                                    {
+                                        if(artistid.equalsIgnoreCase(separated[i]))
+                                        {
+                                            country = new Country(artistid,artist_name,LastName,true);
+                                            countryList.add(country);
+                                        }
+                                        else
+                                        {
+                                            country = new Country(artistid,artist_name,LastName,false);
+                                            countryList.add(country);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        country = new Country(artistid,artist_name,LastName,false);
+                                        countryList.add(country);
+                                    }
+*/
+
+                                }
+                                dataAdapter = new MyCustomAdapter(getBaseContext(),
+                                        R.layout.filter_single, countryList);
+                                listView = (ListView) findViewById(R.id.expandableListView);
+                                // Assign adapter to ListView
+                                listView.setAdapter(dataAdapter);
+
+
+                            }
+                            else
+                            {
+                                Toast.makeText(context, "This may be server issue", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(context, "This may be server issue", Toast.LENGTH_SHORT).show();
+                        }
+
+                    } catch (JSONException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
+
+    }
+
+    private void getUpcomingAuction() {
+
+        if (utility.checkInternet()) {
+
+
+            final Map<String, String> params = new HashMap<String, String>();
+
+
+            ServiceHandler serviceHandler = new ServiceHandler(context);
+
+
+            serviceHandler.registerUser(params, strCurrentAuctionUrl, new ServiceHandler.VolleyCallback() {
+                @Override
+                public void onSuccess(String result) {
+                    System.out.println("str_get_category_url Json responce" + result);
+
+
+                   /* str_fillter_checked_id = sessionData.getString("fillter_id_list");
+
+                    if(str_fillter_checked_id!=null)
+                    {
+                        String CurrentString = "Fruit: they taste good";
+                        separated = str_fillter_checked_id.split(",");
+
+                        System.out.println(separated);
+
+                        *//*separated[0]; // this will contain "Fruit"
+                        separated[1];*//*
+                    }*/
+
+                    //Toast.makeText(MainActivity.this, "Json responce"+result, Toast.LENGTH_SHORT).show();
+                    String str_json = result;
+                    String str_status, str_msg;
+
+                    appsList = new ArrayList<>();
+                    list_artist = new ArrayList<String>();
+                    list_category = new ArrayList<String>();
+
                      countryList = new ArrayList<Country>();
                     try {
                         if (str_json != null) {
@@ -165,28 +332,48 @@ public class Filter_Activity extends AppCompatActivity implements OnItemClickLis
                                 {
                                     JSONObject Obj = jsonArray.getJSONObject(i);
 
-                                    ArtistName = Obj.getString("FirstName");
-                                    auctiontitle = Obj.getString("LastName");
+                                    FirstName = Obj.getString("FirstName");
+                                    LastName = Obj.getString("LastName");
                                     artistid = Obj.getString("artistid");
+                                    String artist_name = FirstName + " " + LastName;
 
-                                    if(separated!=null)
+
+                                    if(filterlist.size()>0)
                                     {
-                                        if(artistid.equalsIgnoreCase(separated[i]))
+                                        if(filterlist.get(i).isSelected())
                                         {
-                                            country = new Country(artistid,ArtistName,auctiontitle,true);
+                                            country = new Country(artistid,artist_name,LastName,true);
                                             countryList.add(country);
                                         }
                                         else
                                         {
-                                            country = new Country(artistid,ArtistName,auctiontitle,false);
+                                            country = new Country(artistid,artist_name,LastName,false);
+                                            countryList.add(country);
+                                        }
+                                    }
+                                    else {
+                                        country = new Country(artistid,artist_name,LastName,false);
+                                        countryList.add(country);
+                                    }
+
+                                   /* if(separated!=null)
+                                    {
+                                        if(artistid.equalsIgnoreCase(separated[i]))
+                                        {
+                                            country = new Country(artistid,artist_name,LastName,true);
+                                            countryList.add(country);
+                                        }
+                                        else
+                                        {
+                                            country = new Country(artistid,artist_name,LastName,false);
                                             countryList.add(country);
                                         }
                                     }
                                     else
                                     {
-                                        country = new Country(artistid,ArtistName,auctiontitle,false);
+                                        country = new Country(artistid,artist_name,LastName,false);
                                         countryList.add(country);
-                                    }
+                                    }*/
 
 
                                 }
@@ -225,7 +412,7 @@ public class Filter_Activity extends AppCompatActivity implements OnItemClickLis
             ServiceHandler serviceHandler = new ServiceHandler(context);
 
 
-            serviceHandler.registerUser(params, strPastAuctionUrl, new ServiceHandler.VolleyCallback() {
+            serviceHandler.registerUser(params, strCurrentAuctionUrl, new ServiceHandler.VolleyCallback() {
                 @Override
                 public void onSuccess(String result) {
                     System.out.println("str_get_category_url Json responce" + result);
@@ -248,10 +435,11 @@ public class Filter_Activity extends AppCompatActivity implements OnItemClickLis
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     JSONObject Obj = jsonArray.getJSONObject(i);
 
-                                    ArtistName = Obj.getString("FirstName");
-                                    auctiontitle = Obj.getString("LastName");
+                                    FirstName = Obj.getString("FirstName");
+                                    LastName = Obj.getString("LastName");
                                     artistid = Obj.getString("artistid");
-                                    country = new Country(artistid,ArtistName,auctiontitle,false);
+                                    String artist_name = FirstName + " " + LastName;
+                                    country = new Country(artistid,artist_name,LastName,false);
                                     countryList.add(country);
 
 
@@ -311,9 +499,9 @@ public class Filter_Activity extends AppCompatActivity implements OnItemClickLis
 
 
         Country country = (Country) parent.getItemAtPosition(position);
-        Toast.makeText(getApplicationContext(),
+       /* Toast.makeText(getApplicationContext(),
                 "Clicked on Row: " + country.getName(),
-                Toast.LENGTH_LONG).show();
+                Toast.LENGTH_LONG).show();*/
 
     }
 
@@ -322,7 +510,7 @@ public class Filter_Activity extends AppCompatActivity implements OnItemClickLis
 
         private ArrayList<Country> countryList;
 
-        public MyCustomAdapter(Context context, int textViewResourceId,
+        private MyCustomAdapter(Context context, int textViewResourceId,
                                ArrayList<Country> countryList) {
             super(context, textViewResourceId, countryList);
             this.countryList = new ArrayList<Country>();
@@ -330,8 +518,19 @@ public class Filter_Activity extends AppCompatActivity implements OnItemClickLis
         }
 
         private class ViewHolder {
-            TextView code;
-            CheckBox name;
+            TextView chk_text;
+            CheckBox cb_check;
+
+        }
+        private void clearList()
+        {
+            for(int i=0; i<countryList.size();i++)
+            {
+                Country country = countryList.get(i);
+                country.setSelected(false);
+            }
+            notifyDataSetChanged();
+
         }
 
         @Override
@@ -346,41 +545,52 @@ public class Filter_Activity extends AppCompatActivity implements OnItemClickLis
                 convertView = vi.inflate(R.layout.filter_single, null);
 
                 holder = new ViewHolder();
-                holder.code = (TextView) convertView.findViewById(R.id.code);
-                holder.name = (CheckBox) convertView.findViewById(R.id.cb_check);
+                holder.chk_text = (TextView) convertView.findViewById(R.id.chk_text);
+                holder.cb_check = (CheckBox) convertView.findViewById(R.id.cb_check);
+
                 convertView.setTag(holder);
 
 
+                
                 if(country.isSelected())
                 {
-                    holder.name.setChecked(true);
+                    holder.cb_check.setChecked(true);
                 }
                 else
                 {
-                    holder.name.setChecked(false);
+                    holder.cb_check.setChecked(false);
                 }
 
-                holder.name.setOnClickListener( new View.OnClickListener() {
+                holder.cb_check.setOnClickListener( new View.OnClickListener() {
                     public void onClick(View v) {
                         CheckBox cb = (CheckBox) v ;
                         Country country = (Country) cb.getTag();
-//                        Toast.makeText(getApplicationContext(),
-//                                "Clicked on Checkbox: " + cb.getText() +
-//                                        " is " + cb.isChecked(),
-//                                Toast.LENGTH_LONG).show();
+
                         country.setSelected(cb.isChecked());
                     }
                 });
+
+                holder.chk_text.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        CheckBox cb = (CheckBox) v ;
+                        Country country = (Country) cb.getTag();
+
+                        country.setSelected(cb.isChecked());
+                    }
+                });
+
+
+
             }
             else {
                 holder = (ViewHolder) convertView.getTag();
             }
 
             Country country = countryList.get(position);
-            holder.code.setText(  country.getName());
-            holder.name.setText(country.getCode());
-            holder.name.setChecked(country.isSelected());
-            holder.name.setTag(country);
+            //holder.chk_text.setText(  country.getName());
+            holder.cb_check.setText(country.getartist_name());
+            holder.cb_check.setChecked(country.isSelected());
+            holder.cb_check.setTag(country);
 
             return convertView;
 
@@ -388,15 +598,19 @@ public class Filter_Activity extends AppCompatActivity implements OnItemClickLis
 
     }
 
-    private void checkButtonClick() {
+    private void checkButtonClick()
+    {
 
 
-        Button myButton = (Button) findViewById(R.id.btn_refine);
-         btn_clear = (Button) findViewById(R.id.btn_clear);
-        myButton.setOnClickListener(new View.OnClickListener() {
+        btn_refine = (Button) findViewById(R.id.btn_refine);
+        btn_clear = (Button) findViewById(R.id.btn_clear);
+        btn_refine.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
+
+
+               // Toast.makeText(Filter_Activity.this,"Test",Toast.LENGTH_SHORT).show();
 
                 StringBuffer responseText = new StringBuffer();
                 StringBuffer strBuffreFilletrId = new StringBuffer();
@@ -413,8 +627,27 @@ public class Filter_Activity extends AppCompatActivity implements OnItemClickLis
 
                         strBuffreFilletrId.append(country.getArtistid()+",");
 
+                        if(!filter_type.equalsIgnoreCase("Current"))
+                        {
+                            responseText.append(country.getArtistid()+"K");
+                        }
+                        else
+                        {
+                            if(Auctionname.equalsIgnoreCase("Collectibles Auction"))
+                            {
+                                responseText.append("("+"categoryid="+ country.getArtistid()+")"+"or");
+                                //responseText.append("("+"categoryid="+ country.getArtistid()+")");
+                            }
+                            else {
+                                responseText.append("("+"artistid="+ country.getArtistid()+")"+"or");
+                                //responseText.append("("+"artistid="+ country.getArtistid()+")");
+                            }
+                            // categoryid
+                        }
 
-                        responseText.append("("+"artistid="+ country.getArtistid()+")"+"or");
+                        //responseText.append("("+"artistid="+ country.getArtistid()+")"+"or");
+
+
 
                     }
                     else
@@ -423,7 +656,21 @@ public class Filter_Activity extends AppCompatActivity implements OnItemClickLis
                     }
 
                 }
+
+
+
+
                 String data = responseText.toString();
+
+
+                if(!filter_type.equalsIgnoreCase("Current"))
+                {
+                    data = trimString(data,1);
+                }
+                else
+                {
+                    data = trimString(data,2);
+                }
                 str_fillter_checked_id = strBuffreFilletrId.toString();
                 sessionData.setString("fillter_id_list",str_fillter_checked_id);
                 if (data.length()>0)
@@ -433,6 +680,7 @@ public class Filter_Activity extends AppCompatActivity implements OnItemClickLis
                     {
                         Intent intent=new Intent();
                         intent.putExtra("artistid",data);
+                        intent.putExtra("filterlist",countryList);
                         setResult(2,intent);
                         finish();
 
@@ -440,12 +688,21 @@ public class Filter_Activity extends AppCompatActivity implements OnItemClickLis
                         //finish();
 
                     }
-                    else if(filter_type.equals("past_sub"))
+                    else if(filter_type.equals("past"))
                     {
                         Intent intent=new Intent();
                         intent.putExtra("artistid",data);
+                        intent.putExtra("filterlist",countryList);
                         setResult(3,intent);
-                       finish();
+                         finish();
+                    }
+                    else if(filter_type.equals("upcomming"))
+                    {
+                        Intent intent=new Intent();
+                        intent.putExtra("artistid",data);
+                        intent.putExtra("filterlist",countryList);
+                        setResult(3,intent);
+                        finish();
                     }
 
 
@@ -459,12 +716,15 @@ public class Filter_Activity extends AppCompatActivity implements OnItemClickLis
             }
         });
 
+
+
+
         btn_clear.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
 
-                SparseBooleanArray checkedItemPositions = listView.getCheckedItemPositions();
+              /*  SparseBooleanArray checkedItemPositions = listView.getCheckedItemPositions();
                 int itemCount = listView.getCount();
                 System.out.println("itemCount" + itemCount);
 //                for(int i=itemCount-1; i >= 0; i--){
@@ -478,19 +738,36 @@ public class Filter_Activity extends AppCompatActivity implements OnItemClickLis
 
                 for(int i=0; i<listView.getChildCount();i++)
                 {
-                    cb = (CheckBox)listView.getChildAt(i).findViewById(R.id.cb_check);
+                    Country country = countryList.get(i);
+                    country.setSelected(false);
+
+                   *//* cb = (CheckBox)listView.getChildAt(i).findViewById(R.id.cb_check);
                     cb.setChecked(false);
-                    cb.refreshDrawableState();
+                    cb.refreshDrawableState();*//*
                 }
-                 getUpcomingAuction2();
-                dataAdapter.notifyDataSetChanged();
+
+               *//* if(filter_type.equalsIgnoreCase("past"))
+                {
+                   getPastAuctionFillter();
+                }
+
+                 getUpcomingAuction2();*/
+                dataAdapter.clearList();
 
 
-                Toast.makeText(getApplicationContext(),"Checkbox Cleared ", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(),"Checkbox Cleared ", Toast.LENGTH_LONG).show();
 
             }
         });
 
+    }
+
+    public String trimString(String str, int fromChar)
+    {
+        if (str != null && str.length() > 0) {
+            return str.substring(0,str.length()-fromChar);
+        }
+        return str;
     }
 
 }

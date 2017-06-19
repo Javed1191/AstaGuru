@@ -5,10 +5,6 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.util.Log;
 
-import com.infomanav.astaguru.Country;
-
-import java.util.ArrayList;
-
 public class SessionData
 {
 	private Editor editor;
@@ -55,11 +51,6 @@ public class SessionData
 		editor.putLong(key, Double.doubleToLongBits(value));
 		editor.commit();
 	}
-	public void setJson(String key, String srrJson)
-	{
-		editor.putString(key,srrJson);
-		editor.commit();
-	}
 
 	public void removeKey(String key)
 	{
@@ -74,10 +65,6 @@ public class SessionData
 	}
 
 	public String getString(String key)
-	{
-		return pref.getString(key, null);
-	}
-	public String getJson(String key)
 	{
 		return pref.getString(key, null);
 	}

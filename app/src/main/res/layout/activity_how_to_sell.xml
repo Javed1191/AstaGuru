@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:background="#ffffff"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#ffffff"
+              android:orientation="vertical">
+
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,351 +16,585 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay"   >
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
             <com.infomanav.astaguru.WorkSansMedium
+                android:id="@+id/tool_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tool_text"
-                android:textColor="#ffffff"
                 android:gravity="left"
                 android:text="Management"
-                android:textStyle="bold"
-                android:textSize="20dp" />
+                android:textColor="#ffffff"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
 
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
 
 
-
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:fillViewport="false">
+        android:fillViewport="false"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="5dp"
+
             android:orientation="vertical">
 
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp">
+                android:id="@+id/rel_Evaluation"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="10dp">
 
                 <com.infomanav.astaguru.WorkSansMedium
+                    android:id="@+id/iv_user"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:layout_marginLeft="10dp"
-                    android:textStyle="bold"
-                    android:textColor="#000000"
-                    android:id="@+id/iv_user"
                     android:gravity="right"
                     android:text="Evaluation"
-                       android:textSize="17sp" />
+                    android:textColor="#000000"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
 
                 <ImageView
+                    android:id="@+id/iv_evalution"
                     android:layout_width="22dp"
+
                     android:layout_height="22dp"
-
-                    android:background="@drawable/plus"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
-                    android:id="@+id/iv_evalution" />
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:background="@drawable/plus"/>
 
+                <LinearLayout
+                    android:id="@+id/wb_sell_evaluation"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/iv_evalution"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
 
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_marginTop="3dp"
+                        android:background="@drawable/arrow"
+                        android:textColor="@color/colorLink"/>
+
+                    <com.infomanav.astaguru.JustifiedTextView
+                        android:id="@+id/tv_evaluation_a"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/iv_user"
+                        android:visibility="visible"/>
+                </LinearLayout>
 
             </RelativeLayout>
-            <WebView
-                android:layout_width="match_parent"
-                android:paddingLeft="10dp"
-                android:layout_marginLeft="14dp"
-                android:layout_margin="5dp"
-                android:paddingRight="10dp"
-                android:visibility="gone"
 
-                android:id="@+id/wb_sell_evaluation"
-                android:layout_height="wrap_content"></WebView>
 
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp">
+                android:id="@+id/rel_Decision"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="10dp">
 
                 <ImageView
+                    android:id="@+id/iv_deci_sell"
                     android:layout_width="22dp"
+
                     android:layout_height="22dp"
-
-                    android:background="@drawable/plus"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
-                    android:id="@+id/iv_deci_sell" />
-
-
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:background="@drawable/plus"/>
 
 
                 <com.infomanav.astaguru.WorkSansMedium
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:textStyle="bold"
-                    android:textColor="#000000"
                     android:id="@+id/tv_dicision"
-                    android:gravity="right"
-                    android:layout_marginLeft="10dp"
-                    android:text="Decision to Sell"
-                       android:textSize="17sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
                     android:layout_alignParentTop="true"
-                    android:layout_alignLeft="@+id/tv_deci_sell"
-                    android:layout_alignStart="@+id/tv_deci_sell" />
+                    android:layout_marginLeft="10dp"
+                    android:gravity="right"
+                    android:text="Decision to Sell"
+                    android:textColor="#000000"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/wb_sell_decition"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/iv_deci_sell"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_marginTop="3dp"
+                        android:background="@drawable/arrow"
+                        android:textColor="@color/colorLink"/>
+
+                    <com.infomanav.astaguru.JustifiedTextView
+                        android:id="@+id/tv_sell_decition"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/iv_user"
+                        android:visibility="visible"/>
+                </LinearLayout>
+                <!--<WebView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:paddingLeft="10dp"-->
+                <!--android:paddingRight="10dp"-->
+
+                <!--android:visibility="gone"-->
+                <!--android:layout_below="@+id/iv_deci_sell"-->
+                <!--android:layout_marginLeft="2dp"-->
+                <!--android:id="@+id/wb_sell_decition"-->
+                <!--android:layout_height="wrap_content"></WebView>-->
             </RelativeLayout>
 
-            <WebView
-                android:layout_width="match_parent"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:visibility="gone"
-                android:layout_marginLeft="14dp"
-                android:layout_margin="5dp"
-                android:id="@+id/wb_sell_decition"
-                android:layout_height="wrap_content"></WebView>
+
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp">
+                android:id="@+id/rel_Logistics"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="10dp">
 
                 <com.infomanav.astaguru.WorkSansMedium
+                    android:id="@+id/tv_stics"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:layout_marginLeft="10dp"
-                    android:textStyle="bold"
-                    android:textColor="#000000"
-                    android:id="@+id/tv_stics"
                     android:gravity="right"
                     android:text="Logistics"
-                       android:textSize="17sp" />
+                    android:textColor="#000000"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
 
                 <ImageView
+                    android:id="@+id/iv_logistics"
                     android:layout_width="22dp"
+
                     android:layout_height="22dp"
-
-                    android:background="@drawable/plus"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
-                    android:id="@+id/iv_logistics" />
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:background="@drawable/plus"/>
 
+                <LinearLayout
+                    android:id="@+id/wb_sell_logistics"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/iv_logistics"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
 
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_marginTop="3dp"
+                        android:background="@drawable/arrow"
+                        android:textColor="@color/colorLink"/>
+
+                    <com.infomanav.astaguru.JustifiedTextView
+                        android:id="@+id/tv_logistics_decition"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/iv_user"
+                        android:visibility="visible"/>
+                </LinearLayout>
 
 
             </RelativeLayout>
-            <WebView
-                android:layout_width="match_parent"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:visibility="gone"
-                android:layout_marginLeft="14dp"
-                android:layout_margin="5dp"
-                android:id="@+id/wb_sell_logistics"
-                android:layout_height="wrap_content"></WebView>
+
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp">
+                android:id="@+id/rel_Reserve"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="10dp">
 
                 <com.infomanav.astaguru.WorkSansMedium
+                    android:id="@+id/tv_price"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:layout_marginLeft="10dp"
-                    android:textStyle="bold"
-                    android:id="@+id/tv_price"
-                    android:textColor="#000000"
                     android:gravity="right"
                     android:text="Reserve Price"
-                       android:textSize="17sp" />
+                    android:textColor="#000000"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
 
                 <ImageView
+                    android:id="@+id/iv_reserve_price"
                     android:layout_width="22dp"
-                    android:layout_height="22dp"
 
-                    android:background="@drawable/plus"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentRight="true"
+                    android:layout_height="22dp"
                     android:layout_alignParentEnd="true"
-                    android:id="@+id/iv_reserve_price" />
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:background="@drawable/plus"/>
+
+                <LinearLayout
+                    android:id="@+id/wb_sell_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/iv_reserve_price"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_marginTop="3dp"
+                        android:background="@drawable/arrow"
+                        android:textColor="@color/colorLink"/>
+
+                    <com.infomanav.astaguru.JustifiedTextView
+                        android:id="@+id/tv_reserve_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/iv_user"
+                        android:visibility="visible"/>
+                </LinearLayout>
 
 
             </RelativeLayout>
 
-            <WebView
-                android:layout_width="match_parent"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:layout_marginLeft="14dp"
-                android:layout_margin="5dp"
-                android:visibility="gone"
-                android:id="@+id/wb_sell_price"
-                android:layout_height="wrap_content"></WebView>
 
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp">
+                android:id="@+id/rel_Seller_Contract"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="10dp">
 
                 <com.infomanav.astaguru.WorkSansMedium
+                    android:id="@+id/tv_contract"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:layout_marginLeft="10dp"
-                    android:textStyle="bold"
-                    android:id="@+id/tv_contract"
-                    android:textColor="#000000"
                     android:gravity="right"
                     android:text="Seller&apos;s Contract"
-                       android:textSize="17sp" />
-
-                <ImageView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-
-                    android:background="@drawable/plus"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"
-                    android:id="@+id/iv_sell_contract" />
-
-
-
-
-            </RelativeLayout>
-
-            <WebView
-                android:layout_width="match_parent"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:layout_marginLeft="14dp"
-                android:layout_margin="5dp"
-                android:visibility="gone"
-                android:id="@+id/wb_sell_contract"
-                android:layout_height="wrap_content"></WebView>
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp">
-
-                <com.infomanav.astaguru.WorkSansMedium
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="10dp"
-                    android:textStyle="bold"
                     android:textColor="#000000"
-                    android:id="@+id/tv_seller"
-                    android:gravity="right"
-                    android:text="Seller&apos;s Commission"
-                       android:textSize="17sp" />
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
 
                 <ImageView
+                    android:id="@+id/iv_sell_contract"
                     android:layout_width="22dp"
+
                     android:layout_height="22dp"
-
-                    android:background="@drawable/plus"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
-                    android:id="@+id/iv_sell_commition" />
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:background="@drawable/plus"/>
 
+                <LinearLayout
+                    android:id="@+id/wb_sell_contract_main"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/iv_sell_contract"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
+                    <LinearLayout
+                        android:id="@+id/wb_sell_contract"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/iv_sell_contract"
+                        android:orientation="horizontal">
 
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink"/>
 
+                        <com.infomanav.astaguru.JustifiedTextView
+                            android:id="@+id/tv_sell_contract"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_user"
+                            android:visibility="visible"/>
+                    </LinearLayout>
+
+                    <com.infomanav.astaguru.WorkSansMedium
+                        android:id="@+id/tv_contxract"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_below="@+id/wb_sell_contract"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="right"
+                        android:text="Reserve price."
+                        android:textColor="#000000"
+                        android:textSize="13sp"/>
+
+                    <LinearLayout
+                        android:id="@+id/wb_Reserveprice"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/tv_contxract"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink"/>
+
+                        <com.infomanav.astaguru.JustifiedTextView
+                            android:id="@+id/tv_Reserveprice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_user"
+                            android:visibility="visible"/>
+                    </LinearLayout>
+
+                    <com.infomanav.astaguru.WorkSansMedium
+                        android:id="@+id/tv_contxrcact"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_below="@+id/wb_Reserveprice"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="right"
+                        android:text="Seller's commission."
+                        android:textColor="#000000"
+                        android:textSize="13sp"/>
+
+                    <LinearLayout
+                        android:id="@+id/wb_commission"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/tv_contxract"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink"/>
+
+                        <com.infomanav.astaguru.JustifiedTextView
+                            android:id="@+id/tv_commission"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_user"
+                            android:visibility="visible"/>
+                    </LinearLayout>
+                </LinearLayout>
             </RelativeLayout>
-            <WebView
-                android:layout_width="match_parent"
-                android:paddingLeft="10dp"
-                android:layout_marginLeft="14dp"
-                android:layout_margin="5dp"
-                android:paddingRight="10dp"
-                android:visibility="gone"
-                android:id="@+id/wb_sell_comition"
-                android:layout_height="wrap_content"></WebView>
+
+
+            <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:id="@+id/rel_Seller_Commission"-->
+            <!--android:layout_marginRight="8dp"-->
+            <!--android:layout_marginLeft="8dp">-->
+
+            <!--<com.infomanav.astaguru.WorkSansMedium-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:textStyle="bold"-->
+            <!--android:textColor="#000000"-->
+            <!--android:id="@+id/tv_seller"-->
+            <!--android:gravity="right"-->
+            <!--android:text="Seller&apos;s Commission"-->
+            <!--android:textSize="15sp" />-->
+
+            <!--<ImageView-->
+            <!--android:layout_width="22dp"-->
+            <!--android:layout_height="22dp"-->
+
+            <!--android:background="@drawable/plus"-->
+            <!--android:layout_alignParentTop="true"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_alignParentEnd="true"-->
+            <!--android:id="@+id/iv_sell_commition" />-->
+
+
+            <!--<WebView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:paddingLeft="10dp"-->
+            <!--android:layout_marginLeft="2dp"-->
+            <!--android:layout_below="@+id/iv_sell_commition"-->
+            <!--android:paddingRight="10dp"-->
+            <!--android:visibility="gone"-->
+            <!--android:id="@+id/wb_sell_comition"-->
+            <!--android:layout_height="wrap_content"></WebView>-->
+
+            <!--</RelativeLayout>-->
+
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp">
+                android:id="@+id/rel_Payment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="10dp">
 
                 <com.infomanav.astaguru.WorkSansMedium
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="10dp"
-                    android:textStyle="bold"
                     android:id="@+id/tv_paynet"
-                    android:textColor="#000000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
                     android:gravity="right"
                     android:text="Payment"
-                       android:textSize="17sp" />
+                    android:textColor="#000000"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
 
                 <ImageView
+                    android:id="@+id/iv_payment"
                     android:layout_width="22dp"
+
                     android:layout_height="22dp"
-
-                    android:background="@drawable/plus"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
-                    android:id="@+id/iv_payment" />
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:background="@drawable/plus"/>
 
+                <LinearLayout
+                    android:id="@+id/wb_sell_payment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/iv_payment"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_marginTop="3dp"
+                        android:background="@drawable/arrow"
+                        android:textColor="@color/colorLink"/>
+
+                    <com.infomanav.astaguru.JustifiedTextView
+                        android:id="@+id/tv_sell_payment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/iv_user"
+                        android:visibility="visible"/>
+                </LinearLayout>
 
 
             </RelativeLayout>
 
-            <WebView
+            <View
+                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:visibility="gone"
-                android:layout_marginLeft="14dp"
-                android:layout_margin="5dp"
-                android:id="@+id/wb_sell_payment"
-                android:layout_height="wrap_content"></WebView>
+                android:layout_height="0.3dp"
+                android:background="#514f4f"/>
+
+
             <com.infomanav.astaguru.WorkSansMedium
+                android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#000000"
-                android:textStyle="bold"
-
                 android:layout_gravity="center"
                 android:text="Want To Sell ?"
-                   android:textSize="17sp" />
+
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
 
 
             <com.infomanav.astaguru.WorkSansRegular
                 android:layout_width="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:layout_marginLeft="40dp"
+
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="8dp"
+                android:text="If you have any item ready for auction,"
+
+                />
+
+            <com.infomanav.astaguru.WorkSansRegular
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:text="Lorem Ipsum is simply dummy text  unchanged.  \n         Lorem Ipsum passagess of Lorem Ipsum."
+                android:layout_gravity="center"
 
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
-                android:layout_gravity="center"
+                android:text="please let us know the details"
 
-                android:textSize="10sp" />
+                />
 
             <Button
+                android:id="@+id/btn_sell"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="8dp"
+                android:background="#000000"
+                android:padding="10dp"
                 android:text="Submit Details"
                 android:textAllCaps="false"
-                android:background="#000000"
-                android:id="@+id/btn_sell"
-                android:padding="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
                 android:textColor="#ffffff"
-                android:layout_gravity="center_horizontal" />
+                android:textSize="12sp"/>
 
-        </LinearLayout></ScrollView>
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

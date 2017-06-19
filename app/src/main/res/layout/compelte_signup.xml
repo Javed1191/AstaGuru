@@ -57,7 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="account sucessfully."
+        android:text="account successfully."
         android:textSize="20sp"  />
 
 
@@ -68,7 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_gravity="center"
-        android:text="You can now manage your profile,save favourite \nauctions to your gallery,place bids,buy artworks"
+        android:text="You can now manage your profile, save favourite \nauctions to your gallery, place bids, buy artworks"
         android:textSize="13sp"
         android:id="@+id/textView9" />
 

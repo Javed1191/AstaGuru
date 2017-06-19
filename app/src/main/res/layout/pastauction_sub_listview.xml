@@ -1,320 +1,495 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="wrap_content">
+              xmlns:card_view="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
 
-    <!--<android.support.v7.widget.CardView-->
-    <!--android:id="@+id/card_main"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_gravity="left"-->
-    <!--android:paddingBottom="20dp"-->
-    <!--card_view:cardElevation="3dp"-->
-    <!--card_view:cardUseCompatPadding="true">-->
 
     <LinearLayout
+        android:id="@+id/lin_front"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:layout_margin="5dp"
-        android:id="@+id/lin_front"
+        android:layout_gravity="center"
         android:background="@drawable/list_bg"
-        android:gravity="left"
         android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/past_sub_image"
             android:layout_width="90dp"
-            android:layout_marginLeft="5dp"
-            android:layout_gravity="center"
-
-
             android:layout_height="105dp"
-            android:src="@drawable/img_past_1" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
-
-            android:gravity="center"
-            android:orientation="vertical">
 
 
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/img_past_1"/>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <RelativeLayout
+            <LinearLayout
+                android:id="@+id/lay_front"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
 
-
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <!--<com.infomanav.astaguru.WorkSansRegular-->
-
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_alignParentLeft="true"-->
-                <!--android:gravity="left"-->
-                <!--android:layout_marginLeft="10dp"-->
-                <!--android:text="Lot1 "-->
-                <!--android:textColor="@color/colorBodyText" />-->
-
-                <com.infomanav.astaguru.WorkSansRegular
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textSize="9sp"
-                    android:layout_margin="5dp"
-                    android:id="@+id/tv_lot"
-                    android:background="@drawable/rounded_rectangle"
-                    android:text="Lot1 "
-                    android:textColor="#ffffff" />
 
                 <RelativeLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-
-                    android:gravity="right"
-                    android:layout_alignParentRight="true"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/iv_info"
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/icon_i"
-                        android:gravity="left"
-                        />
+                    android:orientation="horizontal">
 
 
-                </RelativeLayout>
+                    <com.infomanav.astaguru.WorkSansRegular
 
-            </RelativeLayout>
-
-            <com.infomanav.astaguru.WorkSansMedium
-                android:id="@+id/tv_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="left"
-                android:layout_gravity="left"
-                android:text="Morderen Indian Art"
-                android:textColor="@color/colorPrimary"
-                android:textStyle="bold" />
-
-            <com.infomanav.astaguru.WorkSansRegular
-                android:id="@+id/grid_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:gravity="left"
-                android:text="Total Sale Value"
-                android:textColor="@color/colorBodyText" />
-
-            <!--<LinearLayout-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="left"-->
-            <!--android:layout_marginTop="7dp"-->
-            <!--android:gravity="left"-->
-            <!--android:orientation="horizontal">-->
-
-            <!--<LinearLayout-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center"-->
-
-            <!--android:gravity="center"-->
-            <!--android:orientation="vertical">-->
-
-            <!--<com.infomanav.astaguru.WorkSansRegular-->
-
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="left"-->
-            <!--android:gravity="center"-->
-            <!--android:text="Current Bid"-->
-            <!--android:textColor="@color/colorBodyText" />-->
-
-            <!--<RelativeLayout-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center"-->
-
-            <!--android:gravity="center"-->
-            <!--android:orientation="vertical">-->
-
-            <!--<ImageView-->
-            <!--android:id="@+id/iv_one"-->
-            <!--android:layout_width="10dp"-->
-            <!--android:layout_height="10dp"-->
-            <!--android:background="@drawable/rupee"-->
-            <!--android:gravity="left"-->
-
-            <!--android:layout_marginTop="3dp"-->
-            <!--android:text="Total Sale Value"-->
-            <!--android:textColor="@color/colorBodyText" />-->
-
-            <!--<com.infomanav.astaguru.WorkSansRegular-->
-
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_toRightOf="@+id/iv_one"-->
-            <!--android:gravity="center"-->
-            <!--android:textStyle="bold"-->
-            <!--android:layout_marginLeft="5dp"-->
-            <!--android:text="13,15,200"-->
-            <!--android:textColor="@color/colorBodyText" />-->
-
-            <!--</RelativeLayout>-->
-
-            <!--</LinearLayout>-->
-            <!--<View-->
-            <!--android:layout_width="0.01dp"-->
-            <!--android:layout_height="30dp"-->
-            <!--android:layout_marginLeft="5sp"-->
-
-            <!--android:background="@drawable/line"/>-->
-            <!--<LinearLayout-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:layout_marginLeft="10dp"-->
-
-            <!--android:gravity="center"-->
-            <!--android:orientation="vertical">-->
-            <!--<com.infomanav.astaguru.WorkSansRegular-->
-
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-
-            <!--android:gravity="center"-->
-            <!--android:text="Next Valid Bid"-->
-            <!--android:textColor="@color/colorBodyText" />-->
-
-            <!--<RelativeLayout-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center"-->
-
-            <!--android:gravity="center"-->
-            <!--android:orientation="vertical">-->
-
-            <!--<ImageView-->
-            <!--android:id="@+id/iv_two"-->
-            <!--android:layout_width="10dp"-->
-            <!--android:layout_height="10dp"-->
-            <!--android:background="@drawable/rupee"-->
-            <!--android:gravity="center"-->
-            <!--android:layout_marginTop="3dp"-->
-
-            <!--android:textColor="@color/colorBodyText" />-->
-
-            <!--<com.infomanav.astaguru.WorkSansRegular-->
-
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_toRightOf="@+id/iv_two"-->
-            <!--android:gravity="center"-->
-            <!--android:layout_marginLeft="5dp"-->
-            <!--android:textStyle="bold"-->
-            <!--android:text="20,60,200"-->
-            <!--android:textColor="@color/colorBodyText" />-->
-
-            <!--</RelativeLayout>-->
-
-
-            <!--</LinearLayout>-->
-            <!--</LinearLayout>-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_marginTop="5dp"
-
-
-
-                android:orientation="horizontal">
-
-
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-
-
-                    android:gravity="center"
-                    android:orientation="vertical">
-
+                        android:id="@+id/tv_lot"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rounded_rectangle"
+                        android:gravity="center"
+                        android:text="Lot1 "
+                        android:textColor="#ffffff"
+                        android:textSize="9sp"/>
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="left"
-                        android:gravity="center"
+                        android:layout_alignParentRight="true"
+                        android:layout_gravity="end"
+                        android:layout_marginRight="10dp"
+                        android:gravity="right"
                         android:orientation="vertical">
 
+                        <ImageView
+                            android:id="@+id/iv_zoom"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10dp"
+                            android:layout_toLeftOf="@+id/iv_info"
+                            android:src="@drawable/icon_zoom"
+                            />
 
-                        <TextView
+                        <ImageView
+                            android:id="@+id/iv_info"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:gravity="left"
+                            android:src="@drawable/icon_i"
+                            />
 
-                            android:id="@+id/iv_two"
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+                <com.infomanav.astaguru.WorkSansMedium
+                    android:id="@+id/tv_bought_in"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="Bought In"
+                    android:textColor="#000000"
+                    android:visibility="gone"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/lay_front_data"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.infomanav.astaguru.WorkSansMedium
+                        android:id="@+id/tv_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:ellipsize="marquee"
+                        android:gravity="left"
+                        android:maxLines="1"
+                        android:text="Morderen Indian Art"
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold"/>
+
+                    <com.infomanav.astaguru.WorkSansRegular
+                        android:id="@+id/grid_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:ellipsize="marquee"
+                        android:gravity="left"
+                        android:maxLines="1"
+                        android:text="Total Sale Value"
+                        android:textColor="@color/colorBodyText"
+                        android:textSize="12sp"/>
+
+
+                    <LinearLayout
+                        android:id="@+id/lay_bought_in"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <com.infomanav.astaguru.WorkSansRegular
+                                android:id="@+id/tv_start_price"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:ellipsize="marquee"
+                                android:textSize="10sp"
+                                android:text="Start Price"
+                                android:textColor="@color/colorBodyText"/>
+
+
+                            <RelativeLayout
+                                android:layout_marginTop="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+
+                                <TextView
+                                    android:id="@+id/iv_two"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="₹"
+                                    android:textColor="@color/colorPrimary"
+                                    android:textSize="11sp"
+                                    android:visibility="gone"
+
+                                    />
+
+                                <com.infomanav.astaguru.WorkSansRegular
+
+                                    android:id="@+id/tv_nextbid"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="3dp"
+                                    android:layout_toRightOf="@+id/iv_two"
+                                    android:gravity="left"
+                                    android:text="20,60,200"
+                                    android:textColor="#000000"
+                                    android:textSize="11sp"
+                                    android:textStyle="bold"/>
+
+                            </RelativeLayout>
+
+                            <com.infomanav.astaguru.WorkSansRegular
+                                android:id="@+id/tv_tax_premium"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:gravity="center"
+                                android:text="(Inclusive of 15% Buyers Premium )"
+                                android:textColor="@color/colorBodyText"
+                                android:textSize="11sp"/>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lay_back"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.54"
+
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="left"
+                    android:orientation="horizontal">
+
+                    <com.infomanav.astaguru.WorkSansRegular
+                        android:id="@+id/tv_lot_back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:background="@drawable/rounded_rectangle"
+                        android:gravity="center"
+                        android:text="Lot1 "
+                        android:textColor="#ffffff"
+                        android:textSize="9sp"/>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_gravity="end"
+                        android:layout_marginRight="10dp"
+                        android:gravity="right"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/iv_closelistpast"
+                            android:layout_width="17dp"
+                            android:layout_height="17dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:background="@drawable/icon_close_sml"
+                            android:gravity="left"/>
+
+
+                    </RelativeLayout>
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="left"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:id="@+id/rel_artist"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:gravity="left"
+
+                        android:orientation="vertical">
+
+                        <com.infomanav.astaguru.WorkSansMedium
+                            android:id="@+id/testartist"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
+                            android:text="Artist: "
+
                             android:textColor="@color/colorPrimary"
                             android:textSize="11sp"
-                            android:text="₹"
+                            android:textStyle="bold"/>
 
+                        <com.infomanav.astaguru.WorkSansRegular
+                            android:id="@+id/tv_sub_artist"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/testartist"
+
+                            android:text="Morderen "
+                            android:textColor="@color/colorBodyText"
+                            android:textSize="11sp"
+                            />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rel_cat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/rel_artist"
+                        android:layout_toRightOf="@+id/iv_main_img"
+                        android:gravity="left"
+
+                        android:orientation="vertical">
+
+                        <com.infomanav.astaguru.WorkSansMedium
+                            android:id="@+id/testcategory"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Category: "
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="11sp"
                             />
 
                         <com.infomanav.astaguru.WorkSansRegular
-
+                            android:id="@+id/tv_sub_category"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_toRightOf="@+id/iv_two"
-                            android:gravity="left"
-                            android:id="@+id/tv_nextbid"
-                            android:textSize="12sp"
-                            android:layout_marginLeft="3dp"
-                            android:textStyle="bold"
-                            android:text="20,60,200"
-                            android:textColor="#000000" />
+                            android:layout_toRightOf="@+id/testcategory"
+                            android:text="Morderen "
+                            android:textColor="@color/colorBodyText"
+                            android:textSize="11sp"
+                            />
 
                     </RelativeLayout>
-                    <com.infomanav.astaguru.WorkSansRegular
+
+                    <RelativeLayout
+                        android:id="@+id/rel_medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:layout_marginTop="5dp"
-                        android:text="(Inclusive of 15% Buyers Primium )"
-                        android:textColor="@color/colorBodyText"
-                        android:textSize="12sp" />
+                        android:layout_below="@+id/rel_cat"
+                        android:layout_toRightOf="@+id/iv_main_img"
+                        android:gravity="left"
 
-                </LinearLayout>
+                        android:orientation="vertical">
+
+                        <com.infomanav.astaguru.WorkSansMedium
+                            android:id="@+id/testmidium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Medium: "
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            />
+
+                        <com.infomanav.astaguru.WorkSansRegular
+                            android:id="@+id/tv_sub_medium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5dp"
+                            android:layout_toRightOf="@+id/testmidium"
+                            android:ellipsize="marquee"
+                            android:maxLines="1"
+                            android:text="Morderen "
+                            android:textColor="@color/colorBodyText"
+                            android:textSize="11sp"
+                            />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rel_year"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/rel_medium"
+                        android:layout_toRightOf="@+id/iv_main_img"
+                        android:gravity="left"
+
+                        android:orientation="vertical">
+
+                        <com.infomanav.astaguru.WorkSansMedium
+                            android:id="@+id/testyear"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Year: "
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="11sp"
+                            />
+
+                        <com.infomanav.astaguru.WorkSansRegular
+                            android:id="@+id/tv_sub_year"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/testyear"
+                            android:text="Year"
+                            android:textColor="@color/colorBodyText"
+                            android:textSize="11sp"
+                            />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rel_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/rel_year"
+                        android:layout_toRightOf="@+id/iv_main_img"
+                        android:gravity="left"
+
+                        android:orientation="vertical">
+
+
+                        <com.infomanav.astaguru.WorkSansMedium
+                            android:id="@+id/testcsize"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Size: "
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="11sp"
+                            />
+
+                        <com.infomanav.astaguru.WorkSansRegular
+                            android:id="@+id/tv_sub_size"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/testcsize"
+
+                            android:text="Morderen "
+                            android:textColor="@color/colorBodyText"
+                            android:textSize="11sp"
+                            />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rel_etimate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/rel_size"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="left"
+
+                        android:orientation="vertical">
+
+
+                        <com.infomanav.astaguru.WorkSansMedium
+                            android:id="@+id/testestimate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Estimate: "
+                            android:textColor="@color/colorPrimary"
+
+                            android:textSize="11sp"
+                            />
+
+                        <com.infomanav.astaguru.WorkSansRegular
+                            android:id="@+id/tv_sub_estimate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/testestimate"
+
+                            android:text="Morderen "
+                            android:textColor="@color/colorBodyText"
+                            android:textSize="11sp"
+                            />
+
+                    </RelativeLayout>
+
+
+                </RelativeLayout>
+
             </LinearLayout>
+        </RelativeLayout>
 
 
-
-
-        </LinearLayout>
     </LinearLayout>
 
 
     <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/lin_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
-        android:id="@+id/lin_back"
-        android:layout_margin="5dp"
         android:background="@drawable/list_bg"
         android:gravity="left"
         android:orientation="horizontal">
@@ -322,274 +497,13 @@
         <ImageView
             android:id="@+id/grid_imageback"
             android:layout_width="90dp"
-            android:layout_marginLeft="5dp"
+            android:layout_height="105dp"
             android:layout_gravity="center"
 
 
-            android:layout_height="105dp"
-            android:src="@drawable/img_past_1" />
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/img_past_1"/>
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="visible"
-
-            android:orientation="vertical"
-            android:layout_weight="0.54">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:gravity="left"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal">
-
-                <com.infomanav.astaguru.WorkSansRegular
-                    android:id="@+id/tv_lot_back"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-
-                    android:background="@drawable/rounded_rectangle"
-                    android:gravity="center"
-                    android:text="Lot1 "
-                    android:textColor="#ffffff"
-                    android:textSize="9sp" />
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_gravity="end"
-                    android:gravity="right"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/iv_closelistpast"
-                        android:layout_width="17dp"
-                        android:layout_height="17dp"
-                        android:background="@drawable/icon_close_sml"
-                        android:gravity="left" />
-
-
-                </RelativeLayout>
-
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:gravity="left"
-                android:orientation="horizontal">
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/rel_artist"
-
-                    android:gravity="left"
-
-                    android:orientation="vertical">
-
-                    <com.infomanav.astaguru.WorkSansRegular
-                        android:id="@+id/testartist"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"        android:textSize="12sp"
-
-                        android:text="Artist: "
-                        android:textColor="@color/colorPrimary"
-                        android:textStyle="bold" />
-                    <com.infomanav.astaguru.WorkSansRegular
-                        android:id="@+id/tv_sub_artist"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"        android:textSize="12sp"
-
-                        android:layout_toRightOf="@+id/testartist"
-                        android:text="Morderen "
-                        android:textColor="@color/colorBodyText"
-                        />
-
-
-
-
-
-
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/iv_main_img"
-                    android:id="@+id/rel_cat"
-                    android:layout_below="@+id/rel_artist"
-                    android:gravity="left"
-
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/testcategory"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="Category: "        android:textSize="12sp"
-                        android:textColor="@color/colorPrimary"
-                        />
-                    <TextView
-                        android:id="@+id/tv_sub_category"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:textSize="12sp"
-                        android:layout_toRightOf="@+id/testcategory"
-                        android:text="Morderen "
-                        android:textColor="@color/colorBodyText"
-                        />
-
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/iv_main_img"
-                    android:id="@+id/rel_medium"
-                    android:layout_below="@+id/rel_cat"
-                    android:gravity="left"
-
-                    android:orientation="vertical">
-
-                    <com.infomanav.astaguru.WorkSansRegular
-                        android:id="@+id/testmidium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="Medium: "        android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorPrimary"
-                        />
-                    <com.infomanav.astaguru.WorkSansMedium
-                        android:id="@+id/tv_sub_medium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:textSize="12sp"
-                        android:layout_toRightOf="@+id/testmidium"
-                        android:text="Morderen "
-                        android:textColor="@color/colorBodyText"
-                        />
-
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/iv_main_img"
-                    android:id="@+id/rel_year"
-                    android:layout_below="@+id/rel_medium"
-                    android:gravity="left"
-
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/testyear"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:textSize="12sp"
-                        android:text="Year: "
-                        android:textColor="@color/colorPrimary"
-                        />
-                    <TextView
-                        android:id="@+id/tv_sub_year"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:textSize="12sp"
-                        android:layout_toRightOf="@+id/testyear"
-                        android:text="Year"
-                        android:textColor="@color/colorBodyText"
-                        />
-
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/iv_main_img"
-                    android:id="@+id/rel_size"
-                    android:layout_below="@+id/rel_year"
-                    android:gravity="left"
-
-                    android:orientation="vertical">
-
-
-                    <TextView
-                        android:id="@+id/testcsize"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="Size: "
-                        android:textSize="12sp"
-                        android:textColor="@color/colorPrimary"
-                        />
-                    <TextView
-                        android:id="@+id/tv_sub_size"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"        android:textSize="12sp"
-
-                        android:layout_toRightOf="@+id/testcsize"
-                        android:text="Morderen "
-                        android:textColor="@color/colorBodyText"
-                        />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/rel_etimate"
-                    android:layout_marginBottom="5dp"
-                    android:layout_below="@+id/rel_size"
-                    android:gravity="left"
-
-                    android:orientation="vertical">
-
-
-                    <TextView
-                        android:id="@+id/testestimate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"        android:textSize="12sp"
-                        android:text="Estimate: "
-
-                        android:textColor="@color/colorPrimary"
-                        />
-                    <TextView
-                        android:id="@+id/tv_sub_estimate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
-                        android:gravity="center"
-
-                        android:textSize="12sp"
-                        android:layout_toRightOf="@+id/testestimate"
-                        android:text="Morderen "
-                        android:textColor="@color/colorBodyText"
-                        />
-
-                </RelativeLayout>
-
-
-
-
-
-
-
-            </RelativeLayout>
-
-        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

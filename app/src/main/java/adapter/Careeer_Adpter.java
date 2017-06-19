@@ -1,8 +1,6 @@
 package adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,22 +9,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.infomanav.astaguru.Current_Auction_Model;
 import com.infomanav.astaguru.JustifiedTextView;
-import com.infomanav.astaguru.Lot_Detail_Page;
-import com.infomanav.astaguru.MainActivity;
 import com.infomanav.astaguru.Model_Careeer;
 import com.infomanav.astaguru.R;
-import com.squareup.picasso.Picasso;
 
-import java.text.NumberFormat;
 import java.util.List;
-import java.util.Locale;
-
-import services.Application_Constants;
 
 /**
  * Created by fox-2 on 11/30/2016.
@@ -73,7 +64,7 @@ public class Careeer_Adpter extends ArrayAdapter<Model_Careeer> {
         JustifiedTextView jobSalary= (JustifiedTextView) curView.findViewById(R.id.jobSalary);
         JustifiedTextView jobExperience= (JustifiedTextView) curView.findViewById(R.id.jobExperience);
         JustifiedTextView Responsibilities= (JustifiedTextView) curView.findViewById(R.id.Responsibilities);
-
+        RelativeLayout rel_row_single = (RelativeLayout) curView.findViewById(R.id.rel_row_single);
         Button btn_apply = (Button) curView.findViewById(R.id.btn_apply);
          layout = (LinearLayout) curView.findViewById(R.id.layout);
 
@@ -111,6 +102,26 @@ public class Careeer_Adpter extends ArrayAdapter<Model_Careeer> {
             @Override
             public void onClick(View v) {
 
+                if (cp.getIsClose())
+                {
+                    cp.setIsClose(false);
+
+//                    iv_expand.setImageResource(R.drawable.minus);
+                    notifyDataSetChanged();
+                }
+                else
+                {
+                    cp.setIsClose(true);
+
+//                    iv_expand.setImageResource(R.drawable.plus);
+                    notifyDataSetChanged();
+                }
+            }
+        });
+
+        rel_row_single.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 if (cp.getIsClose())
                 {
                     cp.setIsClose(false);

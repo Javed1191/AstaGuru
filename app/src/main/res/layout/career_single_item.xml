@@ -5,6 +5,7 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_marginTop="20dp"
+        android:id="@+id/rel_row_single"
         android:layout_height="wrap_content"
         android:layout_margin="5dp">
 
@@ -18,7 +19,7 @@
             android:layout_marginTop="10dp"
             android:gravity="right"
             android:text="Evaluation"
-            android:textSize="17sp" />
+            android:textSize="15sp" />
 
         <ImageView
             android:layout_width="22dp"
@@ -60,8 +61,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textSize="17sp"
-                android:text="Job Title:"
+                android:textSize="12sp"
+                android:text="Job Title: "
                 android:textColor="#000000" />
 
             <com.infomanav.astaguru.WorkSansRegular
@@ -93,8 +94,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textSize="17sp"
-                android:text="Business Unit:"
+                android:textSize="12sp"
+                android:text="Business Unit: "
                 android:textColor="#000000" />
 
             <com.infomanav.astaguru.WorkSansRegular
@@ -114,10 +115,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="17sp"
+            android:textSize="12sp"
             android:layout_marginTop="15dp"
             android:layout_marginLeft="15dp"
-            android:text="Job Responsibility:"
+            android:text="Job Responsibility: "
             android:textColor="#000000" />
 
         <com.infomanav.astaguru.JustifiedTextView
@@ -137,10 +138,10 @@ android:text="test"            android:textColor="@color/colorBodyText" />
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="17sp"
+            android:textSize="12sp"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="15dp"
-            android:text="Responsibilities:"
+            android:text="Responsibilities: "
             android:textColor="#000000" />
 
         <com.infomanav.astaguru.JustifiedTextView
@@ -161,10 +162,10 @@ android:text="test"            android:textColor="@color/colorBodyText" />
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="17sp"
+            android:textSize="12sp"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="15dp"
-            android:text="Functional Skills:"
+            android:text="Functional Skills: "
             android:textColor="#000000" />
         <com.infomanav.astaguru.JustifiedTextView
             android:id="@+id/functionalSkills"
@@ -183,10 +184,10 @@ android:text="test"            android:textColor="@color/colorBodyText" />
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="17sp"
+            android:textSize="12sp"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="15dp"
-            android:text="Technical Skills:"
+            android:text="Technical Skills: "
             android:textColor="#000000" />
 
         <com.infomanav.astaguru.JustifiedTextView
@@ -208,10 +209,10 @@ android:text="test"            android:textColor="@color/colorBodyText" />
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="17sp"
+            android:textSize="12sp"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="15dp"
-            android:text="Joining Time:"
+            android:text="Joining Time: "
             android:textColor="#000000" />
 
         <com.infomanav.astaguru.JustifiedTextView
@@ -229,10 +230,10 @@ android:text="test"            android:textColor="@color/colorBodyText" />
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="17sp"
+            android:textSize="12sp"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="15dp"
-            android:text="Salary:"
+            android:text="Salary: "
             android:textColor="#000000" />
 
         <com.infomanav.astaguru.JustifiedTextView
@@ -252,10 +253,10 @@ android:text="test"            android:textColor="@color/colorBodyText" />
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="17sp"
+            android:textSize="12sp"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="15dp"
-            android:text="Experience:"
+            android:text="Experience: "
             android:textColor="#000000" />
 
 

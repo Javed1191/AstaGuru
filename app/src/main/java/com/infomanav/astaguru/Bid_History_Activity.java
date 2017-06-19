@@ -22,12 +22,13 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import adapter.BidHistory_Adpter;
 import adapter.MyPurchasesAdpter;
 import butterknife.ButterKnife;
-
+import services.Application_Constants;
 import services.ServiceHandler;
 import services.Utility;
 
@@ -37,10 +38,10 @@ import services.Utility;
 
 public class Bid_History_Activity extends AppCompatActivity {
 
-    ArrayList<Bid_History_Model> appsList;
+    List<Bid_History_Model> appsList;
     String[] mydateList = new String[]{"July, 2016", "September, 2016", "September, 2016", "September, 2016", "December, 2016"};
 
-    private String strPastAuctionUrl = "http://54.169.244.245/api/v2/guru/_table/AuctionList?api_key=c6935db431c0609280823dc52e092388a9a35c5f8793412ff89519e967fd27ed";
+    private String strPastAuctionUrl = "http://54.169.244.245/api/v2/guru/_table/AuctionList?api_key="+ Application_Constants.API_KEY;
     private Utility utility;
 
     private BidHistory_Adpter mAdapter;
@@ -120,7 +121,7 @@ public class Bid_History_Activity extends AppCompatActivity {
                     String str_json = result;
                     String str_status, str_msg;
                     String  Category_name;
-                    appsList = new ArrayList<>();
+                    appsList = new ArrayList<Bid_History_Model>();
                     try {
                         if (str_json != null)
                         {

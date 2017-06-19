@@ -8,15 +8,14 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.transition.TransitionManager;
-import android.util.Log;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,11 +24,11 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,24 +44,19 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
-import services.JSONfunctions;
-import services.ServiceHandler;
+import model_classes.Model_Category;
+import services.Application_Constants;
 import services.Utility;
 
 /**
@@ -74,8 +68,10 @@ public class Contact_Us_Activity extends AppCompatActivity implements OnMapReady
 
     private Button btn_reach_us,btn_contact_us;
     JSONObject jsonobject;
+   public AutoCompleteTextView text;
     JSONArray jsonarray;
     String str_category;
+    String selected;
     ProgressDialog mProgressDialog;
     ArrayList<String> worldlist;
     ArrayList<Model_Category> world;
@@ -90,6 +86,7 @@ public class Contact_Us_Activity extends AppCompatActivity implements OnMapReady
     ImageView iv_fb,iv_twitter,iv_insta,iv_pinar,iv_youtube;
 EditText edt_name,edt_email,edt_number,edt_msg;
     Spinner my_spinner;
+    private static final int REQUEST_PERMISSIONS = 20;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -98,10 +95,57 @@ EditText edt_name,edt_email,edt_number,edt_msg;
 
         context = Contact_Us_Activity.this;
         utility = new Utility(context);
+        if (ContextCompat.checkSelfPermission(Contact_Us_Activity.this,
+                Manifest.permission.CALL_PHONE)
+                != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale
+                    (Contact_Us_Activity.this, Manifest.permission.CALL_PHONE) ||
+                    ActivityCompat.shouldShowRequestPermissionRationale
+                            (Contact_Us_Activity.this, Manifest.permission.CALL_PHONE)) {
+            } else {
+                ActivityCompat.requestPermissions(Contact_Us_Activity.this,
+                        new String[]{Manifest.permission
+                                .CALL_PHONE},
+                        REQUEST_PERMISSIONS);
+            }
+        }
 
-        my_spinner = (Spinner) findViewById(R.id.my_spinner);
+
+//        my_spinner = (Spinner) findViewById(R.id.my_spinner);
+        text=(AutoCompleteTextView)findViewById(R.id.autoCompleteTextView1);
         init();
-getState();
+        getState();
+
+
+        text.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+
+                if(hasFocus)
+                {
+                    text.showDropDown();
+                }
+
+            }
+        });
+        text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                    text.showDropDown();
+
+            }
+        });
+
+        text.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
+                 selected = (String) parent.getItemAtPosition(position);
+               // Toast.makeText(getApplicationContext(),selected,Toast.LENGTH_LONG).show();
+            }
+        });
 
 
 
@@ -131,8 +175,6 @@ getState();
             @Override
             public void onClick(View v) {
                 System.out.println("result" + "Click");
-
-
 
                 if (ActivityCompat.checkSelfPermission(Contact_Us_Activity.this,
                         Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
@@ -164,15 +206,33 @@ getState();
             }
         });
 
-        tv_mail.setOnClickListener(new View.OnClickListener() {
+        tv_mail.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v) {
-                Intent email = new Intent(Intent.ACTION_SEND);
+               /* Intent email = new Intent(Intent.ACTION_SEND);
                 email.putExtra(Intent.EXTRA_EMAIL, new String[]{"contact@astaguru.com"});
-                email.putExtra(Intent.EXTRA_SUBJECT, "subject");
-                email.putExtra(Intent.EXTRA_TEXT, "message");
+                email.putExtra(Intent.EXTRA_SUBJECT, "");
+                email.putExtra(Intent.EXTRA_TEXT, "");
                 email.setType("message/rfc822");
-                startActivity(Intent.createChooser(email, "Choose an Email client :"));
+                startActivity(Intent.createChooser(email, "Choose an Email client :"));*/
+
+                Intent intent = new Intent(Intent.ACTION_SEND);
+
+                String[] strTo = {"contact@astaguru.com"};
+
+                intent.putExtra(Intent.EXTRA_EMAIL, strTo);
+                intent.putExtra(Intent.EXTRA_SUBJECT, "");
+                intent.putExtra(Intent.EXTRA_TEXT, "");
+
+             /*   Uri attachments = Uri.parse(image_path);
+                intent.putExtra(Intent.EXTRA_STREAM, attachments);*/
+
+                intent.setType("message/rfc822");
+
+                intent.setPackage("com.google.android.gm");
+
+                startActivity(intent);
             }
         });
         btn_contactsubmit.setOnClickListener(new View.OnClickListener() {
@@ -219,22 +279,15 @@ getState();
                 }
                 else
                 {
-
-                    String mail_body = " Name :"+ str_name+"\n Email Id :"+ str_email+" \n Mobile Number :"+ str_number+"\n Category :"+ str_category+"\n Message :"+ str_msg+"";
+                    String mail_body = " Name :"+ str_name+"\n\n Email Id: "+ str_email+" \n\n Mobile Number: "+ str_number+"\n\n Category: "+ selected+"\n\n Message: "+ str_msg+"";
 
                     Intent email = new Intent(Intent.ACTION_SEND);
-                    email.putExtra(Intent.EXTRA_EMAIL, new String[]{"roshan4fox@gmail.com"});
-                    email.putExtra(Intent.EXTRA_SUBJECT, "subject");
+                    email.putExtra(Intent.EXTRA_EMAIL, new String[]{"b@infomanav.com"});
+                    email.putExtra(Intent.EXTRA_SUBJECT, "Inquiry from astaguru app");
                     email.putExtra(Intent.EXTRA_TEXT,mail_body);
                     email.setType("message/rfc822");
                     startActivity(Intent.createChooser(email, "Choose an Email client :"));
-
                 }
-
-
-
-
-
 
             }
         });
@@ -256,8 +309,6 @@ getState();
             @Override
             public void onClick(View v)
             {
-
-
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/astaguru/")));
 
             }
@@ -281,7 +332,6 @@ getState();
 
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/astaguru/")));
 
-
             }
         });
         iv_pinar.setOnClickListener(new View.OnClickListener()
@@ -289,10 +339,7 @@ getState();
             @Override
             public void onClick(View v)
             {
-
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://in.pinterest.com/astaguru/")));
-
-
             }
         });
         iv_youtube.setOnClickListener(new View.OnClickListener()
@@ -300,13 +347,27 @@ getState();
             @Override
             public void onClick(View v)
             {
-
-
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/channel/UCmTqSUMAHV5l0mACoK72t7g")));
-
             }
         });
 
+
+        edt_name.setFilters(new InputFilter[] {
+                new InputFilter() {
+                    @Override
+                    public CharSequence filter(CharSequence cs, int start,
+                                               int end, Spanned spanned, int dStart, int dEnd) {
+                        // TODO Auto-generated method stub
+                        if(cs.equals("")){ // for backspace
+                            return cs;
+                        }
+                        if(cs.toString().matches("[a-zA-Z ]+")){
+                            return cs;
+                        }
+                        return "";
+                    }
+                }
+        });
 
         btn_contact_us.setOnClickListener(new View.OnClickListener()
         {
@@ -316,7 +377,10 @@ getState();
                 lin_reach_us.setVisibility(View.GONE);
                 lin_contact_us.setVisibility(View.VISIBLE);
 
-
+                btn_contact_us.setBackgroundColor(getResources().getColor(R.color.btn_reachus));
+                btn_reach_us.setBackgroundColor(getResources().getColor(R.color.btn_bg_white));
+                btn_reach_us.setTextColor(getResources().getColor(R.color.btn_reachus));
+                btn_contact_us.setTextColor(getResources().getColor(R.color.btn_bg_white));
 
             }
         });
@@ -327,37 +391,36 @@ getState();
             {
                 lin_contact_us.setVisibility(View.GONE);
                 lin_reach_us.setVisibility(View.VISIBLE);
-
-
-
-
-
+                btn_reach_us.setBackgroundColor(getResources().getColor(R.color.btn_reachus));
+                btn_contact_us.setBackgroundColor(getResources().getColor(R.color.btn_bg_white));
+                btn_contact_us.setTextColor(getResources().getColor(R.color.btn_reachus));
+                btn_reach_us.setTextColor(getResources().getColor(R.color.btn_bg_white));
             }
         });
-
-
-
-
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults)
+    {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        int permissionCheck = PackageManager.PERMISSION_GRANTED;
+        for (int permission : grantResults) {
+            permissionCheck = permissionCheck + permission;
+        }
 
+    }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         // On selecting a spinner item
         String item = parent.getItemAtPosition(position).toString();
-
         str_category = item;
-
         // Showing selected spinner item
         Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
     }
     public void onNothingSelected(AdapterView<?> arg0) {
         // TODO Auto-generated method stub
     }
-
-
-
     private void getState() {
 
         //setup blanck spinners
@@ -368,17 +431,12 @@ getState();
         listState = new ArrayList<>(Arrays.asList(st));
         listStateId = new ArrayList<>();
 
-
-
-
-        String strPastAuctionUrl = "http://54.169.222.181/api/v2/guru/_table/category?api_key=c6935db431c0609280823dc52e092388a9a35c5f8793412ff89519e967fd27ed";
-
+        String strPastAuctionUrl = Application_Constants.Main_URL+"category?api_key="+ Application_Constants.API_KEY;
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, strPastAuctionUrl, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-
                         try {
                             VolleyLog.v("Response:%n %s", response.toString());
 
@@ -387,7 +445,6 @@ getState();
                             String[] st = new String[]{
                                     "Select Category"
                             };
-
                             listState = new ArrayList<>(Arrays.asList(st));
                             listStateId = new ArrayList<>();
 
@@ -396,58 +453,64 @@ getState();
                                 listStateId.add(state.getString("categoryid"));
                                 listState.add(state.getString("category"));
                             }
+                            ArrayAdapter adapter = new
+                                    ArrayAdapter(Contact_Us_Activity.this,android.R.layout.simple_list_item_1,listState);
+                            text.setAdapter(adapter);
+                            text.setThreshold(1);
 
                             // Initializing an ArrayAdapter
-                            final ArrayAdapter<String> adapterState = new ArrayAdapter<String>(
-                                    Contact_Us_Activity.this,R.layout.spinner_row,listState){
-                                @Override
-                                public boolean isEnabled(int position){
-                                    if(position == 0)
-                                    {
-                                        // Disable the first item from Spinner
-                                        // First item will be use for hint
-                                        return false;
-                                    }
-                                    else
-                                    {
-                                        return true;
-                                    }
-                                }
-                                @Override
-                                public View getDropDownView(int position, View convertView,
-                                                            ViewGroup parent) {
-                                    View view = super.getDropDownView(position, convertView, parent);
-                                    TextView tv = (TextView) view;
-                                    if(position == 0){
-                                        // Set the hint text color gray
-                                        tv.setTextColor(Color.GRAY);
-                                    }
-                                    else {
-                                        tv.setTextColor(Color.BLACK);
-                                    }
-                                    return view;
-                                }
-                            };
-                            adapterState.setDropDownViewResource(R.layout.spinner_row);
-                            my_spinner.setAdapter(adapterState);
-
-                            my_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                @Override
-                                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                                    String item = parent.getItemAtPosition(position).toString();
-
-                                    str_category = item;
-                                    if (position > 0) {
-//                                        getDistrict(listStateId.get(position - 1));
-                                    }
-                                }
-
-                                @Override
-                                public void onNothingSelected(AdapterView<?> parent) {
-
-                                }
-                            });
+//                            final ArrayAdapter<String> adapterState = new ArrayAdapter<String>(
+//                                    Contact_Us_Activity.this,R.layout.spinner_row,listState){
+//
+//
+//                                @Override
+//                                public boolean isEnabled(int position){
+//                                    if(position == 0)
+//                                    {
+//                                        // Disable the first item from Spinner
+//                                        // First item will be use for hint
+//                                        return false;
+//                                    }
+//                                    else
+//                                    {
+//                                        return true;
+//                                    }
+//                                }
+//                                @Override
+//                                public View getDropDownView(int position, View convertView,
+//                                                            ViewGroup parent) {
+//                                    View view = super.getDropDownView(position, convertView, parent);
+//                                    TextView tv = (TextView) view;
+//                                    if(position == 0){
+//                                        // Set the hint text color gray
+//                                        tv.setTextColor(Color.GRAY);
+//                                    }
+//                                    else {
+//                                        tv.setTextColor(Color.BLACK);
+//                                    }
+//                                    return view;
+//                                }
+//                            };
+//                            adapterState.setDropDownViewResource(R.layout.spinner_row);
+//                            my_spinner.setAdapter(adapterState);
+//
+//                            my_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//                                @Override
+//                                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//
+//                                    String item = parent.getItemAtPosition(position).toString();
+//
+//                                    str_category = item;
+//                                    if (position > 0) {
+////                                        getDistrict(listStateId.get(position - 1));
+//                                    }
+//                                }
+//
+//                                @Override
+//                                public void onNothingSelected(AdapterView<?> parent) {
+//
+//                                }
+//                            });
 
 
 
@@ -480,10 +543,10 @@ getState();
         mMap = googleMap;
 
         // Add a marker in Sydney, Australia, and move the camera.
-        LatLng sydney = new LatLng(18.927597, 72.832351);
+        LatLng sydney = new LatLng(18.927601, 72.832765);
         mMap.addMarker(new MarkerOptions().position(sydney));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-        mMap.animateCamera( CameraUpdateFactory.zoomTo( 12.0f ) );
+        mMap.animateCamera( CameraUpdateFactory.zoomTo( 16.0f ) );
     }
 
 

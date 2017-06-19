@@ -1,26 +1,18 @@
 package adapter;
 
-import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
  
 import android.app.Activity;
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.infomanav.astaguru.Past_sub_Model;
 import com.infomanav.astaguru.R;
-import com.infomanav.astaguru.Second_img_Model;
+import model_classes.Second_img_Model;
 import com.squareup.picasso.Picasso;
-
-import services.Application_Constants;
 
 public class ImageSlideAdapter extends PagerAdapter {
 

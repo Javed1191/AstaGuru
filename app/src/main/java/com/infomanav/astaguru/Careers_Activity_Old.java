@@ -52,6 +52,7 @@ import java.util.Map;
 import adapter.Careeer_Adpter;
 import adapter.CurrentAuctionAdapter_listview;
 import butterknife.ButterKnife;
+import services.Application_Constants;
 import services.MultipartUtility;
 import services.ServiceHandler;
 import services.Utility;
@@ -441,7 +442,7 @@ ProgressDialog dialogProfile;
 
         if (utility.checkInternet()) {
 
-            String strPastAuctionUrl = "http://54.169.222.181/api/v2/guru/_table/jobs?api_key=c6935db431c0609280823dc52e092388a9a35c5f8793412ff89519e967fd27ed";
+            String strPastAuctionUrl = "http://54.169.222.181/api/v2/guru/_table/jobs?api_key="+ Application_Constants.API_KEY;
             System.out.println("strPastAuctionUrl " + strPastAuctionUrl);
             final Map<String, String> params = new HashMap<String, String>();
 

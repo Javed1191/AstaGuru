@@ -1,17 +1,12 @@
 package com.infomanav.astaguru;
 
-import android.animation.Animator;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.view.ViewPager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -23,12 +18,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewAnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import adapter.TabAdapter;
 import services.SessionData;
@@ -41,23 +36,28 @@ public class MainActivity extends AppCompatActivity
             ,lay_terms_condition;
     DrawerLayout drawer;
     public DisplayMetrics m;
-    TextView toolbarTextView;
+    TextView toolbarTextView,tv_signin_text;
     ImageView iv_logo;
     Toolbar toolbar;
-
     SessionData data;
     Context context;
+    ActionBarDrawerToggle toggle;
+    RelativeLayout notificationCount1;
+    public TextView badge_notification_1;
+    public RelativeLayout relative_layout_item_count;
+    String notification_count="10";
+    private String NotificationID="",key="",auction="";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         context = MainActivity.this;
-
         data = new SessionData(context);
 
         intVeriable();
-         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
         toolbar.setTitle("");
@@ -68,11 +68,8 @@ public class MainActivity extends AppCompatActivity
 
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-
-
-
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+        toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
@@ -83,19 +80,19 @@ public class MainActivity extends AppCompatActivity
         m = getResources().getDisplayMetrics();
         Typeface type = Typeface.createFromAsset(getAssets(),"WorkSans-Medium.otf");
 
-
         String value = data.getObjectAsString("login");
         if (value.equalsIgnoreCase("true"))
         {
             btn_sign_in.setText("Sign Out");
             btn_sign_in.setTypeface(type);
+            tv_signin_text.setText("Sign out from My AstaGuru");
 
         }
         else
         {
             btn_sign_in.setText("Sign In");
             btn_sign_in.setTypeface(type);
-
+            tv_signin_text.setText("Sign in to My AstaGuru");
         }
 
         btn_sign_in.setOnClickListener(new View.OnClickListener() {
@@ -146,12 +143,86 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        FragmentHomeTab fragment = new FragmentHomeTab();
-        android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.frame, fragment).addToBackStack("HOME TAB");
-        fragmentTransaction.commit();
+        Intent intent = getIntent();
+
+        if(intent.getExtras()!=null)
+        {
+            //intent.putExtra("fragment","current");
+
+            if(intent.getStringExtra("fragment")!=null)
+            {
+                Bundle bundle = new Bundle();
+                bundle.putString("fragment", "current");
+                FragmentHomeTab fragment = new FragmentHomeTab();
+                fragment.setArguments(bundle);
+                android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.frame, fragment).addToBackStack("HOME TAB");
+                fragmentTransaction.commit();
+            }
+            else if (intent.getStringExtra("NotificationID")!=null)
+            {
+                NotificationID = intent.getStringExtra("NotificationID");
+
+               /* Bundle bundle = new Bundle();
+                bundle.putString("fragment", "home");
+                FragmentHomeTab fragment = new FragmentHomeTab();
+                fragment.setArguments(bundle);
+                android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.frame, fragment).addToBackStack("HOME TAB");
+                fragmentTransaction.commit();
+*/
+
+                Intent intent1 = new Intent(MainActivity.this,NotificationDetailsActivity.class);
+                intent1.putExtra("NotificationID",NotificationID);
+                startActivity(intent1);
+
+                    //  notif_des = intent.getStringExtra("notif_des");
+            }
+            else if(intent.getStringExtra("type")!=null)
+            {
+
+                if(intent.getStringExtra("type").equalsIgnoreCase("search"))
+                {
+
+                    key = intent.getStringExtra("key");
+                    auction = intent.getStringExtra("auction");
+
+                    Bundle bundle = new Bundle();
+                    bundle.putString("type", "search");
+                    bundle.putString("fragment", "current");
+                    bundle.putString("key", key);
+                    bundle.putString("auction", auction);
+                    FragmentHomeTab fragment = new FragmentHomeTab();
+                    fragment.setArguments(bundle);
+                    android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.frame, fragment).addToBackStack("HOME TAB");
+                    fragmentTransaction.commit();
 
 
+                }
+
+            }
+            else
+            {
+                Bundle bundle = new Bundle();
+                bundle.putString("fragment", "home");
+                FragmentHomeTab fragment = new FragmentHomeTab();
+                fragment.setArguments(bundle);
+                android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.frame, fragment).addToBackStack("HOME TAB");
+                fragmentTransaction.commit();
+            }
+        }
+        else
+        {
+            Bundle bundle = new Bundle();
+            bundle.putString("fragment", "home");
+            FragmentHomeTab fragment = new FragmentHomeTab();
+            fragment.setArguments(bundle);
+            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.frame, fragment).addToBackStack("HOME TAB");
+            fragmentTransaction.commit();
+        }
 
         lay_about_us.setOnClickListener(new View.OnClickListener()
         {
@@ -280,6 +351,7 @@ public class MainActivity extends AppCompatActivity
     public void intVeriable()
     {
         btn_sign_in = (Button) findViewById(R.id.btn_sign_in);
+        tv_signin_text = (TextView) findViewById(R.id.tv_signin_text);
 
 
         lay_about_us = (LinearLayout) findViewById(R.id.lay_about_us);
@@ -301,7 +373,7 @@ public class MainActivity extends AppCompatActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
-        // check if the request code is same as what is passed  here it is 2
+        // check if the request chk_fillter is same as what is passed  here it is 2
         if(requestCode==2)
         {
 
@@ -329,7 +401,8 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onBackPressed() {
 
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
+        if (drawer.isDrawerOpen(GravityCompat.START))
+        {
             drawer.closeDrawer(GravityCompat.START);
         }
         new AlertDialog.Builder(this)
@@ -337,35 +410,63 @@ public class MainActivity extends AppCompatActivity
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        MainActivity.this.finish();
+                        ActivityCompat.finishAffinity(MainActivity.this);
                     }
                 })
                 .setNegativeButton("No", null)
                 .show();
-//        if (drawer.isDrawerOpen(GravityCompat.START)) {
-//            drawer.closeDrawer(GravityCompat.START);
-//            int backStackEntryCount = getSupportFragmentManager().getBackStackEntryCount();
-//            if (backStackEntryCount == 0) {
-//                new AlertDialog.Builder(this)
-//                        .setMessage("Are you sure you want to exit?")
-//                        .setCancelable(false)
-//                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-//                            public void onClick(DialogInterface dialog, int id) {
-//                                MainActivity.this.finish();
-//                            }
-//                        })
-//                        .setNegativeButton("No", null)
-//                        .show();
-//            }
-//        }
+
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+
+
+       /* MenuItem item1 = menu.findItem(R.id.action_settings);
+        MenuItemCompat.setActionView(item1, R.layout.notification_update_count_layout);
+        notificationCount1 = (RelativeLayout) MenuItemCompat.getActionView(item1);
+        relative_layout_item_count = (RelativeLayout) notificationCount1.findViewById(R.id.relative_layout_item_count);
+        badge_notification_1 = (TextView) notificationCount1.findViewById(R.id.badge_notification_1);
+
+        if(notification_count.equals("")||notification_count.equals(null))
+        {
+            badge_notification_1.setVisibility(View.GONE);
+        }
+        else
+        {
+            // relative_layout_item_count.setVisibility(View.VISIBLE);
+            badge_notification_1.setText(notification_count);
+        }
+
+        relative_layout_item_count.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                String status = data.getObjectAsString("login");
+
+                if (status.equalsIgnoreCase("true"))
+                {
+                    Intent intent = new Intent(MainActivity.this,MyAstaGuru_Activity.class);
+                    startActivity(intent);
+                }
+                else
+                {
+                    Intent intent = new Intent(MainActivity.this,Before_Login_Activity.class);
+                    startActivity(intent);
+
+                }
+            }
+        });
+*/
+
         return true;
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -383,6 +484,7 @@ public class MainActivity extends AppCompatActivity
                 {
                     Intent intent = new Intent(MainActivity.this,Before_Login_Activity.class);
                     startActivity(intent);
+
                 }
 
                 return true;
@@ -395,6 +497,8 @@ public class MainActivity extends AppCompatActivity
         }
 
     }
+
+
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override

@@ -12,6 +12,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import services.Utility;
@@ -24,7 +25,7 @@ public class Terms_Condition_Activity extends AppCompatActivity
 {
 LinearLayout lin_law,lin_intent,lin_authenticate,lin_general;
     ImageView iv_law,iv_extent,iv_Authenticate,iv_general;
-
+RelativeLayout   rel_general,rel_Authenticate,rel_Extent,rel_Law;
 
     TextView tv_website;
 JustifiedTextView tv_law,tv_extent_one,tv_extent_two,tv_extent_three,tv_extent_four,tv_extent_five,tv_extent_six;
@@ -69,7 +70,7 @@ JustifiedTextView tv_law,tv_extent_one,tv_extent_two,tv_extent_three,tv_extent_f
             tv_auth_five.setText("AstaGuru shall charge the buyer in case any steps are to be taken for special expenses shall take place in order to prove the authenticity of the property.");
             tv_auth_six.setText("In case the seller fails to refund the funds. Astaguru shall be authorized by the buyer to take legal action on behalf of the buyer to recover the money at the expense of the buyer.");
 
-        tv_z.setText("By participating in this auction, you acknowledge that you are bound by the Conditions for Sale listed below and on the website www.astaguru.com");
+        tv_z.setText("By participating in this auction, you acknowledge that you are bound by the Conditions for Sale listed below and on the website <a href=\"https://www.astaguru.com\">www.astaguru.com</a>");
         tv_gen_a.setText("Making a Winning Bid results in an enforceable contract of sale.");
                 tv_gen_b.setText("AstaGuru is authorized by the seller to display at AstaGuru's discretion images and description of all lots in the catalogue and on the website.");
                 tv_gen_c.setText("AstaGuru can grant record and reject any bids and/or proxy bids.");
@@ -178,6 +179,88 @@ JustifiedTextView tv_law,tv_extent_one,tv_extent_two,tv_extent_three,tv_extent_f
             }
         });
 
+        rel_general.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (lin_general.getVisibility() == View.VISIBLE) {
+                    lin_general.setVisibility(View.GONE);
+                    iv_general.setBackgroundResource(R.drawable.plus);
+                } else {
+                    lin_law.setVisibility(View.GONE);
+                    lin_intent.setVisibility(View.GONE);
+                    lin_authenticate.setVisibility(View.GONE);
+                    lin_general.setVisibility(View.VISIBLE);
+                    iv_law.setBackgroundResource(R.drawable.plus);
+                    iv_extent.setBackgroundResource(R.drawable.plus);
+                    iv_Authenticate.setBackgroundResource(R.drawable.plus);
+                    iv_general.setBackgroundResource(R.drawable.minus);
+                }
+
+            }
+        });
+                rel_Authenticate.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+
+                        if (lin_authenticate.getVisibility() == View.VISIBLE) {
+                            lin_authenticate.setVisibility(View.GONE);
+                            iv_Authenticate.setBackgroundResource(R.drawable.plus);
+                        } else {
+                            lin_law.setVisibility(View.GONE);
+                            lin_intent.setVisibility(View.GONE);
+                            lin_authenticate.setVisibility(View.VISIBLE);
+                            lin_general.setVisibility(View.GONE);
+                            iv_law.setBackgroundResource(R.drawable.plus);
+                            iv_extent.setBackgroundResource(R.drawable.plus);
+                            iv_Authenticate.setBackgroundResource(R.drawable.minus);
+                            iv_general.setBackgroundResource(R.drawable.plus);
+                        }
+
+                    }
+                });
+                rel_Extent.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if (lin_intent.getVisibility() == View.VISIBLE) {
+                            lin_intent.setVisibility(View.GONE);
+                            iv_extent.setBackgroundResource(R.drawable.plus);
+                        } else {
+                            lin_law.setVisibility(View.GONE);
+                            lin_intent.setVisibility(View.VISIBLE);
+                            lin_authenticate.setVisibility(View.GONE);
+                            lin_general.setVisibility(View.GONE);
+                            iv_law.setBackgroundResource(R.drawable.plus);
+                            iv_extent.setBackgroundResource(R.drawable.minus);
+                            iv_Authenticate.setBackgroundResource(R.drawable.plus);
+                            iv_general.setBackgroundResource(R.drawable.plus);
+                        }
+
+                    }
+                });
+                rel_Law.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if (lin_law.getVisibility() == View.VISIBLE) {
+                            lin_law.setVisibility(View.GONE);
+                            iv_law.setBackgroundResource(R.drawable.plus);
+                        } else {
+                            lin_law.setVisibility(View.VISIBLE);
+                            lin_intent.setVisibility(View.GONE);
+                            lin_authenticate.setVisibility(View.GONE);
+                            lin_general.setVisibility(View.GONE);
+                            iv_law.setBackgroundResource(R.drawable.minus);
+                            iv_extent.setBackgroundResource(R.drawable.plus);
+                            iv_Authenticate.setBackgroundResource(R.drawable.plus);
+                            iv_general.setBackgroundResource(R.drawable.plus);
+                        }
+
+                    }
+                });
+
 
 
         TextView tool_text = (TextView) toolbar.findViewById(R.id.tool_text);
@@ -267,8 +350,10 @@ JustifiedTextView tv_law,tv_extent_one,tv_extent_two,tv_extent_three,tv_extent_f
 
         tv_z= (JustifiedTextView) findViewById(R.id.tv_z);
 
-
-
+        rel_general = (RelativeLayout) findViewById(R.id.rel_general);
+        rel_Authenticate= (RelativeLayout) findViewById(R.id.rel_Authenticate);
+        rel_Extent= (RelativeLayout) findViewById(R.id.rel_Extent);
+        rel_Law= (RelativeLayout) findViewById(R.id.rel_Law);
 
     }
 

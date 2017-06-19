@@ -1,29 +1,20 @@
 package adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
-import android.util.DisplayMetrics;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.infomanav.astaguru.AuctionGallary_Model;
-import com.infomanav.astaguru.Current_Auction_Model;
-import com.infomanav.astaguru.Lot_Detail_Page;
 import com.infomanav.astaguru.MainActivity;
 import com.infomanav.astaguru.PastAuction;
 import com.infomanav.astaguru.R;
 import com.squareup.picasso.Picasso;
 
-import java.text.NumberFormat;
 import java.util.List;
-import java.util.Locale;
 
 import services.Application_Constants;
 
@@ -44,7 +35,20 @@ public class PastAuctionAdapter extends ArrayAdapter<PastAuction> {
 
 
     }
-    public void changeCurrency()
+
+    public void changeCurrency(boolean is_us) {
+        this.is_us = is_us;
+//        if (is_us)
+//        {
+//            this.is_us = false;
+//        } else
+//        {
+//            this.is_us = true;
+//        }
+        notifyDataSetChanged();
+    }
+
+/*    public void changeCurrency()
     {
         if(is_us)
         {
@@ -55,7 +59,7 @@ public class PastAuctionAdapter extends ArrayAdapter<PastAuction> {
             is_us=true;
         }
         notifyDataSetChanged();
-    }
+    }*/
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View curView = convertView;
@@ -73,6 +77,7 @@ public class PastAuctionAdapter extends ArrayAdapter<PastAuction> {
         TextView auction_name = (TextView) curView.findViewById(R.id.auction_name);
         TextView tv_date = (TextView) curView.findViewById(R.id.tv_date);
         TextView tv_total_value = (TextView) curView.findViewById(R.id.tv_total_value);
+        ImageView iv_two = (ImageView) curView.findViewById(R.id.iv_two);
 //        CardView card_main = (CardView) curView.findViewById(R.id.card_main);
 //        iv_oncce = (ImageView)curView.findViewById(R.id.iv_oncce);
 
@@ -86,9 +91,20 @@ public class PastAuctionAdapter extends ArrayAdapter<PastAuction> {
 
         // textView.setText(apps.getAppTitle());
 
-        auction_name.setText(cp.getAuctionname());
-        tv_date.setText(cp.getDate());
-        tv_total_value.setText(cp.getTotalSaleValueRs());
+        auction_name.setText(Html.fromHtml(cp.getAuctionname()));
+        tv_date.setText(cp.getAuctiondate());
+
+        if(is_us)
+        {
+            tv_total_value.setText("US$ "+cp.getTotalSaleValueUs());
+           // iv_two.setImageResource(R.drawable.rupee);
+        }
+        else
+        {
+            tv_total_value.setText("₹ "+cp.getTotalSaleValueRs());
+        }
+
+
 //        imageView.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -115,58 +131,66 @@ public class PastAuctionAdapter extends ArrayAdapter<PastAuction> {
 
 
 
-//        if(is_us)
-//        {
-//            String str_us = cp.getPriceus();
-//            int int_str = Integer.parseInt(str_us);
-//            String str_ustest = NumberFormat.getNumberInstance(Locale.US).format(int_str);
-//
-//            tv_current_bid.setText(str_ustest);
-//            double amount1 = Double.parseDouble(cp.getPriceus());
-//
-//            double byerprimium1 = (amount1 / 100.0f) * 10;
-//
-//            double sum1 = amount1+byerprimium1;
-//
-//            int intbyerprimium1 = (int) sum1;
-//
-//            String valuebyerprimium1 = NumberFormat.getNumberInstance(Locale.US).format(intbyerprimium1);
-////            String valuebyerprimium1 = String.valueOf(intbyerprimium1);
-//            tv_nextbid.setText(valuebyerprimium1);
-//            iv_one.setImageResource(R.drawable.doller);
-//            iv_two.setImageResource(R.drawable.doller);
-//        }
-//        else
-//        {
-//
-//
-//            String str_rs= cp.getPricers();
-//            int int_strrs = Integer.parseInt(str_rs);
-//            String str_rscomma= NumberFormat.getNumberInstance(Locale.US).format(int_strrs);
-//            tv_current_bid.setText(str_rscomma);
-//
-//            double amount = Double.parseDouble(cp.getPricers());
-//
-//            double byerprimium = (amount / 100.0f) * 10;
-//
-//            double sum = amount+byerprimium;
-//
-//            int intbyerprimium = (int) sum;
-////            String valuebyerprimium = String.valueOf(intbyerprimium);
-//            String valuebyerprimium= NumberFormat.getNumberInstance(Locale.US).format(intbyerprimium);
-//
-//            tv_nextbid.setText(valuebyerprimium);
-//            iv_one.setImageResource(R.drawable.rupee);
-//            iv_two.setImageResource(R.drawable.rupee);
-//        }
+       /* if(is_us)
+        {
+            String str_us = cp.getPriceus();
+            int int_str = Integer.parseInt(str_us);
+            String str_ustest = NumberFormat.getNumberInstance(Locale.US).format(int_str);
+
+            tv_current_bid.setText(str_ustest);
+            double amount1 = Double.parseDouble(cp.getPriceus());
+
+            double byerprimium1 = (amount1 / 100.0f) * 10;
+
+            double sum1 = amount1+byerprimium1;
+
+            int intbyerprimium1 = (int) sum1;
+
+            String valuebyerprimium1 = NumberFormat.getNumberInstance(Locale.US).format(intbyerprimium1);
+//            String valuebyerprimium1 = String.valueOf(intbyerprimium1);
+            tv_nextbid.setText(valuebyerprimium1);
+            iv_one.setImageResource(R.drawable.doller);
+            iv_two.setImageResource(R.drawable.doller);
+        }
+        else
+        {
+
+
+            String str_rs= cp.getPricers();
+            int int_strrs = Integer.parseInt(str_rs);
+            String str_rscomma= NumberFormat.getNumberInstance(Locale.US).format(int_strrs);
+            tv_current_bid.setText(str_rscomma);
+
+            double amount = Double.parseDouble(cp.getPricers());
+
+            double byerprimium = (amount / 100.0f) * 10;
+
+            double sum = amount+byerprimium;
+
+            int intbyerprimium = (int) sum;
+//            String valuebyerprimium = String.valueOf(intbyerprimium);
+            String valuebyerprimium= NumberFormat.getNumberInstance(Locale.US).format(intbyerprimium);
+
+            tv_nextbid.setText(valuebyerprimium);
+            iv_one.setImageResource(R.drawable.rupee);
+            iv_two.setImageResource(R.drawable.rupee);
+        }*/
 
            /* String strProductImagePath = Application_Constants.APP_IMAGE_PATH;
             String strProductImage = apps.getAppLogo();*/
 
 
         // imageView.setImageResource(apps.getAppLogo());
-        Picasso.with(getContext()).load(Application_Constants.PAST_AUCTION_IMAGE_PATH + cp.getImage())
-                .into(imageView);
+
+        String strPastImage = Application_Constants.PAST_AUCTION_IMAGE_PATH + cp.getImage();
+
+        if(!strPastImage.equals("null"))
+        {
+            strPastImage =  strPastImage.replaceAll(" ","%20");
+            Picasso.with(getContext()).load(strPastImage)
+                    .into(imageView);
+        }
+
 
 //        expandedImageView.setOnClickListener(new View.OnClickListener() {
 //            @Override

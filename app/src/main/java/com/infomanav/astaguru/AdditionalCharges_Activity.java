@@ -7,33 +7,28 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Currency;
+import java.util.Locale;
 
-import adapter.MyPurchasesAdpter;
 import butterknife.ButterKnife;
+import model_classes.MyPurchases_Model;
 import services.Application_Constants;
-import services.ServiceHandler;
 import services.SessionData;
 import services.Utility;
 
@@ -45,15 +40,20 @@ public class AdditionalCharges_Activity extends AppCompatActivity {
 
     ArrayList<MyPurchases_Model> appsList;
     Utility utility;
-    private TextView tv_billing_name,tv_billing_address,tv_city,tv_state,tv_zip,tv_cntry,tv_tel_phn,tv_emaiid,tv_lot,tv_ac_artist,tv_ac_category,tv_ac_medium
-            ,tv_ac_year,tv_ac_size,tv_ac_hummerprice,tv_ac_byerprimium,tv_ac_vatonhummer,tv_ac_servicetax,tv_ac_grandtotal;
+    private TextView tv_billing_name,tv_billing_address,tv_city,tv_state,tv_zip,tv_cntry,tv_tel_phn,
+            tv_emaiid,tv_lot,tv_ac_artist,tv_ac_category,tv_ac_medium
+            ,tv_ac_year,tv_ac_size,tv_ac_hummerprice,tv_ac_byerprimium,tv_ac_vatonhummer,
+            tv_ac_servicetax,tv_ac_grandtotal,tv_ac_estimate,tv_desc;
 
     private ImageView iv_main_img,iv_closeactivity;
-    String currency_type,str_priceus,str_pricers;
-TextView tv_update_address;
-
+    String currency_type,str_priceus,str_pricers,Auctionname,Prdescription;
+    TextView tv_update_address;
+    LinearLayout lin_user_details;
     SessionData data;
     Context context;
+    private RelativeLayout rel_desc;
+    private LinearLayout lay_art_details;
+    private RelativeLayout rel_cat;
 
 
     @Override
@@ -64,6 +64,22 @@ TextView tv_update_address;
         utility = new Utility(getApplicationContext());
         context = AdditionalCharges_Activity.this;
         data = new SessionData(context);
+
+        lin_user_details = (LinearLayout) findViewById(R.id.lin_user_details);
+        rel_desc = (RelativeLayout) findViewById(R.id.rel_desc);
+        lay_art_details = (LinearLayout) findViewById(R.id.lay_art_details);
+        rel_cat = (RelativeLayout) findViewById(R.id.rel_cat);
+
+        String status = data.getObjectAsString("login");
+        if (status.equalsIgnoreCase("false")||status.isEmpty()||status.equalsIgnoreCase("Empty"))
+        {
+
+            lin_user_details.setVisibility(View.GONE);
+        }
+        else
+        {
+            lin_user_details.setVisibility(View.VISIBLE);
+        }
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -115,43 +131,85 @@ TextView tv_update_address;
 
         Intent intent = getIntent();
 
+        Auctionname = intent.getStringExtra("Auctionname");
+        Prdescription = intent.getStringExtra("Prdescription");
         String str_refrence =intent.getStringExtra("str_refrene");
-        tv_lot.setText("Lot:"+str_refrence.trim());
         String str_first = intent.getStringExtra("str_FirstName");
         String str_second = intent.getStringExtra("str_LastName");
-        String fullname = str_first +""+ str_second;
-        tv_ac_artist.setText(fullname);
-        tv_ac_category.setText(intent.getStringExtra("str_category"));
-        tv_ac_medium.setText(intent.getStringExtra("str_medium"));
-        tv_ac_year.setText(intent.getStringExtra("str_date"));
-        tv_ac_size.setText(intent.getStringExtra("str_productsize"));
+        String fullname = str_first +" "+ str_second;
+        String Size = intent.getStringExtra("str_productsize");
+
+        tv_lot.setText("Lot:"+str_refrence.trim());
+
+        tv_ac_size.setText(Size+" in");
         str_pricers = intent.getStringExtra("str_pricers");
         currency_type = intent.getStringExtra("currency_type");
         str_priceus= intent.getStringExtra("str_priceus");
+        tv_ac_estimate.setText(intent.getStringExtra("str_estimate"));
+        tv_desc.setText(Html.fromHtml(Prdescription));
+        if(!Auctionname.equalsIgnoreCase("Collectibles Auction"))
+        {
+            // if data is about artist
+            lay_art_details.setVisibility(View.VISIBLE);
+            rel_desc.setVisibility(View.GONE);
+            rel_cat.setVisibility(View.VISIBLE);
+
+            tv_ac_artist.setText(fullname);
+            tv_ac_category.setText(intent.getStringExtra("str_category"));
+            tv_ac_medium.setText(intent.getStringExtra("str_medium"));
+            tv_ac_year.setText(intent.getStringExtra("str_date"));
+        }
+        else
+        {
+            // if data is not about artist
+            lay_art_details.setVisibility(View.GONE);
+            rel_desc.setVisibility(View.VISIBLE);
+            rel_cat.setVisibility(View.GONE);
+        }
 
 
         if (currency_type.equals("USD"))
         {
-            tv_ac_hummerprice.setText(str_priceus);
+            NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(Locale.US);
+            double priceInUSD = Double.parseDouble(str_priceus);
+            String d_value=  currencyFormat.format(priceInUSD);
+
+            tv_ac_hummerprice.setText("US$ "+d_value.replaceAll("\\.00", "").replace("$",""));
+
             double amount = Double.parseDouble(str_priceus);
 
             double byerprimium = (amount / 100.0f) * 15;
             int intbyerprimium = (int) byerprimium;
             String valuebyerprimium = String.valueOf(intbyerprimium);
-            tv_ac_byerprimium.setText(valuebyerprimium);
+
+            double dbyerprimium = Double.parseDouble(valuebyerprimium);
+            String d_byerprimium = currencyFormat.format(dbyerprimium);
+
+            tv_ac_byerprimium.setText("US$ "+d_byerprimium.replaceAll("\\.00", "").replace("$",""));
 
             double vatonhummer = (amount / 100.0f) * 12.5;
 
             int intvatonhummer = (int) vatonhummer;
             String valuevatonhummer = String.valueOf(intvatonhummer);
-            tv_ac_vatonhummer.setText(valuevatonhummer);
+
+            double dvatonhummer = Double.parseDouble(valuevatonhummer);
+            String d_vatonhummer = currencyFormat.format(dvatonhummer);
+
+
+            tv_ac_vatonhummer.setText("US$ "+d_vatonhummer.replaceAll("\\.00", "").replace("$",""));
 
             double servicetax = (vatonhummer / 100.0f) * 14.5;
 
             int intservicetax = (int) servicetax;
 
             String valueservicetax = String.valueOf(intservicetax);
-            tv_ac_servicetax.setText(valueservicetax);
+
+
+            double dservicetax = Double.parseDouble(valueservicetax);
+            String d_servicetax = currencyFormat.format(dservicetax);
+
+            d_servicetax = calculatePercentage(String.valueOf(intbyerprimium));
+            tv_ac_servicetax.setText("US$ "+d_servicetax.replaceAll("\\.00", "").replace("$",""));
 
 
             Double a = new Double(Double.parseDouble(str_pricers));
@@ -162,30 +220,48 @@ TextView tv_update_address;
 
             int intgrandtotal = (int) sum;
 
-            tv_ac_grandtotal.setText(String.valueOf(intgrandtotal));
+            String d_grandtotal = currencyFormat.format(sum);
+
+            tv_ac_grandtotal.setText("US$ "+d_grandtotal.replaceAll("\\.00", "").replace("$",""));
         }
         else
         {
-            tv_ac_hummerprice.setText(str_pricers);
+            NumberFormat format = NumberFormat.getCurrencyInstance();
+            System.out.println("str_pricers"+str_pricers);
+            format.setCurrency(Currency.getInstance("INR"));
+            String str_amt = rupeeFormat(str_pricers);
+
+            tv_ac_hummerprice.setText("₹ "+str_amt);
             double amount = Double.parseDouble(str_pricers);
 
             double byerprimium = (amount / 100.0f) * 15;
             int intbyerprimium = (int) byerprimium;
             String valuebyerprimium = String.valueOf(intbyerprimium);
-            tv_ac_byerprimium.setText(valuebyerprimium);
 
-            double vatonhummer = (amount / 100.0f) * 12.5;
+
+            String vale_byerprimium = rupeeFormat(valuebyerprimium);
+            tv_ac_byerprimium.setText("₹ "+vale_byerprimium);
+
+            double vatonhummer = (amount / 100.0f) * 13.5;
 
             int intvatonhummer = (int) vatonhummer;
             String valuevatonhummer = String.valueOf(intvatonhummer);
-            tv_ac_vatonhummer.setText(valuevatonhummer);
 
-            double servicetax = (vatonhummer / 100.0f) * 14.5;
+
+            String vale_vatonhummer = rupeeFormat(valuevatonhummer);
+            tv_ac_vatonhummer.setText("₹ "+vale_vatonhummer);
+
+            double servicetax = (vatonhummer / 100.0f) * 15;
 
             int intservicetax = (int) servicetax;
 
             String valueservicetax = String.valueOf(intservicetax);
-            tv_ac_servicetax.setText(valueservicetax);
+
+
+           String strSeviceTax = calculatePercentage(String.valueOf(intbyerprimium));
+            String vale_servicetax = rupeeFormat(strSeviceTax);
+
+            tv_ac_servicetax.setText("₹ "+vale_servicetax);
 
 
             Double a = new Double(Double.parseDouble(str_pricers));
@@ -194,9 +270,15 @@ TextView tv_update_address;
             Double d = new Double(Double.parseDouble(valueservicetax));
             double sum = round(a)+round(b) +round(c)+round(d);
 
-            int intgrandtotal = (int) sum;
+           // int intgrandtotal = (int) sum;
 
-            tv_ac_grandtotal.setText(String.valueOf(intgrandtotal));
+
+            str_pricers = str_pricers.replaceAll(",","");
+            vale_vatonhummer = vale_vatonhummer.replaceAll(",","");
+            strSeviceTax = strSeviceTax.replaceAll(",","");
+            int intgrandtotal = Integer.parseInt(str_pricers) + intbyerprimium+Integer.parseInt(vale_vatonhummer)+ Integer.parseInt(strSeviceTax);
+            String vale_grandtotal = rupeeFormat(String.valueOf(intgrandtotal));
+            tv_ac_grandtotal.setText("₹ "+vale_grandtotal);
         }
 
 
@@ -241,7 +323,6 @@ TextView tv_update_address;
         });
 
 
-//        getUpcomingAuction();
 
     }
 
@@ -251,7 +332,43 @@ TextView tv_update_address;
         return Double.valueOf(twoDForm.format(d));
     }
 
+    public static String rupeeFormat(String value)
+    {
+        value=value.replace(",","");
+        char lastDigit=value.charAt(value.length()-1);
+        String result = "";
+        int len = value.length()-1;
+        int nDigits = 0;
+        for (int i = len - 1; i >= 0; i--)
+        {
+            result = value.charAt(i) + result;
+            nDigits++;
+            if (((nDigits % 2) == 0) && (i > 0))
+            {
+                result = "," + result;
+            }
+        }
+        return (result+lastDigit);
+    }
 
+    public static String DollerFormat(String value)
+    {
+        value=value.replace(",","");
+        char lastDigit=value.charAt(value.length()-1);
+        String result = "";
+        int len = value.length()-1;
+        int nDigits = 0;
+        for (int i = len - 1; i >= 0; i--)
+        {
+            result = value.charAt(i) + result;
+            nDigits++;
+            if (((nDigits % 3) == 0) && (i > 0))
+            {
+                result = "," + result;
+            }
+        }
+        return (result+lastDigit);
+    }
     public void init()
     {
         utility = new Utility(getApplicationContext());
@@ -279,13 +396,14 @@ TextView tv_update_address;
         iv_main_img = (ImageView) findViewById(R.id.iv_main_img);
         iv_closeactivity = (ImageView) findViewById(R.id.iv_closeactivity);
         tv_update_address= (TextView) findViewById(R.id.tv_update_address);
+        tv_ac_estimate  = (TextView) findViewById(R.id.tv_ac_estimate);
+        tv_desc = (TextView) findViewById(R.id.tv_desc);
 
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_lot, menu);
         return true;
     }
@@ -310,12 +428,33 @@ TextView tv_update_address;
 
                 return true;
             case R.id.action_search:
-                // do whatever
+                Intent intent = new Intent(AdditionalCharges_Activity.this,Search_Activity.class);
+                startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
 
+    }
+
+    private String calculatePercentage(String strPrise)
+    {
+        String strBidPrise="";
+        Integer int_bid_prise = 0,int_discount=0;
+
+        int_bid_prise = Integer.parseInt(strPrise);
+        int_discount = ((Integer.parseInt(strPrise)*15)/100);
+       // int_bid_prise = int_bid_prise+int_discount;
+
+        strBidPrise = String.valueOf(int_discount);
+
+
+        return strBidPrise;
+    }
+
+    private String replaceAll(String strAmount)
+    {
+        return strAmount.replaceAll(",","");
     }
 }
 

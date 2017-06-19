@@ -68,7 +68,7 @@
                     android:layout_width="15dp"
                     android:layout_height="15dp"
                     android:layout_marginTop="7dp"
-                    android:background="@drawable/icon_mobile" />
+                    android:src="@drawable/icon_mobile" />
 
                 <com.infomanav.astaguru.WorkSansRegular
                     android:id="@+id/tv_name"
@@ -81,11 +81,12 @@
                     android:textSize="15sp" />
 
                 <EditText
+                    android:maxLength="13"
+                    android:text=""
                     android:id="@+id/edt_mobile"
                     style="@style/Edittext_Style"
                     android:layout_below="@+id/iv_user"
                     android:layout_marginLeft="28dp"
-                    android:layout_marginTop="10dp"
                     android:editable="false"
 
                 />
@@ -120,7 +121,7 @@
                     android:layout_below="@+id/rel_edt"
 
                     android:gravity="center_vertical"
-                    android:text="We have sent verification code  to your mobile number.Please check your inbox and put 4 digit verification code here"
+                    android:text="We have sent verification code by SMS to this number. Please check your message and put 4 digits verification code here. "
                     android:textSize="15sp" />
 
                 <com.infomanav.astaguru.WorkSansRegular
@@ -201,17 +202,18 @@
                         android:gravity="right"
                         android:layout_height="wrap_content">
 
-                    <Button
-                        android:id="@+id/btn_mobile_verify"
-                        android:layout_width="100dp"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="40dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="10dp"
-                        android:background="#000000"
-                        android:padding="10dp"
-                        android:text="Verify"
-                        android:textColor="#ffffff" />
+
+
+                        <Button
+                            android:id="@+id/btn_mobile_verify"
+                            android:layout_width="100dp"
+                            android:layout_height="35dp"
+                            android:layout_marginLeft="40dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="10dp"
+                            android:background="#000000"
+                            android:text="Verify"
+                            android:textColor="#ffffff" />
                 </LinearLayout>
                 </LinearLayout>
                 <com.infomanav.astaguru.WorkSansRegular
@@ -223,8 +225,8 @@
                     android:layout_alignParentTop="true"
                     android:gravity="right|center_vertical"
                     android:visibility="gone"
-                    android:text="Invalid Otp"
-                    android:textColor="@color/CLR_RED"
+                    android:text="Invalid OTP"
+                    android:textColor="#FA0707"
                     android:textSize="15sp" />
             </LinearLayout>
 
@@ -252,7 +254,7 @@
 
                         android:layout_height="15dp"
                         android:layout_marginTop="7dp"
-                        android:background="@drawable/icon_email" />
+                        android:src="@drawable/icon_email" />
 
                     <com.infomanav.astaguru.WorkSansRegular
                         android:id="@+id/tv_emailtext"
@@ -269,7 +271,7 @@
                         style="@style/Edittext_Style"
                         android:layout_below="@+id/iv_user_email"
                         android:layout_marginLeft="29dp"
-                        android:layout_marginTop="10dp"
+                        android:text=""
                         android:editable="false"
 
                     />
@@ -289,6 +291,20 @@
                         android:text="Verify"
                         android:textColor="@color/colorLink"
                         android:textSize="15sp" />
+
+                        <com.infomanav.astaguru.WorkSansRegular
+                            android:id="@+id/tv_mob_green"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:visibility="gone"
+                            android:layout_alignParentTop="true"
+                            android:gravity="right|center_vertical"
+                            android:text="Verify"
+                            android:textColor="@color/colorLink"
+                            android:textSize="15sp" />
                     </LinearLayout>
 
 
@@ -310,7 +326,6 @@
                         android:layout_below="@+id/rel_edt"
 
                         android:gravity="center_vertical"
-                        android:text="We have sent verification code to your email id. Please check your inbox and put 4 digit verification code here"
                         android:textSize="15sp" />
 
                     <com.infomanav.astaguru.WorkSansRegular
@@ -392,17 +407,18 @@
                             android:layout_width="match_parent"
                             android:gravity="right"
                             android:layout_height="wrap_content">
-                        <Button
-                            android:id="@+id/btn_email_verify"
-                            android:layout_width="100dp"
-                            android:layout_height="40dp"
-                            android:layout_marginLeft="40dp"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="10dp"
-                            android:background="#000000"
-                            android:padding="10dp"
-                            android:text="Verify"
-                            android:textColor="#ffffff" />
+
+
+                            <Button
+                                android:id="@+id/btn_email_verify"
+                                android:layout_width="100dp"
+                                android:layout_height="35dp"
+                                android:layout_marginLeft="40dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="10dp"
+                                android:background="#000000"
+                                android:text="Verify"
+                                android:textColor="#ffffff" />
                     </LinearLayout>
                     </LinearLayout>
                     <com.infomanav.astaguru.WorkSansRegular
@@ -414,8 +430,8 @@
                         android:layout_alignParentTop="true"
                         android:gravity="right|center_vertical"
                         android:visibility="gone"
-                        android:text="Invalid Otp"
-                        android:textColor="@color/CLR_RED"
+                        android:text="Invalid OTP"
+                        android:textColor="#FA0707"
                         android:textSize="15sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -432,13 +448,12 @@
 
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/btn_back"
                     android:layout_width="100dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp"
                     android:background="#000000"
-                    android:padding="10dp"
                     android:text="Back"
                     android:textColor="#ffffff" />
 
@@ -446,13 +461,12 @@
                 <Button
                     android:id="@+id/btn_proceed"
                     android:layout_width="100dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:layout_toRightOf="@+id/button"
+                    android:layout_toRightOf="@+id/btn_back"
                     android:background="#000000"
-                    android:padding="10dp"
                     android:text="Proceed"
                     android:textColor="#ffffff"
 

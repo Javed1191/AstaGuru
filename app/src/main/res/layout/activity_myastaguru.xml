@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -14,15 +15,16 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay"   >
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
             <com.infomanav.astaguru.WorkSansMedium
+                android:id="@+id/tool_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tool_text"
                 android:gravity="left"
                 android:text="Management"
-                android:textStyle="bold"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:textStyle="bold"/>
 
         </android.support.v7.widget.Toolbar>
 
@@ -31,115 +33,157 @@
     <com.infomanav.astaguru.WorkSansRegular
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-android:layout_marginTop="30dp"
-     android:layout_gravity="center"
-        android:text="Update,manage your AstaGuru Profile and also track"
-        android:textSize="13sp" />
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:text="Update, manage your AstaGuru Profile and also track"
+        android:textSize="12sp"/>
 
     <com.infomanav.astaguru.WorkSansRegular
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="your shortlisted lots and purchases"
-        android:textSize="13sp" />
+        android:textSize="12sp"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="0.01dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/line"
-        ></View>
+        />
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_marginTop="45dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:layout_marginLeft="35dp"
-        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
         >
 
         <ImageView
             android:id="@+id/iv_descricpation"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:background="@drawable/icon_my_profile" />
+            android:background="@drawable/icon_my_profile"/>
 
         <com.infomanav.astaguru.WorkSansMedium
+            android:id="@+id/tv_my_profile"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/iv_descricpation"
-android:id="@+id/tv_my_profile"
             android:gravity="center_vertical"
             android:text="My Profile"
-            android:textSize="15sp" />
+            android:textSize="15sp"/>
 
 
     </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:layout_marginLeft="35dp"
-        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         >
 
         <ImageView
             android:id="@+id/iv_gallary"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:background="@drawable/icon_auction_gallery" />
+            android:background="@drawable/icon_auction_gallery"/>
 
         <com.infomanav.astaguru.WorkSansMedium
+            android:id="@+id/tv_gallary"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/iv_gallary"
-android:id="@+id/tv_gallary"
             android:gravity="center_vertical"
-            android:text="My Auction Gallary"
-            android:textSize="15sp" />
+            android:text="My Auction Gallery"
+            android:textSize="15sp"/>
 
 
     </RelativeLayout>
+
     <RelativeLayout
+        android:id="@+id/lay_my_purchase"
         android:layout_width="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="35dp"
-        android:layout_gravity="left"
         android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="20dp"
         >
 
         <ImageView
             android:id="@+id/iv_my_purchase"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:background="@drawable/icon_purchase" />
+            android:background="@drawable/icon_purchase"/>
 
         <com.infomanav.astaguru.WorkSansMedium
+            android:id="@+id/tv_my_purchase"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/iv_my_purchase"
-android:id="@+id/tv_purchaes"
             android:gravity="center_vertical"
-            android:text="My Purchases"
-            android:textSize="15sp" />
+            android:text="My Purchase"
+            android:textSize="15sp"/>
 
 
     </RelativeLayout>
 
-    <Button
-        android:id="@+id/btn_signout"
-        android:background="#000000"
+    <RelativeLayout
+        android:id="@+id/lay_notification"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-android:textColor="#ffffff"
-        android:padding="10dp"
-        android:layout_marginTop="30dp"
         android:layout_marginLeft="35dp"
-        android:textAllCaps="false"
+        android:layout_marginTop="20dp"
+        >
 
-        android:text="Sign Out" />
+        <ImageView
+            android:id="@+id/img_notification"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/notification_icon"/>
+
+        <com.infomanav.astaguru.WorkSansMedium
+            android:id="@+id/tv_notification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/img_notification"
+            android:gravity="center_vertical"
+            android:text="Notifications"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:visibility="gone"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/tv_notification"
+            android:padding="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/badge_circle"
+            android:textColor="@color/btn_bg_white"
+            android:textSize="10sp"
+            android:text="15"/>
+
+
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/btn_signout"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/custom_btn_sign_in"
+        android:gravity="center"
+        android:text="Sign Out"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"/>
 </LinearLayout>
 

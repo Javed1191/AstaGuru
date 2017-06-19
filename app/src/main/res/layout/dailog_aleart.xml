@@ -1,25 +1,26 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_lay_back"
+    android:orientation="vertical">
+
     <com.infomanav.astaguru.WorkSansSemiBold
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scaleType="center"
+        android:contentDescription="@string/app_name"
         android:gravity="center"
         android:padding="17dp"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        android:textSize="16sp"
+        android:scaleType="center"
         android:text="AstaGuru"
-        android:contentDescription="@string/app_name" />
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="0.01dp"
-        android:background="@drawable/line" />
-
-
+        android:background="@drawable/line"/>
 
 
     <RelativeLayout
@@ -30,21 +31,21 @@
         android:orientation="vertical">
 
 
-
         <com.infomanav.astaguru.WorkSansRegular
+            android:id="@+id/tv_bidvalue"
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
             android:layout_toRightOf="@+id/iv_iconproxy"
             android:gravity="center"
+            android:padding="10dp"
             android:text="MSG"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:id="@+id/tv_bidvalue"
             android:textColor="@color/colorPrimary"
 
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
     </RelativeLayout>
 
@@ -52,29 +53,28 @@
         android:layout_width="match_parent"
         android:layout_height="0.01dp"
         android:layout_marginTop="5dp"
-        android:background="@drawable/line" />
+        android:background="@drawable/line"/>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <com.infomanav.astaguru.WorkSansRegular
-            android:inputType="textEmailAddress"
+            android:id="@+id/tv_cancelx"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:id="@+id/tv_cancelx"
-            android:gravity="center"
-            android:paddingBottom="5dp"
-            android:paddingTop="10dp"
-            android:textColor="@color/colorAccent"
-            android:layout_weight="1"
+            android:layout_marginBottom="4dp"
             android:layout_marginLeft="4dp"
             android:layout_marginRight="4dp"
-            android:layout_marginBottom="4dp"
-            android:hint="Cancel" />
-
-
+            android:layout_weight="1"
+            android:gravity="center"
+            android:hint="Cancel"
+            android:inputType="textEmailAddress"
+            android:paddingBottom="5dp"
+            android:paddingTop="10dp"
+            android:textColor="@color/colorAccent"/>
 
 
     </LinearLayout>

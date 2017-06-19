@@ -11,10 +11,12 @@
     <string name="action_new">Settings</string>
     <string name="logo_desc">App logo</string>
     <string name="country_name">Nigeria</string>
-    <string name="terms_condition">Terms &amp; Condition</string>
+    <string name="terms_condition">Terms &amp; Conditions</string>
 
     <string name="selectsource">Select a source</string>
     <string name="title_activity_maps">Map</string>
+    <string name="doller">$</string>
+    <string name="rupees">₹</string>
     <string name="data">AstaGuru was conceptualised in the year 2008, with the sole purpose of creating a safe and secure platform to conduct online auctions for Contemporary &amp; Modern Indian Art, however we are constantly innovating &amp;
     venturing into exciting new spectrums such as vintage collectibles and rear antiques, which include fine writing instruments, timepieces, celebrity memorabilia &amp;
     aristocratic jewelry. The word AstaGuru is a combination of Asta which means auction in Italian and Guru which

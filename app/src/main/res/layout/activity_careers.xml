@@ -31,6 +31,8 @@
 
 
         <LinearLayout
+            android:padding="2dp"
+            android:background="@drawable/contact_us_button_lay_back"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAllCaps="false"
@@ -41,7 +43,6 @@
                 android:id="@+id/btn_why_astaguru"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="-8dp"
                 android:layout_weight="1"
                 android:textAllCaps="false"
                 android:textColor="#ffffff"
@@ -62,7 +63,7 @@
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:visibility="visible"
+        android:visibility="gone"
 
         android:layout_height="match_parent"></ListView>
     <ScrollView
@@ -78,148 +79,168 @@
             android:orientation="vertical"
             android:padding="10dp">
 
+
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/button_bg_stroke"
+                android:layout_height="wrap_content">
+
+
+                <ImageView
+
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginLeft="10dp"
+
+                    android:layout_gravity="center"
+                    android:src="@drawable/icon_first_name" />
+
+
+
+
+                <EditText
+                    style="@style/Edittext_Style"
+                    android:id="@+id/edt_first_name"
+                    android:layout_marginLeft="19dp"
+                    android:textSize="12dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_below="@+id/tv_email"
+                    android:textColor="@color/colorBodyText"
+                    android:hint="Name"
+                    android:inputType="textCapWords"
+                    />
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                android:background="@drawable/button_bg_stroke"
+                android:layout_height="wrap_content">
 
 
-                    <ImageView
+                <ImageView
 
-                        android:id="@+id/img_first_name"
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
-                        android:layout_marginTop="2dp"
-                        android:src="@drawable/icon_first_name" />
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginLeft="10dp"
 
-                    <TextView
+                    android:layout_gravity="center"
+                    android:src="@drawable/icon_email" />
 
-                        android:id="@+id/tv_first_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/img_first_name"
-                        android:text="Name"
-                        android:textColor="@color/colorBodyText" />
 
-                    <EditText
-                        android:id="@+id/edt_first_name"
-                        style="@style/Edittext_Style"
-                        android:layout_below="@+id/img_first_name"
-                        android:layout_marginLeft="11dp"
 
-                        android:layout_marginTop="10dp"
-                        android:layout_toRightOf="@+id/img_first_name"
-                        android:hint="Your Complete Name"
-                        android:inputType="textCapWords" />
 
-                </RelativeLayout>
+                <EditText
+                    style="@style/Edittext_Style"
+                    android:id="@+id/edt_email"
+                    android:layout_marginLeft="19dp"
+                    android:textSize="12dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_below="@+id/tv_email"
+                    android:textColor="@color/colorBodyText"
+                    android:hint="Email Id"
+                    android:inputType="textCapWords"
+                    />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/colorBodyText" />
+
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical">
+                android:background="@drawable/button_bg_stroke"
+                android:layout_height="wrap_content">
 
-                <RelativeLayout
+
+                <ImageView
+
+
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginLeft="10dp"
+
+                    android:layout_gravity="center"
+                    android:src="@drawable/icon_subject" />
+
+
+
+
+                <Spinner
+
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_height="wrap_content"
+                    android:prompt="@string/selectsource"
+                    android:id="@+id/spn_post"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="12dp"
 
-                    <ImageView
-                        android:id="@+id/img_last_name"
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
-                        android:layout_marginTop="2dp"
-                        android:src="@drawable/icon_email" />
 
-                    <TextView
-                        android:id="@+id/tv_last_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/img_last_name"
-                        android:text="Email Id"
-                        android:textColor="@color/colorBodyText" />
+                    android:layout_centerHorizontal="true"
+ />
 
-                    <EditText
-                        android:id="@+id/edt_email"
-                        style="@style/Edittext_Style"
-                        android:layout_below="@+id/img_last_name"
-                        android:layout_marginLeft="11dp"          android:layout_marginTop="10dp"
 
-                        android:layout_toRightOf="@+id/img_last_name"
-                        android:text="name@domain.com"
-                        android:inputType="textCapWords" />
 
-                </RelativeLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/colorBodyText" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical">
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:orientation="vertical">-->
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                <!--<RelativeLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content">-->
 
-                    <ImageView
-                        android:id="@+id/img_city"
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
-                        android:layout_marginTop="2dp"
-                        android:src="@drawable/icon_subject" />
+                    <!--<ImageView-->
+                        <!--android:id="@+id/img_city"-->
+                        <!--android:layout_width="12dp"-->
+                        <!--android:layout_height="12dp"-->
+                        <!--android:layout_marginTop="2dp"-->
+                        <!--android:src="@drawable/icon_subject" />-->
 
-                    <TextView
-                        android:id="@+id/tv_city"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/img_city"
-                        android:text="Job Title"
-                        android:textColor="@color/colorBodyText" />
+                    <!--<TextView-->
+                        <!--android:id="@+id/tv_city"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="10dp"-->
+                        <!--android:layout_toRightOf="@+id/img_city"-->
+                        <!--android:text="Job Title"-->
+                        <!--android:textColor="@color/colorBodyText" />-->
 
-                    <Spinner
+                    <!--<Spinner-->
 
-                        android:layout_width="match_parent"
+                        <!--android:layout_width="match_parent"-->
 
-                        android:layout_height="wrap_content"
-                        android:prompt="@string/selectsource"
-                        android:id="@+id/spn_post"
-                        android:layout_marginLeft="11dp"
-                        android:layout_alignParentTop="true"
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:prompt="@string/selectsource"-->
+                        <!--android:id="@+id/spn_post"-->
+                        <!--android:layout_marginLeft="11dp"-->
+                        <!--android:layout_alignParentTop="true"-->
 
-                        android:layout_centerHorizontal="true"
+                        <!--android:layout_centerHorizontal="true"-->
 
-                        android:layout_marginTop="30dp" />
+                        <!--android:layout_marginTop="30dp" />-->
 
-                </RelativeLayout>
+                <!--</RelativeLayout>-->
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/colorBodyText" />
-            </LinearLayout>
+                <!--<View-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="1dp"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:background="@color/colorBodyText" />-->
+            <!--</LinearLayout>-->
 
 
 
@@ -227,16 +248,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:background="@drawable/button_bg_stroke"
                 android:orientation="vertical">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
                     android:layout_height="wrap_content">
 
                     <ImageView
                         android:id="@+id/img_zip"
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
+
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_marginTop="2dp"
                         android:src="@drawable/icon_upload" />
 
@@ -257,6 +282,8 @@
                     android:layout_width="match_parent"
                     android:orientation="horizontal"
                     android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+
                     android:layout_height="wrap_content">
                     <Button
                         android:layout_width="wrap_content"
@@ -283,108 +310,133 @@
                         android:layout_height="20dp" />
                 </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/colorBodyText" />
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical">
+                android:background="@drawable/button_bg_stroke"
+                android:layout_height="wrap_content">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:id="@+id/img_mobile"
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
-                        android:layout_marginTop="2dp"
-                        android:src="@drawable/icon_contact" />
+                <ImageView
 
-                    <TextView
-                        android:id="@+id/tv_mobile"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/img_mobile"
-                        android:text="Message"
-                        android:textColor="@color/colorBodyText" />
 
-                    <EditText
-                        android:id="@+id/edt_msg"
-                        style="@style/Edittext_Style"
-                        android:layout_below="@+id/img_mobile"
-                        android:layout_marginLeft="11dp"
-                        android:layout_toRightOf="@+id/img_mobile"          android:layout_marginTop="10dp"
-                        android:text="Your Your Message"
-                        android:inputType="text"
-                         />
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginLeft="10dp"
 
-                </RelativeLayout>
+                    android:layout_gravity="center"
+                    android:src="@drawable/icon_email" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/colorBodyText" />
+
+
+
+                <EditText
+                    style="@style/Edittext_Style"
+                    android:id="@+id/edt_msg"
+                    android:layout_marginLeft="19dp"
+                    android:textSize="12dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_below="@+id/tv_email"
+                    android:textColor="@color/colorBodyText"
+                    android:hint="Message"
+                    android:inputType="textCapWords"
+                    />
+
+
+
             </LinearLayout>
-
 
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical">
+                android:background="@drawable/button_bg_stroke"
+                android:layout_height="wrap_content">
 
-                <RelativeLayout
+
+                <ImageView
+
+
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginLeft="10dp"
+
+                    android:layout_gravity="center"
+                    android:src="@drawable/icon_eyer" />
+
+
+
+
+                <Spinner
+
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_height="wrap_content"
+                    android:prompt="@string/selectsource"
+                    android:id="@+id/spn_source"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="12dp"
 
-                    <ImageView
-                        android:id="@+id/img_fax"
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
-                        android:layout_marginTop="2dp"
-                        android:src="@drawable/icon_eyer" />
 
-                    <TextView
-                        android:id="@+id/tv_fax"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/img_fax"
-                        android:text="How Did You Hear About Us?"
-                        android:textColor="@color/colorBodyText" />
+                    android:layout_centerHorizontal="true"
+                    />
 
-                    <Spinner
 
-                        android:layout_width="match_parent"
 
-                        android:layout_height="wrap_content"
-                        android:prompt="@string/selectsource"
-                        android:id="@+id/spn_source"
-                        android:layout_marginLeft="11dp"
-                        android:layout_alignParentTop="true"
-
-                        android:layout_centerHorizontal="true"
-
-                        android:layout_marginTop="30dp" />
-
-                </RelativeLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/colorBodyText" />
             </LinearLayout>
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:orientation="vertical">-->
+
+                <!--<RelativeLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content">-->
+
+                    <!--<ImageView-->
+                        <!--android:id="@+id/img_fax"-->
+                        <!--android:layout_width="12dp"-->
+                        <!--android:layout_height="12dp"-->
+                        <!--android:layout_marginTop="2dp"-->
+                        <!--android:src="@drawable/icon_eyer" />-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/tv_fax"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="10dp"-->
+                        <!--android:layout_toRightOf="@+id/img_fax"-->
+                        <!--android:text="How Did You Hear About Us?"-->
+                        <!--android:textColor="@color/colorBodyText" />-->
+
+                    <!--<Spinner-->
+
+                        <!--android:layout_width="match_parent"-->
+
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:prompt="@string/selectsource"-->
+                        <!--android:id="@+id/spn_source"-->
+                        <!--android:layout_marginLeft="11dp"-->
+                        <!--android:layout_alignParentTop="true"-->
+
+                        <!--android:layout_centerHorizontal="true"-->
+
+                        <!--android:layout_marginTop="30dp" />-->
+
+                <!--</RelativeLayout>-->
+
+                <!--<View-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="1dp"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:background="@color/colorBodyText" />-->
+            <!--</LinearLayout>-->
 
 
 
@@ -409,7 +461,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="#ffffff"
-        android:visibility="gone"
+        android:visibility="visible"
         android:id="@+id/sc_why_asta"
         android:fillViewport="false">
 

@@ -12,6 +12,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -27,7 +28,7 @@ TextView tv_Restoration,tv_Valuation;
     ImageView  iv_Auction,iv_Consultation,iv_Restoration,iv_Valuation;
     WebView wb_auction_one,wb_auction_two,wb_Consultation_one,wb_Consultation_two,wb_Restoration_one,wb_Restoration_two,wb_valuation_one,wb_valuation_two;
 
-
+RelativeLayout rel_Auction,relConsultation,relRestoration,relValuation;
     private Utility utility;
 
     @Override
@@ -35,9 +36,8 @@ TextView tv_Restoration,tv_Valuation;
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_services);
+        init();
 
-       /* getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.action_bar_text);*/
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -46,6 +46,11 @@ TextView tv_Restoration,tv_Valuation;
         getSupportActionBar().setDisplayShowHomeEnabled(false);
 
         setSupportActionBar(toolbar);
+
+        rel_Auction = (RelativeLayout) findViewById(R.id.rel_Auction);
+                relConsultation = (RelativeLayout) findViewById(R.id.relConsultation);
+                relRestoration = (RelativeLayout) findViewById(R.id.relRestoration);
+                relValuation = (RelativeLayout) findViewById(R.id.relValuation);
 
         wb_auction_one = (WebView)findViewById(R.id.wb_auction_one) ;
         wb_auction_one.loadUrl("file:///android_asset/serives_auction_one.html");
@@ -82,28 +87,17 @@ TextView tv_Restoration,tv_Valuation;
             @Override
             public void onClick(View v) {
 
-                if (wb_auction_one.getVisibility() == View.VISIBLE) {
-                    wb_auction_one.setVisibility(View.GONE);
-                    wb_auction_two.setVisibility(View.GONE);
-                    iv_Auction.setBackgroundResource(R.drawable.plus);
-                } else {
-                    wb_auction_one.setVisibility(View.VISIBLE);
-                    wb_auction_two.setVisibility(View.VISIBLE);
+                Auction();
 
-                    wb_Consultation_one.setVisibility(View.GONE);
-                    wb_Consultation_two.setVisibility(View.GONE);
+            }
+        });
 
-                    wb_Restoration_one.setVisibility(View.GONE);
-                    wb_Restoration_two.setVisibility(View.GONE);
+        rel_Auction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-                    wb_valuation_one.setVisibility(View.GONE);
-                    wb_valuation_two.setVisibility(View.GONE);
-                    iv_Auction.setBackgroundResource(R.drawable.minus);
-                    iv_Consultation.setBackgroundResource(R.drawable.plus);
+                Auction();
 
-                    iv_Restoration.setBackgroundResource(R.drawable.plus);
-                    iv_Valuation.setBackgroundResource(R.drawable.plus);
-                }
             }
         });
 
@@ -111,29 +105,15 @@ TextView tv_Restoration,tv_Valuation;
             @Override
             public void onClick(View v) {
 
-                if (wb_Consultation_one.getVisibility() == View.VISIBLE) {
-                    wb_Consultation_one.setVisibility(View.GONE);
-                    wb_Consultation_two.setVisibility(View.GONE);
-                    iv_Consultation.setBackgroundResource(R.drawable.plus);
-                } else {
-                    wb_Consultation_one.setVisibility(View.VISIBLE);
-                    wb_Consultation_two.setVisibility(View.VISIBLE);
+                Consultation();
+            }
+        });
 
-                    wb_auction_one.setVisibility(View.GONE);
-                    wb_auction_two.setVisibility(View.GONE);
+        relConsultation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-
-                    wb_Restoration_one.setVisibility(View.GONE);
-                    wb_Restoration_two.setVisibility(View.GONE);
-
-                    wb_valuation_one.setVisibility(View.GONE);
-                    wb_valuation_two.setVisibility(View.GONE);
-                    iv_Consultation.setBackgroundResource(R.drawable.minus);
-
-                    iv_Restoration.setBackgroundResource(R.drawable.plus);
-                    iv_Valuation.setBackgroundResource(R.drawable.plus);
-                    iv_Auction.setBackgroundResource(R.drawable.plus);
-                }
+                Consultation();
             }
         });
 
@@ -142,60 +122,32 @@ TextView tv_Restoration,tv_Valuation;
             @Override
             public void onClick(View v) {
 
-                if (wb_Restoration_one.getVisibility() == View.VISIBLE) {
-                    wb_Restoration_one.setVisibility(View.GONE);
-                    wb_Restoration_two.setVisibility(View.GONE);
-                    iv_Restoration.setBackgroundResource(R.drawable.plus);
-                } else {
-                    wb_Restoration_one.setVisibility(View.VISIBLE);
-                    wb_Restoration_two.setVisibility(View.VISIBLE);
-
-                    wb_Consultation_one.setVisibility(View.GONE);
-                    wb_Consultation_two.setVisibility(View.GONE);
-
-                    wb_auction_one.setVisibility(View.GONE);
-                    wb_auction_two.setVisibility(View.GONE);
-
-                    wb_valuation_one.setVisibility(View.GONE);
-                    wb_valuation_two.setVisibility(View.GONE);
-                    iv_Restoration.setBackgroundResource(R.drawable.minus);
-                    iv_Valuation.setBackgroundResource(R.drawable.plus);
-                    iv_Consultation.setBackgroundResource(R.drawable.plus);
-                    iv_Auction.setBackgroundResource(R.drawable.plus);
-                }
+           Restoration();
             }
         });
+        relRestoration.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                Restoration();
+            }
+        });
 
         iv_Valuation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if (wb_valuation_one.getVisibility() == View.VISIBLE) {
-                    wb_valuation_one.setVisibility(View.GONE);
-                    wb_valuation_two.setVisibility(View.GONE);
-                    iv_Valuation.setBackgroundResource(R.drawable.plus);
-                } else {
-                    wb_valuation_one.setVisibility(View.VISIBLE);
-                    wb_valuation_two.setVisibility(View.VISIBLE);
-
-                    wb_Restoration_one.setVisibility(View.GONE);
-                    wb_Restoration_two.setVisibility(View.GONE);
-
-                    wb_Consultation_one.setVisibility(View.GONE);
-                    wb_Consultation_two.setVisibility(View.GONE);
-
-                    wb_auction_one.setVisibility(View.GONE);
-                    wb_auction_two.setVisibility(View.GONE);
-                    iv_Valuation.setBackgroundResource(R.drawable.minus);
-                    iv_Restoration.setBackgroundResource(R.drawable.plus);
-                    iv_Consultation.setBackgroundResource(R.drawable.plus);
-                    iv_Auction.setBackgroundResource(R.drawable.plus);
-                }
+         Valuation();
             }
         });
 
+        relValuation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                Valuation();
+            }
+        });
         TextView tool_text = (TextView) toolbar.findViewById(R.id.tool_text);
         tool_text.setText("Services");
 
@@ -211,28 +163,125 @@ TextView tv_Restoration,tv_Valuation;
         }
 
        ButterKnife.bind(this);
-        init();
 
-//        tv_Auction.setText("Established in the year 2008 AstaGuru, India's premium online auction house caters to a global clientele by conducting auctions for Modern & Contemporary Indian Art and have diversified over the period of time and curate auctions for Collectibles & Antiques as well. With an overall art management experience spanning over three decades we have amalgamated all our industry related knowledge and have molded it to function on a digital structure.\n" +
-//                "\n" +
-//                "With the world becoming one big market place we provide a safe and secure platform ensuring the ambitions of art collectors are achieved. With a well trained and highly efficient team, artworks & collectible antiques are filtered and only the best creations are part of our auctions. Art is always born with a soul and it is our prerogative to safeguard its sanctity.");
 
-//        tv_Consultation.setText("\n" +
-//                "\n" +
-//                "Our guiding force, Mr Vickram Sethi is an art connoisseur and has been associated with the world of art for over three decades. His valued insights are crucial, he not only takes into account the provenance but also has developed a keen eye to deduce and ascertain works with immense potential and seminal attributes. Art gets intertwined within the home it dwells in and its owner, we take pride in consulting and presiding this \n" +
-//                "communion of joy.");
 
-//        tv_Restoration.setText("\n" +
-//                "\n" +
-//                " ");
 
-//        tv_Valuation.setText("\n" +
-//                "\n" +
-//                "");
+
 
 
     }
 
+    public void Auction()
+    {
+
+
+        if (wb_auction_one.getVisibility() == View.VISIBLE) {
+            wb_auction_one.setVisibility(View.GONE);
+            wb_auction_two.setVisibility(View.GONE);
+            iv_Auction.setBackgroundResource(R.drawable.plus);
+        } else {
+            wb_auction_one.setVisibility(View.VISIBLE);
+            wb_auction_two.setVisibility(View.VISIBLE);
+
+            wb_Consultation_one.setVisibility(View.GONE);
+            wb_Consultation_two.setVisibility(View.GONE);
+
+            wb_Restoration_one.setVisibility(View.GONE);
+            wb_Restoration_two.setVisibility(View.GONE);
+
+            wb_valuation_one.setVisibility(View.GONE);
+            wb_valuation_two.setVisibility(View.GONE);
+            iv_Auction.setBackgroundResource(R.drawable.minus);
+            iv_Consultation.setBackgroundResource(R.drawable.plus);
+
+            iv_Restoration.setBackgroundResource(R.drawable.plus);
+            iv_Valuation.setBackgroundResource(R.drawable.plus);
+        }
+
+
+    }
+
+    public void Consultation()
+    {
+
+
+        if (wb_Consultation_one.getVisibility() == View.VISIBLE) {
+            wb_Consultation_one.setVisibility(View.GONE);
+            wb_Consultation_two.setVisibility(View.GONE);
+            iv_Consultation.setBackgroundResource(R.drawable.plus);
+        } else {
+            wb_Consultation_one.setVisibility(View.VISIBLE);
+            wb_Consultation_two.setVisibility(View.VISIBLE);
+
+            wb_auction_one.setVisibility(View.GONE);
+            wb_auction_two.setVisibility(View.GONE);
+
+
+            wb_Restoration_one.setVisibility(View.GONE);
+            wb_Restoration_two.setVisibility(View.GONE);
+
+            wb_valuation_one.setVisibility(View.GONE);
+            wb_valuation_two.setVisibility(View.GONE);
+            iv_Consultation.setBackgroundResource(R.drawable.minus);
+
+            iv_Restoration.setBackgroundResource(R.drawable.plus);
+            iv_Valuation.setBackgroundResource(R.drawable.plus);
+            iv_Auction.setBackgroundResource(R.drawable.plus);
+        }
+
+    }
+
+    public void Restoration()
+    {
+
+        if (wb_Restoration_one.getVisibility() == View.VISIBLE) {
+            wb_Restoration_one.setVisibility(View.GONE);
+            wb_Restoration_two.setVisibility(View.GONE);
+            iv_Restoration.setBackgroundResource(R.drawable.plus);
+        } else {
+            wb_Restoration_one.setVisibility(View.VISIBLE);
+            wb_Restoration_two.setVisibility(View.VISIBLE);
+
+            wb_Consultation_one.setVisibility(View.GONE);
+            wb_Consultation_two.setVisibility(View.GONE);
+
+            wb_auction_one.setVisibility(View.GONE);
+            wb_auction_two.setVisibility(View.GONE);
+
+            wb_valuation_one.setVisibility(View.GONE);
+            wb_valuation_two.setVisibility(View.GONE);
+            iv_Restoration.setBackgroundResource(R.drawable.minus);
+            iv_Valuation.setBackgroundResource(R.drawable.plus);
+            iv_Consultation.setBackgroundResource(R.drawable.plus);
+            iv_Auction.setBackgroundResource(R.drawable.plus);
+        }
+    }
+public void Valuation()
+{
+
+    if (wb_valuation_one.getVisibility() == View.VISIBLE) {
+        wb_valuation_one.setVisibility(View.GONE);
+        wb_valuation_two.setVisibility(View.GONE);
+        iv_Valuation.setBackgroundResource(R.drawable.plus);
+    } else {
+        wb_valuation_one.setVisibility(View.VISIBLE);
+        wb_valuation_two.setVisibility(View.VISIBLE);
+
+        wb_Restoration_one.setVisibility(View.GONE);
+        wb_Restoration_two.setVisibility(View.GONE);
+
+        wb_Consultation_one.setVisibility(View.GONE);
+        wb_Consultation_two.setVisibility(View.GONE);
+
+        wb_auction_one.setVisibility(View.GONE);
+        wb_auction_two.setVisibility(View.GONE);
+        iv_Valuation.setBackgroundResource(R.drawable.minus);
+        iv_Restoration.setBackgroundResource(R.drawable.plus);
+        iv_Consultation.setBackgroundResource(R.drawable.plus);
+        iv_Auction.setBackgroundResource(R.drawable.plus);
+    }
+}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)

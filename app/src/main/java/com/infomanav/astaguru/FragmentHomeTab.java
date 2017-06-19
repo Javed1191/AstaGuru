@@ -4,45 +4,25 @@ package com.infomanav.astaguru;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Spannable;
-import android.text.SpannableString;
-
-import android.text.style.TypefaceSpan;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.daimajia.slider.library.Animations.DescriptionAnimation;
-import com.daimajia.slider.library.Indicators.PagerIndicator;
-import com.daimajia.slider.library.SliderLayout;
-import com.daimajia.slider.library.SliderTypes.BaseSliderView;
-import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
-import com.daimajia.slider.library.SliderTypes.TextSliderView;
-import com.daimajia.slider.library.Tricks.ViewPagerEx;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 import adapter.HomeTabAdapter;
-import services.Application_Constants;
 import services.SessionData;
 import services.Utility;
 
@@ -50,16 +30,17 @@ import services.Utility;
 public class FragmentHomeTab extends Fragment
 {
 
-
+	private boolean isRevealEnabled = true;
 	View view;
 	private Utility utility;
 	private TextView tv_action_title;
 	private String jobId;
-	View view1,view2,view3,view4;
+	View view1,view2,view3,view4,view_search,view_login;
 	Context context;
 	SessionData data;
-	String url_string;
+	String url_string,fragment="current",type="",key="",auction="";
 	TabLayout tabLayout;
+	MainActivity mainActivity;
 	public FragmentHomeTab()
 	{
 	}
@@ -80,8 +61,74 @@ public class FragmentHomeTab extends Fragment
 
 		view=inflater.inflate(R.layout.fragment_home_tab,container, false);
 
+		getActivity().setRequestedOrientation(
+				ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
 		context = getActivity();
+
+		mainActivity = (MainActivity) getActivity();
 		data = new SessionData(context);
+
+		if(getArguments()!=null)
+		{
+			fragment = getArguments().getString("fragment");
+
+			if(getArguments().getString("type")!=null)
+			{
+				if(getArguments().getString("type").equalsIgnoreCase("search"))
+				{
+					type = getArguments().getString("type");
+					key = getArguments().getString("key");
+					auction = getArguments().getString("auction");
+
+				}
+			}
+			this.getArguments().clear();
+		}
+
+
+		view1 = view.findViewById(R.id.view1);
+		view2 = view.findViewById(R.id.view2);
+		view3 = view.findViewById(R.id.view3);
+		view4 = view.findViewById(R.id.view4);
+
+		tabLayout = (TabLayout)view.findViewById(R.id.tab_layout);
+		tabLayout.addTab(tabLayout.newTab().setText("Home"));
+		tabLayout.addTab(tabLayout.newTab().setText("Current"));
+		tabLayout.addTab(tabLayout.newTab().setText("Upcoming"));
+		tabLayout.addTab(tabLayout.newTab().setText("Past"));
+
+		tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+        LinearLayout tabHome = (LinearLayout) LayoutInflater.from(getActivity()).inflate(R.layout.custom_tab_lay_home, null);
+		TextView tv_tab_home;
+		tv_tab_home = (TextView) tabHome.findViewById(R.id.tab);
+		tv_tab_home.setText("Home");
+		//tv_tab.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.unread_icon, 0, 0);
+        tabLayout.getTabAt(0).setCustomView(tabHome);
+
+		LinearLayout tabCurrent = (LinearLayout) LayoutInflater.from(getActivity()).inflate(R.layout.custom_tab_lay_current, null);
+		TextView tv_tab;
+		tv_tab = (TextView) tabCurrent.findViewById(R.id.tab);
+		tv_tab.setText("Auction");
+		//tv_tab.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.unread_icon, 0, 0);
+		tabLayout.getTabAt(1).setCustomView(tabCurrent);
+
+		LinearLayout tabUpcoming = (LinearLayout) LayoutInflater.from(getActivity()).inflate(R.layout.custom_tab_lay_home, null);
+		TextView tv_tab_upcoming;
+		tv_tab_upcoming = (TextView) tabUpcoming.findViewById(R.id.tab);
+		tv_tab_upcoming.setText("Upcoming");
+		//tv_tab.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.unread_icon, 0, 0);
+		tabLayout.getTabAt(2).setCustomView(tabUpcoming);
+
+		LinearLayout tabPast = (LinearLayout) LayoutInflater.from(getActivity()).inflate(R.layout.custom_tab_lay_home, null);
+		TextView tv_tab_past;
+		tv_tab_past = (TextView) tabPast.findViewById(R.id.tab);
+		tv_tab_past.setText("Past");
+		//tv_tab.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.unread_icon, 0, 0);
+		tabLayout.getTabAt(3).setCustomView(tabPast);
+
+
 		if (data.getObjectAsString("Filter_Data").equals("yes"))
 		{
 
@@ -90,8 +137,10 @@ public class FragmentHomeTab extends Fragment
 				if(intent.hasExtra("artistid")){
 					 url_string = intent.getStringExtra("artistid");
 
-
-
+					view1.setBackgroundResource( R.drawable.selector_tab_indicator_blue );
+					view2.setBackgroundResource( R.drawable.selector_tab_indicator_white );
+					view3.setBackgroundResource( R.drawable.selector_tab_indicator_blue );
+					view4.setBackgroundResource( R.drawable.selector_tab_indicator_blue );
 
 				}
 
@@ -100,36 +149,25 @@ public class FragmentHomeTab extends Fragment
 
 
 
-
 		Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
 
 		toolbar.setTitle("");
 
-		view1 = view.findViewById(R.id.view1);
-		view2 = view.findViewById(R.id.view2);
-		view3 = view.findViewById(R.id.view3);
-		view4 = view.findViewById(R.id.view4);
 
 
-		tabLayout = (TabLayout)view.findViewById(R.id.tab_layout);
-		tabLayout.addTab(tabLayout.newTab().setText("Home"));
-		tabLayout.addTab(tabLayout.newTab().setText("Current"));
-		tabLayout.addTab(tabLayout.newTab().setText("Upcoming"));
-		tabLayout.addTab(tabLayout.newTab().setText("Past"));
+//		new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+//			@Override
+//			public void run() {
+//				showIntro(mainActivity.findViewById(R.id.action_search), INTRO_CARD);
+//			}
+//		}, 400);
 
 
-		tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-
-
-		//tabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
-		// tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
-
-
-
+		//createTabIcons();
 
 		final ViewPager viewPager = (ViewPager) view.findViewById(R.id.pager);
 		FragmentManager fm = getActivity().getSupportFragmentManager();
-		final HomeTabAdapter adapter = new HomeTabAdapter(context,fm, tabLayout.getTabCount(),url_string);
+		final HomeTabAdapter adapter = new HomeTabAdapter(context,fm, tabLayout.getTabCount(),url_string,fragment,key,auction,type);
 		viewPager.setAdapter(adapter);
 		changeTabsFont();
 		viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
@@ -143,16 +181,54 @@ public class FragmentHomeTab extends Fragment
 		linearLayout.setDividerPadding(10);
 		linearLayout.setDividerDrawable(drawable);
 
-//		for (int i = 0; i < tabLayout.getTabCount(); i++) {
-//			TabLayout.Tab tab = tabLayout.getTabAt(i);
-//			RelativeLayout relativeLayout = (RelativeLayout)
-//					LayoutInflater.from(context).inflate(R.layout.tab_layout, tabLayout, false);
-//
-//			TextView tabTextView = (TextView) relativeLayout.findViewById(R.id.tab_title);
-//			tabTextView.setText(tab.getText());
-//			tab.setCustomView(relativeLayout);
-//			tab.select();
-//		}
+		if(fragment.equalsIgnoreCase("current"))
+		{
+			//viewPager.setCurrentItem(1,true);
+
+			new Handler().postDelayed(
+					new Runnable(){
+						@Override
+						public void run() {
+							tabLayout.getTabAt(1).select();
+						}
+					}, 100);
+
+
+		}
+		else
+		{
+			//viewPager.setCurrentItem(0,true);
+
+			new Handler().postDelayed(
+					new Runnable(){
+						@Override
+						public void run() {
+							tabLayout.getTabAt(0).select();
+						}
+					}, 100);
+
+		}
+		if (data.getObjectAsString("slider").equals("true"))
+		{
+
+			//viewPager.setCurrentItem(2);
+
+			new Handler().postDelayed(
+					new Runnable(){
+						@Override
+						public void run() {
+							tabLayout.getTabAt(2).select();
+						}
+					}, 100);
+
+			view1.setBackgroundResource( R.drawable.selector_tab_indicator_blue );
+			view2.setBackgroundResource( R.drawable.selector_tab_indicator_blue );
+			view3.setBackgroundResource( R.drawable.selector_tab_indicator_white );
+			view4.setBackgroundResource( R.drawable.selector_tab_indicator_blue );
+			data.setObjectAsString("slider","false");
+
+		}
+
 
 		data = new SessionData(context);
 		if (data.getObjectAsString("Filter_Data").equals("yes"))
@@ -161,6 +237,7 @@ public class FragmentHomeTab extends Fragment
 		   viewPager.setCurrentItem(1);
 
 		}
+
 
 
 		viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener()
@@ -237,6 +314,7 @@ public class FragmentHomeTab extends Fragment
 					iv_logo.setVisibility(View.VISIBLE);
 
 
+
 				}
 				if (tab.getPosition() == 1)
 				{
@@ -258,6 +336,7 @@ public class FragmentHomeTab extends Fragment
 					TextView toolbarTextView  = (TextView) ((getActivity()).findViewById(R.id.tool_text));
 					toolbarTextView.setText("Upcoming Auction");
 					toolbarTextView.setVisibility(View.VISIBLE);
+
 
 				}
 
@@ -289,15 +368,6 @@ public class FragmentHomeTab extends Fragment
 		return view;
 	}
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item)
-	{
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-
-		return super.onOptionsItemSelected(item);
-	}
 
 	private void changeTabsFont() {
 		Typeface type = Typeface.createFromAsset(getActivity().getAssets(),"WorkSans-Medium.otf");
@@ -321,5 +391,67 @@ public class FragmentHomeTab extends Fragment
 		}
 	}
 
+
+
+	private void createTabIcons() {
+
+		TextView tabOne = (TextView) LayoutInflater.from(getActivity()).inflate(R.layout.custom_tab, null);
+		tabOne.setText("Tab 1");
+		//tabOne.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+		tabLayout.getTabAt(0).setCustomView(tabOne);
+
+		TextView tabTwo = (TextView) LayoutInflater.from(getActivity()).inflate(R.layout.custom_tab, null);
+		tabTwo.setText("Tab 2");
+		//tabTwo.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+		tabLayout.getTabAt(1).setCustomView(tabTwo);
+
+		TextView tabThree = (TextView) LayoutInflater.from(getActivity()).inflate(R.layout.custom_tab, null);
+		tabThree.setText("Tab 3");
+		//tabThree.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+		tabLayout.getTabAt(2).setCustomView(tabThree);
+
+		TextView tabFour = (TextView) LayoutInflater.from(getActivity()).inflate(R.layout.custom_tab, null);
+		tabThree.setText("Tab 4");
+		//tabThree.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+		tabLayout.getTabAt(24).setCustomView(tabFour);
+	}
+
+
+	@Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        // super.onActivityResult(requestCode, resultCode, data);
+        // check if the request code is same as what is passed  here it is 2
+
+    }
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId())
+		{
+			case R.id.action_settings:
+				String status = data.getObjectAsString("login");
+
+				if (status.equalsIgnoreCase("true"))
+				{
+					Intent intent = new Intent(context,MyAstaGuru_Activity.class);
+					startActivity(intent);
+				}
+				else
+				{
+					Intent intent = new Intent(context,Before_Login_Activity.class);
+					startActivity(intent);
+				}
+
+				return true;
+			case R.id.action_search:
+				Intent intent = new Intent(context,Search_Activity.class);
+				startActivity(intent);
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
+		}
+
+	}
 
 }

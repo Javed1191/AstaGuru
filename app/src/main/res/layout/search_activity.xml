@@ -37,51 +37,49 @@
     </android.support.design.widget.AppBarLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="vertical"
         android:id="@+id/lin_text"
-        android:visibility="gone"
-        android:layout_height="wrap_content">
-
-
-
-
-    <com.infomanav.astaguru.WorkSansRegular
-        android:id="@+id/tv_Current"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="left"
-        android:textSize="20sp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="40dp"
-        android:layout_gravity="left"
-        android:text="Browse Current Auction"
-        android:textColor="@color/colorBodyText" />
+        android:orientation="vertical">
 
-    <com.infomanav.astaguru.WorkSansRegular
-        android:id="@+id/tv_Upcomming"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:layout_gravity="left"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:gravity="left"
-        android:text="Browse Upcomming Auction"
-        android:textColor="@color/colorBodyText" />
 
-    <com.infomanav.astaguru.WorkSansRegular
-        android:id="@+id/tv_Past"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:layout_gravity="left"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:text="Browse Past Auction"
-        android:textColor="@color/colorBodyText" />
+        <com.infomanav.astaguru.WorkSansRegular
+            android:id="@+id/tv_Current"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="40dp"
+            android:gravity="left"
+            android:text="Browse Current Auction"
+            android:textColor="@color/colorBodyText"
+            android:textSize="20sp"/>
+
+        <com.infomanav.astaguru.WorkSansRegular
+            android:id="@+id/tv_Upcomming"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:gravity="left"
+            android:text="Browse Upcoming Auction"
+            android:textColor="@color/colorBodyText"
+            android:textSize="20sp"/>
+
+        <com.infomanav.astaguru.WorkSansRegular
+            android:id="@+id/tv_Past"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="Browse Past Auction"
+            android:textColor="@color/colorBodyText"
+            android:textSize="20sp"/>
     </LinearLayout>
+
     <GridView
         android:id="@+id/gridview"
         android:visibility="gone"

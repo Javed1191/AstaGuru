@@ -77,237 +77,161 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                android:orientation="horizontal"
+                android:background="@drawable/button_bg_stroke"
+                android:layout_height="wrap_content">
 
 
-                    <ImageView
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
 
-                        android:id="@+id/img_first_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:src="@drawable/icon_first_name" />
+                    android:layout_marginLeft="5dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/icon_first_name" />
 
-                    <com.infomanav.astaguru.WorkSansRegular
-
-                        android:id="@+id/tv_first_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/img_first_name"
-                        android:text="First Name"
-                        android:textColor="@color/colorBodyText" />
-
-                    <EditText
-                        android:id="@+id/edt_first_name"
-                        style="@style/App_EditTextStyle"
-                        android:layout_below="@+id/img_first_name"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/img_first_name"
-                        android:inputType="textCapWords"
-                        android:textSize="12dp" />
+                <EditText
+                    style="@style/Edittext_Style"
+                    android:id="@+id/edt_first_name"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="12dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_below="@+id/tv_email"
+                    android:textColor="@color/colorBodyText"
+                    android:hint="First Name"
                     />
 
-                </RelativeLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.01dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/line" />
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:id="@+id/img_last_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:src="@drawable/icon_first_name" />
-
-                    <com.infomanav.astaguru.WorkSansRegular
-                        android:id="@+id/tv_last_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/img_last_name"
-                        android:text="Last Name"
-                        android:textColor="@color/colorBodyText" />
-
-                    <EditText
-                        android:id="@+id/edt_last_name"
-                        style="@style/App_EditTextStyle"
-                        android:layout_below="@+id/img_last_name"
-                        android:layout_toRightOf="@+id/img_last_name"
-                        android:hint=""
-                        android:inputType="textCapWords"
-                        android:textSize="12dp" />
+                android:background="@drawable/button_bg_stroke"
+                android:layout_height="wrap_content">
 
 
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+
+                    android:layout_marginLeft="5dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/icon_first_name" />
+
+                <EditText
+                    style="@style/Edittext_Style"
+                    android:id="@+id/edt_last_name"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="12dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_below="@+id/tv_email"
+                    android:textColor="@color/colorBodyText"
+                    android:hint="Last Name"
                     />
 
-                </RelativeLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.01dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/line" />
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical">
+                android:background="@drawable/button_bg_stroke"
+                android:layout_height="wrap_content">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
 
-                    <ImageView
-                        android:id="@+id/img_city"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:src="@drawable/icon_mobile" />
+                    android:layout_marginLeft="5dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/icon_mobile" />
 
-                    <com.infomanav.astaguru.WorkSansRegular
-                        android:id="@+id/tv_city"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/img_city"
-                        android:text="Mobile Number"
-                        android:textColor="@color/colorBodyText" />
-
-                    <EditText
-                        android:id="@+id/edt_mob_num"
-                        style="@style/App_EditTextStyle"
-                        android:layout_below="@+id/img_city"
-                        android:layout_toRightOf="@+id/img_city"
-                        android:inputType="textCapWords"
-                        android:textSize="12dp" />
-
-
+                <EditText
+                    style="@style/Edittext_Style"
+                    android:id="@+id/edt_mob_num"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="12dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_below="@+id/tv_email"
+                    android:textColor="@color/colorBodyText"
+                    android:hint="Mobile Number"
                     />
 
-                </RelativeLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.01dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/line" />
+
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical">
+                android:background="@drawable/button_bg_stroke"
+                android:layout_height="wrap_content">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
 
-                    <ImageView
-                        android:id="@+id/img_state"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:src="@drawable/icon_telephn" />
+                    android:layout_marginLeft="5dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/icon_telephn" />
 
-                    <com.infomanav.astaguru.WorkSansRegular
-                        android:id="@+id/tv_state"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/img_state"
-                        android:text="Telephone Number"
-                        android:textColor="@color/colorBodyText"
-
-
-                        />
-
-                    <EditText
-                        android:id="@+id/edt_tel_num"
-                        style="@style/App_EditTextStyle"
-
-                        android:layout_below="@+id/img_state"
-                        android:layout_toRightOf="@+id/img_state"
-                        android:hint=""
-                        android:inputType="textCapWords"
-                        android:textSize="12dp" />
+                <EditText
+                    style="@style/Edittext_Style"
+                    android:id="@+id/edt_tel_num"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="12dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_below="@+id/tv_email"
+                    android:textColor="@color/colorBodyText"
+                    android:hint="Telephone Number"
                     />
 
-                </RelativeLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.01dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/line" />
+
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical">
+                android:background="@drawable/button_bg_stroke"
+                android:layout_height="wrap_content">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:id="@+id/img_zip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:src="@drawable/icon_email" />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
 
-                    <com.infomanav.astaguru.WorkSansRegular
-                        android:id="@+id/tv_zip"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/img_zip"
-                        android:text="Email"
-                        android:textColor="@color/colorBodyText" />
+                    android:layout_marginLeft="5dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/icon_email" />
 
-                    <EditText
-                        android:id="@+id/edt_email"
-                        style="@style/App_EditTextStyle"
-                        android:layout_below="@+id/img_zip"
-                        android:layout_toRightOf="@+id/img_zip"
-                        android:hint=""
-                        android:inputType="textCapWords"
-                        android:textSize="12dp" />
+                <EditText
+                    style="@style/Edittext_Style"
+                    android:id="@+id/edt_email"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="12dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:inputType="textEmailAddress"
+                    android:layout_below="@+id/tv_email"
+                    android:textColor="@color/colorBodyText"
+                    android:hint="Email"
                     />
 
-                </RelativeLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.01dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/line" />
+
             </LinearLayout>
+
+
 
             <com.infomanav.astaguru.WorkSansMedium
 
@@ -319,266 +243,201 @@
                 android:text="Billing Address"
                 android:textColor="@color/colorBodyText"
                 android:textSize="20sp" />
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:orientation="vertical">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:id="@+id/img_mobile"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:src="@drawable/icon_first_name" />
-
-                    <com.infomanav.astaguru.WorkSansRegular
-                        android:id="@+id/tv_mobile"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/img_mobile"
-                        android:text="Billing Name"
-                        android:textColor="@color/colorBodyText" />
-
-                    <EditText
-                        android:id="@+id/edt_bill_name"
-                        style="@style/App_EditTextStyle"
-                        android:layout_below="@+id/img_mobile"
-                        android:layout_toRightOf="@+id/img_mobile"
-                        android:inputType="text"
-                        android:maxLength="20"
-                        android:textSize="12dp" />
-
-                </RelativeLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.01dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/line" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical">
+                android:background="@drawable/button_bg_stroke"
+                android:layout_height="wrap_content">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:id="@+id/img_telephone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:src="@drawable/icon_city" />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
 
-                    <com.infomanav.astaguru.WorkSansRegular
-                        android:id="@+id/tv_telephone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/img_telephone"
-                        android:text="Billing Address"
-                        android:textColor="@color/colorBodyText" />
+                    android:layout_marginLeft="5dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/icon_first_name" />
 
-                    <EditText
-                        android:id="@+id/edt_bill_addr"
-                        style="@style/App_EditTextStyle"
-                        android:layout_below="@+id/img_telephone"
-                        android:layout_toRightOf="@+id/img_telephone"
-                        android:inputType="text"
-                        android:textSize="12dp" />
+                <EditText
+                    style="@style/Edittext_Style"
+                    android:id="@+id/edt_bill_name"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="12dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:inputType="textEmailAddress"
+                    android:layout_below="@+id/tv_email"
+                    android:textColor="@color/colorBodyText"
+                    android:hint="Billing Name"
+                    />
 
-                </RelativeLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.01dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/line" />
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical">
+                android:background="@drawable/button_bg_stroke"
+                android:layout_height="wrap_content">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
 
-                    <ImageView
-                        android:id="@+id/img_fax"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:src="@drawable/icon_city" />
+                    android:layout_marginLeft="5dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/icon_city" />
 
-                    <com.infomanav.astaguru.WorkSansRegular
-                        android:id="@+id/tv_fax"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/img_fax"
-                        android:text="City"
-                        android:textColor="@color/colorBodyText" />
+                <EditText
+                    style="@style/Edittext_Style"
+                    android:id="@+id/edt_bill_addr"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="12dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:inputType="textEmailAddress"
+                    android:layout_below="@+id/tv_email"
+                    android:textColor="@color/colorBodyText"
+                    android:hint="Billing Address"
+                    />
 
-                    <EditText
-                        android:id="@+id/edt_city"
-                        style="@style/App_EditTextStyle"
-                        android:layout_below="@+id/img_fax"
-                        android:layout_toRightOf="@+id/img_fax"
-                        android:inputType="text"
-                        android:textSize="12dp" />
 
-                </RelativeLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.01dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/line" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical">
+                android:background="@drawable/button_bg_stroke"
+                android:layout_height="wrap_content">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:id="@+id/img_email"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:src="@drawable/icon_city" />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
 
-                    <com.infomanav.astaguru.WorkSansRegular
-                        android:id="@+id/tv_email"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/img_email"
-                        android:text="State"
-                        android:textColor="@color/colorBodyText" />
+                    android:layout_marginLeft="5dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/icon_city" />
 
-                    <EditText
-                        android:id="@+id/edt_state"
-                        style="@style/App_EditTextStyle"
-                        android:layout_below="@+id/img_email"
-                        android:layout_toRightOf="@+id/img_email"
-                        android:inputType="text"
-                        android:textSize="12dp" />
+                <EditText
+                    style="@style/Edittext_Style"
+                    android:id="@+id/edt_city"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="12dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:inputType="textEmailAddress"
+                    android:layout_below="@+id/tv_email"
+                    android:textColor="@color/colorBodyText"
+                    android:hint="City"
+                    />
 
-                </RelativeLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.01dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/line" />
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical">
+                android:background="@drawable/button_bg_stroke"
+                android:layout_height="wrap_content">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
 
-                    <ImageView
-                        android:id="@+id/img_zixp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:src="@drawable/icon_city" />
+                    android:layout_marginLeft="5dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/icon_city" />
 
-                    <com.infomanav.astaguru.WorkSansRegular
-                        android:id="@+id/tv_emacil"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/img_zixp"
-                        android:text="Zip"
-                        android:textColor="@color/colorBodyText" />
+                <EditText
+                    style="@style/Edittext_Style"
+                    android:id="@+id/edt_state"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="12dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:inputType="textEmailAddress"
+                    android:layout_below="@+id/tv_email"
+                    android:textColor="@color/colorBodyText"
+                    android:hint="State"
+                    />
 
-                    <EditText
-                        android:id="@+id/edt_zip"
-                        style="@style/App_EditTextStyle"
-                        android:layout_below="@+id/img_zixp"
-                        android:layout_toRightOf="@+id/img_zixp"
-                        android:inputType="number"
-                        android:textSize="12dp" />
 
-                </RelativeLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.01dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/line" />
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/button_bg_stroke"
+                android:layout_height="wrap_content">
 
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+
+                    android:layout_marginLeft="5dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/icon_city" />
+
+                <EditText
+                    style="@style/Edittext_Style"
+                    android:id="@+id/edt_zip"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="12dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:inputType="textEmailAddress"
+                    android:layout_below="@+id/tv_email"
+                    android:textColor="@color/colorBodyText"
+                    android:hint="Zip"
+                    />
+
+
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical">
+                android:background="@drawable/button_bg_stroke"
+                android:layout_height="wrap_content">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:id="@+id/img_telphn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:src="@drawable/icon_telephn" />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
 
-                    <com.infomanav.astaguru.WorkSansRegular
-                        android:id="@+id/tv_emcail"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/img_telphn"
-                        android:text="Telephone Number"
-                        android:textColor="@color/colorBodyText" />
+                    android:layout_marginLeft="5dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/icon_telephn" />
 
-                    <EditText
-                        android:id="@+id/edt_bill_tel_phn"
-                        style="@style/App_EditTextStyle"
-                        android:layout_below="@+id/img_telphn"
-                        android:layout_toRightOf="@+id/img_telphn"
-                        android:inputType="text"
-                        android:textSize="12dp"/>
+                <EditText
+                    style="@style/Edittext_Style"
+                    android:id="@+id/edt_bill_tel_phn"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="12dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:inputType="textEmailAddress"
+                    android:layout_below="@+id/tv_email"
+                    android:textColor="@color/colorBodyText"
+                    android:hint="Telephone Number"
+                    />
 
-                </RelativeLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.01dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/line" />
+
             </LinearLayout>
+
 
             <TextView
                 android:layout_width="match_parent"
@@ -593,135 +452,103 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical">
+                android:background="@drawable/button_bg_stroke"
+                android:layout_height="wrap_content">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
 
-                    <ImageView
-                        android:id="@+id/img_user_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:src="@drawable/icon_user_name" />
+                    android:layout_marginLeft="5dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/icon_user_name" />
 
-                    <com.infomanav.astaguru.WorkSansRegular
-                        android:id="@+id/tv_user_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/img_user_name"
-                        android:text="User Name"
-                        android:textColor="@color/colorBodyText" />
+                <EditText
+                    style="@style/Edittext_Style"
+                    android:id="@+id/edt_user_name"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="12dp"
+                    android:paddingTop="10dp"
+                    android:enabled="false"
+                    android:paddingBottom="10dp"
+                    android:inputType="textEmailAddress"
+                    android:layout_below="@+id/tv_email"
+                    android:textColor="@color/colorBodyText"
+                    android:hint="User Name"
+                    />
 
-                    <EditText
-                        android:id="@+id/edt_user_name"
-                        style="@style/App_EditTextStyle"
-                        android:layout_below="@+id/img_user_name"
-                        android:layout_toRightOf="@+id/img_user_name"
-                        android:inputType="textCapWords"
-                        android:textSize="12dp" />
 
-                </RelativeLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.01dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/line" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical">
+                android:background="@drawable/button_bg_stroke"
+                android:layout_height="wrap_content">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:id="@+id/img_password"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:src="@drawable/icon_password" />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
 
-                    <com.infomanav.astaguru.WorkSansRegular
-                        android:id="@+id/tv_password"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/img_password"
-                        android:text="Password"
-                        android:textColor="@color/colorBodyText" />
+                    android:layout_marginLeft="5dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/icon_password" />
 
-                    <EditText
-                        android:id="@+id/edt_password"
-                        style="@style/App_EditTextStyle"
-                        android:layout_below="@+id/img_password"
-                        android:layout_toRightOf="@+id/img_password"
-                        android:inputType="textPassword"
+                <EditText
+                    style="@style/Edittext_Style"
+                    android:id="@+id/edt_password"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="12dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:inputType="textPassword"
+                    android:layout_below="@+id/tv_email"
+                    android:textColor="@color/colorBodyText"
+                    android:hint="Password"
+                    />
 
-                        android:textSize="12dp" />
 
-                </RelativeLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.01dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/line" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical">
+                android:background="@drawable/button_bg_stroke"
+                android:layout_height="wrap_content">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
 
-                    <ImageView
-                        android:id="@+id/img_re_password"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:src="@drawable/icon_user_name" />
+                    android:layout_marginLeft="5dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/icon_password" />
 
-                    <com.infomanav.astaguru.WorkSansRegular
-                        android:id="@+id/tv_re_password"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/img_re_password"
-                        android:text="Nick Name"
-                        android:textColor="@color/colorBodyText" />
+                <EditText
+                    style="@style/Edittext_Style"
+                    android:id="@+id/edt_nick_name"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="12dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:inputType="text"
+                    android:layout_below="@+id/tv_email"
+                    android:textColor="@color/colorBodyText"
+                    android:hint="Nick Name"
+                    />
 
-                    <EditText
-                        android:id="@+id/edt_nick_name"
-                        style="@style/App_EditTextStyle"
-                        android:layout_below="@+id/img_re_password"
-                        android:layout_toRightOf="@+id/img_re_password"
-                        android:inputType="text"
-                        android:textSize="12dp"
 
-                        />
 
-                </RelativeLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.01dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/line" />
             </LinearLayout>
+
+
 
 
         </LinearLayout>

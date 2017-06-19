@@ -1,1 +1,2 @@
-include ':app', ':kprogresshud', ':library', ':baseLibrary', ':supertoasts', ':mylibrary', ':Justification_library', ':library_swip_menu', ':library_GridScroll', ':flipanimationexample'
+include ':app', ':kprogresshud', ':library', ':mylibrary', ':Justification_library', ':library_swip_menu', ':library_GridScroll', ':smscount', ':DismissibleImageViewlibrary'
+include ':androidviewbadger'

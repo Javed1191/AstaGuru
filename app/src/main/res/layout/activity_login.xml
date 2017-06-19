@@ -32,16 +32,24 @@
     </android.support.design.widget.AppBarLayout>
 
     <com.infomanav.astaguru.WorkSansRegular
-        android:padding="10dp"
+
         android:layout_marginTop="20dp"
         android:gravity="center"
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sign in to your AstaGuru account to place bids \nand buy artworks"/>
+        android:text="Sign in to your AstaGuru account to place"/>
+    <com.infomanav.astaguru.WorkSansRegular
+        android:gravity="center"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="bids and buy artworks"/>
 
     <ScrollView
         android:layout_width="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_height="match_parent">
 
         <LinearLayout
@@ -53,104 +61,79 @@
 
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
 
-                <RelativeLayout
+
+                <LinearLayout
                     android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:background="@drawable/button_bg_stroke"
                     android:layout_height="wrap_content">
 
 
                     <ImageView
-
                         android:id="@+id/img_email"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
+                        android:layout_width="30dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_gravity="center"
                         android:src="@drawable/icon_email" />
-
-                    <com.infomanav.astaguru.WorkSansRegular
-
-                        android:id="@+id/tv_email"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/img_email"
-                        android:text="User Name"
-                        android:textColor="@color/colorBodyText" />
-
 
                     <EditText
                         style="@style/Edittext_Style"
                         android:id="@+id/edt_emaillogin"
-                        android:layout_marginLeft="19dp"
+                        android:layout_marginLeft="5dp"
                         android:textSize="12dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
                         android:layout_below="@+id/tv_email"
-
-                        android:hint="Enter Your User Name"
+                        android:textColor="@color/colorBodyText"
+                        android:hint="User Name"
+                        android:inputType="textCapWords"
                         />
 
-                </RelativeLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.3dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/colorBodyText" />
+
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical">
+                android:background="@drawable/button_bg_stroke"
+                android:layout_height="wrap_content">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="5dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/icon_password" />
 
-                    <ImageView
-                        android:id="@+id/img_password"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:src="@drawable/icon_password" />
-
-                    <com.infomanav.astaguru.WorkSansRegular
-                        android:id="@+id/tv_last_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/img_password"
-                        android:text="Password"
-                        android:textColor="@color/colorBodyText" />
-
-
-                    <EditText
-                        style="@style/Edittext_Style"
-                        android:id="@+id/edt_passwordlogin"
-                        android:layout_marginLeft="19dp"
-                        android:layout_below="@+id/tv_last_name"
-                        android:inputType="textPassword"
-                        android:hint="Password"
-                        android:textSize="12dp"
-                        />
-
-                </RelativeLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.1dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/colorBodyText" />
+                <EditText
+                    style="@style/Edittext_Style"
+                    android:id="@+id/edt_passwordlogin"
+                    android:textSize="12dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+               android:fontFamily="sans-serif"
+                    android:layout_marginLeft="5dp"
+                    android:layout_below="@+id/tv_email"
+                    android:textColor="@color/colorBodyText"
+                    android:inputType="textPassword"
+                    android:hint="Password"
+                    />
             </LinearLayout>
 
-            <com.custom.baselibrary.CustomButton
+            <Button
                 android:id="@+id/btn_sign_in"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/custom_btn_sign_in"
                 android:text="Sign In"

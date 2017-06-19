@@ -1,7 +1,6 @@
 package adapter;
 
 import android.content.Context;
-import android.support.v7.widget.CardView;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,9 +9,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.infomanav.astaguru.AuctionGallary_Model;
 import com.infomanav.astaguru.MainActivity;
-import com.infomanav.astaguru.MyPurchases_Model;
+import model_classes.MyPurchases_Model;
 import com.infomanav.astaguru.R;
 import com.squareup.picasso.Picasso;
 

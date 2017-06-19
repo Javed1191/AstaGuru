@@ -32,17 +32,27 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    <com.infomanav.astaguru.WorkSansMedium
+        android:visibility="gone"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_no_data_found"
+        android:gravity="left"
+        android:text="Data not found"
+        android:textStyle="bold"
+        android:textSize="20dp" />
+
     <GridView
         android:id="@+id/gridview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:columnWidth="150dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
+        android:horizontalSpacing="5dp"
         android:gravity="center"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="15dp"
-        android:horizontalSpacing="10dp"
-        android:numColumns="auto_fit"
+        android:numColumns="2"
         android:stretchMode="columnWidth"
-        android:verticalSpacing="10dp" />
+        android:verticalSpacing="5dp" />
 </LinearLayout>

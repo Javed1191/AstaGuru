@@ -15,6 +15,7 @@ import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import butterknife.ButterKnife;
@@ -26,54 +27,49 @@ import services.Utility;
 
 public class How_To_Sell_Acitivity extends AppCompatActivity
 {
-   WebView wb_sell_payment,wb_sell_comition,wb_sell_contract,wb_sell_price,wb_sell_logistics,wb_sell_decition,wb_sell_evaluation;
+   WebView wb_sell_comition;
 
-ImageView iv_evalution,iv_deci_sell,iv_logistics,iv_reserve_price,iv_sell_contract,iv_sell_commition,iv_payment;
-
+ImageView iv_evalution,iv_deci_sell,iv_logistics,iv_sell_contract,iv_sell_commition,iv_payment,iv_reserve_price;
+RelativeLayout rel_Evaluation,rel_Decision,rel_Logistics,rel_Reserve,rel_Seller_Contract,rel_Seller_Commission,rel_Payment;
     private Utility utility;
     private Button btn_reach_us,btn_sell;
     private LinearLayout lin_contact_us,lin_reach_us;
-
+LinearLayout wb_sell_contract_main,wb_sell_evaluation,wb_sell_decition,wb_sell_logistics,wb_sell_price,wb_sell_payment;
+    JustifiedTextView tv_evaluation_a,tv_sell_decition,tv_logistics_decition,tv_reserve_price,tv_sell_contract,tv_sell_payment;
+JustifiedTextView tv_Reserveprice,tv_commission;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_how_to_sell);
         init();
-       /* getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.action_bar_text);*/
 
+        iv_evalution = (ImageView) findViewById(R.id.iv_evalution);
+        iv_deci_sell= (ImageView) findViewById(R.id.iv_deci_sell);
+        iv_logistics= (ImageView) findViewById(R.id.iv_logistics);
+        iv_reserve_price= (ImageView) findViewById(R.id.iv_reserve_price);
+        iv_sell_contract= (ImageView) findViewById(R.id.iv_sell_contract);
+        iv_payment= (ImageView) findViewById(R.id.iv_payment);
 
-        iv_evalution = (ImageView) findViewById(R.id.iv_evalution) ;
-        iv_deci_sell= (ImageView) findViewById(R.id.iv_deci_sell) ;
-        iv_logistics= (ImageView) findViewById(R.id.iv_logistics) ;
-        iv_reserve_price= (ImageView) findViewById(R.id.iv_reserve_price) ;
-        iv_sell_contract= (ImageView) findViewById(R.id.iv_sell_contract) ;
-        iv_sell_commition= (ImageView) findViewById(R.id.iv_sell_commition) ;
-        iv_payment= (ImageView) findViewById(R.id.iv_payment) ;
+        wb_sell_evaluation = (LinearLayout)findViewById(R.id.wb_sell_evaluation) ;
+        wb_sell_decition = (LinearLayout)findViewById(R.id.wb_sell_decition) ;
+        wb_sell_logistics = (LinearLayout) findViewById(R.id.wb_sell_logistics) ;
+        wb_sell_price = (LinearLayout) findViewById(R.id.wb_sell_price) ;
+        wb_sell_contract_main = (LinearLayout)findViewById(R.id.wb_sell_contract_main) ;
+        wb_sell_payment = (LinearLayout)findViewById(R.id.wb_sell_payment) ;
 
+        tv_evaluation_a.setText("The first step in the process is to arrange a consultation with one of our representatives. You can contact us or email us with details of your property. We shall then study the property and give you a valuation on the same. We will respond to your auction estimate request within 3 working days. It is very important to AstaGuru to provide the highest level of service; accordingly, we cannot rush valuations.");
+        tv_sell_decition.setText("Based on the valuation result, you and AstaGuru' s experts will decide whether your property is appropriate for sale at auction. We will also recommend an appropriate venue and possible sale timing. If you decide to proceed, you will sign a contract, and AstaGuru will take the property in for cataloguing and photography.Please note that, restoration or another action required such as reframing, stretching and so on in order to enhance the artwork's final presentation will be invoiced to the consignor, irrespective of the final auction outcome.");
+        tv_logistics_decition.setText("Our Art Transport or Shipping Department can help you arrange to have your property delivered to our offices, if necessary. As the consignor, you are responsible for packing, shipping and insurance charges.");
 
+        tv_reserve_price.setText("The reserve is the confidential minimum selling price to which a consignor (you) and AstaGuru agree before the sale - your property's \"floor\" price, below which no bid will be accepted. If bidding on your item fails to reach the reserve, we will not sell the piece and will advise you of your options. It is important to consider the reserve price in light of the fact that AstaGuru will assess fees and handling costs for unsold lots.");
 
-        wb_sell_evaluation = (WebView)findViewById(R.id.wb_sell_evaluation) ;
-        wb_sell_evaluation.loadUrl("file:///android_asset/sell_evaluation.html");
+        tv_sell_contract.setText("The seller contract covers two important issues that will affect your bottom line: the reserve price and AstaGuru's commissions.");
 
-        wb_sell_decition = (WebView)findViewById(R.id.wb_sell_decition) ;
-        wb_sell_decition.loadUrl("file:///android_asset/sell_decition.html");
+        tv_sell_payment.setText("Shortly after the sale, you will receive a listing of the final hammer price for each item you consigned. We will issue the payment within 40 days from the day of the sale provided we are in receipt of the buyer's payment.");
 
-        wb_sell_logistics = (WebView)findViewById(R.id.wb_sell_logistics) ;
-        wb_sell_logistics.loadUrl("file:///android_asset/sell_logistics.html");
-
-        wb_sell_price = (WebView)findViewById(R.id.wb_sell_price) ;
-        wb_sell_price.loadUrl("file:///android_asset/sell_price.html");
-
-        wb_sell_contract = (WebView)findViewById(R.id.wb_sell_contract) ;
-        wb_sell_contract.loadUrl("file:///android_asset/sell_contract.html");
-
-        wb_sell_comition = (WebView)findViewById(R.id.wb_sell_comition) ;
-        wb_sell_comition.loadUrl("file:///android_asset/sell_comition.html");
-
-        wb_sell_payment = (WebView)findViewById(R.id.wb_sell_payment) ;
-        wb_sell_payment.loadUrl("file:///android_asset/sell_payment.html");
+        tv_Reserveprice.setText("The reserve is the confidential minimum selling price to which a consignor (you) and AstaGuru agree before the sale - your property's \"floor\" price, below which no bid will be accepted. If bidding on your item fails to reach the reserve, we will not sell the piece and will advise you of your options. It is important to consider the reserve price in light of the fact that AstaGuru will assess fees and handling costs for unsold lots.");
+        tv_commission.setText("Sellers pay a commission that is deducted, along with any agreed-upon expenses, from the hammer price. Should you have any specific questions regarding the selling commission, please call the appropriate representative for more information.");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -108,17 +104,19 @@ ImageView iv_evalution,iv_deci_sell,iv_logistics,iv_reserve_price,iv_sell_contra
             @Override
             public void onClick(View v) {
 
-                if (wb_sell_evaluation.getVisibility() == View.VISIBLE) {
+                if (wb_sell_evaluation.getVisibility() == View.VISIBLE)
+                {
                     wb_sell_evaluation.setVisibility(View.GONE);
                     iv_evalution.setBackgroundResource(R.drawable.plus);
-                } else {
+                }
+                else
+                {
                     wb_sell_evaluation.setVisibility(View.VISIBLE);
-
                     wb_sell_decition.setVisibility(View.GONE);
                     wb_sell_logistics.setVisibility(View.GONE);
                     wb_sell_price.setVisibility(View.GONE);
-                    wb_sell_contract.setVisibility(View.GONE);
-                    wb_sell_comition.setVisibility(View.GONE);
+                    wb_sell_contract_main.setVisibility(View.GONE);
+                   
                     wb_sell_payment.setVisibility(View.GONE);
 
                     iv_evalution.setBackgroundResource(R.drawable.minus);
@@ -126,9 +124,10 @@ ImageView iv_evalution,iv_deci_sell,iv_logistics,iv_reserve_price,iv_sell_contra
                     iv_logistics.setBackgroundResource(R.drawable.plus);
                     iv_reserve_price.setBackgroundResource(R.drawable.plus);
                     iv_sell_contract.setBackgroundResource(R.drawable.plus);
-                    iv_sell_commition.setBackgroundResource(R.drawable.plus);
                     iv_payment.setBackgroundResource(R.drawable.plus);
                 }
+                
+                
             }
         });
 
@@ -137,17 +136,19 @@ ImageView iv_evalution,iv_deci_sell,iv_logistics,iv_reserve_price,iv_sell_contra
             @Override
             public void onClick(View v) {
 
-                if (wb_sell_decition.getVisibility() == View.VISIBLE) {
+                if (wb_sell_decition.getVisibility() == View.VISIBLE)
+                {
                     wb_sell_decition.setVisibility(View.GONE);
                     iv_deci_sell.setBackgroundResource(R.drawable.plus);
-                } else {
+                }
+                else
+                {
                     wb_sell_evaluation.setVisibility(View.GONE);
-
                     wb_sell_decition.setVisibility(View.VISIBLE);
                     wb_sell_logistics.setVisibility(View.GONE);
                     wb_sell_price.setVisibility(View.GONE);
-                    wb_sell_contract.setVisibility(View.GONE);
-                    wb_sell_comition.setVisibility(View.GONE);
+                    wb_sell_contract_main.setVisibility(View.GONE);
+                   
                     wb_sell_payment.setVisibility(View.GONE);
 
                     iv_evalution.setBackgroundResource(R.drawable.plus);
@@ -155,7 +156,6 @@ ImageView iv_evalution,iv_deci_sell,iv_logistics,iv_reserve_price,iv_sell_contra
                     iv_logistics.setBackgroundResource(R.drawable.plus);
                     iv_reserve_price.setBackgroundResource(R.drawable.plus);
                     iv_sell_contract.setBackgroundResource(R.drawable.plus);
-                    iv_sell_commition.setBackgroundResource(R.drawable.plus);
                     iv_payment.setBackgroundResource(R.drawable.plus);
                 }
             }
@@ -165,17 +165,19 @@ ImageView iv_evalution,iv_deci_sell,iv_logistics,iv_reserve_price,iv_sell_contra
             @Override
             public void onClick(View v) {
 
-                if (wb_sell_logistics.getVisibility() == View.VISIBLE) {
+                if (wb_sell_logistics.getVisibility() == View.VISIBLE)
+                {
                     wb_sell_logistics.setVisibility(View.GONE);
                     iv_logistics.setBackgroundResource(R.drawable.plus);
-                } else {
+                }
+                else
+                {
                     wb_sell_evaluation.setVisibility(View.GONE);
-
                     wb_sell_decition.setVisibility(View.GONE);
                     wb_sell_logistics.setVisibility(View.VISIBLE);
                     wb_sell_price.setVisibility(View.GONE);
-                    wb_sell_contract.setVisibility(View.GONE);
-                    wb_sell_comition.setVisibility(View.GONE);
+                    wb_sell_contract_main.setVisibility(View.GONE);
+                   
                     wb_sell_payment.setVisibility(View.GONE);
 
                     iv_evalution.setBackgroundResource(R.drawable.plus);
@@ -183,7 +185,6 @@ ImageView iv_evalution,iv_deci_sell,iv_logistics,iv_reserve_price,iv_sell_contra
                     iv_logistics.setBackgroundResource(R.drawable.minus);
                     iv_reserve_price.setBackgroundResource(R.drawable.plus);
                     iv_sell_contract.setBackgroundResource(R.drawable.plus);
-                    iv_sell_commition.setBackgroundResource(R.drawable.plus);
                     iv_payment.setBackgroundResource(R.drawable.plus);
                 }
             }
@@ -192,17 +193,19 @@ ImageView iv_evalution,iv_deci_sell,iv_logistics,iv_reserve_price,iv_sell_contra
             @Override
             public void onClick(View v) {
 
-                if (wb_sell_price.getVisibility() == View.VISIBLE) {
+                if (wb_sell_price.getVisibility() == View.VISIBLE)
+                {
                     wb_sell_price.setVisibility(View.GONE);
                     iv_reserve_price.setBackgroundResource(R.drawable.plus);
-                } else {
+                }
+                else
+                {
                     wb_sell_evaluation.setVisibility(View.GONE);
-
                     wb_sell_decition.setVisibility(View.GONE);
                     wb_sell_logistics.setVisibility(View.GONE);
                     wb_sell_price.setVisibility(View.VISIBLE);
-                    wb_sell_contract.setVisibility(View.GONE);
-                    wb_sell_comition.setVisibility(View.GONE);
+                    wb_sell_contract_main.setVisibility(View.GONE);
+                   
                     wb_sell_payment.setVisibility(View.GONE);
 
                     iv_evalution.setBackgroundResource(R.drawable.plus);
@@ -210,7 +213,6 @@ ImageView iv_evalution,iv_deci_sell,iv_logistics,iv_reserve_price,iv_sell_contra
                     iv_logistics.setBackgroundResource(R.drawable.plus);
                     iv_reserve_price.setBackgroundResource(R.drawable.minus);
                     iv_sell_contract.setBackgroundResource(R.drawable.plus);
-                    iv_sell_commition.setBackgroundResource(R.drawable.plus);
                     iv_payment.setBackgroundResource(R.drawable.plus);
                 }
             }
@@ -220,17 +222,19 @@ ImageView iv_evalution,iv_deci_sell,iv_logistics,iv_reserve_price,iv_sell_contra
             @Override
             public void onClick(View v) {
 
-                if (wb_sell_contract.getVisibility() == View.VISIBLE) {
-                    wb_sell_contract.setVisibility(View.GONE);
+                if (wb_sell_contract_main.getVisibility() == View.VISIBLE)
+                {
+                    wb_sell_contract_main.setVisibility(View.GONE);
                     iv_sell_contract.setBackgroundResource(R.drawable.plus);
-                } else {
+                }
+                else
+                {
                     wb_sell_evaluation.setVisibility(View.GONE);
-
                     wb_sell_decition.setVisibility(View.GONE);
                     wb_sell_logistics.setVisibility(View.GONE);
                     wb_sell_price.setVisibility(View.GONE);
-                    wb_sell_contract.setVisibility(View.VISIBLE);
-                    wb_sell_comition.setVisibility(View.GONE);
+                    wb_sell_contract_main.setVisibility(View.VISIBLE);
+                   
                     wb_sell_payment.setVisibility(View.GONE);
 
                     iv_evalution.setBackgroundResource(R.drawable.plus);
@@ -238,54 +242,29 @@ ImageView iv_evalution,iv_deci_sell,iv_logistics,iv_reserve_price,iv_sell_contra
                     iv_logistics.setBackgroundResource(R.drawable.plus);
                     iv_reserve_price.setBackgroundResource(R.drawable.plus);
                     iv_sell_contract.setBackgroundResource(R.drawable.minus);
-                    iv_sell_commition.setBackgroundResource(R.drawable.plus);
                     iv_payment.setBackgroundResource(R.drawable.plus);
                 }
             }
         });
 
-        iv_sell_commition.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                if (wb_sell_comition.getVisibility() == View.VISIBLE) {
-                    wb_sell_comition.setVisibility(View.GONE);
-                    iv_sell_commition.setBackgroundResource(R.drawable.plus);
-                } else {
-                    wb_sell_evaluation.setVisibility(View.GONE);
-
-                    wb_sell_decition.setVisibility(View.GONE);
-                    wb_sell_logistics.setVisibility(View.GONE);
-                    wb_sell_price.setVisibility(View.GONE);
-                    wb_sell_contract.setVisibility(View.GONE);
-                    wb_sell_comition.setVisibility(View.VISIBLE);
-                    wb_sell_payment.setVisibility(View.GONE);
-
-                    iv_evalution.setBackgroundResource(R.drawable.plus);
-                    iv_deci_sell.setBackgroundResource(R.drawable.plus);
-                    iv_logistics.setBackgroundResource(R.drawable.plus);
-                    iv_reserve_price.setBackgroundResource(R.drawable.plus);
-                    iv_sell_contract.setBackgroundResource(R.drawable.plus);
-                    iv_sell_commition.setBackgroundResource(R.drawable.minus);
-                    iv_payment.setBackgroundResource(R.drawable.plus);
-                }
-            }
-        });
         iv_payment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if (wb_sell_payment.getVisibility() == View.VISIBLE) {
+                if (wb_sell_payment.getVisibility() == View.VISIBLE)
+                {
                     wb_sell_payment.setVisibility(View.GONE);
                     iv_payment.setBackgroundResource(R.drawable.plus);
-                } else {
+                }
+                else
+                {
                     wb_sell_evaluation.setVisibility(View.GONE);
-
                     wb_sell_decition.setVisibility(View.GONE);
                     wb_sell_logistics.setVisibility(View.GONE);
                     wb_sell_price.setVisibility(View.GONE);
-                    wb_sell_contract.setVisibility(View.GONE);
-                    wb_sell_comition.setVisibility(View.GONE);
+                    wb_sell_contract_main.setVisibility(View.GONE);
+                   
                     wb_sell_payment.setVisibility(View.VISIBLE);
 
                     iv_evalution.setBackgroundResource(R.drawable.plus);
@@ -293,11 +272,207 @@ ImageView iv_evalution,iv_deci_sell,iv_logistics,iv_reserve_price,iv_sell_contra
                     iv_logistics.setBackgroundResource(R.drawable.plus);
                     iv_reserve_price.setBackgroundResource(R.drawable.plus);
                     iv_sell_contract.setBackgroundResource(R.drawable.plus);
-                    iv_sell_commition.setBackgroundResource(R.drawable.plus);
                     iv_payment.setBackgroundResource(R.drawable.minus);
                 }
             }
         });
+
+        rel_Evaluation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (wb_sell_evaluation.getVisibility() == View.VISIBLE)
+                {
+                    wb_sell_evaluation.setVisibility(View.GONE);
+                    iv_evalution.setBackgroundResource(R.drawable.plus);
+                }
+                else
+                {
+                    wb_sell_evaluation.setVisibility(View.VISIBLE);
+                    wb_sell_decition.setVisibility(View.GONE);
+                    wb_sell_logistics.setVisibility(View.GONE);
+                    wb_sell_price.setVisibility(View.GONE);
+                    wb_sell_contract_main.setVisibility(View.GONE);
+                    wb_sell_payment.setVisibility(View.GONE);
+
+                    iv_evalution.setBackgroundResource(R.drawable.minus);
+                    iv_deci_sell.setBackgroundResource(R.drawable.plus);
+                    iv_logistics.setBackgroundResource(R.drawable.plus);
+                    iv_reserve_price.setBackgroundResource(R.drawable.plus);
+                    iv_sell_contract.setBackgroundResource(R.drawable.plus);
+                    iv_payment.setBackgroundResource(R.drawable.plus);
+                }
+            }
+        });
+
+        rel_Decision.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if (wb_sell_decition.getVisibility() == View.VISIBLE)
+                        {
+                            wb_sell_decition.setVisibility(View.GONE);
+                            iv_deci_sell.setBackgroundResource(R.drawable.plus);
+                        }
+                        else
+                        {
+                            wb_sell_evaluation.setVisibility(View.GONE);
+                            wb_sell_decition.setVisibility(View.VISIBLE);
+                            wb_sell_logistics.setVisibility(View.GONE);
+                            wb_sell_price.setVisibility(View.GONE);
+                            wb_sell_contract_main.setVisibility(View.GONE);
+                            wb_sell_payment.setVisibility(View.GONE);
+
+                            iv_evalution.setBackgroundResource(R.drawable.plus);
+                            iv_deci_sell.setBackgroundResource(R.drawable.minus);
+                            iv_logistics.setBackgroundResource(R.drawable.plus);
+                            iv_reserve_price.setBackgroundResource(R.drawable.plus);
+                            iv_sell_contract.setBackgroundResource(R.drawable.plus);
+                            iv_payment.setBackgroundResource(R.drawable.plus);
+                        }
+                    }
+                });
+
+        rel_Logistics.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if (wb_sell_logistics.getVisibility() == View.VISIBLE)
+                        {
+                            wb_sell_logistics.setVisibility(View.GONE);
+                            iv_logistics.setBackgroundResource(R.drawable.plus);
+                        }
+                        else
+                        {
+                            wb_sell_evaluation.setVisibility(View.GONE);
+
+                            wb_sell_decition.setVisibility(View.GONE);
+                            wb_sell_logistics.setVisibility(View.VISIBLE);
+                            wb_sell_price.setVisibility(View.GONE);
+                            wb_sell_contract_main.setVisibility(View.GONE);
+                            wb_sell_payment.setVisibility(View.GONE);
+
+                            iv_evalution.setBackgroundResource(R.drawable.plus);
+                            iv_deci_sell.setBackgroundResource(R.drawable.plus);
+                            iv_logistics.setBackgroundResource(R.drawable.minus);
+                            iv_reserve_price.setBackgroundResource(R.drawable.plus);
+                            iv_sell_contract.setBackgroundResource(R.drawable.plus);
+                            iv_payment.setBackgroundResource(R.drawable.plus);
+                        }
+                    }
+                });
+                rel_Reserve.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if (wb_sell_price.getVisibility() == View.VISIBLE)
+                        {
+                            wb_sell_price.setVisibility(View.GONE);
+                            iv_reserve_price.setBackgroundResource(R.drawable.plus);
+                        }
+                        else
+                        {
+                            wb_sell_evaluation.setVisibility(View.GONE);
+                            wb_sell_decition.setVisibility(View.GONE);
+                            wb_sell_logistics.setVisibility(View.GONE);
+                            wb_sell_price.setVisibility(View.VISIBLE);
+                            wb_sell_contract_main.setVisibility(View.GONE);
+                            wb_sell_payment.setVisibility(View.GONE);
+
+                            iv_evalution.setBackgroundResource(R.drawable.plus);
+                            iv_deci_sell.setBackgroundResource(R.drawable.plus);
+                            iv_logistics.setBackgroundResource(R.drawable.plus);
+                            iv_reserve_price.setBackgroundResource(R.drawable.minus);
+                            iv_sell_contract.setBackgroundResource(R.drawable.plus);
+                            iv_payment.setBackgroundResource(R.drawable.plus);
+                        }
+                    }
+                });
+
+        rel_Seller_Contract.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if (wb_sell_contract_main.getVisibility() == View.VISIBLE)
+                        {
+                            wb_sell_contract_main.setVisibility(View.GONE);
+                            iv_sell_contract.setBackgroundResource(R.drawable.plus);
+                        }
+                        else
+                        {
+                            wb_sell_evaluation.setVisibility(View.GONE);
+
+                            wb_sell_decition.setVisibility(View.GONE);
+                            wb_sell_logistics.setVisibility(View.GONE);
+                            wb_sell_price.setVisibility(View.GONE);
+                            wb_sell_contract_main.setVisibility(View.VISIBLE);
+                            wb_sell_payment.setVisibility(View.GONE);
+
+                            iv_evalution.setBackgroundResource(R.drawable.plus);
+                            iv_deci_sell.setBackgroundResource(R.drawable.plus);
+                            iv_logistics.setBackgroundResource(R.drawable.plus);
+                            iv_reserve_price.setBackgroundResource(R.drawable.plus);
+                            iv_sell_contract.setBackgroundResource(R.drawable.minus);
+                            iv_payment.setBackgroundResource(R.drawable.plus);
+                        }
+                    }
+                });
+
+//        rel_Seller_Commission.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//
+//                        if (wb_sell_comition.getVisibility() == View.VISIBLE) {
+//                           
+//                            iv_sell_commition.setBackgroundResource(R.drawable.plus);
+//                        } else {
+//                            wb_sell_evaluation.setVisibility(View.GONE);
+//
+//                            wb_sell_decition.setVisibility(View.GONE);
+//                            wb_sell_logistics.setVisibility(View.GONE);
+//                            wb_sell_price.setVisibility(View.GONE);
+//                            wb_sell_contract_main.setVisibility(View.GONE);
+//                            wb_sell_comition.setVisibility(View.VISIBLE);
+//                            wb_sell_payment.setVisibility(View.GONE);
+//
+//                            iv_evalution.setBackgroundResource(R.drawable.plus);
+//                            iv_deci_sell.setBackgroundResource(R.drawable.plus);
+//                            iv_logistics.setBackgroundResource(R.drawable.plus);
+//                            iv_reserve_price.setBackgroundResource(R.drawable.plus);
+//                            iv_sell_contract.setBackgroundResource(R.drawable.plus);
+//                            iv_sell_commition.setBackgroundResource(R.drawable.minus);
+//                            iv_payment.setBackgroundResource(R.drawable.plus);
+//                        }
+//                    }
+//                });
+                rel_Payment.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if (wb_sell_payment.getVisibility() == View.VISIBLE)
+                        {
+                            wb_sell_payment.setVisibility(View.GONE);
+                            iv_payment.setBackgroundResource(R.drawable.plus);
+                        }
+                        else
+                        {
+                            wb_sell_evaluation.setVisibility(View.GONE);
+
+                            wb_sell_decition.setVisibility(View.GONE);
+                            wb_sell_logistics.setVisibility(View.GONE);
+                            wb_sell_price.setVisibility(View.GONE);
+                            wb_sell_contract_main.setVisibility(View.GONE);
+                            wb_sell_payment.setVisibility(View.VISIBLE);
+
+                            iv_evalution.setBackgroundResource(R.drawable.plus);
+                            iv_deci_sell.setBackgroundResource(R.drawable.plus);
+                            iv_logistics.setBackgroundResource(R.drawable.plus);
+                            iv_reserve_price.setBackgroundResource(R.drawable.plus);
+                            iv_sell_contract.setBackgroundResource(R.drawable.plus);
+                            iv_payment.setBackgroundResource(R.drawable.minus);
+                        }
+                    }
+                });
 
         btn_sell.setOnClickListener(new View.OnClickListener()
         {
@@ -346,7 +521,22 @@ ImageView iv_evalution,iv_deci_sell,iv_logistics,iv_reserve_price,iv_sell_contra
         utility = new Utility(getApplicationContext());
         btn_sell = (Button) findViewById(R.id.btn_sell);
 
+        rel_Evaluation = (RelativeLayout) findViewById(R.id.rel_Evaluation);
+        rel_Decision= (RelativeLayout) findViewById(R.id.rel_Decision);
+        rel_Logistics= (RelativeLayout) findViewById(R.id.rel_Logistics);
+        rel_Reserve= (RelativeLayout) findViewById(R.id.rel_Reserve);
+        rel_Seller_Contract= (RelativeLayout) findViewById(R.id.rel_Seller_Contract);
+        rel_Payment= (RelativeLayout) findViewById(R.id.rel_Payment);
 
+        tv_evaluation_a = (JustifiedTextView)findViewById(R.id.tv_evaluation_a);
+        tv_sell_decition = (JustifiedTextView)findViewById(R.id.tv_sell_decition);
+        tv_logistics_decition= (JustifiedTextView)findViewById(R.id.tv_logistics_decition);
+        tv_reserve_price= (JustifiedTextView)findViewById(R.id.tv_reserve_price);
+        tv_sell_contract= (JustifiedTextView)findViewById(R.id.tv_sell_contract);
+        tv_sell_payment= (JustifiedTextView)findViewById(R.id.tv_sell_payment);
+
+        tv_Reserveprice= (JustifiedTextView)findViewById(R.id.tv_Reserveprice);
+        tv_commission= (JustifiedTextView)findViewById(R.id.tv_commission);
     }
 
 

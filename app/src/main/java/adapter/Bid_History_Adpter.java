@@ -9,18 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.infomanav.astaguru.Model_History;
+import model_classes.Model_History;
 import com.infomanav.astaguru.R;
 
 import java.util.ArrayList;
-import java.util.List;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-
-import java.util.List;
 
 public class Bid_History_Adpter extends RecyclerView.Adapter<Bid_History_Adpter.MyViewHolder> {
 
@@ -55,8 +47,8 @@ public class Bid_History_Adpter extends RecyclerView.Adapter<Bid_History_Adpter.
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Model_History movie = moviesList.get(position);
         holder.tv_nick_name.setText(movie.getStr_bid_name());
-        holder.tv_amount_d.setText("$"+movie.getStr_bid_d());
-        holder.tv_amount_r.setText("₹"+movie.getStr_bid_r());
+        holder.tv_amount_d.setText("$ "+movie.getStr_bid_d());
+        holder.tv_amount_r.setText("₹ "+movie.getStr_bid_r());
         holder.tv_datetime.setText(movie.getStr_bid_date());
     }
 

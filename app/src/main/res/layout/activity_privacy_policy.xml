@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
+    android:background="#ffffff"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
@@ -47,50 +48,40 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:id="@+id/tv_v_one"
                 android:layout_marginTop="15dp"/>
             <com.infomanav.astaguru.JustifiedTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
                 android:id="@+id/tv_v_two"
                 />
             <com.infomanav.astaguru.JustifiedTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
                 android:id="@+id/tv_v_three"
               />
-            <com.infomanav.astaguru.JustifiedTextView
+
+
+
+            <WebView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:id="@+id/tv_v_four"
-              />
+                android:gravity="left"
+                android:visibility="visible"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="left"
+                android:id="@+id/wb_privacy_policy"
+                android:layout_height="wrap_content"></WebView>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="5dp"
-               >
-
-                <com.infomanav.astaguru.WorkSansRegular
-                    android:id="@+id/tv_privacy_email"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="contact@astaguru.com"
-                    android:textSize="12sp"
-                    android:textColor="@color/colorLink" />
-
-
-                <com.infomanav.astaguru.WorkSansRegular
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:text=" if you have any questions" />
-
-            </LinearLayout>
 
 
         </LinearLayout>

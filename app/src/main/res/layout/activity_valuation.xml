@@ -53,6 +53,7 @@
                 android:padding="10dp"/>
 
             <com.infomanav.astaguru.WorkSansMedium
+                android:textSize="15sp"
                 android:id="@+id/workSansMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -74,6 +75,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="top"
+                    android:layout_marginTop="3dp"
 
                     android:background="@drawable/arrow"
                     android:textColor="@color/colorLink" />
@@ -101,6 +103,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/arrow"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="3dp"
                     android:textColor="@color/colorLink" />
 
 
@@ -125,6 +129,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/arrow"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="3dp"
                     android:textColor="@color/colorLink" />
 
 
@@ -148,6 +154,8 @@ android:gravity="center_vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/arrow"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="3dp"
                     android:textColor="@color/colorLink" />
 
 
@@ -286,6 +294,7 @@ android:gravity="center_vertical"
             </LinearLayout>
 
             <com.infomanav.astaguru.WorkSansMedium
+                android:textSize="15sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -512,7 +521,7 @@ android:gravity="center_vertical"
 
                 </RelativeLayout>
 
-                <LinearLayout
+                <RelativeLayout
                     android:id="@+id/rel_year"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -540,31 +549,32 @@ android:gravity="center_vertical"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@+id/testyear"
                         android:gravity="center"
-                        android:paddingBottom="20dp"
                         android:layout_marginLeft="10dp"
                         android:text="+91 22 2204 8138/39"
                         android:textSize="12sp" />
 
-                    <com.infomanav.astaguru.WorkSansRegular
-                        android:id="@+id/tv_callc_one"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toRightOf="@+id/testyear"
-                        android:gravity="center"
-                        android:paddingBottom="20dp"
-                        android:text=";"
-                        android:textSize="12sp" />
+                    <!--<com.infomanav.astaguru.WorkSansRegular-->
+                        <!--android:id="@+id/tv_callc_one"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_toRightOf="@+id/testyear"-->
+                        <!--android:gravity="center"-->
+                        <!--android:paddingBottom="20dp"-->
+                        <!--android:text=";"-->
+                        <!--android:textSize="12sp" />-->
+
                     <com.infomanav.astaguru.WorkSansRegular
                         android:id="@+id/tv_call_two"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_toRightOf="@+id/tv_callc_one"
+                        android:layout_below="@+id/tv_call_one"
                         android:gravity="center"
+                        android:layout_toRightOf="@+id/testyear"
+                        android:layout_marginLeft="11dp"
                         android:paddingBottom="20dp"
                         android:text="+91 22 2204 8140"
                         android:textSize="12sp" />
-
-                </LinearLayout>
+                </RelativeLayout>
 
             </RelativeLayout>
         </LinearLayout>

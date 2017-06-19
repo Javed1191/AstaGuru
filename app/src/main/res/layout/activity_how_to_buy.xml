@@ -5,7 +5,6 @@
     android:background="#ffffff"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,24 +15,23 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay">
-
+            app:popupTheme="@style/AppTheme.PopupOverlay"   >
             <com.infomanav.astaguru.WorkSansMedium
-                android:id="@+id/tool_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/tool_text"
+                android:textColor="#ffffff"
                 android:gravity="left"
                 android:text="Management"
-                android:textColor="#ffffff"
-                android:textSize="20dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="20dp" />
 
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
 
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView
         android:id="@+id/sc_vacncies"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -44,7 +42,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+            android:layout_margin="5dp"
 
             android:orientation="vertical">
 
@@ -58,17 +56,20 @@
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:id="@+id/rel_Estimates"
                     android:layout_marginTop="20dp">
 
                     <com.infomanav.astaguru.WorkSansMedium
                         android:id="@+id/iv_user"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
-                        android:layout_marginLeft="10dp"
+
                         android:gravity="right"
                         android:text="Estimates"
                         android:textColor="#000000"
-                        android:textSize="17sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <ImageView
@@ -88,40 +89,94 @@
                         android:layout_below="@+id/iv_user"
                         android:orientation="vertical"
                         android:visibility="gone">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="8dp"
+                            android:visibility="visible"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top"
+                                android:layout_marginTop="3dp"
+                                android:background="@drawable/arrow"
+                                android:textColor="@color/colorLink" />
+                            <com.infomanav.astaguru.JustifiedTextView
+                                android:layout_width="wrap_content"
+                                android:id="@+id/tv_estimate_one"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/iv_user"
+                                android:visibility="visible" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="8dp"
+                            android:visibility="visible"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top"
+                                android:layout_marginTop="3dp"
+                                android:background="@drawable/arrow"
+                                android:textColor="@color/colorLink" />
+                            <com.infomanav.astaguru.JustifiedTextView
+                                android:layout_width="wrap_content"
+                                android:id="@+id/tv_estimate_two"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/iv_user"
+                                android:visibility="visible" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="8dp"
+                            android:visibility="visible"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top"
+                                android:layout_marginTop="3dp"
+                                android:background="@drawable/arrow"
+                                android:textColor="@color/colorLink" />
+                            <com.infomanav.astaguru.JustifiedTextView
+                                android:layout_width="wrap_content"
+                                android:id="@+id/tv_estimate_three"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/iv_user"
+                                android:visibility="visible" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="8dp"
+                            android:visibility="visible"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top"
+                                android:layout_marginTop="3dp"
+                                android:background="@drawable/arrow"
+                                android:textColor="@color/colorLink" />
+                            <com.infomanav.astaguru.JustifiedTextView
+                                android:layout_width="wrap_content"
+                                android:id="@+id/tv_estimate_four"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/iv_user"
+                                android:visibility="visible" />
+                        </LinearLayout>
 
 
-                        <com.infomanav.astaguru.JustifiedTextView
-                            android:layout_width="wrap_content"
-                            android:id="@+id/tv_estimate_one"
-
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/iv_user"
-                            android:layout_marginLeft="10dp"
-                            android:visibility="visible" />
-
-                        <com.infomanav.astaguru.JustifiedTextView
-                            android:layout_width="wrap_content"
-                            android:id="@+id/tv_estimate_two"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/iv_user"
-                            android:layout_marginLeft="10dp"
-                            android:visibility="visible" />
-
-                        <com.infomanav.astaguru.JustifiedTextView
-                            android:layout_width="wrap_content"
-                            android:id="@+id/tv_estimate_three"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/iv_user"
-                            android:layout_marginLeft="10dp"
-                            android:visibility="visible" />
-
-                        <com.infomanav.astaguru.JustifiedTextView
-                            android:layout_width="wrap_content"
-                            android:id="@+id/tv_estimate_four"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/iv_user"
-                            android:layout_marginLeft="10dp"
-                            android:visibility="visible" />
                     </LinearLayout>
 
 
@@ -130,17 +185,19 @@
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:id="@+id/rel_Reserves"
                     android:layout_marginTop="10dp">
 
                     <com.infomanav.astaguru.WorkSansMedium
                         android:id="@+id/tv_RESERVES"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
-                        android:layout_marginLeft="10dp"
                         android:gravity="right"
                         android:text="Reserves"
                         android:textColor="#000000"
-                        android:textSize="17sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <ImageView
@@ -160,23 +217,50 @@
                         android:layout_below="@+id/tv_RESERVES"
                         android:orientation="vertical"
                         android:visibility="gone">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="8dp"
+                            android:visibility="visible"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top"
+                                android:layout_marginTop="3dp"
+                                android:background="@drawable/arrow"
+                                android:textColor="@color/colorLink" />
+                            <com.infomanav.astaguru.JustifiedTextView
+                                android:layout_width="wrap_content"
+                                android:id="@+id/tv_reserve_one"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/iv_user"
+                                android:visibility="visible" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="8dp"
+                            android:visibility="visible"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top"
+                                android:layout_marginTop="3dp"
+                                android:background="@drawable/arrow"
+                                android:textColor="@color/colorLink" />
+                            <com.infomanav.astaguru.JustifiedTextView
+                                android:layout_width="wrap_content"
+                                android:id="@+id/tv_reserve_two"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/iv_user"
+                                android:visibility="visible" />
+                        </LinearLayout>
 
 
-                        <com.infomanav.astaguru.JustifiedTextView
-                            android:layout_width="wrap_content"
-android:id="@+id/tv_reserve_one"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/iv_user"
-                            android:layout_marginLeft="10dp"
-                            android:visibility="visible" />
-
-                        <com.infomanav.astaguru.JustifiedTextView
-                            android:layout_width="wrap_content"
-                            android:id="@+id/tv_reserve_two"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/iv_user"
-                            android:layout_marginLeft="10dp"
-                            android:visibility="visible" />
 
                     </LinearLayout>
 
@@ -223,17 +307,19 @@ android:id="@+id/tv_reserve_one"
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:id="@+id/rel_Buyers"
                     android:layout_marginTop="10dp">
 
                     <com.infomanav.astaguru.WorkSansMedium
                         android:id="@+id/tv_byprimium"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
-                        android:layout_marginLeft="10dp"
                         android:gravity="right"
                         android:text="Buyers Premium"
                         android:textColor="#000000"
-                        android:textSize="17sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <ImageView
@@ -255,23 +341,48 @@ android:id="@+id/tv_reserve_one"
                         android:orientation="vertical"
                         android:visibility="gone">
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="8dp"
+                            android:visibility="visible"
+                            android:orientation="horizontal">
 
-                        <com.infomanav.astaguru.JustifiedTextView
-                            android:layout_width="wrap_content"
-android:id="@+id/tv_buy_one"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/iv_user"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="10dp"/>
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top"
+                                android:layout_marginTop="3dp"
+                                android:background="@drawable/arrow"
+                                android:textColor="@color/colorLink" />
+                            <com.infomanav.astaguru.JustifiedTextView
+                                android:layout_width="wrap_content"
+                                android:id="@+id/tv_buy_one"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/iv_user"
+                                android:visibility="visible" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="8dp"
+                            android:visibility="visible"
+                            android:orientation="horizontal">
 
-                        <com.infomanav.astaguru.JustifiedTextView
-                            android:layout_width="wrap_content"
-
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/iv_user"
-                            android:layout_marginLeft="10dp"
-                            android:id="@+id/tv_buy_two"
-                            android:layout_marginTop="10dp"/>
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top"
+                                android:layout_marginTop="3dp"
+                                android:background="@drawable/arrow"
+                                android:textColor="@color/colorLink" />
+                            <com.infomanav.astaguru.JustifiedTextView
+                                android:layout_width="wrap_content"
+                                android:id="@+id/tv_buy_two"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/iv_user"
+                                android:visibility="visible" />
+                        </LinearLayout>
 
                     </LinearLayout>
                 </RelativeLayout>
@@ -279,17 +390,19 @@ android:id="@+id/tv_buy_one"
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:id="@+id/rel_Bidding"
                     android:layout_marginTop="10dp">
 
                     <com.infomanav.astaguru.WorkSansMedium
                         android:id="@+id/tv_price"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
-                        android:layout_marginLeft="10dp"
                         android:gravity="right"
                         android:text="Bidding"
                         android:textColor="#000000"
-                        android:textSize="17sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <ImageView
@@ -315,30 +428,957 @@ android:id="@+id/tv_buy_one"
                         <!--android:layout_marginTop="10dp"-->
                         <!--android:visibility="gone" />-->
                 </RelativeLayout>
-                <WebView
-                    android:layout_width="match_parent"
-                    android:paddingLeft="10dp"
-                    android:layout_marginLeft="14dp"
-                    android:layout_margin="5dp"
-                    android:paddingRight="10dp"
-                    android:visibility="gone"
 
-                    android:id="@+id/wb_bidding"
-                    android:layout_height="wrap_content"></WebView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+android:id="@+id/wb_bidding"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+                    <com.infomanav.astaguru.WorkSansMedium
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:gravity="right"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:textColor="#000000"
+                        android:text="Pre -Registration and Verification."
+                        android:textSize="15sp"
+                     />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink" />
+                        <com.infomanav.astaguru.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:id="@+id/tv_pre_a"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_user"
+                            android:visibility="visible" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink" />
+                        <com.infomanav.astaguru.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:id="@+id/tv_pre_b"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_user"
+                            android:visibility="visible" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink" />
+                        <com.infomanav.astaguru.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:id="@+id/tv_pre_c"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_user"
+                            android:visibility="visible" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink" />
+                        <com.infomanav.astaguru.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:id="@+id/tv_pre_d"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_user"
+                            android:visibility="visible" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink" />
+                        <com.infomanav.astaguru.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:id="@+id/tv_pre_e"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_user"
+                            android:visibility="visible" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink" />
+                        <com.infomanav.astaguru.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:id="@+id/tv_pre_f"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_user"
+                            android:visibility="visible" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink" />
+                        <com.infomanav.astaguru.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:id="@+id/tv_pre_g"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_user"
+                            android:visibility="visible" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink" />
+                        <com.infomanav.astaguru.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:id="@+id/tv_pre_h"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_user"
+                            android:visibility="visible" />
+                    </LinearLayout>
+
+                    <com.infomanav.astaguru.WorkSansMedium
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:gravity="right"
+                        android:layout_marginTop="10dp"
+                        android:textColor="#000000"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:text="Absentee Bids"
+                        android:textSize="15sp"
+                        />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink" />
+                        <com.infomanav.astaguru.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:id="@+id/tv_Absentee_a"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_user"
+                            android:visibility="visible" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink" />
+                        <com.infomanav.astaguru.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:id="@+id/tv_Absentee_b"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_user"
+                            android:visibility="visible" />
+                    </LinearLayout>
+
+
+                    <com.infomanav.astaguru.WorkSansMedium
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:gravity="right"
+                        android:textColor="#000000"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:text="Proxy Bids"
+                        android:textSize="15sp"
+                        />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink" />
+                        <com.infomanav.astaguru.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:id="@+id/tv_Proxy_a"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_user"
+                            android:visibility="visible" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink" />
+                        <com.infomanav.astaguru.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:id="@+id/tv_Proxy_b"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_user"
+                            android:visibility="visible" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink" />
+                        <com.infomanav.astaguru.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:id="@+id/tv_Proxy_c"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_user"
+                            android:visibility="visible" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink" />
+                        <com.infomanav.astaguru.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:id="@+id/tv_Proxy_d"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_user"
+                            android:visibility="visible" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink" />
+                        <com.infomanav.astaguru.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:id="@+id/tv_Proxy_e"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_user"
+                            android:visibility="visible" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink" />
+                        <com.infomanav.astaguru.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:id="@+id/tv_Proxy_f"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_user"
+                            android:visibility="visible" />
+                    </LinearLayout>
+
+                    <com.infomanav.astaguru.WorkSansMedium
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:gravity="right"
+                        android:textColor="#000000"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:text="Opening Bid"
+                        android:textSize="15sp"
+                        />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink" />
+                        <com.infomanav.astaguru.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:id="@+id/tv_ob_a"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_user"
+                            android:visibility="visible" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink" />
+                        <com.infomanav.astaguru.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:id="@+id/tv_ob_b"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_user"
+                            android:visibility="visible" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink" />
+                        <com.infomanav.astaguru.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:id="@+id/tv_ob_c"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_user"
+                            android:visibility="visible" />
+                    </LinearLayout>
+
+                    <com.infomanav.astaguru.WorkSansMedium
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:gravity="right"
+                        android:textColor="#000000"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:text="Bidding Online"
+                        android:textSize="15sp"
+                        />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink" />
+                        <com.infomanav.astaguru.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:id="@+id/tv_bonline_a"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_user"
+                            android:visibility="visible" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink" />
+                        <com.infomanav.astaguru.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:id="@+id/tv_bonline_b"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_user"
+                            android:visibility="visible" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink" />
+                        <com.infomanav.astaguru.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:id="@+id/tv_bonline_c"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_user"
+                            android:visibility="visible" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink" />
+                        <com.infomanav.astaguru.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:id="@+id/tv_bonline_d"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_user"
+                            android:visibility="visible" />
+                    </LinearLayout>
+
+                    <com.infomanav.astaguru.WorkSansMedium
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:gravity="right"
+                        android:textColor="#000000"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:text="Bid Increments"
+                        android:textSize="15sp"
+                        />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink" />
+                        <com.infomanav.astaguru.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:id="@+id/tv_bidincre_a"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_user"
+                            android:visibility="visible" />
+                    </LinearLayout>
+
+                    <com.infomanav.astaguru.WorkSansMedium
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:gravity="right"
+                        android:textColor="#000000"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:text="Personalized Bid Notifications"
+                        android:textSize="15sp"
+                        />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink" />
+                        <com.infomanav.astaguru.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:id="@+id/tv_pbn_a"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_user"
+                            android:visibility="visible" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink" />
+                        <com.infomanav.astaguru.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:id="@+id/tv_pbn_b"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_user"
+                            android:visibility="visible" />
+                    </LinearLayout>
+
+                    <com.infomanav.astaguru.WorkSansMedium
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:gravity="right"
+                        android:textColor="#000000"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:text="Bid History"
+                        android:textSize="15sp"
+                        />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink" />
+                        <com.infomanav.astaguru.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:id="@+id/tv_bh_a"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_user"
+                            android:visibility="visible" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink" />
+                        <com.infomanav.astaguru.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:id="@+id/tv_bh_b"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_user"
+                            android:visibility="visible" />
+                    </LinearLayout>
+
+                    <com.infomanav.astaguru.WorkSansMedium
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:gravity="right"
+                        android:textColor="#000000"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:text="Currency of Bidding"
+                        android:textSize="15sp"
+                        />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink" />
+                        <com.infomanav.astaguru.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:id="@+id/tv_cb_a"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_user"
+                            android:visibility="visible" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink" />
+                        <com.infomanav.astaguru.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:id="@+id/tv_cb_b"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_user"
+                            android:visibility="visible" />
+                    </LinearLayout>
+                    <com.infomanav.astaguru.WorkSansMedium
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:gravity="right"
+                        android:textColor="#000000"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:text="Closing and Winning Bid"
+                        android:textSize="15sp"
+                        />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink" />
+                        <com.infomanav.astaguru.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:id="@+id/tv_cw_a"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_user"
+                            android:visibility="visible" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink" />
+                        <com.infomanav.astaguru.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:id="@+id/tv_cw_b"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_user"
+                            android:visibility="visible" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink" />
+                        <com.infomanav.astaguru.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:id="@+id/tv_cw_c"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_user"
+                            android:visibility="visible" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink" />
+                        <com.infomanav.astaguru.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:id="@+id/tv_cw_d"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_user"
+                            android:visibility="visible" />
+                    </LinearLayout>
+                    <com.infomanav.astaguru.WorkSansMedium
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:gravity="right"
+                        android:textColor="#000000"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:text="Bid Cancellation"
+                        android:textSize="15sp"
+                        />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink" />
+                        <com.infomanav.astaguru.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:id="@+id/tv_bc_a"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_user"
+                            android:visibility="visible" />
+                    </LinearLayout>
+                    <com.infomanav.astaguru.WorkSansMedium
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:gravity="right"
+                        android:textColor="#000000"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:text="Buyers Premium"
+                        android:textSize="15sp"
+                        />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink" />
+                        <com.infomanav.astaguru.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:id="@+id/tv_bp_a"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_user"
+                            android:visibility="visible" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink" />
+                        <com.infomanav.astaguru.JustifiedTextView
+                            android:layout_width="wrap_content"
+                            android:id="@+id/tv_bp_b"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_user"
+                            android:visibility="visible" />
+                    </LinearLayout>
+                </LinearLayout>
+                <!--<WebView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:paddingLeft="10dp"-->
+                    <!--android:layout_marginLeft="14dp"-->
+                    <!--android:layout_margin="5dp"-->
+                    <!--android:paddingRight="10dp"-->
+                    <!--android:visibility="visible"-->
+
+                    <!--android:id="@+id/wb_bidding"-->
+                    <!--android:layout_height="wrap_content"></WebView>-->
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:id="@+id/rel_Aftersale"
                     android:layout_marginTop="10dp">
 
                     <com.infomanav.astaguru.WorkSansMedium
                         android:id="@+id/tv_prcice"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
-                        android:layout_marginLeft="10dp"
                         android:gravity="right"
                         android:text="After sale"
                         android:textColor="#000000"
-                        android:textSize="17sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <ImageView
@@ -357,65 +1397,148 @@ android:id="@+id/tv_buy_one"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tv_prcice"
                         android:orientation="vertical"
-                        android:layout_marginLeft="10dp"
                         android:visibility="gone">
 
-
-                        <com.infomanav.astaguru.JustifiedTextView
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:id="@+id/tv_sale_a"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/tv_paticipate"
-                            android:layout_marginTop="10dp"/>
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="8dp"
+                            android:visibility="visible"
+                            android:orientation="horizontal">
 
-                        <com.infomanav.astaguru.JustifiedTextView
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top"
+                                android:layout_marginTop="3dp"
+                                android:background="@drawable/arrow"
+                                android:textColor="@color/colorLink" />
+                            <com.infomanav.astaguru.JustifiedTextView
+                                android:layout_width="wrap_content"
+                                android:id="@+id/tv_sale_a"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/iv_user"
+                                android:visibility="visible" />
+                        </LinearLayout>
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:id="@+id/tv_sale_b"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="8dp"
+                            android:visibility="visible"
+                            android:orientation="horizontal">
 
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/tv_paticipate"
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top"
+                                android:layout_marginTop="3dp"
+                                android:background="@drawable/arrow"
+                                android:textColor="@color/colorLink" />
+                            <com.infomanav.astaguru.JustifiedTextView
+                                android:layout_width="wrap_content"
+                                android:id="@+id/tv_sale_b"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/iv_user"
+                                android:visibility="visible" />
+                        </LinearLayout>
 
-                            android:layout_marginTop="10dp"/>
-                        <com.infomanav.astaguru.JustifiedTextView
+
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:id="@+id/tv_sale_c"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="8dp"
+                            android:visibility="visible"
+                            android:orientation="horizontal">
 
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/tv_paticipate"
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top"
+                                android:layout_marginTop="3dp"
+                                android:background="@drawable/arrow"
+                                android:textColor="@color/colorLink" />
+                            <com.infomanav.astaguru.JustifiedTextView
+                                android:layout_width="wrap_content"
+                                android:id="@+id/tv_sale_c"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/iv_user"
+                                android:visibility="visible" />
+                        </LinearLayout>
 
-                            android:layout_marginTop="10dp"/>
                         <com.infomanav.astaguru.WorkSansRegular
                             android:layout_width="match_parent"
-android:text="Invoicing"
+                            android:text="Invoicing"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/tv_paticipate"
-android:textColor="#000000"
+                            android:textColor="#000000"
                             android:layout_marginTop="10dp"/>
 
-
-                        <com.infomanav.astaguru.JustifiedTextView
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:id="@+id/tv_sale_d"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/tv_paticipate"
-                            android:layout_marginTop="10dp"/>
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="8dp"
+                            android:visibility="visible"
+                            android:orientation="horizontal">
 
-                        <com.infomanav.astaguru.JustifiedTextView
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top"
+                                android:layout_marginTop="3dp"
+                                android:background="@drawable/arrow"
+                                android:textColor="@color/colorLink" />
+                            <com.infomanav.astaguru.JustifiedTextView
+                                android:layout_width="wrap_content"
+                                android:id="@+id/tv_sale_d"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/iv_user"
+                                android:visibility="visible" />
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:id="@+id/tv_sale_e"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="8dp"
+                            android:visibility="visible"
+                            android:orientation="horizontal">
 
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/tv_paticipate"
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top"
+                                android:layout_marginTop="3dp"
+                                android:background="@drawable/arrow"
+                                android:textColor="@color/colorLink" />
+                            <com.infomanav.astaguru.JustifiedTextView
+                                android:layout_width="wrap_content"
+                                android:id="@+id/tv_sale_e"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/iv_user"
+                                android:visibility="visible" />
+                        </LinearLayout>
 
-                            android:layout_marginTop="10dp"/>
-                        <com.infomanav.astaguru.JustifiedTextView
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:id="@+id/tv_sale_f"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="8dp"
+                            android:visibility="visible"
+                            android:orientation="horizontal">
 
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/tv_paticipate"
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top"
+                                android:layout_marginTop="3dp"
+                                android:background="@drawable/arrow"
+                                android:textColor="@color/colorLink" />
+                            <com.infomanav.astaguru.JustifiedTextView
+                                android:layout_width="wrap_content"
+                                android:id="@+id/tv_sale_f"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/iv_user"
+                                android:visibility="visible" />
+                        </LinearLayout>
 
-                            android:layout_marginTop="10dp"/>
                         <com.infomanav.astaguru.WorkSansRegular
                             android:layout_width="match_parent"
                             android:text="Shipping and Insurance"
@@ -423,29 +1546,76 @@ android:textColor="#000000"
                             android:layout_below="@+id/tv_paticipate"
                             android:textColor="#000000"
                             android:layout_marginTop="10dp"/>
-                        <com.infomanav.astaguru.JustifiedTextView
+
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:id="@+id/tv_sale_g"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/tv_paticipate"
-                            android:layout_marginTop="10dp"/>
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="8dp"
+                            android:visibility="visible"
+                            android:orientation="horizontal">
 
-                        <com.infomanav.astaguru.JustifiedTextView
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top"
+                                android:layout_marginTop="3dp"
+                                android:background="@drawable/arrow"
+                                android:textColor="@color/colorLink" />
+                            <com.infomanav.astaguru.JustifiedTextView
+                                android:layout_width="wrap_content"
+                                android:id="@+id/tv_sale_g"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/iv_user"
+                                android:visibility="visible" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:id="@+id/tv_sale_h"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="8dp"
+                            android:visibility="visible"
+                            android:orientation="horizontal">
 
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/tv_paticipate"
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top"
+                                android:layout_marginTop="3dp"
+                                android:background="@drawable/arrow"
+                                android:textColor="@color/colorLink" />
+                            <com.infomanav.astaguru.JustifiedTextView
+                                android:layout_width="wrap_content"
+                                android:id="@+id/tv_sale_h"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/iv_user"
+                                android:visibility="visible" />
+                        </LinearLayout>
 
-                            android:layout_marginTop="10dp"/>
-                        <com.infomanav.astaguru.JustifiedTextView
+
+
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:id="@+id/tv_sale_i"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="8dp"
+                            android:visibility="visible"
+                            android:orientation="horizontal">
 
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/tv_paticipate"
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top"
+                                android:layout_marginTop="3dp"
+                                android:background="@drawable/arrow"
+                                android:textColor="@color/colorLink" />
+                            <com.infomanav.astaguru.JustifiedTextView
+                                android:layout_width="wrap_content"
+                                android:id="@+id/tv_sale_i"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/iv_user"
+                                android:visibility="visible" />
+                        </LinearLayout>
 
-                            android:layout_marginTop="10dp"/>
                         <com.infomanav.astaguru.WorkSansRegular
                             android:layout_width="match_parent"
                             android:text="Duties and Taxes"
@@ -453,34 +1623,84 @@ android:textColor="#000000"
                             android:layout_below="@+id/tv_paticipate"
                             android:textColor="#000000"
                             android:layout_marginTop="10dp"/>
-                        <com.infomanav.astaguru.JustifiedTextView
+
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:id="@+id/tv_sale_j"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/tv_paticipate"
-                            android:layout_marginTop="10dp"/>
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="8dp"
+                            android:visibility="visible"
+                            android:orientation="horizontal">
 
-                        <com.infomanav.astaguru.JustifiedTextView
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top"
+                                android:layout_marginTop="3dp"
+                                android:background="@drawable/arrow"
+                                android:textColor="@color/colorLink" />
+                            <com.infomanav.astaguru.JustifiedTextView
+                                android:layout_width="wrap_content"
+                                android:id="@+id/tv_sale_j"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/iv_user"
+                                android:visibility="visible" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:id="@+id/tv_sale_k"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="8dp"
+                            android:visibility="visible"
+                            android:orientation="horizontal">
 
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/tv_paticipate"
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top"
+                                android:layout_marginTop="3dp"
+                                android:background="@drawable/arrow"
+                                android:textColor="@color/colorLink" />
+                            <com.infomanav.astaguru.JustifiedTextView
+                                android:layout_width="wrap_content"
+                                android:id="@+id/tv_sale_k"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/iv_user"
+                                android:visibility="visible" />
+                        </LinearLayout>
 
-                            android:layout_marginTop="10dp"/>
-                        <com.infomanav.astaguru.JustifiedTextView
+
+
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:id="@+id/tv_sale_l"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="8dp"
+                            android:visibility="visible"
+                            android:orientation="horizontal">
 
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/tv_paticipate"
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top"
+                                android:layout_marginTop="3dp"
+                                android:background="@drawable/arrow"
+                                android:textColor="@color/colorLink" />
+                            <com.infomanav.astaguru.JustifiedTextView
+                                android:layout_width="wrap_content"
+                                android:id="@+id/tv_sale_l"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/iv_user"
+                                android:visibility="visible" />
+                        </LinearLayout>
 
-                            android:layout_marginTop="10dp"/>
                     </LinearLayout>
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
+                    android:id="@+id/rel_Payment"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginLeft="8dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp">
 
@@ -488,11 +1708,10 @@ android:textColor="#000000"
                         android:id="@+id/tv_payment"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
-                        android:layout_marginLeft="10dp"
                         android:gravity="right"
                         android:text="Payment"
                         android:textColor="#000000"
-                        android:textSize="17sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <ImageView
@@ -513,14 +1732,28 @@ android:textColor="#000000"
                         android:orientation="vertical"
                         android:visibility="gone">
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="8dp"
+                            android:visibility="visible"
+                            android:orientation="horizontal">
 
-                        <com.infomanav.astaguru.JustifiedTextView
-                            android:layout_width="wrap_content"
-                            android:id="@+id/tv_paymentone"
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top"
+                                android:layout_marginTop="3dp"
+                                android:background="@drawable/arrow"
+                                android:textColor="@color/colorLink" />
+                            <com.infomanav.astaguru.JustifiedTextView
+                                android:layout_width="wrap_content"
+                                android:id="@+id/tv_paymentone"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/iv_user"
+                                android:visibility="visible" />
+                        </LinearLayout>
 
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/tv_paticipate"
-                            android:layout_marginLeft="10dp"/>
 
 
                     </LinearLayout>
@@ -529,17 +1762,19 @@ android:textColor="#000000"
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:id="@+id/rel_Delivery"
                     android:layout_marginTop="10dp">
 
                     <com.infomanav.astaguru.WorkSansMedium
                         android:id="@+id/tv_pvrcccice"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
-                        android:layout_marginLeft="10dp"
                         android:gravity="right"
                         android:text="Delivery/Collection Of Purchase"
                         android:textColor="#000000"
-                        android:textSize="17sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <ImageView
@@ -560,96 +1795,150 @@ android:textColor="#000000"
                         android:orientation="vertical"
                         android:visibility="gone">
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="8dp"
+                            android:visibility="visible"
+                            android:orientation="horizontal">
 
-                        <com.infomanav.astaguru.JustifiedTextView
-                            android:layout_width="wrap_content"
-                            android:id="@+id/tv_deliv_one"
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top"
+                                android:layout_marginTop="3dp"
+                                android:background="@drawable/arrow"
+                                android:textColor="@color/colorLink" />
+                            <com.infomanav.astaguru.JustifiedTextView
+                                android:layout_width="wrap_content"
+                                android:id="@+id/tv_deliv_one"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/iv_user"
+                                android:visibility="visible" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="8dp"
+                            android:visibility="visible"
+                            android:orientation="horizontal">
 
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/tv_paticipate"
-                            android:layout_marginLeft="10dp"/>
-                        <com.infomanav.astaguru.JustifiedTextView
-                            android:layout_width="wrap_content"
-                            android:id="@+id/tv_deliv_two"
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top"
+                                android:layout_marginTop="3dp"
+                                android:background="@drawable/arrow"
+                                android:textColor="@color/colorLink" />
+                            <com.infomanav.astaguru.JustifiedTextView
+                                android:layout_width="wrap_content"
+                                android:id="@+id/tv_deliv_two"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/iv_user"
+                                android:visibility="visible" />
+                        </LinearLayout>
 
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/tv_paticipate"
-                            android:layout_marginLeft="10dp"/>
 
 
                     </LinearLayout>
                 </RelativeLayout>
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
-
-                    <com.infomanav.astaguru.WorkSansMedium
-                        android:id="@+id/tv_paticipate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="10dp"
-                        android:gravity="right"
-                        android:text="Participate In Our Next Auction"
-                        android:textColor="#000000"
-                        android:textSize="17sp"
-                        android:textStyle="bold" />
-
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-android:id="@+id/iv_participate"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentTop="true"
-                        android:background="@drawable/plus" />
-
-                    <LinearLayout
-                        android:id="@+id/lin_participate"
-                        android:layout_width="match_parent"
-                        android:layout_marginLeft="5dp"
-
-                        android:layout_height="match_parent"
-
-                        android:layout_below="@+id/tv_paticipate"
-                        android:orientation="vertical"
-                        android:visibility="gone">
-                    <WebView
-                        android:layout_width="match_parent"
-
-                        android:visibility="gone"
-
-                        android:id="@+id/wb_parti_a"
-                        android:layout_height="wrap_content"></WebView>
-                    <WebView
-                        android:layout_width="match_parent"
-
-                        android:visibility="gone"
-
-                        android:id="@+id/wb_parti_b"
-                        android:layout_height="wrap_content"></WebView>
-
-
-                    </LinearLayout>
-                    <!--<com.infomanav.astaguru.JustifiedTextView-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:id="@+id/justifyone"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_below="@+id/tv_paticipate"-->
-                        <!--android:layout_marginTop="10dp"/>-->
-
-                    <!--<com.infomanav.astaguru.JustifiedTextView-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:id="@+id/justify"-->
-
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_below="@+id/tv_paticipate"-->
-
-                        <!--android:layout_marginTop="10dp"/>-->
-                </RelativeLayout>
 
             </LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:id="@+id/rel_Participate"
+                android:layout_gravity="left"
+                android:gravity="left"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <com.infomanav.astaguru.WorkSansMedium
+                    android:id="@+id/tv_paticipate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="8dp"
+                    android:gravity="right"
+                    android:text="Participate In Our Next Auction"
+                    android:textColor="#000000"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:id="@+id/iv_participate"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="8dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:background="@drawable/plus" />
+
+                <LinearLayout
+                    android:id="@+id/lin_participate"
+                    android:layout_width="match_parent"
+                    android:layout_gravity="left"
+                    android:layout_height="match_parent"
+                    android:gravity="left"
+                    android:layout_below="@+id/tv_paticipate"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:visibility="visible"
+
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="7dp"
+                            android:layout_marginTop="7dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink" />
+                        <WebView
+                            android:layout_width="match_parent"
+                            android:gravity="top"
+                            android:layout_gravity="top"
+                            android:id="@+id/wb_parti_a"
+                            android:layout_height="wrap_content"></WebView>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:visibility="visible"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="7dp"
+                            android:layout_marginTop="7dp"
+                            android:background="@drawable/arrow"
+                            android:textColor="@color/colorLink" />
+                        <WebView
+                            android:layout_width="match_parent"
+                            android:id="@+id/wb_parti_b"
+                            android:layout_gravity="top"
+                            android:gravity="top"
+                            android:layout_height="wrap_content"></WebView>
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:background="#514f4f"/>
 
             <com.infomanav.astaguru.WorkSansMedium
                 android:layout_width="wrap_content"
@@ -665,11 +1954,14 @@ android:id="@+id/iv_participate"
 
 
             <fragment
+                android:layout_marginTop="10dp"
                 android:id="@+id/youtube_player_view"
                 android:name="com.google.android.youtube.player.YouTubePlayerSupportFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="8dp"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginBottom="20dp" />
@@ -687,6 +1979,8 @@ android:id="@+id/iv_participate"
         </LinearLayout>
 
     </ScrollView>
+
+
 
 
 </LinearLayout>

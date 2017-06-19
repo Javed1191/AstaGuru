@@ -1,7 +1,7 @@
 package adapter;
 
 import android.content.Context;
-import android.support.v7.widget.CardView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.infomanav.astaguru.MainActivity;
-import com.infomanav.astaguru.PastAuction;
 import com.infomanav.astaguru.R;
-import com.infomanav.astaguru.Upcoming_Model;
+import model_classes.Upcoming_Model;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -77,10 +76,18 @@ public class  Upcomingadpter extends BaseAdapter {
         }
 
         final Upcoming_Model apps = AppsList.get(position);
-        grid.tv_auction.setText(apps.getStr_auction());
+        grid.tv_auction.setText(Html.fromHtml(apps.getStr_auction()));
         grid.tv_date.setText(apps.getStr_date());
-        Picasso.with(mContext).load(Application_Constants.PAST_AUCTION_IMAGE_PATH + "images/auction/18.jpg")
-                .into(grid.imageView);
+
+
+        String strPastImage = Application_Constants.PAST_AUCTION_IMAGE_PATH + apps.getImage();
+
+        if(!strPastImage.equals("null"))
+        {
+            strPastImage =  strPastImage.replaceAll(" ","%20");
+            Picasso.with(mContext).load(strPastImage)
+                    .into(grid.imageView);
+        }
         return convertView;
     }
 //    @Override

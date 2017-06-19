@@ -48,17 +48,17 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/rel_general"
                 android:layout_marginTop="20dp">
 
                 <com.infomanav.astaguru.WorkSansMedium
-                    android:id="@+id/tv_axuction"
+                    android:id="@+id/tv_general"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
                     android:layout_marginLeft="10dp"
                     android:text="General Terms"
                     android:textColor="#000000"
-                    android:textSize="17sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -79,6 +79,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="5dp"
                 android:visibility="gone">
 
 
@@ -87,12 +89,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="10dp"
+                    android:layout_marginLeft="5dp"
                     android:paddingRight="10dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
+
                     android:orientation="horizontal"
                     android:paddingLeft="5dp"
                     android:paddingRight="10dp">
@@ -102,11 +106,17 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/arrow"
+                        android:layout_gravity="top"
+                        android:layout_marginTop="3dp"
+                        android:gravity="top"
                         android:textColor="@color/colorLink" />
 
 
                     <com.infomanav.astaguru.JustifiedTextView
                         android:id="@+id/tv_gen_a"
+                        android:gravity="top"
+                        android:layout_gravity="top"
+                        android:layout_marginLeft="5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                        />
@@ -125,6 +135,9 @@
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_marginTop="3dp"
+                        android:gravity="top"
                         android:background="@drawable/arrow"
                         android:textColor="@color/colorLink" />
 
@@ -149,6 +162,9 @@
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_marginTop="3dp"
+                        android:gravity="top"
                         android:background="@drawable/arrow"
                         android:textColor="@color/colorLink" />
 
@@ -173,6 +189,9 @@
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_marginTop="3dp"
+                        android:gravity="top"
                         android:background="@drawable/arrow"
                         android:textColor="@color/colorLink" />
 
@@ -196,6 +215,9 @@
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_marginTop="3dp"
+                        android:gravity="top"
                         android:background="@drawable/arrow"
                         android:textColor="@color/colorLink" />
 
@@ -221,6 +243,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/arrow"
+                        android:layout_gravity="top"
+                        android:layout_marginTop="3dp"
+                        android:gravity="top"
                         android:textColor="@color/colorLink" />
 
 
@@ -245,6 +270,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/arrow"
+                        android:layout_gravity="top"
+                        android:layout_marginTop="3dp"
+                        android:gravity="top"
                         android:textColor="@color/colorLink" />
 
 
@@ -269,6 +297,9 @@
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_marginTop="3dp"
+                        android:gravity="top"
                         android:background="@drawable/arrow"
                         android:textColor="@color/colorLink" />
 
@@ -292,6 +323,9 @@
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_marginTop="3dp"
+                        android:gravity="top"
                         android:background="@drawable/arrow"
                         android:textColor="@color/colorLink" />
 
@@ -300,7 +334,6 @@
                         android:id="@+id/tv_gen_i"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="7dp"
 
                         />
                 </LinearLayout>
@@ -318,6 +351,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/arrow"
+                        android:layout_gravity="top"
+                        android:layout_marginTop="3dp"
+                        android:gravity="top"
                         android:textColor="@color/colorLink" />
 
 
@@ -325,7 +361,6 @@
                         android:id="@+id/tv_gen_j"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="7dp"
 
                         />
                 </LinearLayout>
@@ -344,6 +379,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/arrow"
+                        android:layout_gravity="top"
+                        android:layout_marginTop="3dp"
+                        android:gravity="top"
                         android:textColor="@color/colorLink" />
 
 
@@ -351,7 +389,7 @@
                         android:id="@+id/tv_gen_k"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="7dp" />
+                        />
                 </LinearLayout>
 
                 <LinearLayout
@@ -367,6 +405,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/arrow"
+                        android:layout_gravity="top"
+                        android:layout_marginTop="3dp"
+                        android:gravity="top"
                         android:textColor="@color/colorLink" />
 
 
@@ -374,7 +415,6 @@
                         android:id="@+id/tv_gen_l"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="7dp"
 
                         />
                 </LinearLayout>
@@ -391,6 +431,9 @@
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_marginTop="3dp"
+                        android:gravity="top"
                         android:background="@drawable/arrow"
                         android:textColor="@color/colorLink" />
 
@@ -399,7 +442,7 @@
                         android:id="@+id/tv_gen_m"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="7dp" />
+                      />
 
                 </LinearLayout>
 
@@ -415,6 +458,9 @@
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_marginTop="3dp"
+                        android:gravity="top"
                         android:background="@drawable/arrow"
                         android:textColor="@color/colorLink" />
 
@@ -423,7 +469,7 @@
                         android:id="@+id/tv_gen_n"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="7dp" />
+                         />
 
 
                 </LinearLayout>
@@ -433,6 +479,7 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/rel_Authenticate"
                 android:layout_marginTop="20dp">
 
                 <ImageView
@@ -446,12 +493,12 @@
                     android:background="@drawable/plus" />
 
                 <com.infomanav.astaguru.WorkSansMedium
-                    android:id="@+id/tv_adxuction"
+                    android:id="@+id/tv_Authenticate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Authenticity Guarantee"
                     android:textColor="#000000"
-                    android:textSize="17sp"
+                    android:textSize="15sp"
                     android:layout_marginLeft="10dp"
                     android:textStyle="bold"
                     android:layout_alignParentTop="true"
@@ -473,6 +520,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
                     android:paddingLeft="5dp"
                     android:paddingRight="10dp">
 
@@ -480,6 +528,9 @@
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_marginTop="3dp"
+                        android:gravity="top"
                         android:background="@drawable/arrow"
                         android:textColor="@color/colorLink" />
 
@@ -505,6 +556,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/arrow"
+                        android:layout_gravity="top"
+                        android:layout_marginTop="3dp"
+                        android:gravity="top"
                         android:textColor="@color/colorLink" />
 
 
@@ -539,6 +593,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/arrow"
+                        android:layout_gravity="top"
+                        android:layout_marginTop="3dp"
+                        android:gravity="top"
                         android:textColor="@color/colorLink" />
 
 
@@ -562,6 +619,9 @@
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_marginTop="3dp"
+                        android:gravity="top"
                         android:background="@drawable/arrow"
                         android:textColor="@color/colorLink" />
 
@@ -587,6 +647,9 @@
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_marginTop="3dp"
+                        android:gravity="top"
                         android:background="@drawable/arrow"
                         android:textColor="@color/colorLink" />
 
@@ -612,6 +675,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/arrow"
+                        android:layout_gravity="top"
+                        android:layout_marginTop="3dp"
+                        android:gravity="top"
                         android:textColor="@color/colorLink" />
 
 
@@ -629,16 +695,17 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/rel_Extent"
                 android:layout_marginTop="20dp">
 
                 <com.infomanav.astaguru.WorkSansMedium
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
                     android:layout_marginLeft="10dp"
+                    android:id="@+id/tv_extent"
                     android:text="Extent of AstaGuru's Liability"
                     android:textColor="#000000"
-                    android:textSize="17sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -664,7 +731,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
+                    android:layout_marginTop="10dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:paddingLeft="5dp"
@@ -674,6 +741,9 @@
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_marginTop="3dp"
+                        android:gravity="top"
                         android:background="@drawable/arrow"
                         android:textColor="@color/colorLink" />
 
@@ -700,6 +770,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/arrow"
+                        android:layout_gravity="top"
+                        android:layout_marginTop="3dp"
+                        android:gravity="top"
                         android:textColor="@color/colorLink" />
 
 
@@ -724,6 +797,9 @@
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_marginTop="3dp"
+                        android:gravity="top"
                         android:background="@drawable/arrow"
                         android:textColor="@color/colorLink" />
 
@@ -749,6 +825,9 @@
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_marginTop="3dp"
+                        android:gravity="top"
                         android:background="@drawable/arrow"
                         android:textColor="@color/colorLink" />
 
@@ -774,6 +853,9 @@
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_marginTop="3dp"
+                        android:gravity="top"
                         android:background="@drawable/arrow"
                         android:textColor="@color/colorLink" />
 
@@ -798,6 +880,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/arrow"
+                        android:layout_gravity="top"
+                        android:layout_marginTop="3dp"
+                        android:gravity="top"
                         android:textColor="@color/colorLink" />
 
 
@@ -814,16 +899,18 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/rel_Law"
                 android:layout_marginTop="20dp">
 
                 <com.infomanav.astaguru.WorkSansMedium
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
+                    android:id="@+id/tv_lawtext"
                     android:layout_marginLeft="10dp"
                     android:text="Law and Jurisdiction"
                     android:textColor="#000000"
-                    android:textSize="17sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -854,7 +941,15 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp">
 
+                    <ImageView
 
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/arrow"
+                        android:layout_gravity="top"
+                        android:layout_marginTop="3dp"
+                        android:gravity="top"
+                        android:textColor="@color/colorLink" />
                     <com.infomanav.astaguru.JustifiedTextView
                         android:id="@+id/tv_law"
                         android:layout_width="wrap_content"

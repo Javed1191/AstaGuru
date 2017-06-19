@@ -7,8 +7,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="12dp"
-        android:layout_marginLeft="5dp"
+
         android:layout_toRightOf="@+id/iv_main_img"
         android:orientation="horizontal">
 
@@ -17,49 +16,45 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:id="@+id/tv_nick_name"
-            android:layout_gravity="left"
-            android:gravity="left"
-            android:layout_marginLeft="15dp"
-            android:textSize="12sp"
-            android:layout_width="10dp"
-           />
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="10sp"
+            android:layout_width="0dp"
+            />
 
         <com.infomanav.astaguru.WorkSansRegular
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_gravity="left"
-            android:textSize="12sp"
-            android:gravity="left"
-            android:layout_marginLeft="27dp"
+            android:layout_width="0dp"
+            android:textSize="10sp"
+            android:layout_gravity="center"
+            android:gravity="center"
 
             android:id="@+id/tv_amount_d"
             android:layout_weight="1"
             android:text="Amount($)"
-          />
+            />
         <com.infomanav.astaguru.WorkSansRegular
             android:text="Amount(R)"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:id="@+id/tv_amount_r"
-            android:layout_gravity="left"
-            android:gravity="left"
-            android:layout_marginLeft="10dp"
-            android:textSize="12sp"
-            android:layout_width="wrap_content"
-           />
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="10sp"
+            android:layout_width="0dp"
+            />
 
         <com.infomanav.astaguru.WorkSansRegular
             android:layout_height="wrap_content"
-            android:layout_width="15dp"
+            android:layout_width="0dp"
             android:id="@+id/tv_datetime"
 
-            android:layout_gravity="left"
-            android:textSize="12sp"
-            android:layout_marginRight="10dp"
-            android:gravity="left"
+            android:textSize="10sp"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:layout_weight="1"
             android:text="Date Time"
-             />
+            />
     </LinearLayout>
     <View
         android:layout_width="match_parent"

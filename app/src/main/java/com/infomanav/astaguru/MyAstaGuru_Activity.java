@@ -14,6 +14,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import butterknife.ButterKnife;
@@ -35,6 +36,7 @@ public class MyAstaGuru_Activity extends AppCompatActivity
     private TextView tv_purchaes,tv_gallary,tv_my_profile;
     SessionData data;
     Context context;
+    private RelativeLayout lay_notification,lay_my_purchase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -134,15 +136,30 @@ public class MyAstaGuru_Activity extends AppCompatActivity
 
             }
         });
-        tv_purchaes.setOnClickListener(new View.OnClickListener()
-        {
+//        tv_purchaes.setOnClickListener(new View.OnClickListener()
+//        {
+//            @Override
+//            public void onClick(View v)
+//            {
+//
+//                Intent intent = new Intent(MyAstaGuru_Activity.this,My_Purchases_Activity.class);
+//                startActivity(intent);
+//
+//            }
+//        });
+
+        lay_notification.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-
-                Intent intent = new Intent(MyAstaGuru_Activity.this,My_Purchases_Activity.class);
+            public void onClick(View v) {
+                Intent intent = new Intent(MyAstaGuru_Activity.this,NotificationActivity.class);
                 startActivity(intent);
-
+            }
+        });
+        lay_my_purchase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MyAstaGuru_Activity.this,MyPurchasesActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -180,9 +197,11 @@ public class MyAstaGuru_Activity extends AppCompatActivity
     {
         utility = new Utility(getApplicationContext());
         btn_signout = (Button) findViewById(R.id.btn_signout);
-        tv_purchaes = (TextView) findViewById(R.id.tv_purchaes);
+//        tv_purchaes = (TextView) findViewById(R.id.tv_purchaes);
         tv_gallary = (TextView) findViewById(R.id.tv_gallary);
         tv_my_profile = (TextView) findViewById(R.id.tv_my_profile);
+        lay_notification = (RelativeLayout) findViewById(R.id.lay_notification);
+        lay_my_purchase  = (RelativeLayout) findViewById(R.id.lay_my_purchase);
 
 
     }

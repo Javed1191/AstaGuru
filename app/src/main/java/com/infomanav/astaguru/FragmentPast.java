@@ -24,6 +24,7 @@ import android.view.animation.LayoutAnimationController;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +36,7 @@ import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -63,7 +65,7 @@ public class FragmentPast extends Fragment
 	int[] myImageList = new int[]{R.drawable.img_past_1, R.drawable.img_past_2,R.drawable.img_past_3,R.drawable.img_past_4,R.drawable.img_past_5,
 			R.drawable.img_past_6};
 
-	private String strPastAuctionUrl = Application_Constants.Main_URL+"AuctionList?api_key=c6935db431c0609280823dc52e092388a9a35c5f8793412ff89519e967fd27ed&filter=status=past";
+	private String strPastAuctionUrl = Application_Constants.Main_URL+"getAuctionList?api_key="+ Application_Constants.API_KEY+"&filter=status=Past";
 	MainActivity mainActivity;
 	private Utility utility;
 	private GridView gridview;
@@ -72,11 +74,12 @@ public class FragmentPast extends Fragment
 	private SwipeMenuListView mListView;
 	private ImageView iv_grid, iv_list;
 	private boolean list_visibile = false;
-
 	PastAuctionListviewAdpter listViewAdapter;
-
 	PastAuctionAdapter pastAuctionAdapter;
 	Context context;
+	private String Auctionname="";
+	private LinearLayout lay_currency;
+	private TextView tv_rs_type,tv_no_data_found;
 	public FragmentPast()
 	{
 	}
@@ -98,11 +101,14 @@ public class FragmentPast extends Fragment
 
 
 		gridview = (GridView) view.findViewById(R.id.gridviewpast);
+		tv_no_data_found = (TextView) view.findViewById(R.id.tv_no_data_found);
 
 
 		mListView = (SwipeMenuListView) view.findViewById(R.id.listviewupcomingpast);
 		iv_grid = (ImageView) view.findViewById(R.id.iv_grid);
 		iv_list = (ImageView) view.findViewById(R.id.iv_list);
+		lay_currency = (LinearLayout) view.findViewById(R.id.lay_currency);
+		tv_rs_type  = (TextView) view.findViewById(R.id.tv_rs_type);
 
 
 		iv_list.setOnClickListener(new View.OnClickListener() {
@@ -131,11 +137,11 @@ public class FragmentPast extends Fragment
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				TextView tv =(TextView) parent.findViewById(R.id.grid_text);
-				String name = appsList.get(position).getAuctionname();
-				String str_id = appsList.get(position).getAuctionId();
+				String str_auction_name = appsList.get(position).getAuctionname();
+				String str_auction_id = appsList.get(position).getAuctionId();
 				Intent intent = new Intent(getContext(),Past_Auction_SubActivity.class);
-				intent.putExtra("str_auction",name);
-				intent.putExtra("str_id",str_id);
+				intent.putExtra("str_auction",str_auction_name);
+				intent.putExtra("str_id",str_auction_id);
 				intent.putExtra("auction","past");
 				startActivity(intent);
 
@@ -150,6 +156,7 @@ public class FragmentPast extends Fragment
 				Intent intent = new Intent(getContext(),Past_Auction_SubActivity.class);
 				intent.putExtra("str_auction",name);
 				intent.putExtra("str_id",str_id);
+				intent.putExtra("auction","past");
 				startActivity(intent);
 
 			}
@@ -162,7 +169,61 @@ public class FragmentPast extends Fragment
 
 		}
 */
-		getPastAuction();
+
+		lay_currency.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+
+				if (tv_rs_type.getText().toString().equals("INR"))
+				{
+					tv_rs_type.setText("USD");
+				}
+				else if (tv_rs_type.getText().toString().equals("USD"))
+				{
+					tv_rs_type.setText("INR");
+				}
+
+				try
+				{
+					if(pastAuctionAdapter!=null)
+					{
+
+						if (tv_rs_type.getText().toString().equals("USD"))
+						{
+							pastAuctionAdapter.changeCurrency(true);
+							//activity_changeCurrency();
+						}
+						else if (tv_rs_type.getText().toString().equals("INR"))
+						{
+							pastAuctionAdapter.changeCurrency(false);
+							//activity_changeCurrency();
+						}
+
+
+					}
+					/*if(listViewAdapter!=null)
+					{
+						if (tv_rs_type.getText().toString().equals("USD"))
+						{
+							listViewAdapter.changeCurrency(true);
+						}
+						else if (tv_rs_type.getText().toString().equals("INR"))
+						{
+							listViewAdapter.changeCurrency(false);
+						}
+
+					}*/
+
+
+				}
+				catch (Exception e)
+				{
+					e.printStackTrace();
+				}
+			}
+		});
+
+		getPastAuction(strPastAuctionUrl);
 
 
 		return view;
@@ -176,7 +237,7 @@ public class FragmentPast extends Fragment
 
 		return super.onOptionsItemSelected(item);
 	}
-	private void getPastAuction()
+	private void getPastAuction(String strPastAuctionUrl)
 	{
 
 		if(utility.checkInternet())
@@ -196,7 +257,7 @@ public class FragmentPast extends Fragment
 					//Toast.makeText(MainActivity.this, "Json responce"+result, Toast.LENGTH_SHORT).show();
 					String str_json = result;
 					String str_status, str_msg;
-					String  AuctionId,Auctionname,Date,	DollarRate,image,auctiondate,auctiontitle,totalSaleValueRs,totalSaleValueUs;
+					String  AuctionId,Date,	DollarRate,image,auctiondate,auctiontitle,totalSaleValueRs,totalSaleValueUs;
 					appsList = new ArrayList<>();
 					try {
 						if (str_json != null)
@@ -209,25 +270,41 @@ public class FragmentPast extends Fragment
 								JSONArray jsonArray = new JSONArray();
 								jsonArray = jobject.getJSONArray("resource");
 
-								for(int i=0; i<jsonArray.length();i++)
+								if(jsonArray.length()>0)
 								{
-									JSONObject Obj = jsonArray.getJSONObject(i);
+									tv_no_data_found.setVisibility(View.GONE);
+									gridview.setVisibility(View.VISIBLE);
 
-									AuctionId = Obj.getString("AuctionId");
-									Auctionname = Obj.getString("Auctionname");
-									Date = Obj.getString("Date");
-									DollarRate = Obj.getString("DollarRate");
-									image = Obj.getString("image");
-									auctiondate = Obj.getString("auctiondate");
-									auctiontitle = Obj.getString("auctiontitle");
-									totalSaleValueRs= Obj.getString("totalSaleValueRs");
-											totalSaleValueUs= Obj.getString("totalSaleValueUs");
-									PastAuction country = new PastAuction( AuctionId,  auctiontitle,  auctiondate,  image,  DollarRate,  Date,  Auctionname,totalSaleValueRs,totalSaleValueUs,true);
-									appsList.add(country);
+									for(int i=0; i<jsonArray.length();i++)
+									{
+										JSONObject Obj = jsonArray.getJSONObject(i);
 
+										AuctionId = Obj.getString("AuctionId");
+										Auctionname = Obj.getString("Auctionname");
+										Date = Obj.getString("Date");
+										DollarRate = Obj.getString("DollarRate");
+										image = Obj.getString("image");
+										auctiondate = Obj.getString("auctiondate");
+										auctiontitle = Obj.getString("auctiontitle");
+										totalSaleValueRs= Obj.getString("totalSaleValueRs");
+										totalSaleValueUs= Obj.getString("totalSaleValueUs");
+
+										PastAuction country = new PastAuction( AuctionId,  auctiontitle,  auctiondate,  image,  DollarRate,  Date,  Auctionname,totalSaleValueRs,totalSaleValueUs,true);
+										appsList.add(country);
+
+									}
+
+									setAdapters();
+								}
+								else
+								{
+									tv_no_data_found.setVisibility(View.VISIBLE);
+									gridview.setVisibility(View.GONE);
 								}
 
-								setAdapters();
+
+
+
                                /* ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this,android.R.layout.simple_list_item_1,list_name);
                                 mAutoCompleteTextView.setAdapter(adapter);*/
 

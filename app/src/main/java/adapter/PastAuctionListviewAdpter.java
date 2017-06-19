@@ -1,8 +1,8 @@
 package adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.CardView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,16 +10,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.infomanav.astaguru.Current_Auction_Model;
-import com.infomanav.astaguru.Lot_Detail_Page;
 import com.infomanav.astaguru.MainActivity;
 import com.infomanav.astaguru.PastAuction;
 import com.infomanav.astaguru.R;
 import com.squareup.picasso.Picasso;
 
-import java.text.NumberFormat;
 import java.util.List;
-import java.util.Locale;
 
 import services.Application_Constants;
 
@@ -89,8 +85,8 @@ public class PastAuctionListviewAdpter extends ArrayAdapter<PastAuction> {
 
         // textView.setText(apps.getAppTitle());
 
-        tv_title.setText(cp.getAuctionname());
-        grid_title.setText(cp.getAuctiontitle());
+        tv_title.setText(Html.fromHtml(cp.getAuctionname()));
+        grid_title.setText(Html.fromHtml(cp.getAuctiontitle()));
 
 //        tv_current_bid.setText(cp.getPricers());
 //

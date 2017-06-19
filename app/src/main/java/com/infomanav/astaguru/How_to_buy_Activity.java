@@ -19,6 +19,7 @@ import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,13 +50,24 @@ public class How_to_buy_Activity extends AppCompatActivity implements YouTubePla
     private Button btn_why_astaguru,btn_vacancies;
     private ScrollView sc_vacncies,sc_why_asta;
     private TextView tv_bidding;
+    RelativeLayout rel_Estimates,rel_Buyers,rel_Bidding,rel_Aftersale,rel_Payment,rel_Reserves,rel_Delivery,rel_Participate;
     ImageView iv_estimate,iv_resrvation,iv_RESERVES,iv_byprimium,iv_participate,iv_payment,iv_bidding,iv_delicery,iv_after_sale;
     WebView wb_buy_reurvation;
     LinearLayout lin_estimate,lin_reserve,lin_byprimium,lin_participate,lin_payment,lin_delivery,lin_aftersale;
-    WebView wb_bidding,wb_parti_a,wb_parti_b;
+    WebView wb_parti_a,wb_parti_b;
+    LinearLayout wb_bidding;
     JustifiedTextView tv_estimate_one,tv_estimate_two,tv_estimate_three,tv_estimate_four;
-    JustifiedTextView tv_reserve_one,tv_reserve_two,tv_buy_one,tv_buy_two,tv_paymentone,tv_deliv_two,tv_deliv_one;
+    JustifiedTextView tv_reserve_one,tv_reserve_two,tv_buy_one,tv_buy_two,tv_paymentone,tv_deliv_two,tv_deliv_one,tv_estimccate_one;
     JustifiedTextView tv_sale_a,tv_sale_b,tv_sale_c,tv_sale_d,tv_sale_e,tv_sale_f,tv_sale_g,tv_sale_h,tv_sale_i,tv_sale_j,tv_sale_k,tv_sale_l;
+
+   JustifiedTextView tv_pre_a,tv_pre_b,tv_pre_c,tv_pre_d,tv_pre_e,tv_pre_f,tv_pre_g,tv_pre_h;
+    JustifiedTextView tv_Absentee_a,tv_Absentee_b;
+    JustifiedTextView tv_Proxy_a,tv_Proxy_b,tv_Proxy_c,tv_Proxy_d,tv_Proxy_e,tv_Proxy_f;
+
+    JustifiedTextView tv_ob_a,tv_ob_b,tv_ob_c;
+    JustifiedTextView tv_bonline_a,tv_bonline_b,tv_bonline_c,tv_bonline_d;
+    JustifiedTextView tv_bidincre_a,tv_pbn_a,tv_pbn_b,tv_bh_a,tv_bh_b,tv_cb_a,tv_cb_b,tv_cw_a,tv_cw_b,tv_cw_c,tv_cw_d,tv_bc_a,tv_bp_a,tv_bp_b;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -159,6 +171,51 @@ public class How_to_buy_Activity extends AppCompatActivity implements YouTubePla
                 tv_sale_l.setText("There shall be no VAT and Service tax in International sales.");
 
 
+        tv_pre_a.setText("Prospective buyers should be registered and verified in order to bid.");
+                tv_pre_b.setText("If you have already registered before, you will still need to pre-register and accept the terms and conditions for the sale. (Use your previous login Id).");
+                tv_pre_c.setText("Fill the form online in order to pre-register, or call AstaGuru.");
+                tv_pre_d.setText("Once you have pre-registered a representative will call you to verify your details.");
+                tv_pre_e.setText("If the representative cannot reach you an email will be sent.");
+                tv_pre_f.setText("Please note that if this process has not taken place you shall not be given bidding access.");
+                tv_pre_g.setText("All bidding access shall be provided 24 hours before the auction.");
+                tv_pre_h.setText("Once your application has been accepted you shall receive an email confirming your bidding access along with your login Id and password.");
+
+
+        tv_Absentee_a.setText("You may place an absentee bid, by faxing the written bid form available online and in the printed catalogue.");
+        tv_Absentee_b.setText("All bids must come in 24 hours before the auction.");
+
+        tv_Proxy_a.setText("Proxy bids shall be placed on the website once the auction catalogue goes live and will be available until the end of the auction.");
+                tv_Proxy_b.setText("Once you have identified the lot that you would like to bid on, click on \"Proxy bid\" and enter desired amount(10% more than the previous bid) and confirm your bid at the value submitted.");
+                tv_Proxy_c.setText("In case of the \"No Reserve\" auction all proxy bid values start at Rs 20,000.");
+                tv_Proxy_d.setText("Proxy bid placed on a lot before an auction cannot be resubmitted online. Users can update such proxy bids by submitting a duly signed written bid form provided on the website.");
+                tv_Proxy_e.setText("In case a user is outbid on their proxy, they will be intimated of the same and can update the proxy online if they wish to so.");
+                tv_Proxy_f.setText("Astaguru reserves the right to reject any proxy bid at its discretion without having to provide any explaination.");
+
+        tv_ob_a.setText("Opening Bid is the value at which the auction house starts the bidding of each lot.");
+                tv_ob_b.setText("Opening bid is 20% lower than value of the lower estimate.");
+                tv_ob_c.setText("In case of the \"No Reserve\" auction all bids start at Rs 20,000.");
+
+
+        tv_bonline_a.setText("Once you have identified the lot that you would like to bid on, click on \"Bid Now\" confirm your bid at the value listed");
+                tv_bonline_b.setText("This is where you participate in the bidding process, by entering the next valid bid each time you are out-bid.");
+                tv_bonline_c.setText("All bids will have an increment of 10% of the current valid bid, once the bid value exceeds the 1 cr mark the increment will be that of 5%.");
+                tv_bonline_d.setText("All lots bid history will be made available to be viewed.");
+
+
+        tv_bidincre_a.setText("All bids will have an increment of 10% of the current valid bid, once the bid value exceeds the 1 cr mark the increment will be that of 5%.");
+                tv_pbn_a.setText("In case you're outbid on a particular lot you will be notified of the same on your registered email and mobile number.");
+                tv_pbn_b.setText("In case you've won a particular lot in an auction you will be notified of the same on your registered email and mobile number.");
+                tv_bh_a.setText("Bid history indicates the value recorded for each lot since the start of the auction");
+                tv_bh_b.setText("Bid History will not be displayed once the auction has closed.");
+                tv_cb_a.setText("Bids can be placed in US Dollars (USD) or Indian Rupees (INR).");
+                tv_cb_b.setText("Buyers in India must pay for their purchase in INR and all other buyers must pay in USD");
+                tv_cw_a.setText("Winning bid is the last and highest bid at which the lot has closed.");
+                tv_cw_b.setText("No new bids cannot be placed after the close of a lot.");
+                tv_cw_c.setText("The closing bid is considered the winning bid only if the bid exceeds the reserve price.");
+                tv_cw_d.setText("All winning bids shall be posted on the website after the close of the auction.");
+                tv_bc_a.setText("Once any bid and/or proxy bid has been placed, it cannot be cancelled. AstaGuru reserves the rights to cancel any bids in order to protect the efficacy of the bidding process.");
+                tv_bp_a.setText("In addition to the hammer price, the buyer agrees to pay to us the buyers premium calculated at 15% of the winning bid value on each lot.");
+                tv_bp_b.setText("Service tax on the buyers premium shall be applicable for paintings purchased within India.");
 
 //        tv_bidding.setText(Html.fromHtml(getString(R.string.html)));
 
@@ -166,13 +223,14 @@ public class How_to_buy_Activity extends AppCompatActivity implements YouTubePla
         String htmlAsString = getString(R.string.html);
 //        wb_bidding.loadDataWithBaseURL(null, htmlAsString, "text/html", "utf-8", null);
 
-        wb_bidding.loadUrl("file:///android_asset/bidding.html");
-        wb_parti_a.setVisibility(View.VISIBLE);
-        wb_parti_b.setVisibility(View.VISIBLE);
+//        wb_bidding.loadUrl("file:///android_asset/bidding.html");
+       /* wb_parti_a.setVisibility(View.VISIBLE);
+        wb_parti_b.setVisibility(View.VISIBLE);*/
         wb_parti_a.loadUrl("file:///android_asset/wb_partic_a.html");
 
         wb_parti_b.loadUrl("file:///android_asset/wb_partic_b.html");
-        iv_estimate.setOnClickListener(new View.OnClickListener() {
+
+        rel_Estimates.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -201,7 +259,7 @@ public class How_to_buy_Activity extends AppCompatActivity implements YouTubePla
             }
         });
 
-        iv_RESERVES.setOnClickListener(new View.OnClickListener() {
+        rel_Reserves.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -229,7 +287,7 @@ public class How_to_buy_Activity extends AppCompatActivity implements YouTubePla
             }
         });
 
-        iv_byprimium.setOnClickListener(new View.OnClickListener() {
+        rel_Buyers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -259,14 +317,17 @@ public class How_to_buy_Activity extends AppCompatActivity implements YouTubePla
             }
         });
 
-        iv_participate.setOnClickListener(new View.OnClickListener() {
+            rel_Participate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if (lin_participate.getVisibility() == View.VISIBLE) {
+                if (lin_participate.getVisibility() == View.VISIBLE)
+                {
                     lin_participate.setVisibility(View.GONE);
                     iv_participate.setBackgroundResource(R.drawable.plus);
-                } else {
+                }
+                else
+                    {
                     lin_estimate.setVisibility(View.GONE);
                     lin_reserve.setVisibility(View.GONE);
                     lin_byprimium.setVisibility(View.GONE);
@@ -291,7 +352,7 @@ public class How_to_buy_Activity extends AppCompatActivity implements YouTubePla
             }
         });
 
-        iv_bidding.setOnClickListener(new View.OnClickListener() {
+            rel_Bidding.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -324,7 +385,7 @@ public class How_to_buy_Activity extends AppCompatActivity implements YouTubePla
         });
 
 
-        iv_payment.setOnClickListener(new View.OnClickListener() {
+            rel_Payment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -356,7 +417,7 @@ public class How_to_buy_Activity extends AppCompatActivity implements YouTubePla
             }
         });
 
-        iv_delicery.setOnClickListener(new View.OnClickListener() {
+        rel_Delivery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -389,7 +450,7 @@ public class How_to_buy_Activity extends AppCompatActivity implements YouTubePla
             }
         });
 
-        iv_after_sale.setOnClickListener(new View.OnClickListener() {
+        rel_Aftersale.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -516,11 +577,66 @@ public class How_to_buy_Activity extends AppCompatActivity implements YouTubePla
         tv_sale_k= (JustifiedTextView) findViewById(R.id.tv_sale_k);
         tv_sale_l= (JustifiedTextView) findViewById(R.id.tv_sale_l);
 
-
-        wb_bidding = (WebView)findViewById(R.id.wb_bidding) ;
+        wb_bidding = (LinearLayout)findViewById(R.id.wb_bidding) ;
 
         wb_parti_a= (WebView)findViewById(R.id.wb_parti_a) ;
         wb_parti_b= (WebView)findViewById(R.id.wb_parti_b) ;
+
+        rel_Estimates= (RelativeLayout) findViewById(R.id.rel_Estimates);
+        rel_Reserves= (RelativeLayout) findViewById(R.id.rel_Reserves);
+                rel_Buyers= (RelativeLayout) findViewById(R.id.rel_Buyers);
+                rel_Bidding= (RelativeLayout) findViewById(R.id.rel_Bidding);
+                rel_Aftersale= (RelativeLayout) findViewById(R.id.rel_Aftersale);
+                rel_Payment= (RelativeLayout) findViewById(R.id.rel_Payment);
+                rel_Delivery= (RelativeLayout) findViewById(R.id.rel_Delivery);
+        rel_Participate= (RelativeLayout) findViewById(R.id.rel_Participate);
+
+
+        tv_pre_a= (JustifiedTextView) findViewById(R.id.tv_pre_a);
+                tv_pre_b= (JustifiedTextView) findViewById(R.id.tv_pre_b);
+                tv_pre_c= (JustifiedTextView) findViewById(R.id.tv_pre_c);
+                tv_pre_d= (JustifiedTextView) findViewById(R.id.tv_pre_d);
+                tv_pre_e= (JustifiedTextView) findViewById(R.id.tv_pre_e);
+                tv_pre_f= (JustifiedTextView) findViewById(R.id.tv_pre_f);
+                tv_pre_g= (JustifiedTextView) findViewById(R.id.tv_pre_g);
+                tv_pre_h= (JustifiedTextView) findViewById(R.id.tv_pre_h);
+
+
+        tv_Absentee_a= (JustifiedTextView) findViewById(R.id.tv_Absentee_a);
+        tv_Absentee_b= (JustifiedTextView) findViewById(R.id.tv_Absentee_b);
+
+        tv_Proxy_a= (JustifiedTextView) findViewById(R.id.tv_Proxy_a);
+                tv_Proxy_b= (JustifiedTextView) findViewById(R.id.tv_Proxy_b);
+                tv_Proxy_c= (JustifiedTextView) findViewById(R.id.tv_Proxy_c);
+                tv_Proxy_d= (JustifiedTextView) findViewById(R.id.tv_Proxy_d);
+                tv_Proxy_e= (JustifiedTextView) findViewById(R.id.tv_Proxy_e);
+                tv_Proxy_f= (JustifiedTextView) findViewById(R.id.tv_Proxy_f);
+
+        tv_ob_a= (JustifiedTextView) findViewById(R.id.tv_ob_a);
+                tv_ob_b= (JustifiedTextView) findViewById(R.id.tv_ob_b);
+                tv_ob_c= (JustifiedTextView) findViewById(R.id.tv_ob_c);
+
+        tv_bonline_a= (JustifiedTextView) findViewById(R.id.tv_bonline_a);
+                tv_bonline_b= (JustifiedTextView) findViewById(R.id.tv_bonline_b);
+                tv_bonline_c= (JustifiedTextView) findViewById(R.id.tv_bonline_c);
+                tv_bonline_d= (JustifiedTextView) findViewById(R.id.tv_bonline_d);
+
+
+        tv_bidincre_a= (JustifiedTextView) findViewById(R.id.tv_bidincre_a);
+                tv_pbn_a= (JustifiedTextView) findViewById(R.id.tv_pbn_a);
+                tv_pbn_b= (JustifiedTextView) findViewById(R.id.tv_pbn_b);
+                tv_bh_a= (JustifiedTextView) findViewById(R.id.tv_bh_a);
+                tv_bh_b= (JustifiedTextView) findViewById(R.id.tv_bh_b);
+                tv_cb_a= (JustifiedTextView) findViewById(R.id.tv_cb_a);
+                tv_cb_b= (JustifiedTextView) findViewById(R.id.tv_cb_b);
+                tv_cw_a= (JustifiedTextView) findViewById(R.id.tv_cw_a);
+                tv_cw_b= (JustifiedTextView) findViewById(R.id.tv_cw_b);
+                tv_cw_c= (JustifiedTextView) findViewById(R.id.tv_cw_c);
+                tv_cw_d= (JustifiedTextView) findViewById(R.id.tv_cw_d);
+                tv_bc_a= (JustifiedTextView) findViewById(R.id.tv_bc_a);
+                tv_bp_a= (JustifiedTextView) findViewById(R.id.tv_bp_a);
+                tv_bp_b= (JustifiedTextView) findViewById(R.id.tv_bp_b);
+
     }
 
 

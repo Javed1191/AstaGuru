@@ -5,6 +5,9 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Cache;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -13,6 +16,10 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.kaopiz.kprogresshud.KProgressHUD;
 
+import org.apache.http.Header;
+
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -43,6 +50,8 @@ public class ServiceHandler
 
         final  Map<String,String> params = paramets;
 
+    // Cached response doesn't exists. Make network call here
+
         StringRequest stringRequest = new StringRequest(Request.Method.GET, web_url,
                 new Response.Listener<String>()
                 {
@@ -63,9 +72,9 @@ public class ServiceHandler
                     public void onErrorResponse(VolleyError error)
                     {
                         hud.dismiss();
-                        Toast.makeText(context, "Please Check Internet Connection.",Toast.LENGTH_LONG)
-                                .show();
+                        Toast.makeText(context, "Server Issue",Toast.LENGTH_LONG).show();
                     }
+
                 })
 
 
@@ -76,20 +85,34 @@ public class ServiceHandler
 
                 return params;
             }
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json");
+                return headers;
+            }
+//            @Override
+//            public Map<String, String> getHeaders() throws AuthFailureError {
+//                return getHeaders();
+//            }
+
+            @Override public String getBodyContentType()
+            {
+                return "application/json";
+            }
 
         };
 
         RequestQueue requestQueue = Volley.newRequestQueue(context);
+        stringRequest.setShouldCache(false);
         requestQueue.add(stringRequest);
 
-       /* stringRequest.setRetryPolicy(new DefaultRetryPolicy(
-                10000,
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                0,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));*/
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
     }
-
-
-
 
     public interface VolleyCallback{
         void onSuccess(String result);

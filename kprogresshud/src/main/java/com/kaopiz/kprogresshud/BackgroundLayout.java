@@ -23,7 +23,7 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
-class BackgroundLayout extends LinearLayout {
+public class BackgroundLayout extends LinearLayout {
 
     private float mCornerRadius;
     private int mBackgroundColor;

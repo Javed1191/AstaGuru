@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -26,10 +27,11 @@ public class PrivacyPolicyActivity extends AppCompatActivity
 {
 
 
-    @BindView(R.id.tv_privacy_email) TextView tv_privacy_email;
+
 
     private Utility utility;
-    JustifiedTextView tv_v_one,tv_v_two,tv_v_three,tv_v_four;
+    JustifiedTextView tv_v_one,tv_v_two,tv_v_three;
+    WebView wb_privacy_policy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -39,6 +41,10 @@ public class PrivacyPolicyActivity extends AppCompatActivity
 
        /* getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.action_bar_text);*/
+
+        wb_privacy_policy = (WebView)findViewById(R.id.wb_privacy_policy);
+
+        wb_privacy_policy.loadUrl("file:///android_asset/wb_privacypolicy.html");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -61,7 +67,6 @@ public class PrivacyPolicyActivity extends AppCompatActivity
         tv_v_one.setText("AstaGuru strongly believes in the security of your privacy. This principle guides everything that we strive to achieve.");
                 tv_v_two.setText("Any information you provide as a registered user is never shared with any individual or third party unless you explicitly inform us to do so.");
                 tv_v_three.setText("The information you provide to www.astaguru.com is only used by us to serve your needs better and make your experience at our web site more enjoyable.");
-                tv_v_four.setText("We are committed to protecting and safeguarding your privacy on-line");
 
         // status bar color change
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -75,17 +80,17 @@ public class PrivacyPolicyActivity extends AppCompatActivity
 
 
 
-        tv_privacy_email.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent email = new Intent(Intent.ACTION_SEND);
-                email.putExtra(Intent.EXTRA_EMAIL, new String[]{"contact@astaguru.com"});
-                email.putExtra(Intent.EXTRA_SUBJECT, "subject");
-                email.putExtra(Intent.EXTRA_TEXT, "message");
-                email.setType("message/rfc822");
-                startActivity(Intent.createChooser(email, "Choose an Email client :"));
-            }
-        });
+//        tv_privacy_email.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent email = new Intent(Intent.ACTION_SEND);
+//                email.putExtra(Intent.EXTRA_EMAIL, new String[]{"contact@astaguru.com"});
+//                email.putExtra(Intent.EXTRA_SUBJECT, "subject");
+//                email.putExtra(Intent.EXTRA_TEXT, "message");
+//                email.setType("message/rfc822");
+//                startActivity(Intent.createChooser(email, "Choose an Email client :"));
+//            }
+//        });
     }
 
 
@@ -122,7 +127,6 @@ public void init()
     tv_v_one = (JustifiedTextView) findViewById(R.id.tv_v_one);
     tv_v_two = (JustifiedTextView) findViewById(R.id.tv_v_two);
     tv_v_three = (JustifiedTextView) findViewById(R.id.tv_v_three);
-    tv_v_four = (JustifiedTextView) findViewById(R.id.tv_v_four);
 
 }
 

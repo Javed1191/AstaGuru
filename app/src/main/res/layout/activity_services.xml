@@ -46,6 +46,7 @@
 
             <RelativeLayout
                 android:layout_width="wrap_content"
+                android:id="@+id/rel_Auction"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp">
 
@@ -57,8 +58,8 @@
                     android:textStyle="bold"
                     android:id="@+id/tv_axuction"
                     android:text="Auction"
-                    android:textColor="@color/colorBodyText"
-                    android:textSize="20sp" />
+                    android:textColor="#000000"
+                    android:textSize="15sp" />
 
                 <ImageView
                     android:id="@+id/iv_Auction"
@@ -76,21 +77,24 @@
 
             <WebView
                 android:layout_width="match_parent"
-                android:paddingLeft="10dp"
+                android:paddingLeft="12dp"
                 android:paddingRight="10dp"
                 android:visibility="gone"
+                android:layout_marginLeft="2dp"
                 android:id="@+id/wb_auction_one"
                 android:layout_height="wrap_content"></WebView>
             <WebView
                 android:layout_width="match_parent"
-                android:paddingLeft="10dp"
+                android:paddingLeft="12dp"
                 android:paddingRight="10dp"
                 android:visibility="gone"
+                android:layout_marginLeft="2dp"
                 android:id="@+id/wb_auction_two"
                 android:layout_height="wrap_content"></WebView>
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/relConsultation"
                 android:layout_marginTop="20dp">
 
                 <com.infomanav.astaguru.WorkSansMedium
@@ -102,8 +106,8 @@
                     android:id="@+id/tv_Consulctation"
                     android:layout_toRightOf="@+id/img_email"
                     android:text="Consultation"
-                    android:textColor="@color/colorBodyText"
-                    android:textSize="20sp" />
+                    android:textColor="#000000"
+                    android:textSize="15sp" />
 
                 <ImageView
                     android:id="@+id/iv_Consultation"
@@ -123,6 +127,7 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:visibility="gone"
+                android:layout_marginLeft="2dp"
                 android:id="@+id/wb_Consultation_one"
                 android:layout_height="wrap_content"></WebView>
             <WebView
@@ -130,6 +135,7 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:visibility="gone"
+                android:layout_marginLeft="2dp"
                 android:id="@+id/wb_Consultation_two"
                 android:layout_height="wrap_content"></WebView>
 
@@ -137,6 +143,7 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/relRestoration"
                 android:layout_marginTop="20dp">
 
                 <com.infomanav.astaguru.WorkSansMedium
@@ -148,8 +155,8 @@
                     android:textStyle="bold"
                     android:layout_toRightOf="@+id/img_email"
                     android:text="Restoration"
-                    android:textColor="@color/colorBodyText"
-                    android:textSize="20sp" />
+                    android:textColor="#000000"
+                    android:textSize="15sp" />
 
                 <ImageView
                     android:id="@+id/iv_Restoration"
@@ -170,6 +177,7 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:visibility="gone"
+                android:layout_marginLeft="2dp"
                 android:id="@+id/wb_Restoration_one"
                 android:layout_height="wrap_content"></WebView>
             <WebView
@@ -177,11 +185,13 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:visibility="gone"
+                android:layout_marginLeft="2dp"
                 android:id="@+id/wb_Restoration_two"
                 android:layout_height="wrap_content"></WebView>
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/relValuation"
                 android:layout_marginTop="20dp">
 
                 <com.infomanav.astaguru.WorkSansMedium
@@ -193,8 +203,8 @@
                     android:textStyle="bold"
                     android:layout_toRightOf="@+id/img_email"
                     android:text="Valuation"
-                    android:textColor="@color/colorBodyText"
-                    android:textSize="20sp" />
+                    android:textColor="#000000"
+                    android:textSize="15sp" />
 
                 <ImageView
                     android:layout_width="25dp"
@@ -220,6 +230,7 @@ android:id="@+id/iv_Valuation"
                 android:layout_width="match_parent"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
+                android:layout_marginLeft="2dp"
                 android:visibility="gone"
                 android:id="@+id/wb_valuation_one"
                 android:layout_height="wrap_content"></WebView>
@@ -227,6 +238,7 @@ android:id="@+id/iv_Valuation"
                 android:layout_width="match_parent"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
+                android:layout_marginLeft="2dp"
                 android:visibility="gone"
                 android:id="@+id/wb_valuation_two"
                 android:layout_height="wrap_content"></WebView>

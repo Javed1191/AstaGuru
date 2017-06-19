@@ -31,14 +31,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:padding="10dp"
-        android:text="Create your AstaGuru account and manage your profile, save favourite auctions to your gallery, track
-your purchases" />
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -50,613 +43,566 @@ your purchases" />
             android:focusableInTouchMode="true"
             android:orientation="vertical"
             android:padding="10dp">
-
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Create your AstaGuru account and manage your profile, save favourite auctions to your gallery, track
+your purchases" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:layout_marginLeft="10dp"
+
                 android:layout_marginTop="10dp"
                 android:layout_toRightOf="@+id/img_email"
                 android:text="Personal Details"
                 android:textColor="#000000"
                 android:textSize="20sp" />
 
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                android:orientation="horizontal"
+                android:background="@drawable/button_bg_stroke"
+                android:layout_height="wrap_content">
 
 
-                    <ImageView
+                <ImageView
 
-                        android:id="@+id/img_first_name"
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
-                        android:layout_marginTop="2dp"
-                        android:src="@drawable/icon_first_name" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/icon_first_name" />
 
-                    <TextView
 
-                        android:id="@+id/tv_first_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/img_first_name"
-                        android:text="First Name"
-                        android:textColor="@color/colorBodyText" />
 
-                    <EditText
-                        android:id="@+id/edt_first_name"
-                        style="@style/Edittext_Style"
-                        android:layout_below="@+id/img_first_name"
-                        android:layout_marginLeft="11dp"
 
-                        android:layout_marginTop="10dp"
-                        android:layout_toRightOf="@+id/img_first_name"
-                        android:hint="Enter Your First Name"
-                        android:inputType="textCapWords" />
+                <EditText
+                    style="@style/Edittext_Style"
+                    android:id="@+id/edt_first_name"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="12dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_below="@+id/tv_email"
+                    android:textColor="@color/colorBodyText"
+                    android:hint="First Name"
+                    android:inputType="textCapWords"
+                    />
 
-                </RelativeLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/colorBodyText" />
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical">
+                android:background="@drawable/button_bg_stroke"
+                android:layout_height="wrap_content">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:id="@+id/img_last_name"
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
-                        android:layout_marginTop="2dp"
-                        android:src="@drawable/icon_first_name" />
+                <ImageView
 
-                    <TextView
-                        android:id="@+id/tv_last_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/img_last_name"
-                        android:text="Last Name"
-                        android:textColor="@color/colorBodyText" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/icon_first_name" />
 
-                    <EditText
-                        android:id="@+id/edt_last_name"
-                        style="@style/Edittext_Style"
-                        android:layout_below="@+id/img_last_name"
-                          android:layout_marginLeft="11dp"          android:layout_marginTop="10dp"
 
-                        android:layout_toRightOf="@+id/img_last_name"
-                        android:hint="Enter Your Last Name"
-                        android:inputType="textCapWords" />
 
-                </RelativeLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/colorBodyText" />
+                <EditText
+                    style="@style/Edittext_Style"
+                    android:id="@+id/edt_last_name"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="12dp"
+                    android:layout_below="@+id/tv_email"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:textColor="@color/colorBodyText"
+                    android:hint="Last Name"
+                    android:inputType="textCapWords"
+                    />
+
+
+
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical">
+                android:background="@drawable/button_bg_stroke"
+                android:layout_height="wrap_content">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:id="@+id/img_contry"
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
-                        android:layout_marginTop="2dp"
-                        android:src="@drawable/icon_city" />
+                <ImageView
 
-                    <TextView
-                        android:id="@+id/tv_country"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/img_contry"
-                        android:text="Country"
-                        android:textColor="@color/colorBodyText" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/icon_city" />
 
-                    <EditText
-                        android:id="@+id/edt_contry"
-                        style="@style/Edittext_Style"
-                        android:layout_below="@+id/img_contry"
-                        android:layout_marginLeft="11dp"          android:layout_marginTop="10dp"
-                        android:layout_toRightOf="@+id/img_contry"
-                        android:hint="Enter Your Country"
-                        android:inputType="textCapWords"
-
-                        />
-
-                </RelativeLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/colorBodyText" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:id="@+id/img_state"
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
-                        android:layout_marginTop="2dp"
-                        android:src="@drawable/icon_city" />
-
-                    <TextView
-                        android:id="@+id/tv_state"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/img_state"
-                        android:text="State"
-                        android:textColor="@color/colorBodyText" />
-
-                    <EditText
-                        android:id="@+id/edt_state"
-                        style="@style/Edittext_Style"
-                        android:layout_below="@+id/img_state"
-                        android:layout_marginLeft="11dp"          android:layout_marginTop="10dp"
-                        android:layout_toRightOf="@+id/img_state"
-                        android:hint="Enter Your State"
-                        android:inputType="textCapWords" />
-
-                </RelativeLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/colorBodyText" />
+                <EditText
+                    style="@style/Edittext_Style"
+                    android:id="@+id/edt_address"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="12dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_below="@+id/tv_email"
+                    android:textColor="@color/colorBodyText"
+                    android:hint="Address"
+                    android:inputType="textCapWords"
+                    />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical">
+                android:background="@drawable/button_bg_stroke"
+                android:layout_height="wrap_content">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:id="@+id/img_city"
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
-                        android:layout_marginTop="2dp"
-                        android:src="@drawable/icon_city" />
+                <ImageView
 
-                    <TextView
-                        android:id="@+id/tv_city"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/img_city"
-                        android:text="City"
-                        android:textColor="@color/colorBodyText" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/icon_city" />
 
-                    <EditText
-                        android:id="@+id/edt_city"
-                        style="@style/Edittext_Style"
-                        android:layout_below="@+id/img_city"
-                          android:layout_marginLeft="11dp"          android:layout_marginTop="10dp"
-                        android:layout_toRightOf="@+id/img_city"
-                        android:hint="Enter Your City"
-                        android:inputType="textCapWords"
-
-                        />
-
-                </RelativeLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/colorBodyText" />
+                <EditText
+                    style="@style/Edittext_Style"
+                    android:id="@+id/edt_contry"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="12dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_below="@+id/tv_email"
+                    android:textColor="@color/colorBodyText"
+                    android:hint="Country"
+                    android:inputType="textCapWords"
+                    />
             </LinearLayout>
-
-
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical">
+                android:background="@drawable/button_bg_stroke"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/icon_city" />
+                <EditText
+                    style="@style/Edittext_Style"
+                    android:id="@+id/edt_state"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="12dp"
+                    android:layout_below="@+id/tv_email"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:textColor="@color/colorBodyText"
+                    android:hint="State"
+                    android:inputType="textCapWords"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:visibility="visible"
+                android:background="@drawable/button_bg_stroke"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:src="@drawable/icon_city" />
+                <EditText
+                    style="@style/Edittext_Style"
+                    android:id="@+id/edt_city"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="12dp"
+                    android:layout_below="@+id/tv_email"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:textColor="@color/colorBodyText"
+                    android:hint="City"
+                    android:inputType="textCapWords"
+                    />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:id="@+id/img_zip"
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
-                        android:layout_marginTop="2dp"
-                        android:src="@drawable/icon_city" />
 
-                    <TextView
-                        android:id="@+id/tv_zip"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/img_zip"
-                        android:text="ZIP"
-                        android:textColor="@color/colorBodyText" />
-
-                    <EditText
-                        android:id="@+id/edt_zip"
-                        style="@style/Edittext_Style"
-                        android:layout_below="@+id/img_zip"
-                          android:layout_marginLeft="11dp"          android:layout_marginTop="10dp"
-                        android:layout_toRightOf="@+id/img_zip"
-                        android:hint="Enter Your Zip"
-                        android:inputType="number"
-                        android:maxLength="6" />
-
-                </RelativeLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/colorBodyText" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical">
+                android:visibility="visible"
+                android:background="@drawable/button_bg_stroke"
+                android:layout_height="wrap_content">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:id="@+id/img_mobile"
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
-                        android:layout_marginTop="2dp"
-                        android:src="@drawable/icon_mobile" />
+                <ImageView
 
-                    <TextView
-                        android:id="@+id/tv_mobile"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/img_mobile"
-                        android:text="Mobile Number"
-                        android:textColor="@color/colorBodyText" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:src="@drawable/icon_city" />
 
-                    <EditText
-                        android:id="@+id/edt_mobile"
-                        style="@style/Edittext_Style"
-                        android:layout_below="@+id/img_mobile"
-                          android:layout_marginLeft="11dp"
-                        android:layout_toRightOf="@+id/img_mobile"          android:layout_marginTop="10dp"
-                        android:hint="Enter Your Mobile Number"
-                        android:inputType="phone"
-                        android:maxLength="10" />
 
-                </RelativeLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/colorBodyText" />
+
+                <EditText
+                    style="@style/Edittext_Style"
+                    android:id="@+id/edt_zip"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="12dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_below="@+id/tv_email"
+                    android:textColor="@color/colorBodyText"
+                    android:hint="Zip"
+
+                    android:inputType="number"
+                    />
+
+
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical">
+                android:background="@drawable/button_bg_stroke"
+                android:layout_height="wrap_content">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:id="@+id/img_telephone"
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
-                        android:layout_marginTop="2dp"
-                        android:src="@drawable/icon_telephone" />
+                <ImageView
 
-                    <TextView
-                        android:id="@+id/tv_telephone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/img_telephone"
-                        android:text="Telephone Number"
-                        android:textColor="@color/colorBodyText" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/icon_mobile" />
 
-                    <EditText
-                        android:id="@+id/edt_telephone"
-                        style="@style/Edittext_Style"
-                        android:layout_below="@+id/img_telephone"          android:layout_marginTop="10dp"
-                          android:layout_marginLeft="11dp"
-                        android:layout_toRightOf="@+id/img_telephone"
-                        android:hint="Enter Your Telephone Number"
-                        android:inputType="phone"
-                        android:maxLength="10" />
 
-                </RelativeLayout>
+                <EditText
+                    style="@style/Edittext_Style"
+                    android:id="@+id/edt_countrycode"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="12dp"
+                    android:maxLines="1"
+                    android:maxLength="3"
+                    android:layout_below="@+id/tv_email"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/colorBodyText"
+                    android:text="91"
+                    android:inputType="phone"
+                    />
 
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/colorBodyText" />
+                    android:layout_height="match_parent"
+                    android:layout_width="0.01dp"
+                    android:background="#000000" />
+                <EditText
+                    style="@style/Edittext_Style"
+                    android:id="@+id/edt_mobile"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="12dp"
+                    android:layout_below="@+id/tv_email"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_weight="0.2"
+                    android:maxLength="11"
+                    android:textColor="@color/colorBodyText"
+                    android:hint="Mobile Number"
+                    android:inputType="phone"
+                    />
+
+
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical">
+                android:background="@drawable/button_bg_stroke"
+                android:layout_height="wrap_content">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:id="@+id/img_fax"
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
-                        android:layout_marginTop="2dp"
-                        android:src="@drawable/icon_fax" />
+                <ImageView
 
-                    <TextView
-                        android:id="@+id/tv_fax"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/img_fax"
-                        android:text="Fax no (Optional)"
-                        android:textColor="@color/colorBodyText" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:src="@drawable/icon_telephone" />
 
-                    <EditText
-                        android:id="@+id/edt_fax"
-                        style="@style/Edittext_Style"
-                        android:layout_below="@+id/img_fax"
-                          android:layout_marginLeft="11dp"
-                        android:layout_toRightOf="@+id/img_fax"          android:layout_marginTop="10dp"
-                        android:hint="Enter Your Fax Number"
-                        android:inputType="phone"
-                        android:maxLength="10" />
 
-                </RelativeLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/colorBodyText" />
+
+                <EditText
+                    style="@style/Edittext_Style"
+                    android:id="@+id/edt_telephone"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="12dp"
+                    android:layout_below="@+id/tv_email"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:textColor="@color/colorBodyText"
+                    android:hint="Telephone Number"
+                    android:inputType="phone"
+                    android:maxLength="11"
+                    />
+
+
+
             </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical">
+                android:background="@drawable/button_bg_stroke"
+                android:layout_height="wrap_content">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:id="@+id/img_email"
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
-                        android:layout_marginTop="2dp"
-                        android:src="@drawable/icon_email" />
+                <ImageView
 
-                    <TextView
-                        android:id="@+id/tv_email"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/img_email"
-                        android:text="Email"
-                        android:textColor="@color/colorBodyText" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:src="@drawable/icon_fax" />
 
-                    <EditText
-                        android:id="@+id/edt_email"
-                        style="@style/Edittext_Style"
-                        android:layout_below="@+id/img_email"
-                          android:layout_marginLeft="11dp"
-                        android:layout_toRightOf="@+id/img_email"          android:layout_marginTop="10dp"
-                        android:hint="Enter Your Email"
-                        android:inputType="textEmailAddress" />
 
-                </RelativeLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/colorBodyText" />
+
+                <EditText
+                    style="@style/Edittext_Style"
+                    android:id="@+id/edt_fax"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="12dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_below="@+id/tv_email"
+                    android:textColor="@color/colorBodyText"
+                    android:hint="Fax no (Optional)"
+                    android:inputType="phone"
+                    />
+
+
+
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/button_bg_stroke"
+                android:layout_height="wrap_content">
+
+
+                <ImageView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/icon_email" />
+
+
+
+
+                <EditText
+                    style="@style/Edittext_Style"
+                    android:id="@+id/edt_email"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="12dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_below="@+id/tv_email"
+                    android:textColor="@color/colorBodyText"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"
+                    />
+
+
+
+            </LinearLayout>
+
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
                 android:textColor="#000000"
+                android:layout_marginTop="10dp"
                 android:layout_toRightOf="@+id/img_email"
                 android:text="Account Details"
                 android:textSize="20sp" />
 
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                android:background="@drawable/button_bg_stroke"
+                android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:id="@+id/img_user_name"
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
-                        android:layout_marginTop="2dp"
-                        android:src="@drawable/icon_user_name" />
 
-                    <TextView
-                        android:id="@+id/tv_user_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/img_user_name"
-                        android:text="User Name"
-                        android:textColor="@color/colorBodyText" />
+                <ImageView
 
-                    <EditText
-                        android:id="@+id/edt_user_name"
-                        style="@style/Edittext_Style"
-                        android:layout_below="@+id/img_user_name"
-                          android:layout_marginLeft="11dp"
-                        android:layout_toRightOf="@+id/img_user_name"          android:layout_marginTop="10dp"
-                        android:hint="Enter Your User Name"
-                        android:inputType="textCapWords" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:src="@drawable/icon_user_name" />
 
-                </RelativeLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/colorBodyText" />
+
+
+                <EditText
+                    style="@style/Edittext_Style"
+                    android:id="@+id/edt_user_name"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="12dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_below="@+id/tv_email"
+                    android:textColor="@color/colorBodyText"
+                    android:hint="Enter Your User Name"
+                    android:inputType="textCapWords"
+                    />
+
+
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                android:background="@drawable/button_bg_stroke"
+                android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:id="@+id/img_password"
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
-                        android:layout_marginTop="2dp"
-                        android:src="@drawable/icon_password" />
 
-                    <TextView
-                        android:id="@+id/tv_password"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/img_password"
-                        android:text="Password"
-                        android:textColor="@color/colorBodyText" />
+                <ImageView
 
-                    <EditText
-                        android:id="@+id/edt_password"
-                        style="@style/Edittext_Style"
-                        android:layout_below="@+id/img_password"          android:layout_marginTop="10dp"
-                          android:layout_marginLeft="11dp"
-                        android:layout_toRightOf="@+id/img_password"
-                        android:hint="Enter Your Password"
-                        android:inputType="textPassword" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/icon_password" />
 
-                </RelativeLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/colorBodyText" />
+
+
+                <EditText
+                    style="@style/Edittext_Style"
+                    android:id="@+id/edt_password"
+                    android:layout_marginLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:textSize="12dp"
+                    android:fontFamily="sans-serif"
+                    android:layout_below="@+id/tv_email"
+                    android:textColor="@color/colorBodyText"
+                    android:hint="Enter Your Password"
+                    android:inputType="textPassword"
+                    />
+
+
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                android:background="@drawable/button_bg_stroke"
+                android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:id="@+id/img_re_password"
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
-                        android:layout_marginTop="2dp"
-                        android:src="@drawable/icon_password" />
 
-                    <TextView
-                        android:id="@+id/tv_re_password"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/img_re_password"
-                        android:text="Confirm Password"
-                        android:textColor="@color/colorBodyText" />
+                <ImageView
 
-                    <EditText
-                        android:id="@+id/edt_re_password"
-                        style="@style/Edittext_Style"
-                        android:layout_below="@+id/img_re_password"          android:layout_marginTop="10dp"
-                        android:layout_marginLeft="11dp"
-                        android:layout_toRightOf="@+id/img_re_password"
-                        android:hint="Confirm Password"
-                        android:inputType="textPassword" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/icon_password" />
 
-                </RelativeLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/colorBodyText" />
+
+
+                <EditText
+                    style="@style/Edittext_Style"
+                    android:id="@+id/edt_re_password"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="12dp"
+                    android:layout_below="@+id/tv_email"
+                    android:paddingTop="10dp"
+                    android:fontFamily="sans-serif"
+                    android:paddingBottom="10dp"
+                    android:textColor="@color/colorBodyText"
+                    android:hint="Confirm Password"
+                    android:inputType="textPassword"
+                    />
+
+
+
             </LinearLayout>
+
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -667,13 +613,14 @@ your purchases" />
                 <CheckBox
                     android:id="@+id/chk_terms_condition"
                     android:layout_width="wrap_content"
+                    android:textSize="11sp"
                     android:layout_height="wrap_content"
-                    android:text=" I agree to the AstaGuru`s " />
+                    android:text="I agree to the AstaGuru's " />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
+                    android:textSize="11sp"
                     android:layout_toRightOf="@+id/img_re_password"
                     android:text="@string/terms_condition"
                     android:textColor="@color/colorLink" />
@@ -682,13 +629,12 @@ your purchases" />
 
             <Button
                 android:id="@+id/btn_proceed"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="12sp"
+                android:paddingLeft="5dp"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/custom_btn_sign_in"
-                android:paddingLeft="10dp"
-                android:layout_marginLeft="10dp"
                 android:paddingRight="10dp"
                 android:text="Proceed"
                 android:textColor="@android:color/white" />

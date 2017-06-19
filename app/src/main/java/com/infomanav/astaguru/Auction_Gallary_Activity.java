@@ -4,15 +4,26 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.kaopiz.kprogresshud.KProgressHUD;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,8 +34,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import adapter.AuctionGallaryAdpter;
-import adapter.CategoryAdpter;
-import adapter.CurrentAuctionAdapter_gridview;
+import model_classes.*;
+import model_classes.AuctionGallary_Model;
+import services.Application_Constants;
 import services.ServiceHandler;
 import services.SessionData;
 import services.Utility;
@@ -36,9 +48,6 @@ import services.Utility;
 public class Auction_Gallary_Activity  extends AppCompatActivity {
 
     ArrayList<AuctionGallary_Model> appsList;
-    String[] mydateList = new String[]{"July, 2016", "September, 2016", "September, 2016", "September, 2016", "December, 2016"};
-
-    private String strPastAuctionUrl = "http://54.169.222.181/api/v2/guru/_table/AuctionList?api_key=c6935db431c0609280823dc52e092388a9a35c5f8793412ff89519e967fd27ed";
     private Utility utility;
     private GridView gridview;
     Context context;
@@ -49,27 +58,33 @@ public class Auction_Gallary_Activity  extends AppCompatActivity {
     SessionData sessionData;
 
 
-    String str_productid,str_title,str_description,str_artistid,reference,str_thumbnail,str_image,str_productsize,str_category,str_small_img,str_Bidpricers,str_Bidpriceus;
+    String Bidartistuserid,currentDate,str_collectors,productdate,MyUserID,HumanFigure,str_productid,
+            str_title,str_description,str_artistid,reference,str_thumbnail,str_image,str_productsize,
+            str_category,str_small_img,str_Bidpricers,str_Bidpriceus,Auctionname,Picture;
 
-    String artistid,str_FirstName,str_LastName,str_Profile, medium, productsize,estamiate,DollarRate;
+    String artistid,str_FirstName,str_LastName,str_Profile, medium, productsize,estamiate,DollarRate,Online;
 
-    String pricers, priceus, artist_name, str_Bidclosingtime, image, auctiondate, bidartistuserid;
+    String pricers, priceus, artist_name, str_Bidclosingtime, image;
+    private int mInterval = 10000; // 5 seconds by default, can be changed later
+    private Handler mHandler;
+    private boolean is_first = true,is_start=false;
+    private KProgressHUD hud;
+    RequestQueue requestQueue;
+    private TextView tv_no_data_found;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auction_gallary);
-//current
-//        http://54.169.222.181/api/v2/guru/_table/Acution?api_key=c6935db431c0609280823dc52e092388a9a35c5f8793412ff89519e967fd27ed&filter=online=27
-
 
         context =Auction_Gallary_Activity.this;
         sessionData = new SessionData(context);
-
-                str_userid = sessionData.getObjectAsString("userid");
-
+        str_userid = sessionData.getObjectAsString("userid");
+        mHandler = new Handler();
+        requestQueue = Volley.newRequestQueue(context);
 
         utility = new Utility(getApplicationContext());
+        tv_no_data_found = (TextView) findViewById(R.id.tv_no_data_found);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -82,7 +97,7 @@ public class Auction_Gallary_Activity  extends AppCompatActivity {
 
         TextView tool_text = (TextView) toolbar.findViewById(R.id.tool_text);
         tool_text.setText("My Auction Gallery");
-
+        gridview = (GridView) findViewById(R.id.gridview);
 
         Typeface type = Typeface.createFromAsset(getAssets(),"WorkSans-Medium.otf");
         tool_text.setTypeface(type);
@@ -95,20 +110,33 @@ public class Auction_Gallary_Activity  extends AppCompatActivity {
         }
 
 
-        gridview = (GridView) findViewById(R.id.gridview);
 
 
-        getUpcomingAuction1();
+
+        getMyAuctionGallery();
 
     }
 
+/*    @Override
+    public void onPause(){
+        super.onPause();
+        stopRepeatingTask();
 
+    }
 
-    private void getUpcomingAuction1() {
+    @Override
+    protected void onResume() {
+        super.onResume();
+        startRepeatingTask();
+    }*/
 
-        if (utility.checkInternet()) {
+    public void GetAuctionGAllary()
+    {
 
-             String strPastAuctionUrl = "http://54.169.222.181/api/v2/guru/_table/getMyGallery?api_key=c6935db431c0609280823dc52e092388a9a35c5f8793412ff89519e967fd27ed&filter=MyuserID="+str_userid+"";
+        if (utility.checkInternet())
+        {
+
+             String strPastAuctionUrl = Application_Constants.Main_URL+"getMyGallery?api_key="+ Application_Constants.API_KEY+"&filter=(userid="+str_userid+")";
 
             System.out.println("strPastAuctionUrl " + strPastAuctionUrl);
             final Map<String, String> params = new HashMap<String, String>();
@@ -123,7 +151,8 @@ public class Auction_Gallary_Activity  extends AppCompatActivity {
 
                     String str_json = result;
 
-                    // String str_FirstName,str_LastName,str_Profile;
+                    String status;
+
                     appsList = new ArrayList<>();
                     try {
                         if (str_json != null)
@@ -139,7 +168,7 @@ public class Auction_Gallary_Activity  extends AppCompatActivity {
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     JSONObject Obj = jsonArray.getJSONObject(i);
 
-
+                                    Auctionname = Obj.getString("Auctionname");
                                     str_productid = Obj.getString("productid");
                                     str_title = Obj.getString("title");
                                     str_description = Obj.getString("description");
@@ -149,40 +178,57 @@ public class Auction_Gallary_Activity  extends AppCompatActivity {
                                     str_productsize = Obj.getString("productsize");
                                     str_small_img = Obj.getString("smallimage");
 
-//                                    JSONObject object = Obj.getJSONObject("artist_by_artistid");
                                     str_FirstName = Obj.getString("FirstName");
                                     str_LastName = Obj.getString("LastName");
                                     pricers = Obj.getString("Bidpricers");
                                     priceus = Obj.getString("Bidpriceus");
                                     str_Bidclosingtime = Obj.getString("Bidclosingtime");
-
+                                    Bidartistuserid= Obj.getString("bidartistuserid");
                                     medium = Obj.getString("medium");
                                     productsize = Obj.getString("productsize");
                                     estamiate = Obj.getString("estamiate");
                                     DollarRate = Obj.getString("DollarRate");
                                     reference = Obj.getString("reference");
-                                    bidartistuserid = Obj.getString("bidartistuserid");
+                                    productdate = Obj.getString("productdate");
+                                    HumanFigure = Obj.getString("HumanFigure");
+                                    str_collectors = Obj.getString("collectors");
+                                    MyUserID = Obj.getString("MyUserID");
+                                    Picture = Obj.getString("Picture");
+                                    str_Profile = Obj.getString("Profile");
+                                    Online = Obj.getString("Online");
+
+                                    status= Obj.getString("status");
+
+                                    if (Obj.has("currentDate")) {
+                                        currentDate = Obj.getString("currentDate");
+                                    } else {
+                                        currentDate = "2017-01-10 19:55:27";
+                                    }
                                     String newtext = reference.trim();
 
 
-                                    str_Profile = "Profile";
+                                   // str_Profile = "Profile";
 
                                     artist_name = str_FirstName+str_LastName;
 
 
-//                                    JSONObject obj_category_by_categoryid = Obj.getJSONObject("category_by_categoryid");
 
                                     str_category = Obj.getString("category");
 
 
 
 
-                                    auctionGallary_model = new AuctionGallary_Model( str_productid,  str_category,  artist_name,  str_Profile,  str_small_img,  str_productsize,  str_image,  str_thumbnail,  str_artistid,  str_description,  str_title,str_Bidclosingtime,true,pricers,priceus,medium, productsize,estamiate,DollarRate,newtext,bidartistuserid);
+                                    auctionGallary_model = new AuctionGallary_Model( str_productid,  str_category,  artist_name,  str_Profile,
+                                            str_small_img,  str_productsize,  str_image,  str_thumbnail,  str_artistid,
+                                            str_description,  str_title,str_Bidclosingtime,true,pricers,priceus,medium,
+                                            productsize,estamiate,DollarRate,newtext,Bidartistuserid,productdate, MyUserID, str_collectors,
+                                            currentDate,HumanFigure,status,str_FirstName,str_LastName,Auctionname,Picture,Online);
+
                                     appsList.add(auctionGallary_model);
 
                                 }
 
-                                auctionGallaryAdpter = new AuctionGallaryAdpter(context,R.layout.current_listview,appsList,false);
+                                auctionGallaryAdpter = new AuctionGallaryAdpter(context,R.layout.current_listview,appsList,false,Auction_Gallary_Activity.this );
                                 gridview.setAdapter(auctionGallaryAdpter);
 
 
@@ -204,6 +250,37 @@ public class Auction_Gallary_Activity  extends AppCompatActivity {
 
     }
 
+    Runnable mStatusChecker = new Runnable() {
+        @Override
+        public void run() {
+            try
+            {
+
+
+                    getMyAuctionGallery();
+
+
+
+
+            }
+            finally {
+
+                mHandler.postDelayed(mStatusChecker, mInterval);
+            }
+        }
+    };
+    public void startRepeatingTask()
+    {
+        mStatusChecker.run();
+        is_first = false;
+        is_start = true;
+    }
+
+    public void stopRepeatingTask() {
+        is_start = false;
+        mHandler.removeCallbacks(mStatusChecker);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -216,12 +293,8 @@ public class Auction_Gallary_Activity  extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_close)
         {
             finish();
@@ -229,5 +302,210 @@ public class Auction_Gallary_Activity  extends AppCompatActivity {
 
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void getMyAuctionGallery()
+    {
+
+        if (utility.checkInternet())
+        {
+
+            if (is_first) {
+
+
+                hud = KProgressHUD.create(context)
+                        .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                        .setDimAmount(0.5f);
+
+                hud.show();
+
+            }
+            String url = Application_Constants.Main_URL+"getMyGallery?api_key="+ Application_Constants.API_KEY+"&filter=(userid="+str_userid+")";
+
+            System.out.println("strPastAuctionUrl " + url);
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            String str_json = response,status;
+                            String  currentDate;
+                            appsList = new ArrayList<>();
+                            // String str_FirstName,str_LastName,str_Profile;
+
+                            try {
+                                if (str_json != null)
+                                {
+                                    JSONObject jobject = new JSONObject(str_json);
+
+                                    if (jobject.length() > 0)
+                                    {
+                                        JSONArray jsonArray = new JSONArray();
+                                        jsonArray = jobject.getJSONArray("resource");
+                                        tv_no_data_found.setVisibility(View.GONE);
+                                        gridview.setVisibility(View.VISIBLE);
+
+                                        if(jsonArray.length()>0)
+                                        {
+                                            for (int i = 0; i < jsonArray.length(); i++) {
+                                                JSONObject Obj = jsonArray.getJSONObject(i);
+
+                                                Auctionname = Obj.getString("Auctionname");
+                                                str_productid = Obj.getString("productid");
+                                                str_title = Obj.getString("title");
+                                                str_description = Obj.getString("description");
+                                                str_artistid = Obj.getString("artistid");
+                                                str_thumbnail = Obj.getString("thumbnail");
+                                                str_image = Obj.getString("image");
+                                                str_productsize = Obj.getString("productsize");
+                                                str_small_img = Obj.getString("smallimage");
+
+                                                str_FirstName = Obj.getString("FirstName");
+                                                str_LastName = Obj.getString("LastName");
+                                                pricers = Obj.getString("Bidpricers");
+                                                priceus = Obj.getString("Bidpriceus");
+                                                str_Bidclosingtime = Obj.getString("Bidclosingtime");
+                                                Bidartistuserid= Obj.getString("bidartistuserid");
+                                                medium = Obj.getString("medium");
+                                                productsize = Obj.getString("productsize");
+                                                estamiate = Obj.getString("estamiate");
+                                                DollarRate = Obj.getString("DollarRate");
+                                                reference = Obj.getString("reference");
+                                                productdate = Obj.getString("productdate");
+                                                HumanFigure = Obj.getString("HumanFigure");
+                                                str_collectors = Obj.getString("collectors");
+                                                MyUserID = Obj.getString("MyUserID");
+                                                Picture = Obj.getString("Picture");
+                                                str_Profile = Obj.getString("Profile");
+                                                Online = Obj.getString("Online");
+
+                                                status= Obj.getString("status");
+
+                                                if (Obj.has("currentDate")) {
+                                                    currentDate = Obj.getString("currentDate");
+                                                } else {
+                                                    currentDate = "2017-01-10 19:55:27";
+                                                }
+                                                String newtext = reference.trim();
+
+
+                                                // str_Profile = "Profile";
+
+                                                artist_name = str_FirstName+str_LastName;
+
+
+
+                                                str_category = Obj.getString("category");
+
+
+
+
+                                                auctionGallary_model = new AuctionGallary_Model( str_productid,  str_category,  artist_name,  str_Profile,
+                                                        str_small_img,  str_productsize,  str_image,  str_thumbnail,  str_artistid,
+                                                        str_description,  str_title,str_Bidclosingtime,true,pricers,priceus,medium,
+                                                        productsize,estamiate,DollarRate,newtext,Bidartistuserid,productdate, MyUserID, str_collectors,
+                                                        currentDate,HumanFigure,status,str_FirstName,str_LastName,Auctionname,Picture,Online);
+
+                                                appsList.add(auctionGallary_model);
+                                        }
+
+
+
+                                        }
+                                        else {
+                                            tv_no_data_found.setVisibility(View.VISIBLE);
+                                            gridview.setVisibility(View.INVISIBLE);
+                                        }
+                                        if (hud != null && hud.isShowing())
+                                        {
+                                            hud.dismiss();
+                                        }
+
+                                        if (is_first)
+                                        {
+                                            auctionGallaryAdpter = new AuctionGallaryAdpter(context,R.layout.current_listview,appsList,false,Auction_Gallary_Activity.this );
+                                            gridview.setAdapter(auctionGallaryAdpter);
+
+                                            startRepeatingTask();
+
+                                        }
+                                        else
+                                            {
+//                                            gridview.setVisibility(View.VISIBLE);
+
+                                            if(!is_start)
+                                            {
+                                                auctionGallaryAdpter.Upadte_GridViewWithFilter(appsList,false);
+                                                startRepeatingTask();
+                                            }
+                                            else
+                                            {
+                                                auctionGallaryAdpter.Upadte_GridViewWithFilter(appsList,false);
+                                            }
+
+
+
+                                            // startRepeatingTask();
+
+                                               /* setAdapters();
+                                                startRepeatingTask();*/
+
+                                        }
+
+
+
+
+
+                                    }
+                                    else
+                                        {
+                                        if (hud != null && hud.isShowing())
+                                        {
+                                            hud.dismiss();
+                                        }
+                                            tv_no_data_found.setVisibility(View.VISIBLE);
+                                            gridview.setVisibility(View.INVISIBLE);
+
+                                    }
+                                } else {
+                                    if (hud != null && hud.isShowing())
+                                    {
+                                        hud.dismiss();
+                                    }
+                                    tv_no_data_found.setVisibility(View.VISIBLE);
+                                    gridview.setVisibility(View.INVISIBLE);
+                                }
+
+                            } catch (JSONException e) {
+
+                                tv_no_data_found.setVisibility(View.VISIBLE);
+                                gridview.setVisibility(View.INVISIBLE);
+                                if (hud != null && hud.isShowing())
+                                {
+                                    hud.dismiss();
+                                }
+                                // TODO Auto-generated catch block
+                                e.printStackTrace();
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error)
+                        {
+                            tv_no_data_found.setVisibility(View.VISIBLE);
+                            gridview.setVisibility(View.INVISIBLE);
+                            hud.dismiss();
+                        }
+                    });
+
+
+            requestQueue.add(stringRequest);
+        }
+        else
+        {
+            Toast.makeText(context, "Please Check Internet Connection.", Toast.LENGTH_LONG)
+                    .show();
+        }
+
     }
 }

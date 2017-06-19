@@ -200,7 +200,7 @@ public class MyProfile_Activity  extends AppCompatActivity
 
             hud.show();
 
-            String URL = Application_Constants.Main_URL+"users/?api_key=c6935db431c0609280823dc52e092388a9a35c5f8793412ff89519e967fd27ed" + "&filter=(userid%20=%20" + str_userid + ")";
+            String URL = Application_Constants.Main_URL+"users/?api_key="+ Application_Constants.API_KEY+ "&filter=(userid%20=%20" + str_userid + ")";
 
 
             JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET, URL, null,
@@ -288,7 +288,7 @@ public class MyProfile_Activity  extends AppCompatActivity
         pDialog.show();
 
         //url
-        String URL_url = "http://54.169.222.181/api/v2/guru/_table/users?api_key=c6935db431c0609280823dc52e092388a9a35c5f8793412ff89519e967fd27ed";
+        String URL_url = Application_Constants.Main_URL+"users?api_key="+ Application_Constants.API_KEY;
 
         //building params
         Map<String, String> params = new HashMap<>();
@@ -338,11 +338,13 @@ public class MyProfile_Activity  extends AppCompatActivity
 
                             if (!(data==null))
                             {
-                                Toast.makeText(context,"Profile Succesfully Save",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context,"Thank You!\n" +
+                                        "Your details will be updated soon. You might receive a verification call from our team.",Toast.LENGTH_SHORT).show();
                                 loginWithCredentials(str_userid);
-                            }else
+                            }
+                            else
                             {
-                                Toast.makeText(context,"User Not Registered",Toast.LENGTH_SHORT);
+                                Toast.makeText(context,"Information Not Update",Toast.LENGTH_SHORT);
                             }
 
 

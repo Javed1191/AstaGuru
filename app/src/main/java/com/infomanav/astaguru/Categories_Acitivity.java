@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.GridView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +24,8 @@ import java.util.Map;
 
 import adapter.CategoryAdpter;
 
+import model_classes.Category_Model;
+import services.Application_Constants;
 import services.ServiceHandler;
 import services.Utility;
 
@@ -37,7 +38,7 @@ public class Categories_Acitivity extends AppCompatActivity {
     ArrayList<Category_Model> appsList;
     String[] mydateList = new String[]{"July, 2016", "September, 2016", "September, 2016", "September, 2016", "December, 2016"};
 
-    private String strPastAuctionUrl = "http://54.169.222.181/api/v2/guru/_table/category?api_key=c6935db431c0609280823dc52e092388a9a35c5f8793412ff89519e967fd27ed";
+    private String strPastAuctionUrl = Application_Constants.Main_URL+"category?api_key="+Application_Constants.API_KEY;
     private Utility utility;
     private GridView gridview;
     Context context;
@@ -49,10 +50,6 @@ public class Categories_Acitivity extends AppCompatActivity {
         setContentView(R.layout.activity_category);
 
         context = Categories_Acitivity.this;
-
-
-
-
         utility = new Utility(context);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -77,13 +74,8 @@ public class Categories_Acitivity extends AppCompatActivity {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
         }
-
-
         gridview = (GridView) findViewById(R.id.gridview_category);
-
-
         getUpcomingAuction();
-
     }
 
 
@@ -123,10 +115,7 @@ public class Categories_Acitivity extends AppCompatActivity {
                                 for(int i=0; i<jsonArray.length();i++)
                                 {
                                     JSONObject Obj = jsonArray.getJSONObject(i);
-
-
-                                   Category_name = Obj.getString("category");
-
+                                     Category_name = Obj.getString("category");
 
                                     Category_Model country = new Category_Model(Category_name);
                                     appsList.add(country);

@@ -143,11 +143,11 @@ public class PagerIndicator extends LinearLayout implements ViewPagerEx.OnPageCh
         mDefaultSelectedColor = attributes.getColor(R.styleable.PagerIndicator_selected_color, Color.rgb(255, 255, 255));
         mDefaultUnSelectedColor = attributes.getColor(R.styleable.PagerIndicator_unselected_color, Color.argb(33,255,255,255));
 
-        mDefaultSelectedWidth = attributes.getDimension(R.styleable.PagerIndicator_selected_width,(int)pxFromDp(6));
-        mDefaultSelectedHeight = attributes.getDimensionPixelSize(R.styleable.PagerIndicator_selected_height,(int)pxFromDp(6));
+        mDefaultSelectedWidth = attributes.getDimension(R.styleable.PagerIndicator_selected_width,(int)pxFromDp(1));
+        mDefaultSelectedHeight = attributes.getDimensionPixelSize(R.styleable.PagerIndicator_selected_height,(int)pxFromDp(1));
 
-        mDefaultUnSelectedWidth = attributes.getDimensionPixelSize(R.styleable.PagerIndicator_unselected_width,(int)pxFromDp(6));
-        mDefaultUnSelectedHeight = attributes.getDimensionPixelSize(R.styleable.PagerIndicator_unselected_height,(int)pxFromDp(6));
+        mDefaultUnSelectedWidth = attributes.getDimensionPixelSize(R.styleable.PagerIndicator_unselected_width,(int)pxFromDp(1));
+        mDefaultUnSelectedHeight = attributes.getDimensionPixelSize(R.styleable.PagerIndicator_unselected_height,(int)pxFromDp(1));
 
         mSelectedGradientDrawable = new GradientDrawable();
         mUnSelectedGradientDrawable = new GradientDrawable();
