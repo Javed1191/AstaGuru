@@ -74,7 +74,7 @@
                     android:layout_width="100dp"
                     android:layout_height="110dp"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/img_past_1"/>
+                    android:src="@drawable/img_default"/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -241,6 +241,8 @@
                                 android:layout_toRightOf="@+id/testmidium"
                                 android:gravity="left"
                                 android:text="Morderen "
+                                android:maxLines="1"
+                                android:ellipsize="marquee"
                                 android:textColor="@color/colorBodyText"
                                 android:textSize="12sp"
                                 />
@@ -860,7 +862,7 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Date Time"
+                    android:text="@string/date_and_time"
                     android:textColor="#000000"
                     android:textSize="10sp"/>
             </LinearLayout>
@@ -870,7 +872,14 @@
                 android:layout_height="0.01dp"
 
                 android:background="@drawable/line"/>
-
+            <com.infomanav.astaguru.WorkSansMedium
+                android:visibility="gone"
+                android:padding="10dp"
+                android:id="@+id/tv_no_data_found"
+                android:text="No records found"
+                android:textSize="18sp"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_view"

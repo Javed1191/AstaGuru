@@ -120,14 +120,10 @@ public class Search_Activity extends AppCompatActivity {
                 str_search = edt_search.getText().toString().trim();
                 if (str_search != null && !str_search.isEmpty())
                 {
-                   // GetSearchResult("current");
-                  //  lin_text.setVisibility(View.GONE);
-                  //  gridview.setVisibility(View.VISIBLE);
-
-                    Intent intent = new Intent(Search_Activity.this,MainActivity.class);
+                    Intent intent = new Intent(Search_Activity.this,CurrentAuctionSearchResultActivity.class);
                     intent.putExtra("type","search");
                     intent.putExtra("key",str_search);
-                    intent.putExtra("auction","current");
+                    intent.putExtra("auction","Current");
                     startActivity(intent);
                 }
                 else

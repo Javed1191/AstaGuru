@@ -289,6 +289,7 @@ public class Artist_Details extends AppCompatActivity implements View.OnClickLis
                 gridviewcurrent.setVisibility(View.VISIBLE);
                 gridviewpast.setVisibility(View.GONE);
 
+                //scroller.scrollTo(0, 0);
                // getUpcomingAuction(Application_Constants.Main_URL+"lotspopular?api_key=c6935db431c0609280823dc52e092388a9a35c5f8793412ff89519e967fd27ed&filter=online%20=%2027&related=*");
 
                 break;
@@ -302,7 +303,7 @@ public class Artist_Details extends AppCompatActivity implements View.OnClickLis
 
                 gridviewcurrent.setVisibility(View.GONE);
                 gridviewpast.setVisibility(View.VISIBLE);
-
+               // scroller.scrollTo(0, 0);
                // getUpcomingAuction(Application_Constants.Main_URL+"lotslatest?api_key=c6935db431c0609280823dc52e092388a9a35c5f8793412ff89519e967fd27ed&filter=online%20=%2027&related=*");
 
                 break;
@@ -644,6 +645,15 @@ public class Artist_Details extends AppCompatActivity implements View.OnClickLis
                                         HumanFigure = Obj.getString("HumanFigure");
                                         str_Bidclosingtime = Obj.getString("Bidclosingtime");
 
+                                        if(pricers.equalsIgnoreCase("null"))
+                                        {
+                                            pricers = "0";
+                                        }
+                                        if(priceus.equalsIgnoreCase("null"))
+                                        {
+                                            priceus = "0";
+                                        }
+
                                         //  String newtext = reference.trim();
 
                                         str_category = Obj.getString("category");
@@ -876,22 +886,23 @@ public class Artist_Details extends AppCompatActivity implements View.OnClickLis
     private String claculatePercentage(String strPrise)
     {
         String strBidPrise="";
-        Double int_bid_prise,int_discount;
 
-        try {
-            int_bid_prise = Double.parseDouble(strPrise);
-            int_discount = ((Double.parseDouble(strPrise)*15)/100);
-            int_bid_prise = int_bid_prise+int_discount;
+        try
+        {
 
-            strBidPrise = String.valueOf(int_bid_prise);
+            double dbl_bid_prise = 0,dbl_discount=0;
+
+            dbl_bid_prise = Double.parseDouble(strPrise);
+            dbl_discount = ((Double.parseDouble(strPrise)*15)/100);
+            dbl_bid_prise = dbl_bid_prise+dbl_discount;
+
+            strBidPrise = String.valueOf(Math.round(dbl_bid_prise));
+
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
-
-
-
 
         return strBidPrise;
     }

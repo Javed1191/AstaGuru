@@ -1,14 +1,20 @@
 package com.infomanav.astaguru;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.os.StrictMode;
 import android.support.v4.app.Fragment;
 
 import android.support.v4.app.FragmentManager;
@@ -16,7 +22,10 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -55,15 +64,20 @@ import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerSupportFragment;
 import com.google.android.youtube.player.YouTubePlayerView;
+import com.kaopiz.kprogresshud.KProgressHUD;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.jsoup.Jsoup;
 
+import java.io.IOException;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -125,6 +139,10 @@ public class FragmentHome extends Fragment
 	// Testing you tube view pager
 	private List<DemoData> mDemoData = new ArrayList<DemoData>();
 	private DemoFragmentAdapter mAdapter;
+	private KProgressHUD hud;
+	private AlertDialog update_alert;
+	private int height=0,width=0;
+	private DisplayMetrics displaymetrics;
 
 	public FragmentHome()
 	{
@@ -177,6 +195,19 @@ public class FragmentHome extends Fragment
 		defaultSliderView1 = new DefaultSliderView(getActivity());
 		videoSliderView = new DefaultSliderView(getActivity());
 
+		displaymetrics = new DisplayMetrics();
+		height = displaymetrics.heightPixels;
+		width = displaymetrics.widthPixels;
+
+		int SDK_INT = android.os.Build.VERSION.SDK_INT;
+		if (SDK_INT > 8)
+		{
+			StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+					.permitAll().build();
+			StrictMode.setThreadPolicy(policy);
+			//your codes here
+
+		}
 
 		//YouTubePlayerFragment youtubePlayerFragment = new YouTubePlayerFragment();
 
@@ -197,6 +228,9 @@ public class FragmentHome extends Fragment
 
 
 		//loginWithCredentials();
+
+		//checkUpdate();
+
 
 		getHomeBanner();
 
@@ -277,6 +311,16 @@ public class FragmentHome extends Fragment
 
 			}
 		});
+
+		// checking for updates
+		/*if (utility.checkInternet())
+		{
+			new CheckForUpdates().execute();
+		}
+		else
+		{
+			Toast.makeText(getActivity(),"Please Connect To Internet",Toast.LENGTH_SHORT).show();
+		}*/
 
 
 		/*image_video_slider.setOnClickListener(new View.OnClickListener() {
@@ -636,7 +680,7 @@ public class FragmentHome extends Fragment
 											intent.putExtra("auction",list_auctionPageUrl_banner1.get(image_slider1.getCurrentPosition()));
 											startActivity(intent);
 										}
-										else
+										else if(auctiontype.equalsIgnoreCase("current"))
 										{
 											Bundle bundle = new Bundle();
 											bundle.putString("fragment", "current");
@@ -694,7 +738,7 @@ public class FragmentHome extends Fragment
 											intent.putExtra("auction",list_auctionPageUrl_banner2.get(image_slider2.getCurrentPosition()));
 											startActivity(intent);
 										}
-										else
+										else if(auctiontype.equalsIgnoreCase("current"))
 										{
 											Bundle bundle = new Bundle();
 											bundle.putString("fragment", "current");
@@ -862,5 +906,136 @@ public class FragmentHome extends Fragment
 			return mDemoData.size();
 		}
 	}
+
+	private void checkUpdate()
+	{
+		if (utility.checkInternet())
+		{
+			String newVersion = null;
+			try {
+				newVersion = Jsoup
+						.connect(
+								"https://play.google.com/store/apps/details?id="
+										+ "com.astaguru" + "&hl=en")
+						.timeout(30000)
+						.userAgent(
+								"Mozilla/5.0 (Windows; U; WindowsNT 5.1; en-US; rv1.8.1.6) Gecko/20070725 Firefox/2.0.0.6")
+						.referrer("http://www.google.com").get()
+						.select("div[itemprop=softwareVersion]").first()
+						.ownText();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			Log.e("new Version", newVersion);
+			Toast.makeText(getActivity(),newVersion,Toast.LENGTH_SHORT).show();
+		}
+		else
+        {
+			Toast.makeText(getActivity(),"Please Connect To Internet",Toast.LENGTH_SHORT).show();
+		}
+
+
+
+    }
+
+	public class CheckForUpdates extends AsyncTask<String, Void, String>
+	{
+
+		String newVersion = null;
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+
+			/*hud = KProgressHUD.create(getActivity())
+					.setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+					.setDimAmount(0.5f);
+
+			hud.show();*/
+		}
+
+		protected String doInBackground(String... urls)
+		{
+
+			try {
+
+				try {
+					newVersion = Jsoup
+							.connect(
+									"https://play.google.com/store/apps/details?id="
+											+ "com.astaguru" + "&hl=en")
+							.timeout(30000)
+							.userAgent(
+									"Mozilla/5.0 (Windows; U; WindowsNT 5.1; en-US; rv1.8.1.6) Gecko/20070725 Firefox/2.0.0.6")
+							.referrer("http://www.google.com").get()
+							.select("div[itemprop=softwareVersion]").first()
+							.ownText();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				Log.e("new Version", newVersion);
+
+			} catch (Exception e) {
+			}
+			return newVersion;
+		}
+
+		protected void onPostExecute(String string)
+		{
+			//hud.dismiss();
+			newVersion = string;
+			Log.d("new Version", newVersion);
+			//Toast.makeText(getActivity(),newVersion,Toast.LENGTH_SHORT).show();
+			try {
+				String currentVersion = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0).versionName;
+
+				if (newVersion != null && !newVersion.isEmpty()) {
+					if (Float.valueOf(currentVersion) < Float.valueOf(newVersion))
+					{
+						AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context);
+						LayoutInflater inflater = (LayoutInflater) context
+								.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+						final View dialogView = inflater.inflate(R.layout.dailog_app_update, null);
+						dialogBuilder.setView(dialogView);
+
+						final TextView tv_later = (TextView) dialogView.findViewById(R.id.tv_later);
+						final TextView tv_update = (TextView) dialogView.findViewById(R.id.tv_update);
+
+
+						tv_update.setOnClickListener(new View.OnClickListener() {
+							@Override
+							public void onClick(View v) {
+
+								update_alert.dismiss();
+								final String appPackageName = "com.astaguru"; // getPackageName() from Context or Activity object
+								try {
+									startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+								} catch (android.content.ActivityNotFoundException anfe) {
+									startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+								}
+							}
+						});
+						update_alert = dialogBuilder.create();
+						update_alert.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+						tv_later.setOnClickListener(new View.OnClickListener() {
+							@Override
+							public void onClick(View v) {
+								update_alert.dismiss();
+							}
+						});
+
+
+						update_alert.show();
+						Window window = update_alert.getWindow();
+						//window.setLayout(width-200, LinearLayout.LayoutParams.WRAP_CONTENT);
+						window.setGravity(Gravity.CENTER);
+						update_alert.setCanceledOnTouchOutside(false);
+					}
+				}
+			} catch (PackageManager.NameNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 
 }

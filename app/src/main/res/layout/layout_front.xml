@@ -27,7 +27,7 @@
             android:paddingBottom="5dp"
             android:paddingTop="5dp"
 
-            android:src="@drawable/img_past_1" />
+            android:src="@drawable/img_default" />
 
         <View
             android:layout_width="match_parent"

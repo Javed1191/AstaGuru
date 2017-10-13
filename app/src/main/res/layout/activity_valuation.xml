@@ -439,7 +439,7 @@ android:gravity="center_vertical"
                     android:layout_height="60dp"
                     android:contentDescription="@string/action_settings"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/market_analysts" />
+                    android:src="@drawable/business_strategy" />
 
                 <RelativeLayout
                     android:id="@+id/rel_artist"

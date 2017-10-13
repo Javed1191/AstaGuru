@@ -25,7 +25,7 @@
             android:paddingBottom="5dp"
             android:paddingTop="5dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/img_past_1"/>
+            android:src="@drawable/img_default"/>
 
         <View
             android:layout_width="match_parent"
@@ -70,7 +70,6 @@
                     android:gravity="left"/>
 
                 <ImageView
-                    android:visibility="gone"
                     android:id="@+id/iv_addtogallary"
                     android:layout_width="14dp"
                     android:layout_height="14dp"
@@ -99,17 +98,30 @@
             android:background="@drawable/line"/>
 
 
+
+
         <com.infomanav.astaguru.WorkSansMedium
-            android:visibility="gone"
-            android:id="@+id/tv_bought_in"
+            android:id="@+id/tv_sub_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:gravity="center"
-            android:text="Bought In"
+            android:text="Jamini Roy"
             android:textSize="12sp"
             android:textColor="@color/colorPrimary"
             android:textStyle="bold"/>
+        <com.infomanav.astaguru.WorkSansRegular
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:id="@+id/tv_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:maxLines="1"
+            android:ellipsize="marquee"
+            android:textSize="10sp"
+            android:text="Untitled (Krishna)"
+            android:textColor="@color/colorBodyText"/>
 
         <LinearLayout
             android:id="@+id/lin_front_data"
@@ -118,30 +130,6 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:orientation="vertical">
-
-            <com.infomanav.astaguru.WorkSansMedium
-                android:id="@+id/tv_sub_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:gravity="center"
-                android:text="Jamini Roy"
-                android:textSize="12sp"
-                android:textColor="@color/colorPrimary"
-                android:textStyle="bold"/>
-
-            <com.infomanav.astaguru.WorkSansRegular
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:id="@+id/tv_subtitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:maxLines="1"
-                android:ellipsize="marquee"
-                android:textSize="10sp"
-                android:text="Untitled (Krishna)"
-                android:textColor="@color/colorBodyText"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -180,6 +168,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:visibility="gone"
                             android:id="@+id/iv_two"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -194,7 +183,7 @@
 
                         <com.infomanav.astaguru.WorkSansRegular
                             android:id="@+id/tv_bidvalue"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="3dp"
                             android:layout_toRightOf="@+id/iv_two"
@@ -231,6 +220,17 @@
             </LinearLayout>
         </LinearLayout>
 
+        <com.infomanav.astaguru.WorkSansMedium
+            android:visibility="gone"
+            android:id="@+id/tv_bought_in"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="Bought In"
+            android:textSize="12sp"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"/>
     </LinearLayout>
 
     <LinearLayout

@@ -32,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/currentauction"/>
+                android:src="@drawable/img_default"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -379,7 +379,7 @@
             android:layout_height="wrap_content">
         <com.infomanav.astaguru.WorkSansMedium
             android:id="@+id/tv_no_data_found"
-            android:text="No data found"
+            android:text="No records found"
             android:textSize="18sp"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"/>

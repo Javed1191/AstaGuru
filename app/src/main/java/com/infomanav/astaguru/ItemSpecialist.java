@@ -3,10 +3,9 @@ package com.infomanav.astaguru;
 
 public class ItemSpecialist {
 
-    private String title,post,emailid;
-    private int photo;
+    private String title,post,emailid,photo;
 
-    public ItemSpecialist(String title, String post, int photo, String emailid) {
+    public ItemSpecialist(String title, String post, String photo, String emailid) {
         this.title = title;
         this.photo = photo;
         this.post = post;
@@ -28,11 +27,11 @@ public class ItemSpecialist {
         this.post = post;
     }
 
-    public int getPhoto() {
+    public String getPhoto() {
         return photo;
     }
 
-    public void setPhoto(int photo) {
+    public void setPhoto(String photo) {
         this.photo = photo;
     }
 

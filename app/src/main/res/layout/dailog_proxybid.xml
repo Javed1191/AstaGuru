@@ -71,7 +71,7 @@
                     android:layout_marginBottom="4dp"
                     android:layout_marginRight="4dp"
                     android:layout_marginTop="5dp"
-                    android:hint="Current Bid Value"
+                    android:hint="Next Valid Bid Value"
                     android:inputType="textEmailAddress"
                     android:textSize="12sp"/>
 

@@ -10,8 +10,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.infomanav.astaguru.Artist_Details;
+import com.infomanav.astaguru.Before_Login_Activity;
 import com.infomanav.astaguru.Lot_Detail_Page;
 import com.infomanav.astaguru.MainActivity;
 
@@ -24,10 +26,15 @@ import com.squareup.picasso.Picasso;
 import java.math.BigDecimal;
 import java.text.Format;
 import java.text.NumberFormat;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import services.Application_Constants;
+import services.ServiceHandler;
+import services.SessionData;
+import services.Utility;
 
 /**
  * Created by fox-2 on 11/29/2016.
@@ -40,18 +47,22 @@ public class Past_SubAuction_ListviewAdpter extends BaseAdapter {
     public boolean is_us=false;
     private List<Past_sub_Model> AppsList;
     ImageView iv_one;
-    ImageView iv_oncce,past_sub_image,grid_imageback,iv_closelistpast,iv_info,iv_zoom;
+    ImageView iv_oncce,past_sub_image,grid_imageback,iv_closelistpast,iv_info,iv_zoom,iv_addtogallary;
     TextView iv_two,tv_sub_artist,tv_sub_category,tv_sub_medium,tv_sub_year,tv_sub_size,
             tv_sub_estimate,tv_lot_back,tv_lot,tv_nextbid,tv_tax_premium,tv_bought_in,tv_start_price;
     String auctiontype;
     LinearLayout lin_front, lin_back,lay_front_data,lay_front,lay_back,lay_bought_in;
     private ShowFullZoomImage showFullZoomImage;
+    SessionData data;
+    private Utility utility;
     public Past_SubAuction_ListviewAdpter(Context context, List<Past_sub_Model> AppsList, final boolean is_us,String auctiontype) {
         mContext = context;
         this.AppsList = AppsList;
         this.is_us=is_us;
         this.auctiontype=auctiontype;
         showFullZoomImage = new ShowFullZoomImage(mContext);
+        data = new SessionData(mContext);
+        utility = new Utility(mContext);
 
 
     }
@@ -117,6 +128,7 @@ public class Past_SubAuction_ListviewAdpter extends BaseAdapter {
         iv_closelistpast= (ImageView) curView.findViewById(R.id.iv_closelistpast);
         iv_info = (ImageView) curView.findViewById(R.id.iv_info);
         iv_zoom = (ImageView) curView.findViewById(R.id.iv_zoom);
+        iv_addtogallary = (ImageView) curView.findViewById(R.id.iv_addtogallary);
         tv_tax_premium = (TextView) curView.findViewById(R.id.tv_tax_premium);
         tv_bought_in = (TextView) curView.findViewById(R.id.tv_bought_in);
         tv_start_price = (TextView) curView.findViewById(R.id.tv_start_price);
@@ -226,6 +238,13 @@ public class Past_SubAuction_ListviewAdpter extends BaseAdapter {
                 intent.putExtra("Profile",cp.getStr_Profile());
                 intent.putExtra("is_us",is_us);
                 intent.putExtra("dollar_rate",cp.getDollarRate());
+                if (auctiontype.equalsIgnoreCase("past"))
+                {
+                    if (Double.parseDouble(cp.getPricers()) < Double.parseDouble(cp.getPricelow()))
+                    {
+                        intent.putExtra("is_bought_in",true);
+                    }
+                }
                 mContext.startActivity(intent);
             }
         });
@@ -261,6 +280,13 @@ public class Past_SubAuction_ListviewAdpter extends BaseAdapter {
                 intent.putExtra("Profile",cp.getStr_Profile());
                 intent.putExtra("is_us",is_us);
                 intent.putExtra("dollar_rate",cp.getDollarRate());
+                if (auctiontype.equalsIgnoreCase("past"))
+                {
+                    if (Double.parseDouble(cp.getPricers()) < Double.parseDouble(cp.getPricelow()))
+                    {
+                        intent.putExtra("is_bought_in",true);
+                    }
+                }
                 mContext.startActivity(intent);
             }
         });
@@ -362,6 +388,7 @@ public class Past_SubAuction_ListviewAdpter extends BaseAdapter {
         {
             tv_start_price.setVisibility(View.GONE);
             tv_tax_premium.setVisibility(View.VISIBLE);
+            iv_addtogallary.setVisibility(View.GONE);
             if(Double.parseDouble(cp.getPricers()) < Double.parseDouble(cp.getPricelow()))
             {
                 // Toast.makeText(mContext,"Test",Toast.LENGTH_SHORT).show();
@@ -381,7 +408,29 @@ public class Past_SubAuction_ListviewAdpter extends BaseAdapter {
         {
             tv_start_price.setVisibility(View.VISIBLE);
             tv_tax_premium.setVisibility(View.GONE);
+            iv_addtogallary.setVisibility(View.VISIBLE);
         }
+
+        iv_addtogallary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String Str_id = cp.getStr_productid();
+                String  userid = data.getObjectAsString("userid");
+                String status = data.getObjectAsString("login");
+                if (status.equalsIgnoreCase("false")||status.isEmpty()||status.equalsIgnoreCase("Empty"))
+                {
+                    Intent intent = new Intent(mContext,Before_Login_Activity.class);
+                    intent.putExtra("str_from","adpter");
+                    mContext.startActivity(intent);
+
+                }
+                else {
+                    AddToGallary(Str_id, userid);
+                }
+
+
+            }
+        });
 
         return curView;
 
@@ -422,13 +471,14 @@ public class Past_SubAuction_ListviewAdpter extends BaseAdapter {
         try
         {
 
-            Integer int_bid_prise = 0,int_discount=0;
+            double dbl_bid_prise = 0,dbl_discount=0;
 
-            int_bid_prise = Integer.parseInt(strPrise);
-            int_discount = ((Integer.parseInt(strPrise)*15)/100);
-            int_bid_prise = int_bid_prise+int_discount;
+            dbl_bid_prise = Double.parseDouble(strPrise);
+            dbl_discount = ((Double.parseDouble(strPrise)*15)/100);
+            dbl_bid_prise = dbl_bid_prise+dbl_discount;
 
-            strBidPrise = String.valueOf(int_bid_prise);
+            strBidPrise = String.valueOf(Math.round(dbl_bid_prise));
+
         }
         catch (Exception e)
         {
@@ -436,6 +486,38 @@ public class Past_SubAuction_ListviewAdpter extends BaseAdapter {
         }
 
         return strBidPrise;
+    }
+
+
+    private void AddToGallary(String productID,String siteUserID) {
+
+        if (utility.checkInternet()) {
+
+            String addtogallaryUrl = Application_Constants.Main_URL_Procedure+"spAddToGallery("+productID+","+siteUserID+")?api_key="+ Application_Constants.API_KEY;
+            System.out.println("strPastAuctionUrl " + addtogallaryUrl);
+            final Map<String, String> params = new HashMap<String, String>();
+
+
+            ServiceHandler serviceHandler = new ServiceHandler(mContext);
+
+
+            serviceHandler.registerUser(null, addtogallaryUrl, new ServiceHandler.VolleyCallback() {
+                @Override
+                public void onSuccess(String result) {
+                    System.out.println("result" + result);
+                    Toast.makeText(mContext, "The Lot has been added to your auction gallery.", Toast.LENGTH_SHORT).show();
+                    String str_json = result;
+
+
+                }
+            });
+        }
+        else
+        {
+            Toast.makeText(mContext, "Please Check Internet Connection.",Toast.LENGTH_LONG)
+                    .show();
+        }
+
     }
 
 }

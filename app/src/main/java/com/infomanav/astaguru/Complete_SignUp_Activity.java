@@ -88,6 +88,19 @@ public class Complete_SignUp_Activity extends AppCompatActivity
         }
         ButterKnife.bind(this);
 
+        firstname = sessionData.getObjectAsString("firstname");
+        lastname = sessionData.getObjectAsString("lastname");
+        address = sessionData.getObjectAsString("address");
+        city = sessionData.getObjectAsString("city");
+        zip = sessionData.getObjectAsString("zip");
+        state = sessionData.getObjectAsString("state");
+        country = sessionData.getObjectAsString("country");
+        telephone = sessionData.getObjectAsString("telephone");
+        email = sessionData.getObjectAsString("email");
+        username = sessionData.getObjectAsString("name");
+        password = sessionData.getObjectAsString("password");
+        fax = sessionData.getObjectAsString("fax");
+
 
         init();
 
@@ -197,10 +210,10 @@ public class Complete_SignUp_Activity extends AppCompatActivity
             params.put("template","newsletter");
             params.put("subject","Your Registration with Astaguru.com is confirmed and complete.");
             params.put("body_text",msg);
-            params.put("from_name","NetSpace India SES");
-            params.put("from_email","beta@netspaceindia.com");
-            params.put("reply_to_name","NetSpace India");
-            params.put("reply_to_email","beta@netspaceindia.com");
+            params.put("from_name","AstaGuru");
+            params.put("from_email","info@infomanav.com");
+            params.put("reply_to_name","AstaGuru");
+            params.put("reply_to_email","info@infomanav.com");
 
             JSONObject parameters = new JSONObject(params);
             parameters.put("to",array);

@@ -3,6 +3,7 @@ package services;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -72,6 +73,84 @@ public class ServiceHandler
                     public void onErrorResponse(VolleyError error)
                     {
                         hud.dismiss();
+                        error.printStackTrace();
+                        Toast.makeText(context, "Server Issue",Toast.LENGTH_LONG).show();
+                    }
+
+                })
+
+
+        {
+            @Override
+            protected Map<String,String> getParams()
+            {
+
+                return params;
+            }
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json");
+                return headers;
+            }
+//            @Override
+//            public Map<String, String> getHeaders() throws AuthFailureError {
+//                return getHeaders();
+//            }
+
+            @Override public String getBodyContentType()
+            {
+                return "application/json";
+            }
+
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        stringRequest.setShouldCache(false);
+        requestQueue.add(stringRequest);
+
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+    }
+
+
+    public void registerUser1(Map<String,String> paramets,String web_url, final VolleyCallback callback)
+    {
+
+        hud = KProgressHUD.create(context)
+                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setDimAmount(0.5f);
+
+        hud.show();
+
+        final  Map<String,String> params = paramets;
+
+        // Cached response doesn't exists. Make network call here
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, web_url,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response)
+                    {
+                        hud.dismiss();
+
+                        //Toast.makeText(context,response,Toast.LENGTH_LONG).show();
+                        strResponse = response;
+                        callback.onSuccess(strResponse);
+
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error)
+                    {
+                        hud.dismiss();
+                        error.printStackTrace();
                         Toast.makeText(context, "Server Issue",Toast.LENGTH_LONG).show();
                     }
 

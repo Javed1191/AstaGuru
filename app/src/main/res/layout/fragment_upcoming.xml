@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:gravity="center"
-        android:text="There is no any upcoming auction still yet. "
+        android:text="There is no Upcoming Auction. We will notify you whenever any Upcoming Auction is live. "
         android:textSize="20sp"
 
         />

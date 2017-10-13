@@ -89,21 +89,21 @@ public class Lot_Detail_Page extends AppCompatActivity {
     private TextView tvDay, tvHour, tvMinute, tvSecond, tv_countdown;
     String image, str_msg;
     String product_id, strPastAuctionUrl;
-    LinearLayout iv_leftarrow, lay_art_details,lin_bidhistory;
+    LinearLayout iv_leftarrow, lay_art_details,lin_bidhistory,lay_bought_in;
     ImageView lot_image, iv_zoom, iv_one, iv_two, iv_addgallary, iv_artwork;
     TextView tv_artworksize, tv_title, tv_title_sub, tv_current_lot, tv_next_lot, tv_artist, tv_category, tv_medium, tv_year,
             tv_size, tv_estimate, tv_additonal_info, tv_desc;
     TextView tv_addinfo_one, tv_art_size, tv_addinfo_three,tv_tax, tv_read_more, tv_type, tv_change_currency,
-            tv_winning_bid_prizrs,tv_winning_bid_price_title;
+            tv_winning_bid_prizrs,tv_winning_bid_price_title,tv_bought_in;
     EditText edt_proxy;
-    AlertDialog bid_now, bid_proxy, dilog_alert,dilog_bid_access;
+    AlertDialog bid_now, bid_proxy, dilog_alert,dilog_bid_access,dilog_alert_out_of_bid;
     JustifiedTextView tv_abt_artist;
     String test1, test2;
     String currency_type, str_productid, str_title, str_description, str_artistid, str_collectors, str_thumbnail, str_image, str_productsize, str_Bidpricers, str_Bidpriceus;
     String reference, str_FirstName, str_LastName, str_Profile, start;
     WebView wb_bidding, wb_biddingtwo;
     String str_category, str_medium, str_date, str_pricers, str_priceus;
-    public boolean is_us = false;
+    public boolean is_us = false,is_bought_in=false;
     ProgressDialog pDialog;
     String currentDate, Ulastname, Ufirst_name, MyUserID, Userid, fragment_type, Auction_id, Thumbnail, Reference,
             Bidclosingtime, OldPriceUs, OldPriceRs, Auctionid, HumanFigure, str_Bidclosingtime, str_CurrentDate,
@@ -191,6 +191,8 @@ public class Lot_Detail_Page extends AppCompatActivity {
         tv_art_size= (TextView) findViewById(R.id.tv_art_size);
         lin_countdown = (LinearLayout) findViewById(R.id.lin_countdown);
         tv_winning_bid_prizrs = (TextView) findViewById(R.id.tv_winning_bid_prizrs);
+        tv_bought_in = (TextView) findViewById(R.id.tv_bought_in);
+        lay_bought_in = (LinearLayout) findViewById(R.id.lay_bought_in);
 
         tv_bid_histrory = (TextView) findViewById(R.id.tv_bid_histrory);
         tv_tax = (TextView) findViewById(R.id.tv_tax);
@@ -232,6 +234,7 @@ public class Lot_Detail_Page extends AppCompatActivity {
             Profile = intent.getStringExtra("Profile");
             category = intent.getStringExtra("category");
             is_us = intent.getBooleanExtra("is_us",false);
+            is_bought_in = intent.getBooleanExtra("is_bought_in",false);
             f_doller = intent.getStringExtra("dollar_rate");
             str_FirstName = FirstName;
             str_LastName = LastName;
@@ -379,6 +382,17 @@ public class Lot_Detail_Page extends AppCompatActivity {
 
             }
 
+            if(is_bought_in)
+            {
+                tv_bought_in.setVisibility(View.VISIBLE);
+                lay_bought_in.setVisibility(View.GONE);
+            }
+            else
+            {
+                tv_bought_in.setVisibility(View.GONE);
+                lay_bought_in.setVisibility(View.VISIBLE);
+            }
+
             if (fragment_type.equalsIgnoreCase("past"))
             {
                 btn_bid_now_lot.setVisibility(View.GONE);
@@ -399,9 +413,9 @@ public class Lot_Detail_Page extends AppCompatActivity {
                 btn_bid_now_lot.setVisibility(View.GONE);
                 btn_proxy_bid_lot.setVisibility(View.VISIBLE);
                 tv_tax.setVisibility(View.GONE);
+                iv_addgallary.setVisibility(View.VISIBLE);
 
                 lin_countdown.setVisibility(View.GONE);
-                iv_addgallary.setVisibility(View.GONE);
                 lin_bidhistory.setVisibility(View.GONE);
                 lay_winning_bid.setVisibility(View.VISIBLE);
                 lay_bids.setVisibility(View.GONE);
@@ -522,7 +536,7 @@ public class Lot_Detail_Page extends AppCompatActivity {
                 intent.putExtra("str_pricers", str_pricers);
                 intent.putExtra("str_priceus", str_priceus);
                 intent.putExtra("str_refrene", reference);
-                intent.putExtra("currency_type", currency_type);
+                intent.putExtra("currency_type", is_us);
                 intent.putExtra("str_estimate",str_collectors);
                 intent.putExtra("Auctionname",Auctionname);
                 intent.putExtra("Prdescription",Prdescription);
@@ -664,15 +678,15 @@ public class Lot_Detail_Page extends AppCompatActivity {
                             public void onClick(View v) {
 
                                 String rs_amount = str_rs_amount;
-                                String us_amount = str_us_amount;
-                                String productid = product_id;
-                                String userid = data.getObjectAsString("userid");
-                                String dollerrate = f_doller;
+                                final String us_amount = str_us_amount;
+                                final String productid = product_id;
+                                final String userid = data.getObjectAsString("userid");
+                                final String dollerrate = f_doller;
                                 f_lot = reference;
 
                                 Log.i("Rupees_Amount",rs_amount);
                                // String str_us = Get_US_value(dollerrate, rs_amount);
-                                String str_us = MakeBid.Get_US_value(dollerrate, rs_amount);
+                                final String str_us = MakeBid.Get_US_value(dollerrate, rs_amount);
 
                                 Log.i("Us_Amount",str_us);
 
@@ -682,7 +696,7 @@ public class Lot_Detail_Page extends AppCompatActivity {
 
                                     if (utility.checkInternet())
                                     {
-                                        String Str_productid = product_id;
+                                        final String Str_productid = product_id;
 //                                BidNow(us_amount, productid, userid, dollerrate, str_us,f_lot);
 
                                         double a = Double.parseDouble(us_amount);
@@ -691,10 +705,33 @@ public class Lot_Detail_Page extends AppCompatActivity {
                                         double str_rsonus = a * b;
 
                                         int int_proxy_new = (int) Math.round(str_rsonus);
-                                        String proxy_new_us = Integer.toString(int_proxy_new);
+                                        final String proxy_new_us = Integer.toString(int_proxy_new);
 
 
-                                        GetData("US", Str_productid, proxy_new_us, productid, userid, dollerrate, us_amount, f_lot,str_title);
+                                        //GetData("US", Str_productid, proxy_new_us, productid, userid, dollerrate, us_amount, f_lot,str_title);
+
+                                        makeBid.GetData("US",Str_productid, proxy_new_us, productid, userid, dollerrate, us_amount, f_lot,str_title,Bidclosingtime,Thumbnail,Reference,OldPriceRs,OldPriceUs,Auctionid,Ufirst_name,Ulastname,is_us);
+                                        makeBid.bidResult(new OnBidResult() {
+                                            @Override
+                                            public void bidResult(String currentStatus, String msg)
+                                            {
+
+                                                if(currentStatus.equals("2"))
+                                                {
+                                                    bid_now.dismiss();
+                                                    makeBid.GetData("US",Str_productid, proxy_new_us, productid, userid, dollerrate, us_amount, f_lot,str_title,Bidclosingtime,Thumbnail,Reference,OldPriceRs,OldPriceUs,Auctionid,Ufirst_name,Ulastname,is_us);
+                                                    getTimeCountdown(Str_productid);
+                                                }
+                                                else
+                                                {
+                                                    bid_now.dismiss();
+                                                    getTimeCountdown(Str_productid);
+                                                }
+
+
+                                            }
+
+                                        });
 
                                     } else {
 
@@ -705,8 +742,31 @@ public class Lot_Detail_Page extends AppCompatActivity {
 
 
                                     if (utility.checkInternet()) {
-                                        String Str_productid = product_id;
-                                        GetData("RS", Str_productid, rs_amount, productid, userid, dollerrate, str_us, f_lot,str_title);
+                                        final String Str_productid = product_id;
+                                        //GetData("RS", Str_productid, rs_amount, productid, userid, dollerrate, str_us, f_lot,str_title);
+                                        makeBid.GetData("RS", Str_productid, us_amount, productid, userid, dollerrate, str_us, f_lot,str_title,Bidclosingtime,Thumbnail,Reference,OldPriceRs,OldPriceUs,Auctionid,Ufirst_name,Ulastname,is_us);
+                                        makeBid.bidResult(new OnBidResult() {
+                                            @Override
+                                            public void bidResult(String currentStatus, String msg)
+                                            {
+                                                if(currentStatus.equals("2"))
+                                                {
+                                                    bid_now.dismiss();
+                                                    makeBid.GetData("RS", Str_productid, us_amount, productid, userid, dollerrate, str_us, f_lot,str_title,Bidclosingtime,Thumbnail,Reference,OldPriceRs,OldPriceUs,Auctionid,Ufirst_name,Ulastname,is_us);
+                                                   // currentAuction.startRepeatingTask();
+                                                    getTimeCountdown(Str_productid);
+                                                }
+                                                else
+                                                {
+                                                    bid_now.dismiss();
+                                                    //currentAuction.startRepeatingTask();
+                                                    getTimeCountdown(Str_productid);
+                                                }
+                                            }
+
+                                        });
+
+
 //                                BidNow(rs_amount, productid, userid, dollerrate, proxy_new_us);
 
                                     } else {
@@ -790,6 +850,8 @@ public class Lot_Detail_Page extends AppCompatActivity {
                     final TextView tv_bidvalue = (TextView) dialogView.findViewById(R.id.tv_bidvalue);
                     final TextView iv_iconproxy = (TextView) dialogView.findViewById(R.id.iv_iconproxy);
                     final TextView tv_bit_text = (TextView) dialogView.findViewById(R.id.username);
+                            final LinearLayout lay_bid_values = (LinearLayout) dialogView.findViewById(R.id.lay_bid_values);
+                            final TextView tv_confirm_bid = (TextView) dialogView.findViewById(R.id.tv_confirm_bid);
 
                      if(fragment_type.equalsIgnoreCase("upcomming"))
                      {
@@ -890,9 +952,17 @@ public class Lot_Detail_Page extends AppCompatActivity {
 
                                 if (int_entered_value >= int_bid_value)
                                 {
-                                    if (is_us) {
 
-                                        String str_Proxy_for_us = edt_proxy.getText().toString();
+                                    if(lay_bid_values.getVisibility()==View.VISIBLE)
+                                    {
+                                        lay_bid_values.setVisibility(View.GONE);
+                                        tv_confirm_bid.setVisibility(View.VISIBLE);
+                                    }
+                                    else {
+                                        if (is_us)
+                                        {
+
+                                            String str_Proxy_for_us = edt_proxy.getText().toString();
 
                                        /* int fb1 = Integer.parseInt(dollerRate);
                                         int rl1 = Integer.parseInt(str_Proxy_for_us);
@@ -901,99 +971,106 @@ public class Lot_Detail_Page extends AppCompatActivity {
 
                                         String proxy_amt_for_rs = Integer.toString(str_ProxyAmtrs);*/
 
-                                        double fb1 = Double.parseDouble(dollerRate);
-                                        double rl1 = Double.parseDouble(str_Proxy_for_us);
+                                            double fb1 = Double.parseDouble(dollerRate);
+                                            double rl1 = Double.parseDouble(str_Proxy_for_us);
 
-                                        double str_ProxyAmtrs = rl1 * fb1;
+                                            double str_ProxyAmtrs = rl1 * fb1;
 
-                                        //String proxy_amt_for_rs = Integer.toString(str_ProxyAmtrs);
-                                        int_proxy_new = (int) Math.round(str_ProxyAmtrs);
-                                        String proxy_amt_for_rs = String.valueOf(int_proxy_new);
-
-
-                                       // Toast.makeText(mContext, "from US", Toast.LENGTH_SHORT).show();
-
-                                        String Createdby = data.getObjectAsString("name");
-                                        if (utility.checkInternet())
-                                        {
-
-                                            if (fragment_type.equals("upcomming"))
-                                            {
-                                                //ProxyBid_for_upcoming(siteUserID, productID, proxy_amt_for_rs, proxy_amt_for_rs, "0", "", Createdby, Auction_id);
-
-                                                makeBid.proxyBidForUpcoming(siteUserID, productID, proxy_amt_for_rs, str_Proxy_for_us, Createdby,Auction_id, f_lot,Auctionname);
-
-                                                makeBid.bidResult(new OnBidResult() {
-                                                    @Override
-                                                    public void bidResult(String currentStatus, String msg) {
-                                                        bid_proxy.dismiss();
-                                                        getTimeCountdown(productID);
-                                                    }
-                                                });
+                                            //String proxy_amt_for_rs = Integer.toString(str_ProxyAmtrs);
+                                            int_proxy_new = (int) Math.round(str_ProxyAmtrs);
+                                            String proxy_amt_for_rs = String.valueOf(int_proxy_new);
 
 
-                                            }
-                                            else
-                                            {
-                                               // ProxyBid(str_ProxyAmt, productID, siteUserID, dollerRate, proxy_amt_for_rs, f_lot);
-                                                makeBid.ProxyBid(proxy_amt_for_rs, productID, siteUserID, dollerRate, str_ProxyAmt, f_lot,Bidclosingtime,
-                                                        Thumbnail,Reference,OldPriceRs,OldPriceUs,Auctionid,FirstName,LastName,str_title);
+                                            // Toast.makeText(mContext, "from US", Toast.LENGTH_SHORT).show();
 
-                                                makeBid.bidResult(new OnBidResult() {
-                                                    @Override
-                                                    public void bidResult(String currentStatus, String msg) {
-                                                        bid_proxy.dismiss();
-                                                        getTimeCountdown(productID);
-                                                    }
-                                                });
-                                            }
-
-
-                                        } else {
-
-                                            show_dailog("Please Check Internet Connection");
-                                        }
-
-                                    } else {
-                                       // Toast.makeText(mContext, "From RS", Toast.LENGTH_SHORT).show();
-
-                                        if (utility.checkInternet()) {
                                             String Createdby = data.getObjectAsString("name");
+                                            if (utility.checkInternet())
+                                            {
 
-                                            if (fragment_type.equals("upcomming")) {
-                                               // ProxyBid_for_upcoming(siteUserID, productID, str_ProxyAmt, proxy_amt_us, "0", "", Createdby, Auction_id);
+                                                if (fragment_type.equals("upcomming"))
+                                                {
+                                                    //ProxyBid_for_upcoming(siteUserID, productID, proxy_amt_for_rs, proxy_amt_for_rs, "0", "", Createdby, Auction_id);
 
-                                                makeBid.proxyBidForUpcoming(siteUserID, productID, str_ProxyAmt, proxy_amt_us, Createdby,Auction_id, f_lot,Auctionname);
+                                                    makeBid.proxyBidForUpcoming(siteUserID, productID, proxy_amt_for_rs, str_Proxy_for_us, Createdby,Auction_id, f_lot,Auctionname);
 
-                                                makeBid.bidResult(new OnBidResult() {
-                                                    @Override
-                                                    public void bidResult(String currentStatus, String msg) {
-                                                        bid_proxy.dismiss();
-                                                        getTimeCountdown(productID);
-                                                    }
-                                                });
+                                                    makeBid.bidResult(new OnBidResult()
+                                                    {
+                                                        @Override
+                                                        public void bidResult(String currentStatus, String msg)
+                                                        {
+                                                            bid_proxy.dismiss();
+                                                            getTimeCountdown(productID);
+                                                        }
+                                                    });
+
+
+                                                }
+                                                else
+                                                {
+                                                    // ProxyBid(str_ProxyAmt, productID, siteUserID, dollerRate, proxy_amt_for_rs, f_lot);
+                                                    makeBid.ProxyBid(proxy_amt_for_rs, productID, siteUserID, dollerRate, str_ProxyAmt, f_lot,Bidclosingtime,
+                                                            Thumbnail,Reference,OldPriceRs,OldPriceUs,Auctionid,FirstName,LastName,str_title);
+
+                                                    makeBid.bidResult(new OnBidResult() {
+                                                        @Override
+                                                        public void bidResult(String currentStatus, String msg) {
+                                                            bid_proxy.dismiss();
+                                                            getTimeCountdown(productID);
+                                                        }
+                                                    });
+                                                }
+
 
                                             } else {
-                                               // ProxyBid(str_ProxyAmt, productID, siteUserID, dollerRate, proxy_amt_us, f_lot);
 
-                                                makeBid.ProxyBid(str_ProxyAmt, productID, siteUserID, dollerRate, proxy_amt_us, f_lot,Bidclosingtime,
-                                                        Thumbnail,Reference,OldPriceRs,OldPriceUs,Auctionid,FirstName,LastName,str_title);
-
-                                                makeBid.bidResult(new OnBidResult() {
-                                                    @Override
-                                                    public void bidResult(String currentStatus, String msg) {
-                                                        bid_proxy.dismiss();
-                                                        getTimeCountdown(productID);
-                                                    }
-                                                });
+                                                show_dailog("Please Check Internet Connection");
                                             }
 
-                                        } else {
-
-                                            show_dailog("Please Check Internet Connection");
                                         }
+                                        else
+                                        {
+                                            // Toast.makeText(mContext, "From RS", Toast.LENGTH_SHORT).show();
 
+                                            if (utility.checkInternet()) {
+                                                String Createdby = data.getObjectAsString("name");
+
+                                                if (fragment_type.equals("upcomming")) {
+                                                    // ProxyBid_for_upcoming(siteUserID, productID, str_ProxyAmt, proxy_amt_us, "0", "", Createdby, Auction_id);
+
+                                                    makeBid.proxyBidForUpcoming(siteUserID, productID, str_ProxyAmt, proxy_amt_us, Createdby,Auction_id, f_lot,Auctionname);
+
+                                                    makeBid.bidResult(new OnBidResult() {
+                                                        @Override
+                                                        public void bidResult(String currentStatus, String msg) {
+                                                            bid_proxy.dismiss();
+                                                            getTimeCountdown(productID);
+                                                        }
+                                                    });
+
+                                                } else {
+                                                    // ProxyBid(str_ProxyAmt, productID, siteUserID, dollerRate, proxy_amt_us, f_lot);
+
+                                                    makeBid.ProxyBid(str_ProxyAmt, productID, siteUserID, dollerRate, proxy_amt_us, f_lot,Bidclosingtime,
+                                                            Thumbnail,Reference,OldPriceRs,OldPriceUs,Auctionid,FirstName,LastName,str_title);
+
+                                                    makeBid.bidResult(new OnBidResult() {
+                                                        @Override
+                                                        public void bidResult(String currentStatus, String msg) {
+                                                            bid_proxy.dismiss();
+                                                            getTimeCountdown(productID);
+                                                        }
+                                                    });
+                                                }
+
+                                            } else {
+
+                                                show_dailog("Please Check Internet Connection");
+                                            }
+
+                                        }
                                     }
+
+
 
                                 } else {
 
@@ -1099,7 +1176,7 @@ public class Lot_Detail_Page extends AppCompatActivity {
                 @Override
                 public void onSuccess(String result) {
                     System.out.println("result" + result);
-                    Toast.makeText(mContext, "Succesfully Added to Gallary", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "The Lot has been added to your auction gallery.", Toast.LENGTH_SHORT).show();
 
 
                     String str_json = result;
@@ -1404,7 +1481,6 @@ public class Lot_Detail_Page extends AppCompatActivity {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
 
-
                         Toast.makeText(mContext, e.getMessage(),Toast.LENGTH_LONG)
                                 .show();
                     }
@@ -1581,7 +1657,7 @@ public class Lot_Detail_Page extends AppCompatActivity {
         }
 
     }
-    private void GetData(String value, String str_productid, String rs_amount, String productid, String userid, String dollerrate, String proxy_new_us, String lot, final String str_title) {
+    private void GetData(String value, String str_productid, final String rs_amount, final String productid, final String userid, final String dollerrate, final String proxy_new_us, String lot, final String str_title) {
 
         if (utility.checkInternet()) {
             String strPastAuctionUrl = Application_Constants.Main_URL+"Acution?api_key="+ Application_Constants.API_KEY+"&filter=productid="+str_productid+"";
@@ -1637,23 +1713,53 @@ public class Lot_Detail_Page extends AppCompatActivity {
                                 if (value_two > value_one)
                                 {
 
-                                    System.out.println("ttt"+"bid valid ");
 
                                    // BidNow(trs_amount, tproductid, tuserid, tdollerrate, tproxy_new_us,tlot);
 
                                     makeBid.BidNow(trs_amount,tproductid,tuserid,tdollerrate,tproxy_new_us,tlot,Bidclosingtime,Thumbnail,Reference,OldPriceRs,OldPriceUs,Auctionid,Ufirst_name,Ulastname, str_title);
                                     makeBid.bidResult(new OnBidResult() {
                                         @Override
-                                        public void bidResult(String currentStatus, String msg) {
+                                        public void bidResult(String currentStatus, String msg)
+                                        {
                                             bid_now.dismiss();
-                                            getTimeCountdown(tproductid);
+
+                                            if(currentStatus.equals("2"))
+                                            {
+                                                if (is_us)
+                                                {
+//                                                    BidNow(us_amount, productid, userid, dollerrate, proxy_new_us,f_lot);
+                                                    getTimeCountdown(tproductid);
+                                                    GetData("US",tproductid,usvalue, productid, userid, dollerrate, proxy_new_us,f_lot,str_title);
+                                                }
+                                                else
+                                                {
+
+                                                    getTimeCountdown(tproductid);
+                                                    GetData("RS",tproductid,rs_amount, productid, userid, dollerrate, proxy_new_us,f_lot,str_title);
+//                                BidNow(rs_amount, productid, userid, dollerrate, proxy_new_us);
+                                                }
+                                            }
+                                            else
+                                            {
+                                                getTimeCountdown(tproductid);
+                                            }
+                                           /* if(currentStatus.equals("2"))
+                                            {
+                                                bid_now.dismiss();
+                                                makeBid.GetData("RS", Str_productid, us_amount, productid, userid, dollerrate, str_us, f_lot,strTitle,Bidclosingtime,Thumbnail,Reference,OldPriceRs,OldPriceUs,Auctionid,Ufirst_name,Ulastname,is_us);
+                                                getTimeCountdown(tproductid);
+                                            }
+                                            else
+                                            {
+                                                bid_now.dismiss();
+                                                getTimeCountdown(tproductid);
+                                            }*/
                                         }
                                     });
                                 }
                                 else
                                 {
 
-                                    System.out.println("ttt"+"bid not valid  ");
 //                                    Toast.makeText(mContext, "Dismiss  bidding", Toast.LENGTH_SHORT).show();
                                     bid_now.dismiss();
 
@@ -1730,10 +1836,13 @@ public class Lot_Detail_Page extends AppCompatActivity {
                                             }
                                             else {
 
-                                                if (is_us) {
+                                                if (is_us)
+                                                {
 //                                                    BidNow(us_amount, productid, userid, dollerrate, proxy_new_us,f_lot);
                                                     GetData("US",f_pro_id,us_amount, productid, userid, dollerrate, proxy_new_us,f_lot,str_title);
-                                                } else {
+                                                }
+                                                else
+                                                    {
 
                                                     System.out.println("ttt"+"re bid ");
 
@@ -2102,24 +2211,23 @@ public class Lot_Detail_Page extends AppCompatActivity {
     private String claculatePercentage(String strPrise)
     {
         String strBidPrise="";
+
         try
         {
 
-            Integer int_bid_prise = 0,int_discount=0;
+            double dbl_bid_prise = 0,dbl_discount=0;
 
-            int_bid_prise = Integer.parseInt(strPrise);
-            int_discount = ((Integer.parseInt(strPrise)*15)/100);
-            int_bid_prise = int_bid_prise+int_discount;
+            dbl_bid_prise = Double.parseDouble(strPrise);
+            dbl_discount = ((Double.parseDouble(strPrise)*15)/100);
+            dbl_bid_prise = dbl_bid_prise+dbl_discount;
 
-            strBidPrise = String.valueOf(int_bid_prise);
+            strBidPrise = String.valueOf(Math.round(dbl_bid_prise));
+
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
-
-
-
 
         return strBidPrise;
     }
@@ -2324,7 +2432,6 @@ public class Lot_Detail_Page extends AppCompatActivity {
                         e.printStackTrace();
                     }
 
-
                 }
             });
         }
@@ -2361,6 +2468,9 @@ public class Lot_Detail_Page extends AppCompatActivity {
                                         Bidclosingtime = Obj.getString("Bidclosingtime");
                                         strcurrentDate = Obj.getString("currentDate");
                                         MyUserID = Obj.getString("MyUserID");
+                                        str_pricers = pricers;
+                                        str_priceus = priceus;
+
 
                                     }
 
@@ -2432,8 +2542,6 @@ public class Lot_Detail_Page extends AppCompatActivity {
                                                 tv_bidding.setVisibility(View.GONE)
                                             }*/
 
-
-
                                             if (fragment_type.equalsIgnoreCase("past"))
                                             {
                                                 btn_bid_now_lot.setVisibility(View.GONE);
@@ -2479,6 +2587,17 @@ public class Lot_Detail_Page extends AppCompatActivity {
                                                 {
                                                     btn_bid_now_lot.setVisibility(View.GONE);
                                                     btn_proxy_bid_lot.setVisibility(View.GONE);
+
+
+                                                    if(!is_after)
+                                                    {
+                                                        tv_bidding.setText("Lot Won");
+                                                    }
+                                                    else
+                                                    {
+                                                        tv_bidding.setText("You are currently the highest bidder.");
+
+                                                    }
                                                     tv_bidding.setVisibility(View.VISIBLE);
                                                 }
                                                 else
@@ -2490,6 +2609,8 @@ public class Lot_Detail_Page extends AppCompatActivity {
                                                 if(is_us)
                                                 {
                                                     int next_bid_doller=0;
+
+                                                    priceus = NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(priceus));
                                                     tv_current_lot.setText("$ "+priceus);
                                                     int myNum = Integer.parseInt(pricers);
                                                     if (myNum<10000000)
@@ -2525,9 +2646,6 @@ public class Lot_Detail_Page extends AppCompatActivity {
                                                     String str_amt_rs = rupeeFormat(valuebyerprimium1);
                                                     tv_next_lot.setText("₹ "+str_amt_rs);
                                                 }
-
-
-
 
                                             }
 
@@ -2594,11 +2712,7 @@ public class Lot_Detail_Page extends AppCompatActivity {
         dilog_bid_access = dialogBuilder.create();
         dilog_bid_access.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-
-
-
         dilog_bid_access.show();
-
 
 
         // dilog_bid_access.getWindow().setLayout(700, LinearLayout.LayoutParams.MATCH_PARENT);
@@ -2607,6 +2721,56 @@ public class Lot_Detail_Page extends AppCompatActivity {
         window.setGravity(Gravity.CENTER);
         dilog_bid_access.setCanceledOnTouchOutside(false);
     }
+
+  /*  private  void show_outofbid_dailog(final String msg, final String currentStatus, final String servermsg)
+    {
+
+        String msgtest = msg;
+
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(Lot_Detail_Page.this);
+        LayoutInflater inflater = (LayoutInflater)
+                getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View dialogView = inflater.inflate(R.layout.dailog_aleart_out_of_bid, null);
+        dialogBuilder.setView(dialogView);
+
+        final TextView tv_cancel = (TextView) dialogView.findViewById(R.id.tv_cancel);
+        final TextView tv_confim = (TextView) dialogView.findViewById(R.id.tv_confim);
+        final TextView tv_bidvalue = (TextView) dialogView.findViewById(R.id.tv_bidvalue);
+        tv_bidvalue.setText(msgtest);
+
+        dilog_alert_out_of_bid = dialogBuilder.create();
+
+        tv_cancel.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                if(onBidResult!=null)
+                {
+                    dilog_alert_out_of_bid.dismiss();
+                    onBidResult.bidResult(currentStatus,servermsg);
+
+                }
+            }
+        });
+        tv_confim.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                if(onBidResult!=null)
+                {
+                    dilog_alert_out_of_bid.dismiss();
+                    onBidResult.bidResult(currentStatus,servermsg);
+
+                }
+            }
+        });
+
+
+        dilog_alert_out_of_bid.show();
+        dilog_alert_out_of_bid.setCanceledOnTouchOutside(false);
+    }*/
 
 }
 

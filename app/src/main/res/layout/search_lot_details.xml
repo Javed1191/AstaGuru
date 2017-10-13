@@ -98,7 +98,7 @@
                 android:id="@+id/lot_image"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:src="@drawable/img_past_1" />
+                android:src="@drawable/img_default" />
 
             <View
                 android:layout_width="match_parent"

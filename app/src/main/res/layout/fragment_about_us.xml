@@ -34,10 +34,11 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <ScrollView
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scroller"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -45,8 +46,16 @@
             android:orientation="vertical"
             android:paddingLeft="10dp"
             android:paddingRight="10dp">
+            <com.infomanav.astaguru.WorkSansRegular
+                android:paddingTop="10dp"
+                android:id="@+id/tv_aboutus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"/>
 
             <WebView
+                android:visibility="gone"
                 android:id="@+id/tv_textabout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -100,7 +109,6 @@
                 android:layout_marginBottom="10dp"
                 android:orientation="vertical"
                 android:padding="8dp"
-                android:paddingBottom="40dp"
                 android:visibility="gone"
                 tools:context=".MainActivity">
 
@@ -115,7 +123,7 @@
 
 
                 <views.ExpandableHeightGridView
-                    android:paddingBottom="90dp"
+                    android:paddingBottom="10dp"
                     android:layout_marginTop="10dp"
                     android:id="@+id/myId"
                     android:layout_width="wrap_content"
@@ -130,7 +138,7 @@
 
 
         </LinearLayout>
-    </ScrollView>
+    </android.support.v4.widget.NestedScrollView>
 
 
 </LinearLayout>

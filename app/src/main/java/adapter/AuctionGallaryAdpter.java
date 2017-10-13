@@ -36,6 +36,7 @@ import interfaces.OnBidResult;
 import model_classes.AuctionGallary_Model;
 import com.infomanav.astaguru.Auction_Gallary_Activity;
 import com.infomanav.astaguru.Before_Login_Activity;
+import com.infomanav.astaguru.Bid_History;
 import com.infomanav.astaguru.FragmentCurrentAuction;
 import com.infomanav.astaguru.Lot_Detail_Page;
 import com.infomanav.astaguru.MakeBid;
@@ -87,20 +88,20 @@ public class AuctionGallaryAdpter  extends ArrayAdapter<AuctionGallary_Model> {
     TextView tv_title,tv_countdown;
     String trs_amount, tproductid, tuserid, tdollerrate, tproxy_new_us,tlot,tvalue;
     Button btn_bidnow, btn_proxybid;
-    public boolean is_us = false;
+    public boolean is_us = false,is_after;
     List<AuctionGallary_Model> objects_constructer;
     TextView iv_one, iv_two,iv_oneback,iv_twoback;
     String rs_value,usvalue;
     DecimalFormat formatter;
     SessionData data;
     EditText edt_proxy;
-    AlertDialog bid_now,bid_proxy,dilog_alert;
+    AlertDialog bid_now,bid_proxy,dilog_alert,dilog_bid_access;
     String str_rs_amount,str_us_amount;
     String rupee_value;
     ProgressDialog pDialog;
     String value_for_cmpr;
     String f_doller,f_pro_id,f_lot,Thumbnail,Reference,OldPriceUs,OldPriceRs,Auctionid,Ufirst_name,Ulastname,
-            Bidclosingtime,strTitle="";
+            Bidclosingtime,strTitle="",Createdby="";
     Auction_Gallary_Activity gallaryActivity;
     Utility utility;
     Activity activity;
@@ -126,6 +127,8 @@ public class AuctionGallaryAdpter  extends ArrayAdapter<AuctionGallary_Model> {
         makeBid = new MakeBid(mContext);
         this.auction_gallary_activity=auction_gallary_activity;
         showFullZoomImage = new ShowFullZoomImage(mContext);
+
+        Createdby = data.getObjectAsString("name");
     }
 
     public void changeCurrency(boolean is_us) {
@@ -231,7 +234,7 @@ public class AuctionGallaryAdpter  extends ArrayAdapter<AuctionGallary_Model> {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent){
+    public View getView(final int position, View convertView, ViewGroup parent){
         // TODO Auto-generated method stub
         View curView;
         if(convertView==null)
@@ -329,7 +332,7 @@ public class AuctionGallaryAdpter  extends ArrayAdapter<AuctionGallary_Model> {
                 String strcurrentDate =cp.getCurrentDate();
                 Date currentDate = dateFormat.parse(strcurrentDate);
 
-                boolean is_after = currentDate.before(eventDate);
+                is_after = currentDate.before(eventDate);
 
 
 
@@ -420,6 +423,16 @@ public class AuctionGallaryAdpter  extends ArrayAdapter<AuctionGallary_Model> {
                         btn_bidnow.setVisibility(View.GONE);
                         btn_proxybid.setVisibility(View.GONE);
 
+                        if(!is_after)
+                        {
+                            tv_bidding.setText("Lot Won");
+                        }
+                        else
+                        {
+                            tv_bidding.setText("You are currently the highest bidder.");
+
+                        }
+
                         tv_bidding.setVisibility(View.VISIBLE);
 
                     }
@@ -451,25 +464,13 @@ public class AuctionGallaryAdpter  extends ArrayAdapter<AuctionGallary_Model> {
             }
 
         }
-
-
-
-
-
-
-
-
         tv_lot.setText("Lot " + cp.getReference());
         tv_lot_back.setText("Lot " + cp.getReference());
         iv_close = (ImageView) curView.findViewById(R.id.iv_close);
 
-
-
         lin_front = (LinearLayout) curView.findViewById(R.id.lin_front);
         lin_back = (LinearLayout) curView.findViewById(R.id.lin_back);
         m = mContext.getResources().getDisplayMetrics();
-
-
 
         tv_title.setText(cp.getArtist_name());
         tv_subtitle.setText(cp.getStr_title());
@@ -663,8 +664,6 @@ public class AuctionGallaryAdpter  extends ArrayAdapter<AuctionGallary_Model> {
                 intent.putExtra("dollar_rate",cp.getDollarRate());
                 mContext.startActivity(intent);
 
-
-
             }
         });
 
@@ -673,7 +672,8 @@ public class AuctionGallaryAdpter  extends ArrayAdapter<AuctionGallary_Model> {
             @Override
             public void onClick(View v) {
                 String bidartistuserid = cp.getBidartistuserid();
-
+                objects_constructer.remove(position);
+                notifyDataSetChanged();
                 Delete(bidartistuserid);
 
 
@@ -919,13 +919,13 @@ public class AuctionGallaryAdpter  extends ArrayAdapter<AuctionGallary_Model> {
                             window.setLayout(width-200, LinearLayout.LayoutParams.WRAP_CONTENT);
                             window.setGravity(Gravity.CENTER);
                             bid_now.setCanceledOnTouchOutside(false);
-                        bid_now.setCanceledOnTouchOutside(false);
 
 
                         }
                         else
                         {
-                            Toast.makeText(mContext, "You do not have bidding access", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(mContext, "You do not have bidding access", Toast.LENGTH_SHORT).show();
+                            bidAccessDialog("Astaguru","You don't have access to Bid Please contact Astaguru.");
                         }
                     } else {
                         Intent intent = new Intent(mContext, Verification_Activity.class);
@@ -972,6 +972,8 @@ public class AuctionGallaryAdpter  extends ArrayAdapter<AuctionGallary_Model> {
                     final TextView tv_proxylot = (TextView) dialogView.findViewById(R.id.tv_proxylot);
 
                     final TextView iv_iconproxy = (TextView) dialogView.findViewById(R.id.iv_iconproxy);
+                    final LinearLayout lay_bid_values = (LinearLayout) dialogView.findViewById(R.id.lay_bid_values);
+                    final TextView tv_confirm_bid = (TextView) dialogView.findViewById(R.id.tv_confirm_bid);
 
                             String img_name = cp.getStr_thumbnail();
 
@@ -1070,71 +1072,112 @@ public class AuctionGallaryAdpter  extends ArrayAdapter<AuctionGallary_Model> {
 
                                     if (int_entered_value >= int_bid_value)
                                     {
-                                        if (is_us)
+                                        if(lay_bid_values.getVisibility()==View.VISIBLE)
                                         {
-
-
-                                            String str_Proxy_for_us = edt_proxy.getText().toString();
-
-                                            double fb1 = Double.parseDouble(dollerRate);
-                                            double rl1 = Double.parseDouble(str_Proxy_for_us);
-
-                                            double str_ProxyAmtrs = rl1 * fb1;
-
-                                            String proxy_amt_for_rs = Double.toString(str_ProxyAmtrs);
-                                           // Toast.makeText(mContext, "from US", Toast.LENGTH_SHORT).show();
-
-
-                                            if (utility.checkInternet())
-                                            {
-                                                //ProxyBid(str_ProxyAmt, productID, siteUserID, dollerRate, proxy_amt_for_rs, f_lot);
-
-                                                makeBid.ProxyBid(str_ProxyAmt, productID, siteUserID, dollerRate, proxy_amt_for_rs, f_lot,Bidclosingtime,
-                                                        Thumbnail,Reference,OldPriceRs,OldPriceUs,Auctionid,Ufirst_name,Ulastname,strTitle);
-
-                                                makeBid.bidResult(new OnBidResult() {
-                                                    @Override
-                                                    public void bidResult(String currentStatus, String msg) {
-                                                        bid_proxy.dismiss();
-                                                        auction_gallary_activity.startRepeatingTask();
-                                                    }
-                                                });
-
-
-                                            }
-                                            else
-                                            {
-                                                show_dailog("Please Check Internet Connection");
-
-                                            }
-
-
+                                            lay_bid_values.setVisibility(View.GONE);
+                                            tv_confirm_bid.setVisibility(View.VISIBLE);
                                         }
                                         else
                                         {
-                                           // Toast.makeText(mContext, "From RS", Toast.LENGTH_SHORT).show();
-
-                                            if (utility.checkInternet())
+                                            if (is_us)
                                             {
-                                                //ProxyBid(str_ProxyAmt, productID, siteUserID, dollerRate, proxy_amt_us, f_lot);
 
-                                                makeBid.ProxyBid(str_ProxyAmt, productID, siteUserID, dollerRate, proxy_amt_us, f_lot,Bidclosingtime,
-                                                        Thumbnail,Reference,OldPriceRs,OldPriceUs,Auctionid,Ufirst_name,Ulastname,strTitle);
 
-                                                makeBid.bidResult(new OnBidResult() {
-                                                    @Override
-                                                    public void bidResult(String currentStatus, String msg) {
-                                                        bid_proxy.dismiss();
-                                                        auction_gallary_activity.startRepeatingTask();
+                                                String str_Proxy_for_us = edt_proxy.getText().toString();
+
+                                                double fb1 = Double.parseDouble(dollerRate);
+                                                double rl1 = Double.parseDouble(str_Proxy_for_us);
+
+                                                double str_ProxyAmtrs = rl1 * fb1;
+
+                                                String proxy_amt_for_rs = Double.toString(str_ProxyAmtrs);
+                                                // Toast.makeText(mContext, "from US", Toast.LENGTH_SHORT).show();
+
+
+                                                if (utility.checkInternet())
+                                                {
+                                                    //ProxyBid(str_ProxyAmt, productID, siteUserID, dollerRate, proxy_amt_for_rs, f_lot);
+
+                                                    if(cp.getStatus().equalsIgnoreCase("Current"))
+                                                    {
+                                                        makeBid.ProxyBid(str_ProxyAmt, productID, siteUserID, dollerRate, proxy_amt_for_rs, f_lot,Bidclosingtime,
+                                                                Thumbnail,Reference,OldPriceRs,OldPriceUs,Auctionid,Ufirst_name,Ulastname,strTitle);
+
+                                                        makeBid.bidResult(new OnBidResult() {
+                                                            @Override
+                                                            public void bidResult(String currentStatus, String msg) {
+                                                                bid_proxy.dismiss();
+                                                                auction_gallary_activity.startRepeatingTask();
+                                                            }
+                                                        });
                                                     }
-                                                });
+                                                    else
+                                                    {
+                                                        makeBid.proxyBidForUpcoming(siteUserID, productID, proxy_amt_for_rs, str_Proxy_for_us, Createdby,Auctionid, f_lot,cp.getAuctionname());
+
+                                                        makeBid.bidResult(new OnBidResult() {
+                                                            @Override
+                                                            public void bidResult(String currentStatus, String msg) {
+                                                                bid_proxy.dismiss();
+                                                            }
+                                                        });
+                                                    }
+
+
+
+
+                                                }
+                                                else
+                                                {
+                                                    show_dailog("Please Check Internet Connection");
+
+                                                }
+
+
                                             }
                                             else
                                             {
+                                                // Toast.makeText(mContext, "From RS", Toast.LENGTH_SHORT).show();
 
-                                                show_dailog("Please Check Internet Connection");
+                                                if (utility.checkInternet())
+                                                {
+                                                    //ProxyBid(str_ProxyAmt, productID, siteUserID, dollerRate, proxy_amt_us, f_lot);
+
+                                                    if(cp.getStatus().equalsIgnoreCase("Current"))
+                                                    {
+                                                        makeBid.ProxyBid(str_ProxyAmt, productID, siteUserID, dollerRate, proxy_amt_us, f_lot,Bidclosingtime,
+                                                                Thumbnail,Reference,OldPriceRs,OldPriceUs,Auctionid,Ufirst_name,Ulastname,strTitle);
+
+                                                        makeBid.bidResult(new OnBidResult() {
+                                                            @Override
+                                                            public void bidResult(String currentStatus, String msg) {
+                                                                bid_proxy.dismiss();
+                                                                auction_gallary_activity.startRepeatingTask();
+                                                            }
+                                                        });
+                                                    }
+                                                    else
+                                                    {
+                                                        makeBid.proxyBidForUpcoming(siteUserID, productID, str_ProxyAmt, proxy_amt_us, Createdby,Auctionid, f_lot,cp.getAuctionname());
+
+                                                        makeBid.bidResult(new OnBidResult() {
+                                                            @Override
+                                                            public void bidResult(String currentStatus, String msg) {
+                                                                bid_proxy.dismiss();
+                                                            }
+                                                        });
+                                                    }
+
+
+                                                }
+                                                else
+                                                {
+
+                                                    show_dailog("Please Check Internet Connection");
+                                                }
+
+
                                             }
-
 
                                         }
 
@@ -1171,7 +1214,8 @@ public class AuctionGallaryAdpter  extends ArrayAdapter<AuctionGallary_Model> {
                     }
                     else
                     {
-                        Toast.makeText(mContext, "You do not have bidding access", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(mContext, "You do not have bidding access", Toast.LENGTH_SHORT).show();
+                        bidAccessDialog("Astaguru","You don't have access to Bid Please contact Astaguru.");
                     }
                 }
                 else
@@ -1335,7 +1379,7 @@ public class AuctionGallaryAdpter  extends ArrayAdapter<AuctionGallary_Model> {
                                 if(currentStatus.equals("1"))
                                 {
 
-                                    Toast.makeText(mContext, "You Succesfully Bid", Toast.LENGTH_SHORT).show();
+                                   // Toast.makeText(mContext, "You Succesfully Bid", Toast.LENGTH_SHORT).show();
                                     String number = Obj.getString("mobileNum");
                                     bid_now.dismiss();
 
@@ -1739,7 +1783,7 @@ public class AuctionGallaryAdpter  extends ArrayAdapter<AuctionGallary_Model> {
                 @Override
                 public void onSuccess(String result) {
                     System.out.println("result" + result);
-                    Toast.makeText(mContext, "Succesfully Added to Gallary", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "The Lot has been added to your auction gallery.", Toast.LENGTH_SHORT).show();
 
 
                     String str_json = result;
@@ -1787,7 +1831,7 @@ public class AuctionGallaryAdpter  extends ArrayAdapter<AuctionGallary_Model> {
 
 
 
-                                gallaryActivity.GetAuctionGAllary();
+                                gallaryActivity.getMyAuctionGallery();
 
 
                             } catch (Exception e) {
@@ -1814,5 +1858,38 @@ public class AuctionGallaryAdpter  extends ArrayAdapter<AuctionGallary_Model> {
 
 
 
+    public void bidAccessDialog(String strTitle, String strMessage)
+    {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(mContext);
+        LayoutInflater inflater = (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View dialogView = inflater.inflate(R.layout.dailog_bid_access, null);
+        dialogBuilder.setView(dialogView);
+
+
+        final TextView tv_title = (TextView) dialogView.findViewById(R.id.tv_title);
+        final TextView tv_message = (TextView) dialogView.findViewById(R.id.tv_message);
+        final TextView tv_confim = (TextView) dialogView.findViewById(R.id.tv_confim);
+
+        tv_title.setText(strTitle);
+        tv_message.setText(strMessage);
+        tv_confim.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dilog_bid_access.dismiss();
+
+            }
+        });
+
+        dilog_bid_access = dialogBuilder.create();
+        dilog_bid_access.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dilog_bid_access.show();
+
+        // dilog_bid_access.getWindow().setLayout(700, LinearLayout.LayoutParams.MATCH_PARENT);
+        Window window = dilog_bid_access.getWindow();
+        window.setLayout(width-200, LinearLayout.LayoutParams.WRAP_CONTENT);
+        window.setGravity(Gravity.CENTER);
+        dilog_bid_access.setCanceledOnTouchOutside(false);
+    }
 
 }

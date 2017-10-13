@@ -65,12 +65,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 PendingIntent.FLAG_ONE_SHOT);
 
         Bitmap icon = BitmapFactory.decodeResource(getResources(),
-                R.drawable.ic_launcher);
+                R.mipmap.notification_icon);
 
         Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setLargeIcon(icon)/*Model_Notification icon image*/
-                .setSmallIcon(R.drawable.ic_launcher)
+                .setSmallIcon(R.mipmap.notification_icon)
                 .setContentTitle("Asta Guru")
                 .setContentText(messageBody)
                 .setAutoCancel(true)

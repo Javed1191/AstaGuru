@@ -46,7 +46,7 @@ public class AdditionalCharges_Activity extends AppCompatActivity {
             tv_ac_servicetax,tv_ac_grandtotal,tv_ac_estimate,tv_desc;
 
     private ImageView iv_main_img,iv_closeactivity;
-    String currency_type,str_priceus,str_pricers,Auctionname,Prdescription;
+    String str_priceus,str_pricers,Auctionname,Prdescription;
     TextView tv_update_address;
     LinearLayout lin_user_details;
     SessionData data;
@@ -54,6 +54,7 @@ public class AdditionalCharges_Activity extends AppCompatActivity {
     private RelativeLayout rel_desc;
     private LinearLayout lay_art_details;
     private RelativeLayout rel_cat;
+    private boolean is_us =false;
 
 
     @Override
@@ -143,7 +144,7 @@ public class AdditionalCharges_Activity extends AppCompatActivity {
 
         tv_ac_size.setText(Size+" in");
         str_pricers = intent.getStringExtra("str_pricers");
-        currency_type = intent.getStringExtra("currency_type");
+        is_us = intent.getBooleanExtra("currency_type",false);
         str_priceus= intent.getStringExtra("str_priceus");
         tv_ac_estimate.setText(intent.getStringExtra("str_estimate"));
         tv_desc.setText(Html.fromHtml(Prdescription));
@@ -168,7 +169,7 @@ public class AdditionalCharges_Activity extends AppCompatActivity {
         }
 
 
-        if (currency_type.equals("USD"))
+        if (is_us)
         {
             NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(Locale.US);
             double priceInUSD = Double.parseDouble(str_priceus);
@@ -187,7 +188,7 @@ public class AdditionalCharges_Activity extends AppCompatActivity {
 
             tv_ac_byerprimium.setText("US$ "+d_byerprimium.replaceAll("\\.00", "").replace("$",""));
 
-            double vatonhummer = (amount / 100.0f) * 12.5;
+            double vatonhummer = (amount / 100.0f) * 12;
 
             int intvatonhummer = (int) vatonhummer;
             String valuevatonhummer = String.valueOf(intvatonhummer);
@@ -198,7 +199,7 @@ public class AdditionalCharges_Activity extends AppCompatActivity {
 
             tv_ac_vatonhummer.setText("US$ "+d_vatonhummer.replaceAll("\\.00", "").replace("$",""));
 
-            double servicetax = (vatonhummer / 100.0f) * 14.5;
+            double servicetax = (dbyerprimium / 100.0f) * 18;
 
             int intservicetax = (int) servicetax;
 
@@ -206,13 +207,13 @@ public class AdditionalCharges_Activity extends AppCompatActivity {
 
 
             double dservicetax = Double.parseDouble(valueservicetax);
-            String d_servicetax = currencyFormat.format(dservicetax);
-
-            d_servicetax = calculatePercentage(String.valueOf(intbyerprimium));
+            String d_servicetax;
+            d_servicetax = currencyFormat.format(dservicetax);
+            //d_servicetax = calculatePercentage(String.valueOf(intbyerprimium));
             tv_ac_servicetax.setText("US$ "+d_servicetax.replaceAll("\\.00", "").replace("$",""));
 
 
-            Double a = new Double(Double.parseDouble(str_pricers));
+            Double a = new Double(Double.parseDouble(str_priceus));
             Double b = new Double(Double.parseDouble(valuebyerprimium));
             Double c = new Double(Double.parseDouble(valuevatonhummer));
             Double d = new Double(Double.parseDouble(valueservicetax));
@@ -242,7 +243,7 @@ public class AdditionalCharges_Activity extends AppCompatActivity {
             String vale_byerprimium = rupeeFormat(valuebyerprimium);
             tv_ac_byerprimium.setText("₹ "+vale_byerprimium);
 
-            double vatonhummer = (amount / 100.0f) * 13.5;
+            double vatonhummer = (amount / 100.0f) * 12;
 
             int intvatonhummer = (int) vatonhummer;
             String valuevatonhummer = String.valueOf(intvatonhummer);
@@ -251,7 +252,7 @@ public class AdditionalCharges_Activity extends AppCompatActivity {
             String vale_vatonhummer = rupeeFormat(valuevatonhummer);
             tv_ac_vatonhummer.setText("₹ "+vale_vatonhummer);
 
-            double servicetax = (vatonhummer / 100.0f) * 15;
+            double servicetax = (vatonhummer / 100.0f) * 18;
 
             int intservicetax = (int) servicetax;
 
@@ -291,10 +292,6 @@ public class AdditionalCharges_Activity extends AppCompatActivity {
         intent.getStringArrayExtra("str_medium");
         intent.getStringArrayExtra("str_date");
         intent.getStringArrayExtra("str_productsize");
-
-
-
-
 
         iv_closeactivity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -443,7 +440,7 @@ public class AdditionalCharges_Activity extends AppCompatActivity {
         Integer int_bid_prise = 0,int_discount=0;
 
         int_bid_prise = Integer.parseInt(strPrise);
-        int_discount = ((Integer.parseInt(strPrise)*15)/100);
+        int_discount = ((Integer.parseInt(strPrise)*18)/100);
        // int_bid_prise = int_bid_prise+int_discount;
 
         strBidPrise = String.valueOf(int_discount);

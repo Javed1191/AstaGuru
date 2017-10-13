@@ -35,7 +35,7 @@
             android:paddingBottom="5dp"
             android:paddingTop="5dp"
 
-            android:src="@drawable/img_past_1" />
+            android:src="@drawable/img_default" />
 
         <View
             android:layout_width="match_parent"
@@ -616,7 +616,6 @@
                         android:id="@+id/testmidium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
                         android:text="Medium: "
                         android:textColor="@color/colorPrimary"
                         android:textSize="10sp"
@@ -627,7 +626,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@+id/testmidium"
-                        android:gravity="center"
                         android:maxLines="1"
                         android:ellipsize="marquee"
                         android:text="Morderen "

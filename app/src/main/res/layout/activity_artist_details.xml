@@ -57,6 +57,7 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:descendantFocusability="blocksDescendants"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -127,7 +128,7 @@
                         android:id="@+id/tv_current_auction"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-
+                        android:textColor="#a78e69"
 
                         android:layout_alignParentLeft="true"
                         android:gravity="center"
@@ -140,7 +141,7 @@
                         android:id="@+id/view_current_auction"
                         android:layout_width="match_parent"
                         android:layout_height="3dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="5dp"
                         android:background="#a78e69"
                         android:visibility="visible"/>
 
@@ -174,24 +175,20 @@
                         android:id="@+id/view_past_auction"
                         android:layout_width="match_parent"
                         android:layout_height="3dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="5dp"
                         android:background="#a78e69"
                         android:visibility="invisible"/>
                 </LinearLayout>
 
 
             </LinearLayout>
-
-
-            <!--<android.support.v7.widget.RecyclerView-->
-            <!--android:id="@+id/recycler_view"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:scrollbars="vertical" />-->
-
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/view_divider_color_2"
+                />
 
             <views.ExpandableHeightGridView
-                android:focusableInTouchMode="true"
                 android:id="@+id/gridviewcurrent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -200,14 +197,13 @@
                 android:layout_marginTop="20dp"
                 android:columnWidth="150dp"
                 android:gravity="center"
-                android:horizontalSpacing="10dp"
+                android:horizontalSpacing="5dp"
                 android:numColumns="auto_fit"
                 android:paddingBottom="30dp"
                 android:stretchMode="columnWidth"
                 android:verticalSpacing="10dp"/>
 
             <views.ExpandableHeightGridView
-                android:focusableInTouchMode="true"
                 android:id="@+id/gridviewpast"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -216,7 +212,7 @@
                 android:layout_marginTop="20dp"
                 android:columnWidth="150dp"
                 android:gravity="center"
-                android:horizontalSpacing="10dp"
+                android:horizontalSpacing="5dp"
                 android:numColumns="auto_fit"
                 android:paddingBottom="30dp"
                 android:stretchMode="columnWidth"

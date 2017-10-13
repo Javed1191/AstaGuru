@@ -22,7 +22,7 @@
 
 
             android:layout_marginLeft="5dp"
-            android:src="@drawable/img_past_1"/>
+            android:src="@drawable/img_default"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -69,10 +69,19 @@
                             android:layout_height="15dp"
                             android:layout_centerVertical="true"
                             android:layout_marginRight="10dp"
-                            android:layout_toLeftOf="@+id/iv_info"
+                            android:layout_toLeftOf="@+id/iv_addtogallary"
                             android:src="@drawable/icon_zoom"
                             />
 
+                        <ImageView
+                            android:id="@+id/iv_addtogallary"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_toLeftOf="@+id/iv_info"
+                            android:src="@drawable/icon_addgallary"
+                            android:gravity="left"
+                            />
                         <ImageView
                             android:id="@+id/iv_info"
                             android:layout_width="15dp"
@@ -88,16 +97,7 @@
 
                 </RelativeLayout>
 
-                <com.infomanav.astaguru.WorkSansMedium
-                    android:id="@+id/tv_bought_in"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:gravity="center"
-                    android:text="Bought In"
-                    android:textColor="#000000"
-                    android:visibility="gone"
-                    />
+
 
                 <LinearLayout
                     android:id="@+id/lay_front_data"
@@ -180,7 +180,7 @@
                                 <com.infomanav.astaguru.WorkSansRegular
 
                                     android:id="@+id/tv_nextbid"
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="3dp"
                                     android:layout_toRightOf="@+id/iv_two"
@@ -206,7 +206,16 @@
                     </LinearLayout>
 
                 </LinearLayout>
-
+                <com.infomanav.astaguru.WorkSansMedium
+                    android:id="@+id/tv_bought_in"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="Bought In"
+                    android:textColor="#000000"
+                    android:visibility="gone"
+                    />
 
             </LinearLayout>
 

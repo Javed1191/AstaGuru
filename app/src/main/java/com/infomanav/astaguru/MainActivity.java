@@ -172,7 +172,7 @@ public class MainActivity extends AppCompatActivity
                 fragmentTransaction.commit();
 */
 
-                Intent intent1 = new Intent(MainActivity.this,NotificationDetailsActivity.class);
+                Intent intent1 = new Intent(MainActivity.this,NotificationActivity.class);
                 intent1.putExtra("NotificationID",NotificationID);
                 startActivity(intent1);
 

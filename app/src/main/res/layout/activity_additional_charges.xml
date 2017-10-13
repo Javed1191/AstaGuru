@@ -406,7 +406,7 @@
                     android:layout_width="80dp"
                     android:layout_height="90dp"
                     android:scaleType="fitStart"
-                    android:src="@drawable/img_past_1"/>
+                    android:src="@drawable/img_default"/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -770,7 +770,7 @@
                         android:layout_weight="1"
                         android:gravity="left"
 
-                        android:text="Vat On Hammer Price(13.5%):"
+                        android:text="GST On Hammer Price(12%):"
                         android:textColor="@color/colorBodyText"
                         android:textSize="12sp"
                         />
@@ -803,9 +803,8 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="left"
                         android:layout_weight="1"
-
                         android:gravity="left"
-                        android:text="15% Service Tax On Buyers Premium:"
+                        android:text="18% GST On Buyers Premium:"
                         android:textColor="@color/colorBodyText"
                         android:textSize="12sp"/>
 

@@ -27,8 +27,8 @@
                     android:id="@+id/grid_image"
                     android:layout_width="match_parent"
                     android:layout_height="90dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/currentauction" />
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/img_default" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

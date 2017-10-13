@@ -51,9 +51,9 @@ public class FragmentAboutUs extends Fragment
 
 
 
-		List<ItemSpecialist> rowListItem = getSpecialistList();
+		/*List<ItemSpecialist> rowListItem = getSpecialistList();
 		specialistGridAdapter = new SpecialistGridAdapter(getActivity(),rowListItem);
-		mAppsGrid.setAdapter(specialistGridAdapter);
+		mAppsGrid.setAdapter(specialistGridAdapter);*/
 
 		/*lLayout = new GridLayoutManager(getActivity(), 2);
 
@@ -64,7 +64,7 @@ public class FragmentAboutUs extends Fragment
 
 		SpecialistsAdapter rcAdapter = new SpecialistsAdapter(getActivity(), rowListItem);
 		rView.setAdapter(rcAdapter);*/
-
+/*
 		List<ItemManagment> rowListManagmentItem = getManagmentList();
 
 		lLayout1 = new GridLayoutManager(getActivity(), 3);
@@ -75,7 +75,7 @@ public class FragmentAboutUs extends Fragment
 		rView1.setLayoutManager(lLayout1);
 
 		ManagmentAdapter rcAdapter1 = new ManagmentAdapter(getActivity(), rowListManagmentItem);
-		rView1.setAdapter(rcAdapter1);
+		rView1.setAdapter(rcAdapter1);*/
 
 
 
@@ -92,7 +92,7 @@ public class FragmentAboutUs extends Fragment
 		return super.onOptionsItemSelected(item);
 	}
 
-	private List<ItemSpecialist> getSpecialistList(){
+	/*private List<ItemSpecialist> getSpecialistList(){
 
 		List<ItemSpecialist> allItems = new ArrayList<ItemSpecialist>();
 		allItems.add(new ItemSpecialist("Sunny Chandiramani","Client Relations", R.drawable.client_relation,""));
@@ -106,9 +106,9 @@ public class FragmentAboutUs extends Fragment
 		allItems.add(new ItemSpecialist("Sidhant Nayangara","Content Editor", R.drawable.sidhant,""));
 
 		return allItems;
-	}
+	}*/
 
-	private List<ItemManagment> getManagmentList(){
+	/*private List<ItemManagment> getManagmentList(){
 
 		List<ItemManagment> allItems = new ArrayList<ItemManagment>();
 		allItems.add(new ItemManagment("Vickram Sethi","Chairmain", R.drawable.chairman));
@@ -116,7 +116,7 @@ public class FragmentAboutUs extends Fragment
 		allItems.add(new ItemManagment("Digamber Sethi","COO", R.drawable.coo));
 
 		return allItems;
-	}
+	}*/
 
 
 }

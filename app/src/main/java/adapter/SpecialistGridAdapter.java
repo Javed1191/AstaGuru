@@ -19,6 +19,7 @@ import com.infomanav.astaguru.ItemSpecialist;
 import com.infomanav.astaguru.MainActivity;
 import com.infomanav.astaguru.R;
 import com.infomanav.astaguru.UpcomingAuction;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -75,12 +76,10 @@ public class SpecialistGridAdapter extends BaseAdapter{
             TextView tv_post = (TextView) grid.findViewById(R.id.tv_post);
             ImageView img_email = (ImageView) grid.findViewById(R.id.img_email);
 
-
-
-
             tv_title.setText(apps.getTitle());
             tv_post.setText(apps.getPost());
-            country_photo.setImageResource(apps.getPhoto());
+            Picasso.with(mContext).load(apps.getPhoto()).placeholder(R.drawable.img_default)
+                    .into(country_photo);
 
             img_email.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -119,7 +118,6 @@ public class SpecialistGridAdapter extends BaseAdapter{
                 intent.putExtra(Intent.EXTRA_STREAM, attachments);*/
 
                         intent.setType("message/rfc822");
-
                         intent.setPackage("com.google.android.gm");
 
                         mContext.startActivity(intent);

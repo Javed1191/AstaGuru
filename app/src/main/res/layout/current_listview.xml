@@ -154,14 +154,13 @@
 
 
             android:layout_marginLeft="5dp"
-            android:src="@drawable/img_past_1"/>
+            android:src="@drawable/img_default"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <LinearLayout
-                android:visibility="gone"
                 android:id="@+id/lay_front"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -405,7 +404,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="left"
-                            android:gravity="center"
                             android:orientation="vertical">
 
                             <!--<ImageView-->
@@ -434,12 +432,15 @@
                             <com.infomanav.astaguru.WorkSansMedium
 
                                 android:id="@+id/tv_current_bid"
-                                android:layout_width="wrap_content"
+                                android:layout_width="100dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="2dp"
                                 android:layout_marginTop="1dp"
                                 android:layout_toRightOf="@+id/iv_one"
                                 android:text="13,15,200"
+                                android:lines="1"
+                                android:scrollHorizontally="true"
+                                android:ellipsize="end"
                                 android:textColor="#000000"
                                 android:textSize="11dp"
                                 android:textStyle="bold"/>
@@ -502,12 +503,14 @@
                             <com.infomanav.astaguru.WorkSansMedium
 
                                 android:id="@+id/tv_nextbid"
-                                android:layout_width="wrap_content"
+                                android:layout_width="100dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="2dp"
                                 android:layout_marginTop="1dp"
                                 android:layout_toRightOf="@+id/iv_two"
-                                android:gravity="center"
+                                android:lines="1"
+                                android:scrollHorizontally="true"
+                                android:ellipsize="end"
                                 android:text="20,60,200"
                                 android:textColor="#000000"
                                 android:textSize="11dp"
@@ -668,6 +671,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:visibility="gone"
                 android:id="@+id/lay_back"
                 android:layout_width="match_parent"
                 android:layout_height="115dp"

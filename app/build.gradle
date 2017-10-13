@@ -7,11 +7,11 @@ android {
     buildToolsVersion '25.0.0'
     useLibrary 'org.apache.http.legacy'
     defaultConfig {
-        applicationId "com.infomanav.astaguru"
+        applicationId "com.astaguru"
         minSdkVersion 15
         targetSdkVersion 24
-        versionCode 1
-        versionName "1.0"
+        versionCode 6
+        versionName "1.5"
 
         multiDexEnabled true
     }
@@ -22,9 +22,6 @@ android {
         jumboMode = true
     }
 
-
-
-
     packagingOptions {
         exclude 'META-INF/DEPENDENCIES'
         exclude 'META-INF/NOTICE'
@@ -34,8 +31,6 @@ android {
         exclude 'META-INF/maven/com.squareup.picasso/picasso/pom.xml'
         exclude 'META-INF/maven/com.squareup.picasso/picasso/pom.properties'
         exclude 'META-INF/maven/com/squareup/picasso/Action$RequestWeakReference.class'
-
-
 
 
     }
@@ -70,6 +65,7 @@ dependencies {
     compile project(':library_GridScroll')
     compile 'com.google.firebase:firebase-messaging:10.0.1'
     compile 'com.google.android.gms:play-services:10.0.1'
+    compile 'org.jsoup:jsoup:1.8.3'
     //    compile group: 'org.apache.httpcomponents' , name: 'httpclient-android' , version: '4.3.5.1'
     //    compile('org.apache.httpcomponents:httpmime:4.3') {
     //        exclude module: "httpclient"

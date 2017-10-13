@@ -63,7 +63,7 @@ public class Artist_Details_Adpter extends ArrayAdapter<Current_Auction_Model> {
     Context mContext;
     TextView tv_title;
     Button btn_bidnow, btn_proxybid;
-    public boolean is_us = false;
+    public boolean is_us = false,is_after;
     List<Current_Auction_Model> objects;
     TextView iv_oneback,iv_twoback;
     TextView iv_one, iv_two;
@@ -296,7 +296,7 @@ public class Artist_Details_Adpter extends ArrayAdapter<Current_Auction_Model> {
             String strcurrentDate =cp.getCurrentDate();
             Date currentDate = dateFormat.parse(strcurrentDate);
 
-            boolean is_after = currentDate.before(eventDate);
+            is_after = currentDate.before(eventDate);
 
             if (is_after)
             {
@@ -394,6 +394,16 @@ public class Artist_Details_Adpter extends ArrayAdapter<Current_Auction_Model> {
 
                 btn_bidnow.setVisibility(View.GONE);
                 btn_proxybid.setVisibility(View.GONE);
+
+                if(!is_after)
+                {
+                    tv_bidding.setText("Lot Won");
+                }
+                else
+                {
+                    tv_bidding.setText("You are currently the highest bidder.");
+
+                }
 
                 tv_bidding.setVisibility(View.VISIBLE);
 
@@ -1309,7 +1319,7 @@ public class Artist_Details_Adpter extends ArrayAdapter<Current_Auction_Model> {
                 @Override
                 public void onSuccess(String result) {
                     System.out.println("result" + result);
-                    Toast.makeText(mContext, "Succesfully Added to Gallary", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "The Lot has been added to your auction gallery.", Toast.LENGTH_SHORT).show();
 
 
                     String str_json = result;

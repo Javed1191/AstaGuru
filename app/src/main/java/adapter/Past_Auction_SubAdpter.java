@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -122,7 +123,7 @@ public class Past_Auction_SubAdpter extends BaseAdapter {
     public static class ViewHolder {
         ImageView imageView,iv_flip,iv_close_back,iv_detail,iv_zoom,iv_addtogallary;
         TextView tv_high_value,iv_two,grid_text, tv_lot, grid_text1, tv_bidvalue,tv_subtitle,tv_start_price;
-        LinearLayout lin_front_data,lin_front,lin_back,lin_detail,lin_15;
+        LinearLayout lin_front_data,lin_front,lin_back,lin_detail,lin_15,lay_bought_in;
         Button btn_proxybid;
         View view_v;
         RelativeLayout rel_artist,rel_cat,rel_medium,rel_year,rel_size,rel_etimate;
@@ -130,7 +131,10 @@ public class Past_Auction_SubAdpter extends BaseAdapter {
         TextView tv_sub_artist,tv_sub_category,tv_sub_medium,tv_sub_year,tv_sub_size,tv_sub_estimate,
                 tv_lot_back,tv_category,tv_bought_in;
     }
-
+    @Override
+    public int getItemViewType(int position) {
+        return super.getItemViewType(position);
+    }
     @Override
     public int getCount() {
         // TODO Auto-generated method stub
@@ -236,7 +240,7 @@ public class Past_Auction_SubAdpter extends BaseAdapter {
 
 
 
-        Picasso.with(mContext).load(Application_Constants.PAST_AUCTION_IMAGE_PATH + apps.getStr_thumbnail()).placeholder(R.drawable.noimage).into(grid.imageView);
+        Picasso.with(mContext).load(Application_Constants.PAST_AUCTION_IMAGE_PATH + apps.getStr_thumbnail()).placeholder(R.drawable.img_default).into(grid.imageView);
 
         if (apps.getis_front()) {
             grid.lin_front.setVisibility(View.VISIBLE);
@@ -287,6 +291,7 @@ public class Past_Auction_SubAdpter extends BaseAdapter {
             layoutParamsa.setMargins(0,45,0,35);
             grid.rel_artist.setLayoutParams(layoutParams);
              grid.lin_detail.setLayoutParams(layoutParamsa);
+            grid.iv_addtogallary.setVisibility(View.GONE);
 
                 if(Double.parseDouble(apps.getPricers()) < Double.parseDouble(apps.getPricelow()))
                 {
@@ -315,6 +320,7 @@ public class Past_Auction_SubAdpter extends BaseAdapter {
             grid.lin_15.setVisibility(View.INVISIBLE);
             grid.btn_proxybid.setVisibility(View.VISIBLE);
             grid.tv_start_price.setVisibility(View.VISIBLE);
+            grid.iv_addtogallary.setVisibility(View.VISIBLE);
 
         }
 
@@ -373,7 +379,19 @@ public class Past_Auction_SubAdpter extends BaseAdapter {
             public void onClick(View v) {
                 String Str_id = apps.getStr_productid();
                 String  userid = data.getObjectAsString("userid");
-                AddToGallary(Str_id,userid);
+                //AddToGallary(Str_id,userid);
+
+                String status = data.getObjectAsString("login");
+                if (status.equalsIgnoreCase("false")||status.isEmpty()||status.equalsIgnoreCase("Empty"))
+                {
+                    Intent intent = new Intent(mContext,Before_Login_Activity.class);
+                    intent.putExtra("str_from","adpter");
+                    mContext.startActivity(intent);
+
+                }
+                else {
+                    AddToGallary(Str_id, userid);
+                }
 
 
             }
@@ -464,6 +482,13 @@ public class Past_Auction_SubAdpter extends BaseAdapter {
                intent.putExtra("Profile",apps.getStr_Profile());
                intent.putExtra("is_us",is_us);
                intent.putExtra("dollar_rate",apps.getDollarRate());
+               if (auctiontype.equalsIgnoreCase("past"))
+               {
+                   if (Double.parseDouble(apps.getPricers()) < Double.parseDouble(apps.getPricelow()))
+                   {
+                       intent.putExtra("is_bought_in",true);
+                   }
+               }
 
                mContext.startActivity(intent);
            }
@@ -487,6 +512,13 @@ public class Past_Auction_SubAdpter extends BaseAdapter {
                 intent.putExtra("Profile",apps.getStr_Profile());
                 intent.putExtra("is_us",is_us);
                 intent.putExtra("dollar_rate",apps.getDollarRate());
+                if (auctiontype.equalsIgnoreCase("past"))
+                {
+                    if (Double.parseDouble(apps.getPricers()) < Double.parseDouble(apps.getPricelow()))
+                    {
+                        intent.putExtra("is_bought_in",true);
+                    }
+                }
                 mContext.startActivity(intent);
             }
         });
@@ -525,6 +557,8 @@ public class Past_Auction_SubAdpter extends BaseAdapter {
                         final TextView tv_bidvalue = (TextView) dialogView.findViewById(R.id.tv_bidvalue);
                         final TextView tv_proxylot = (TextView) dialogView.findViewById(R.id.tv_proxylot);
                         final TextView tv_bit_text = (TextView) dialogView.findViewById(R.id.username);
+                            final LinearLayout lay_bid_values = (LinearLayout) dialogView.findViewById(R.id.lay_bid_values);
+                            final TextView tv_confirm_bid = (TextView) dialogView.findViewById(R.id.tv_confirm_bid);
                         tv_bit_text.setText("Start Price");
 
                         final TextView iv_iconproxy = (TextView) dialogView.findViewById(R.id.iv_iconproxy);
@@ -637,70 +671,81 @@ public class Past_Auction_SubAdpter extends BaseAdapter {
 
                                     if (int_entered_value >= int_bid_value)
                                     {
-                                        if (is_us) {
 
-                                            String str_Proxy_for_us = edt_proxy.getText().toString();
-                                            String str_us = MakeBid.Get_US_value(dollerRate, str_Proxy_for_us);
-
-                                            String Createdby = data.getObjectAsString("name");
-                                            String Auction_id = apps.getAuction_id();
-                                            double fb1 = Double.parseDouble(dollerRate);
-                                            double rl1 = Double.parseDouble(str_Proxy_for_us);
-
-                                            double str_ProxyAmtrs = rl1 * fb1;
-
-                                            //String proxy_amt_for_rs = Integer.toString(str_ProxyAmtrs);
-                                            int_proxy_new = (int) Math.round(str_ProxyAmtrs);
-                                            String proxy_amt_for_rs = String.valueOf(int_proxy_new);
-
-
-                                            if (utility.checkInternet()) {
-
-                                                //ProxyBid(siteUserID, productID, proxy_amt_for_rs, proxy_amt_for_rs, "0", "", Createdby, Auction_id);
-
-                                                makeBid.proxyBidForUpcoming(siteUserID, productID, proxy_amt_for_rs, str_Proxy_for_us, Createdby,Auction_id, f_lot,apps.getAuctionname());
-
-                                                makeBid.bidResult(new OnBidResult() {
-                                                    @Override
-                                                    public void bidResult(String currentStatus, String msg) {
-                                                        bid_proxy.dismiss();
-                                                    }
-                                                });
-
-                                            } else {
-                                                show_dailog("Please Check Internet Connection");
-
-                                            }
-
-
-                                        } else {
-                                          //  Toast.makeText(mContext, "From RS", Toast.LENGTH_SHORT).show();
-
-                                            String str_Proxy = edt_proxy.getText().toString();
-                                            String Rate = apps.getDollarRate();
-                                            String str_us = MakeBid.Get_US_value(Rate, str_Proxy);
-
-                                            String Createdby = data.getObjectAsString("name");
-                                            String Auction_id = apps.getAuction_id();
-
-                                            if (utility.checkInternet()) {
-
-                                                //ProxyBid(siteUserID, productID, str_Proxy, str_us, "0", "", Createdby, Auction_id);
-                                                makeBid.proxyBidForUpcoming(siteUserID, productID, str_Proxy, str_us, Createdby,Auction_id, f_lot,apps.getAuctionname());
-
-                                                makeBid.bidResult(new OnBidResult() {
-                                                    @Override
-                                                    public void bidResult(String currentStatus, String msg) {
-                                                        bid_proxy.dismiss();
-                                                    }
-                                                });
-                                            } else {
-
-                                                show_dailog("Please Check Internet Connection");
-                                            }
-
-
+                                        if(lay_bid_values.getVisibility()==View.VISIBLE)
+                                        {
+                                            lay_bid_values.setVisibility(View.GONE);
+                                            tv_confirm_bid.setVisibility(View.VISIBLE);
                                         }
+                                        else
+                                        {
+                                            if (is_us) {
+
+                                                String str_Proxy_for_us = edt_proxy.getText().toString();
+                                                String str_us = MakeBid.Get_US_value(dollerRate, str_Proxy_for_us);
+
+                                                String Createdby = data.getObjectAsString("name");
+                                                String Auction_id = apps.getAuction_id();
+                                                double fb1 = Double.parseDouble(dollerRate);
+                                                double rl1 = Double.parseDouble(str_Proxy_for_us);
+
+                                                double str_ProxyAmtrs = rl1 * fb1;
+
+                                                //String proxy_amt_for_rs = Integer.toString(str_ProxyAmtrs);
+                                                int_proxy_new = (int) Math.round(str_ProxyAmtrs);
+                                                String proxy_amt_for_rs = String.valueOf(int_proxy_new);
+
+
+                                                if (utility.checkInternet()) {
+
+                                                    //ProxyBid(siteUserID, productID, proxy_amt_for_rs, proxy_amt_for_rs, "0", "", Createdby, Auction_id);
+
+                                                    makeBid.proxyBidForUpcoming(siteUserID, productID, proxy_amt_for_rs, str_Proxy_for_us, Createdby,Auction_id, f_lot,apps.getAuctionname());
+
+                                                    makeBid.bidResult(new OnBidResult() {
+                                                        @Override
+                                                        public void bidResult(String currentStatus, String msg) {
+                                                            bid_proxy.dismiss();
+                                                        }
+                                                    });
+
+                                                } else {
+                                                    show_dailog("Please Check Internet Connection");
+
+                                                }
+
+
+                                            } else {
+                                                //  Toast.makeText(mContext, "From RS", Toast.LENGTH_SHORT).show();
+
+                                                String str_Proxy = edt_proxy.getText().toString();
+                                                String Rate = apps.getDollarRate();
+                                                String str_us = MakeBid.Get_US_value(Rate, str_Proxy);
+
+                                                String Createdby = data.getObjectAsString("name");
+                                                String Auction_id = apps.getAuction_id();
+
+                                                if (utility.checkInternet()) {
+
+                                                    //ProxyBid(siteUserID, productID, str_Proxy, str_us, "0", "", Createdby, Auction_id);
+                                                    makeBid.proxyBidForUpcoming(siteUserID, productID, str_Proxy, str_us, Createdby,Auction_id, f_lot,apps.getAuctionname());
+
+                                                    makeBid.bidResult(new OnBidResult() {
+                                                        @Override
+                                                        public void bidResult(String currentStatus, String msg) {
+                                                            bid_proxy.dismiss();
+                                                        }
+                                                    });
+                                                } else {
+
+                                                    show_dailog("Please Check Internet Connection");
+                                                }
+
+
+                                            }
+                                        }
+
+
 
                                     }
                                     else
@@ -1087,7 +1132,7 @@ public class Past_Auction_SubAdpter extends BaseAdapter {
                 @Override
                 public void onSuccess(String result) {
                     System.out.println("result" + result);
-                    Toast.makeText(mContext, "Succesfully Added to Gallary", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "The Lot has been added to your auction gallery.", Toast.LENGTH_SHORT).show();
 
 
                     String str_json = result;
@@ -1111,13 +1156,14 @@ public class Past_Auction_SubAdpter extends BaseAdapter {
         try
         {
 
-            Integer int_bid_prise = 0,int_discount=0;
+            double dbl_bid_prise = 0,dbl_discount=0;
 
-            int_bid_prise = Integer.parseInt(strPrise);
-            int_discount = ((Integer.parseInt(strPrise)*15)/100);
-            int_bid_prise = int_bid_prise+int_discount;
+            dbl_bid_prise = Double.parseDouble(strPrise);
+            dbl_discount = ((Double.parseDouble(strPrise)*15)/100);
+            dbl_bid_prise = dbl_bid_prise+dbl_discount;
 
-            strBidPrise = String.valueOf(int_bid_prise);
+            strBidPrise = String.valueOf(Math.round(dbl_bid_prise));
+
         }
         catch (Exception e)
         {

@@ -4,9 +4,9 @@ package com.infomanav.astaguru;
 public class ItemManagment {
 
     private String title,post;
-    private int photo;
+    private String photo;
 
-    public ItemManagment(String title,String post, int photo) {
+    public ItemManagment(String title,String post, String photo) {
         this.title = title;
         this.photo = photo;
         this.post = post;
@@ -27,11 +27,11 @@ public class ItemManagment {
         this.post = post;
     }
 
-    public int getPhoto() {
+    public String getPhoto() {
         return photo;
     }
 
-    public void setPhoto(int photo) {
+    public void setPhoto(String photo) {
         this.photo = photo;
     }
 }

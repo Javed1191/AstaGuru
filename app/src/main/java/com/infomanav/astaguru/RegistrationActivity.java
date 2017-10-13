@@ -599,9 +599,19 @@ public void init()
                                 data.setObjectAsString("name",username);
                                 data.setObjectAsString("mobile",mobile);
                                 data.setObjectAsString("email",email);
+                                data.setObjectAsString("firstname",strFirstName);
+                                data.setObjectAsString("lastname",strLastName);
+                                data.setObjectAsString("address",str_address);
+                                data.setObjectAsString("city",strCity);
+                                data.setObjectAsString("zip",strZip);
+                                data.setObjectAsString("state",strState);
+                                data.setObjectAsString("country",str_contry);
+                                data.setObjectAsString("telephone",strTelephone);
+                                data.setObjectAsString("password",strPassword);
+                                data.setObjectAsString("fax",strFax);
 
                                 Intent intent = new Intent(RegistrationActivity.this, Verification_Activity.class);
-                                intent.putExtra("firstname",strFirstName);
+                               /* intent.putExtra("firstname",strFirstName);
                                 intent.putExtra("lastname",strLastName);
                                 intent.putExtra("address",str_address);
                                 intent.putExtra("city",strCity);
@@ -612,7 +622,7 @@ public void init()
                                 intent.putExtra("email",strEmail);
                                 intent.putExtra("username",strUserName);
                                 intent.putExtra("password",strPassword);
-                                intent.putExtra("fax",strFax);
+                                intent.putExtra("fax",strFax);*/
                                 intent.putExtra("Activity","Registration");
                                 startActivity(intent);
                                 finish();

@@ -50,6 +50,7 @@ import org.json.JSONObject;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -123,9 +124,10 @@ public class FragmentCurrentAuction extends Fragment implements View.OnClickList
     int height=0,width=0;
     DisplayMetrics displaymetrics;
     private boolean  argumentsRead = false;
-    public FragmentCurrentAuction() {
+    public boolean is_bid =false;
+    public FragmentCurrentAuction()
+    {
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
@@ -270,6 +272,7 @@ public class FragmentCurrentAuction extends Fragment implements View.OnClickList
                         auction = getArguments().getString("auction");
 
                         int_word_count = countWords(key);
+                        key = key.replaceAll(" ","%20");
                         strCurrentCallUrl = Application_Constants.Main_URL_Procedure+"spSearch("+key+","+auction+","+int_word_count+")?api_key="+ Application_Constants.API_KEY;
                         lay_current_header.setVisibility(View.GONE);
 
@@ -725,25 +728,56 @@ public class FragmentCurrentAuction extends Fragment implements View.OnClickList
             }
         });*/
 
-
-
-
         return viewmain;
     }
 
 
 
     @Override
-    public void onResume() {
+    public void onResume()
+    {
         Log.e("DEBUG", "onResume of HomeFragment");
         super.onResume();
-        //startRepeatingTask();
+
+        /*Toast.makeText(getActivity(),"Is First "+is_first,Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(),"On Resume",Toast.LENGTH_SHORT).show();*/
+
+        if(!is_first)
+        {
+            if(mHandler!=null)
+            {
+                startRepeatingTask();
+            }
+        }
+
+
+
 
        // getUpcomingAuction(strCurrentCallUrl);
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
 
+      /*  if(is_start)
+        {
+            if(mHandler!=null)
+            {
+                startRepeatingTask();
+            }
+        }*/
+    }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+
+       /* if(mHandler!=null)
+        {
+            stopRepeatingTask();
+        }*/
+    }
 
     private int dp2px(int dp) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp,
@@ -1068,11 +1102,11 @@ public class FragmentCurrentAuction extends Fragment implements View.OnClickList
                                                 priceus = Obj.getString("Bidpriceus");
 
 
-                                                if(pricers.equalsIgnoreCase(null))
+                                                if(pricers.equalsIgnoreCase("null"))
                                                 {
                                                     pricers = "0";
                                                 }
-                                                if(priceus.equalsIgnoreCase(null))
+                                                if(priceus.equalsIgnoreCase("null"))
                                                 {
                                                     priceus = "0";
                                                 }
@@ -1138,7 +1172,8 @@ public class FragmentCurrentAuction extends Fragment implements View.OnClickList
                                                 //webCallTimer();
 
                                             }
-                                            else {
+                                            else
+                                                {
 //                                            gridview.setVisibility(View.VISIBLE);
 
                                                 if(!is_start)
@@ -1146,12 +1181,24 @@ public class FragmentCurrentAuction extends Fragment implements View.OnClickList
                                                     gridViewAdapter.Upadte_GridViewWithFilter(appsList,is_filter);
                                                     listViewAdapter.Upadte_ListViewWithFilter(appsList,is_filter);
                                                     startRepeatingTask();
+
                                                     //webCallTimer();
                                                 }
                                                 else
                                                 {
                                                     gridViewAdapter.Upadte_GridViewWithFilter(appsList,is_filter);
                                                     listViewAdapter.Upadte_ListViewWithFilter(appsList,is_filter);
+
+
+                                                    // this is working logic is i want to scroll to particular position
+                                                   /* if(is_bid)
+                                                    {
+                                                       is_bid = false;
+                                                        int int_position = getLastBidItemPosition(listViewAdapter.old_bid_id,appsList);
+
+                                                       // Toast.makeText(getActivity(),"Position "+int_position,Toast.LENGTH_SHORT).show();
+                                                        mListView.smoothScrollToPosition(int_position);
+                                                    }*/
                                                 }
 
 
@@ -1168,31 +1215,51 @@ public class FragmentCurrentAuction extends Fragment implements View.OnClickList
                                         {
                                             hud.dismiss();
 
-                                            if(strSortBy.equalsIgnoreCase("lot"))
-                                            {
-                                                lay_no_data_found.setVisibility(View.GONE);
-                                                lay_current_auctions.setVisibility(View.GONE);
-                                                img_no_auctions.setVisibility(View.VISIBLE);
-                                                lay_grid_list_view.setVisibility(View.GONE);
-                                            }
-                                            else if(strSortBy.equalsIgnoreCase("comingsoon"))
+                                            if(is_filter)
                                             {
                                                 lay_current_auctions.setVisibility(View.VISIBLE);
                                                 img_no_auctions.setVisibility(View.GONE);
                                                 lay_no_data_found.setVisibility(View.VISIBLE);
                                                 lay_grid_list_view.setVisibility(View.GONE);
-                                               // gridview.setVisibility(View.GONE);
-                                              //  mListView.setVisibility(View.GONE);
-                                                tv_no_data_found.setText("Currently there are no closing lots in the next 30 minutes.");
+                                                // gridview.setVisibility(View.GONE);
+                                                //  mListView.setVisibility(View.GONE);
+                                                tv_no_data_found.setText("No record found, please try some other filtration options. ");
                                             }
                                             else
                                             {
-                                                lay_current_auctions.setVisibility(View.VISIBLE);
-                                                img_no_auctions.setVisibility(View.GONE);
-                                                lay_no_data_found.setVisibility(View.VISIBLE);
-                                                lay_grid_list_view.setVisibility(View.GONE);
-                                                tv_no_data_found.setText("No records found");
+                                                if(strSortBy.equalsIgnoreCase("lot"))
+                                                {
+                                                    if(is_first)
+                                                    {
+                                                        lay_no_data_found.setVisibility(View.GONE);
+                                                        lay_current_auctions.setVisibility(View.GONE);
+                                                        img_no_auctions.setVisibility(View.VISIBLE);
+                                                        lay_grid_list_view.setVisibility(View.GONE);
+                                                    }
+
+
+                                                }
+                                                else if(strSortBy.equalsIgnoreCase("comingsoon"))
+                                                {
+                                                    lay_current_auctions.setVisibility(View.VISIBLE);
+                                                    img_no_auctions.setVisibility(View.GONE);
+                                                    lay_no_data_found.setVisibility(View.VISIBLE);
+                                                    lay_grid_list_view.setVisibility(View.GONE);
+                                                    // gridview.setVisibility(View.GONE);
+                                                    //  mListView.setVisibility(View.GONE);
+                                                    tv_no_data_found.setText("Currently there are no closing lots in the next 30 minutes.");
+                                                }
+                                                else
+                                                {
+                                                    lay_current_auctions.setVisibility(View.VISIBLE);
+                                                    img_no_auctions.setVisibility(View.GONE);
+                                                    lay_no_data_found.setVisibility(View.VISIBLE);
+                                                    lay_grid_list_view.setVisibility(View.GONE);
+                                                    tv_no_data_found.setText("No records found");
+                                                }
                                             }
+
+
 
 
                                         }
@@ -1201,30 +1268,43 @@ public class FragmentCurrentAuction extends Fragment implements View.OnClickList
                                     }
                                     else
                                         {
-                                            hud.dismiss();
 
-                                        appsList.clear();
+                                            if(is_first)
+                                            {
+                                                hud.dismiss();
+                                                appsList.clear();
 //                                    setAdapters();
 //                                stopRepeatingTask();
-
-                                            lay_current_auctions.setVisibility(View.GONE);
-                                            img_no_auctions.setVisibility(View.VISIBLE);
+                                                lay_current_auctions.setVisibility(View.GONE);
+                                                img_no_auctions.setVisibility(View.VISIBLE);
+                                            }
+                                            else
+                                            {
+                                                hud.dismiss();
+                                            }
 
                                     }
                                 }
                                 else
                                     {
                                         hud.dismiss();
-                                        lay_current_auctions.setVisibility(View.GONE);
-                                        img_no_auctions.setVisibility(View.VISIBLE);
+                                        if(is_first)
+                                        {
+                                            lay_current_auctions.setVisibility(View.GONE);
+                                            img_no_auctions.setVisibility(View.VISIBLE);
+                                        }
+
                                 }
 
                             } catch (JSONException e) {
                                 // TODO Auto-generated catch block
                                 e.printStackTrace();
                                 hud.dismiss();
-                                lay_current_auctions.setVisibility(View.GONE);
-                                img_no_auctions.setVisibility(View.VISIBLE);
+                                if(is_first)
+                                {
+                                    lay_current_auctions.setVisibility(View.GONE);
+                                    img_no_auctions.setVisibility(View.VISIBLE);
+                                }
                             }
                         }
                     },
@@ -1233,8 +1313,11 @@ public class FragmentCurrentAuction extends Fragment implements View.OnClickList
                         public void onErrorResponse(VolleyError error)
                         {
                             hud.dismiss();
-                            lay_current_auctions.setVisibility(View.GONE);
-                            img_no_auctions.setVisibility(View.VISIBLE);
+                            if(is_first)
+                            {
+                                lay_current_auctions.setVisibility(View.GONE);
+                                img_no_auctions.setVisibility(View.VISIBLE);
+                            }
                         }
                     });
 
@@ -1399,9 +1482,6 @@ public class FragmentCurrentAuction extends Fragment implements View.OnClickList
                                                     gridViewAdapter.Upadte_GridViewWithFilter(appsList,is_filter);
                                                     listViewAdapter.Upadte_ListViewWithFilter(appsList,is_filter);
                                                 }
-
-
-
                                                 // startRepeatingTask();
 
                                                /* setAdapters();
@@ -1414,7 +1494,16 @@ public class FragmentCurrentAuction extends Fragment implements View.OnClickList
                                         {
                                             hud.dismiss();
 
-                                            if(strSortBy.equalsIgnoreCase("lot"))
+
+                                            lay_current_auctions.setVisibility(View.VISIBLE);
+                                            img_no_auctions.setVisibility(View.GONE);
+                                            lay_no_data_found.setVisibility(View.VISIBLE);
+                                            lay_grid_list_view.setVisibility(View.GONE);
+                                            // gridview.setVisibility(View.GONE);
+                                            //  mListView.setVisibility(View.GONE);
+                                           // tv_no_data_found.setText("Currently there are no closing lots in the next 30 minutes.");
+
+                                            /*if(strSortBy.equalsIgnoreCase("lot"))
                                             {
                                                 lay_no_data_found.setVisibility(View.GONE);
                                                 lay_current_auctions.setVisibility(View.GONE);
@@ -1438,7 +1527,7 @@ public class FragmentCurrentAuction extends Fragment implements View.OnClickList
                                                 lay_no_data_found.setVisibility(View.VISIBLE);
                                                 lay_grid_list_view.setVisibility(View.GONE);
                                                 tv_no_data_found.setText("No records found");
-                                            }
+                                            }*/
 
 
                                         }
@@ -1453,24 +1542,30 @@ public class FragmentCurrentAuction extends Fragment implements View.OnClickList
 //                                    setAdapters();
 //                                stopRepeatingTask();
 
-                                        lay_current_auctions.setVisibility(View.GONE);
-                                        img_no_auctions.setVisibility(View.VISIBLE);
+                                        lay_current_auctions.setVisibility(View.VISIBLE);
+                                        img_no_auctions.setVisibility(View.GONE);
+                                        lay_no_data_found.setVisibility(View.VISIBLE);
+                                        lay_grid_list_view.setVisibility(View.GONE);
 
                                     }
                                 }
                                 else
                                 {
                                     hud.dismiss();
-                                    lay_current_auctions.setVisibility(View.GONE);
-                                    img_no_auctions.setVisibility(View.VISIBLE);
+                                    lay_current_auctions.setVisibility(View.VISIBLE);
+                                    img_no_auctions.setVisibility(View.GONE);
+                                    lay_no_data_found.setVisibility(View.VISIBLE);
+                                    lay_grid_list_view.setVisibility(View.GONE);
                                 }
 
                             } catch (JSONException e) {
                                 // TODO Auto-generated catch block
                                 e.printStackTrace();
                                 hud.dismiss();
-                                lay_current_auctions.setVisibility(View.GONE);
-                                img_no_auctions.setVisibility(View.VISIBLE);
+                                lay_current_auctions.setVisibility(View.VISIBLE);
+                                img_no_auctions.setVisibility(View.GONE);
+                                lay_no_data_found.setVisibility(View.VISIBLE);
+                                lay_grid_list_view.setVisibility(View.GONE);
                             }
                         }
                     },
@@ -1542,6 +1637,12 @@ public class FragmentCurrentAuction extends Fragment implements View.OnClickList
         super.onPause();
        // stopRepeatingTask();
         data.setObjectAsString("Filter_Data","false");
+       /* Toast.makeText(getActivity(),"Is First "+is_first,Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(),"On Pause",Toast.LENGTH_SHORT).show();*/
+        if(mHandler!=null)
+        {
+            stopRepeatingTask();
+        }
     }
 
     @Override
@@ -1555,9 +1656,12 @@ public class FragmentCurrentAuction extends Fragment implements View.OnClickList
 
         if (list_visibile)
         {
-            listViewAdapter = new CurrentAuctionAdapter_listview(context, R.layout.current_listview, appsList,false,FragmentCurrentAuction.this);
+            listViewAdapter = new CurrentAuctionAdapter_listview(context, R.layout.current_listview, appsList,false,FragmentCurrentAuction.this,mListView);
             mListView.setAdapter(listViewAdapter);
             gridview.setLayoutAnimation(getgridlayoutAnim());
+
+            //mListView.smoothScrollToPosition(10);
+           // mListView.setSelection(10);
         }
         else
         {
@@ -1567,8 +1671,10 @@ public class FragmentCurrentAuction extends Fragment implements View.OnClickList
             mListView.setLayoutAnimation(getgridlayoutAnim());
 
 
-            listViewAdapter = new CurrentAuctionAdapter_listview(context, R.layout.current_listview, appsList,false,FragmentCurrentAuction.this);
+            listViewAdapter = new CurrentAuctionAdapter_listview(context, R.layout.current_listview, appsList,false,FragmentCurrentAuction.this,mListView);
             mListView.setAdapter(listViewAdapter);
+            //mListView.smoothScrollToPosition(10);
+           // mListView.setSelection(10);
         }
 
     }
@@ -2379,26 +2485,12 @@ public class FragmentCurrentAuction extends Fragment implements View.OnClickList
 
             final   String str_lot = tlot;
             final String str_amt = str_Amount;
-
-            System.out.println("strPastAuctionUrl " + str_Amount);
-            System.out.println("strPastAuctionUrl " + str_productID);
-            System.out.println("strPastAuctionUrl " + str_userID);
-            System.out.println("strPastAuctionUrl " + dollerrate);
-            System.out.println("strPastAuctionUrl " + proxy_new_us);
-
-
-
             ServiceHandler serviceHandler = new ServiceHandler(context);
-
-
             serviceHandler.registerUser(null, strPastAuctionUrl, new ServiceHandler.VolleyCallback()
             {
                 @Override
                 public void onSuccess(String result) {
-                    System.out.println("resultbid" + result);
-
                     System.out.println("strPastAuctionUrl " + result);
-
                     String str_json = result;
 
                     try {
@@ -2822,6 +2914,32 @@ public class FragmentCurrentAuction extends Fragment implements View.OnClickList
             }
         });
         closeActivity.start();
+    }
+
+    public int getLastBidItemPosition(String strProductId, List<Current_Auction_Model>appsList)
+    {
+        int int_position = 0;
+
+        if(appsList.size()>0)
+        {
+            for(int i=0;i<appsList.size();i++)
+            {
+               if(appsList.get(i).getStr_productid().trim().equals(strProductId.trim()))
+               {
+                   int_position = i;
+                   break;
+               }
+
+
+            }
+        }
+
+        return  int_position;
+
+    }
+    public void test()
+    {
+        Toast.makeText(getActivity(), "Test", Toast.LENGTH_SHORT).show();
     }
 
 

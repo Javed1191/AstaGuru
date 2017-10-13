@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import com.infomanav.astaguru.ItemManagment;
 import com.infomanav.astaguru.ItemObject;
 import com.infomanav.astaguru.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -34,7 +35,10 @@ public class ManagmentAdapter extends RecyclerView.Adapter<ManagmentViewHolders>
     public void onBindViewHolder(ManagmentViewHolders holder, int position) {
         holder.tv_title.setText(itemList.get(position).getTitle());
         holder.tv_post.setText(itemList.get(position).getPost());
-        holder.countryPhoto.setImageResource(itemList.get(position).getPhoto());
+
+        Picasso.with(context).load(itemList.get(position).getPhoto()).placeholder(R.drawable.img_default)
+                .into(holder.countryPhoto);
+
     }
 
     @Override

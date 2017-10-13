@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import com.infomanav.astaguru.ItemManagment;
 import com.infomanav.astaguru.ItemSpecialist;
 import com.infomanav.astaguru.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -35,7 +36,10 @@ public class SpecialistsAdapter extends RecyclerView.Adapter<SpecialistsViewHold
     {
         holder.tv_title.setText(itemList.get(position).getTitle());
         holder.tv_post.setText(itemList.get(position).getPost());
-        holder.countryPhoto.setImageResource(itemList.get(position).getPhoto());
+        Picasso.with(context).load(itemList.get(position).getPhoto()).placeholder(R.drawable.img_default)
+                .into( holder.countryPhoto);
+
+       // holder.countryPhoto.setImageResource(itemList.get(position).getPhoto());
 
     }
 

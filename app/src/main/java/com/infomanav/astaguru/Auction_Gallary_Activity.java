@@ -1,10 +1,12 @@
 package com.infomanav.astaguru;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -13,6 +15,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,27 +37,31 @@ import java.util.HashMap;
 import java.util.Map;
 
 import adapter.AuctionGallaryAdpter;
+import adapter.AuctionGalleryUpcomingAdpter;
+import adapter.Past_Auction_SubAdpter;
 import model_classes.*;
 import model_classes.AuctionGallary_Model;
+import model_classes.Past_sub_Model;
 import services.Application_Constants;
 import services.ServiceHandler;
 import services.SessionData;
 import services.Utility;
+import views.ExpandableHeightGridView;
 
 /**
  * Created by android-javed on 03-10-2016.
  */
 
-public class Auction_Gallary_Activity  extends AppCompatActivity {
+public class Auction_Gallary_Activity  extends AppCompatActivity implements View.OnClickListener {
 
     ArrayList<AuctionGallary_Model> appsList;
     private Utility utility;
-    private GridView gridview;
+    private ExpandableHeightGridView gridviewcurrent,gridviewpast;
     Context context;
     String str_userid;
 
     AuctionGallary_Model auctionGallary_model;
-    AuctionGallaryAdpter auctionGallaryAdpter;
+    AuctionGallaryAdpter auctionGallaryAdpter,auctionGallaryAdpterUpcoming;
     SessionData sessionData;
 
 
@@ -62,7 +69,7 @@ public class Auction_Gallary_Activity  extends AppCompatActivity {
             str_title,str_description,str_artistid,reference,str_thumbnail,str_image,str_productsize,
             str_category,str_small_img,str_Bidpricers,str_Bidpriceus,Auctionname,Picture;
 
-    String artistid,str_FirstName,str_LastName,str_Profile, medium, productsize,estamiate,DollarRate,Online;
+    String artistid,str_FirstName,str_LastName,str_Profile, medium, productsize,estamiate,DollarRate,Online,pricelow,pricehigh;
 
     String pricers, priceus, artist_name, str_Bidclosingtime, image;
     private int mInterval = 10000; // 5 seconds by default, can be changed later
@@ -71,6 +78,14 @@ public class Auction_Gallary_Activity  extends AppCompatActivity {
     private KProgressHUD hud;
     RequestQueue requestQueue;
     private TextView tv_no_data_found;
+    private TextView tv_current_auction, tv_past_auction,tv_detail;
+    private LinearLayout lay_current_auction,lay_past_auction;
+    private View view_current_auction, view_past_auction;
+    private NestedScrollView scroller;
+    ArrayList<Past_sub_Model> appsListUpcoming;
+    private boolean is_us = false;
+    AuctionGalleryUpcomingAdpter auctionGalleryUpcomingAdpter;
+    TextView tv_currency,tv_rs_type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +112,24 @@ public class Auction_Gallary_Activity  extends AppCompatActivity {
 
         TextView tool_text = (TextView) toolbar.findViewById(R.id.tool_text);
         tool_text.setText("My Auction Gallery");
-        gridview = (GridView) findViewById(R.id.gridview);
+        gridviewcurrent = (ExpandableHeightGridView) findViewById(R.id.gridviewcurrent);
+        gridviewcurrent.setExpanded(true);
+
+        gridviewpast = (ExpandableHeightGridView) findViewById(R.id.gridviewpast);
+        gridviewpast.setExpanded(true);
+
+        tv_current_auction = (TextView) findViewById(R.id.tv_current_auction);
+        tv_past_auction = (TextView) findViewById(R.id.tv_past_auction);
+        lay_current_auction= (LinearLayout) findViewById(R.id.lay_current_auction);;
+        lay_past_auction= (LinearLayout) findViewById(R.id.lay_past_auction);
+        tv_rs_type = (TextView) findViewById(R.id.tv_rs_type);
+        tv_currency = (TextView) findViewById(R.id.tv_currency);
+
+        view_current_auction = (View) findViewById(R.id.view_current_auction);
+        view_past_auction = (View) findViewById(R.id.view_past_auction);
+        scroller = (NestedScrollView) findViewById(R.id.scroller);
+        lay_current_auction.setOnClickListener(this);
+        lay_past_auction.setOnClickListener(this);
 
         Typeface type = Typeface.createFromAsset(getAssets(),"WorkSans-Medium.otf");
         tool_text.setTypeface(type);
@@ -110,12 +142,128 @@ public class Auction_Gallary_Activity  extends AppCompatActivity {
         }
 
 
+        tv_currency.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+
+                if (tv_rs_type.getText().toString().equals("INR"))
+                {
+                    tv_rs_type.setText("USD");
+                }
+                else if (tv_rs_type.getText().toString().equals("USD"))
+                {
+                    tv_rs_type.setText("INR");
+                }
+
+                try
+                {
+                    if(auctionGallaryAdpter!=null)
+                    {
+                        if (tv_rs_type.getText().toString().equals("USD"))
+                        {
+                            auctionGallaryAdpter.changeCurrency(true);
+                            activity_changeCurrency();
+                        }
+                        else if (tv_rs_type.getText().toString().equals("INR"))
+                        {
+                            auctionGallaryAdpter.changeCurrency(false);
+                            activity_changeCurrency();
+                        }
+
+                    }
+                    if(auctionGalleryUpcomingAdpter!=null)
+                    {
+                        if (tv_rs_type.getText().toString().equals("USD"))
+                        {
+                            auctionGalleryUpcomingAdpter.changeCurrency(true);
+                            activity_changeCurrency();
+                        }
+                        else if (tv_rs_type.getText().toString().equals("INR"))
+                        {
+                            auctionGalleryUpcomingAdpter.changeCurrency(false);
+                            activity_changeCurrency();
+                        }
+
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+        tv_rs_type.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (tv_rs_type.getText().toString().equals("INR"))
+                {
+                    tv_rs_type.setText("USD");
+                }
+                else if (tv_rs_type.getText().toString().equals("USD"))
+                {
+                    tv_rs_type.setText("INR");
+                }
+
+                try
+                {
+                    if(auctionGallaryAdpter!=null)
+                    {
+                        if (tv_rs_type.getText().toString().equals("USD"))
+                        {
+                            auctionGallaryAdpter.changeCurrency(true);
+                            activity_changeCurrency();
+                        }
+                        else if (tv_rs_type.getText().toString().equals("INR"))
+                        {
+                            auctionGallaryAdpter.changeCurrency(false);
+                            activity_changeCurrency();
+                        }
+
+                    }
+                    if(auctionGallaryAdpterUpcoming!=null)
+                    {
+                        if (tv_rs_type.getText().toString().equals("USD"))
+                        {
+                            auctionGallaryAdpterUpcoming.changeCurrency(true);
+                            activity_changeCurrency();
+                        }
+                        else if (tv_rs_type.getText().toString().equals("INR"))
+                        {
+                            auctionGallaryAdpterUpcoming.changeCurrency(false);
+                            activity_changeCurrency();
+                        }
+
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        });
 
 
 
         getMyAuctionGallery();
 
     }
+
+    public void activity_changeCurrency() {
+        if (is_us)
+        {
+            is_us = false;
+        }
+        else
+        {
+            is_us = true;
+        }
+//        notifyDataSetChanged();
+    }
+
 
 /*    @Override
     public void onPause(){
@@ -130,7 +278,7 @@ public class Auction_Gallary_Activity  extends AppCompatActivity {
         startRepeatingTask();
     }*/
 
-    public void GetAuctionGAllary()
+  /*  public void GetAuctionGAllary()
     {
 
         if (utility.checkInternet())
@@ -154,6 +302,7 @@ public class Auction_Gallary_Activity  extends AppCompatActivity {
                     String status;
 
                     appsList = new ArrayList<>();
+                    appsListUpcoming = new ArrayList<>();
                     try {
                         if (str_json != null)
                         {
@@ -197,6 +346,15 @@ public class Auction_Gallary_Activity  extends AppCompatActivity {
                                     str_Profile = Obj.getString("Profile");
                                     Online = Obj.getString("Online");
 
+                                    if(pricers.equalsIgnoreCase("null"))
+                                    {
+                                        pricers = "0";
+                                    }
+                                    if(priceus.equalsIgnoreCase("null"))
+                                    {
+                                        priceus = "0";
+                                    }
+
                                     status= Obj.getString("status");
 
                                     if (Obj.has("currentDate")) {
@@ -215,21 +373,34 @@ public class Auction_Gallary_Activity  extends AppCompatActivity {
 
                                     str_category = Obj.getString("category");
 
+                                    if(status.equalsIgnoreCase("Current"))
+                                    {
+                                        auctionGallary_model = new AuctionGallary_Model( str_productid,  str_category,  artist_name,  str_Profile,
+                                                str_small_img,  str_productsize,  str_image,  str_thumbnail,  str_artistid,
+                                                str_description,  str_title,str_Bidclosingtime,true,pricers,priceus,medium,
+                                                productsize,estamiate,DollarRate,newtext,Bidartistuserid,productdate, MyUserID, str_collectors,
+                                                currentDate,HumanFigure,status,str_FirstName,str_LastName,Auctionname,Picture,Online);
 
+                                        appsList.add(auctionGallary_model);
+                                    }
+                                    else {
+                                        auctionGallary_model = new AuctionGallary_Model( str_productid,  str_category,  artist_name,  str_Profile,
+                                                str_small_img,  str_productsize,  str_image,  str_thumbnail,  str_artistid,
+                                                str_description,  str_title,str_Bidclosingtime,true,pricers,priceus,medium,
+                                                productsize,estamiate,DollarRate,newtext,Bidartistuserid,productdate, MyUserID, str_collectors,
+                                                currentDate,HumanFigure,status,str_FirstName,str_LastName,Auctionname,Picture,Online);
 
+                                        appsListUpcoming.add(auctionGallary_model);
+                                    }
 
-                                    auctionGallary_model = new AuctionGallary_Model( str_productid,  str_category,  artist_name,  str_Profile,
-                                            str_small_img,  str_productsize,  str_image,  str_thumbnail,  str_artistid,
-                                            str_description,  str_title,str_Bidclosingtime,true,pricers,priceus,medium,
-                                            productsize,estamiate,DollarRate,newtext,Bidartistuserid,productdate, MyUserID, str_collectors,
-                                            currentDate,HumanFigure,status,str_FirstName,str_LastName,Auctionname,Picture,Online);
-
-                                    appsList.add(auctionGallary_model);
 
                                 }
 
                                 auctionGallaryAdpter = new AuctionGallaryAdpter(context,R.layout.current_listview,appsList,false,Auction_Gallary_Activity.this );
-                                gridview.setAdapter(auctionGallaryAdpter);
+                                auctionGallaryAdpterUpcoming = new AuctionGallaryAdpter(context,R.layout.current_listview,appsListUpcoming,false,Auction_Gallary_Activity.this );
+
+                                gridviewcurrent.setAdapter(auctionGallaryAdpter);
+                                gridviewpast.setAdapter(auctionGallaryAdpterUpcoming);
 
 
 
@@ -248,20 +419,14 @@ public class Auction_Gallary_Activity  extends AppCompatActivity {
             });
         }
 
-    }
+    }*/
 
     Runnable mStatusChecker = new Runnable() {
         @Override
         public void run() {
             try
             {
-
-
-                    getMyAuctionGallery();
-
-
-
-
+                getMyAuctionGallery();
             }
             finally {
 
@@ -304,7 +469,7 @@ public class Auction_Gallary_Activity  extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void getMyAuctionGallery()
+    public void getMyAuctionGallery()
     {
 
         if (utility.checkInternet())
@@ -322,7 +487,7 @@ public class Auction_Gallary_Activity  extends AppCompatActivity {
             }
             String url = Application_Constants.Main_URL+"getMyGallery?api_key="+ Application_Constants.API_KEY+"&filter=(userid="+str_userid+")";
 
-            System.out.println("strPastAuctionUrl " + url);
+            System.out.println("MyAuctionGallery " + url);
             StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                     new Response.Listener<String>() {
                         @Override
@@ -330,6 +495,7 @@ public class Auction_Gallary_Activity  extends AppCompatActivity {
                             String str_json = response,status;
                             String  currentDate;
                             appsList = new ArrayList<>();
+                            appsListUpcoming = new ArrayList<>();
                             // String str_FirstName,str_LastName,str_Profile;
 
                             try {
@@ -342,7 +508,8 @@ public class Auction_Gallary_Activity  extends AppCompatActivity {
                                         JSONArray jsonArray = new JSONArray();
                                         jsonArray = jobject.getJSONArray("resource");
                                         tv_no_data_found.setVisibility(View.GONE);
-                                        gridview.setVisibility(View.VISIBLE);
+                                        gridviewcurrent.setVisibility(View.VISIBLE);
+                                        gridviewpast.setVisibility(View.GONE);
 
                                         if(jsonArray.length()>0)
                                         {
@@ -377,6 +544,8 @@ public class Auction_Gallary_Activity  extends AppCompatActivity {
                                                 Picture = Obj.getString("Picture");
                                                 str_Profile = Obj.getString("Profile");
                                                 Online = Obj.getString("Online");
+                                                pricelow = Obj.getString("pricelow");
+                                                pricehigh = Obj.getString("pricehigh");
 
                                                 status= Obj.getString("status");
 
@@ -399,21 +568,31 @@ public class Auction_Gallary_Activity  extends AppCompatActivity {
 
 
 
-                                                auctionGallary_model = new AuctionGallary_Model( str_productid,  str_category,  artist_name,  str_Profile,
-                                                        str_small_img,  str_productsize,  str_image,  str_thumbnail,  str_artistid,
-                                                        str_description,  str_title,str_Bidclosingtime,true,pricers,priceus,medium,
-                                                        productsize,estamiate,DollarRate,newtext,Bidartistuserid,productdate, MyUserID, str_collectors,
-                                                        currentDate,HumanFigure,status,str_FirstName,str_LastName,Auctionname,Picture,Online);
+                                                if(status.equalsIgnoreCase("Current"))
+                                                {
+                                                    auctionGallary_model = new AuctionGallary_Model( str_productid,  str_category,  artist_name,  str_Profile,
+                                                            str_small_img,  str_productsize,  str_image,  str_thumbnail,  str_artistid,
+                                                            str_description,  str_title,str_Bidclosingtime,true,pricers,priceus,medium,
+                                                            productsize,estamiate,DollarRate,newtext,Bidartistuserid,productdate, MyUserID, str_collectors,
+                                                            currentDate,HumanFigure,status,str_FirstName,str_LastName,Auctionname,Picture,Online);
 
-                                                appsList.add(auctionGallary_model);
+                                                    appsList.add(auctionGallary_model);
+                                                }
+                                                else {
+
+                                                    Past_sub_Model country = new Past_sub_Model(str_title, str_description, str_artistid, str_thumbnail, str_productsize, str_image, str_small_img, str_Profile, artist_name, str_category,str_productid,pricers,
+                                                            priceus,true,estamiate,productsize,productdate,reference,DollarRate,
+                                                            Online,str_collectors,str_FirstName,str_LastName,pricelow,Auctionname,medium,Picture,Bidartistuserid);
+                                                    appsListUpcoming.add(country);
+                                                }
                                         }
-
 
 
                                         }
                                         else {
                                             tv_no_data_found.setVisibility(View.VISIBLE);
-                                            gridview.setVisibility(View.INVISIBLE);
+                                            gridviewcurrent.setVisibility(View.INVISIBLE);
+                                            gridviewpast.setVisibility(View.INVISIBLE);
                                         }
                                         if (hud != null && hud.isShowing())
                                         {
@@ -422,8 +601,13 @@ public class Auction_Gallary_Activity  extends AppCompatActivity {
 
                                         if (is_first)
                                         {
+
                                             auctionGallaryAdpter = new AuctionGallaryAdpter(context,R.layout.current_listview,appsList,false,Auction_Gallary_Activity.this );
-                                            gridview.setAdapter(auctionGallaryAdpter);
+                                           // auctionGallaryAdpterUpcoming = new AuctionGallaryAdpter(context,R.layout.current_listview,appsListUpcoming,false,Auction_Gallary_Activity.this );
+                                            auctionGalleryUpcomingAdpter = new AuctionGalleryUpcomingAdpter(context, appsListUpcoming,is_us,"upcomming");
+
+                                            gridviewcurrent.setAdapter(auctionGallaryAdpter);
+                                            gridviewpast.setAdapter(auctionGalleryUpcomingAdpter);
 
                                             startRepeatingTask();
 
@@ -435,11 +619,13 @@ public class Auction_Gallary_Activity  extends AppCompatActivity {
                                             if(!is_start)
                                             {
                                                 auctionGallaryAdpter.Upadte_GridViewWithFilter(appsList,false);
+                                               // auctionGallaryAdpterUpcoming.Upadte_GridViewWithFilter(appsListUpcoming,false);
                                                 startRepeatingTask();
                                             }
                                             else
                                             {
                                                 auctionGallaryAdpter.Upadte_GridViewWithFilter(appsList,false);
+                                               // auctionGallaryAdpterUpcoming.Upadte_GridViewWithFilter(appsListUpcoming,false);
                                             }
 
 
@@ -463,7 +649,8 @@ public class Auction_Gallary_Activity  extends AppCompatActivity {
                                             hud.dismiss();
                                         }
                                             tv_no_data_found.setVisibility(View.VISIBLE);
-                                            gridview.setVisibility(View.INVISIBLE);
+                                            gridviewcurrent.setVisibility(View.INVISIBLE);
+                                            gridviewpast.setVisibility(View.INVISIBLE);
 
                                     }
                                 } else {
@@ -472,13 +659,16 @@ public class Auction_Gallary_Activity  extends AppCompatActivity {
                                         hud.dismiss();
                                     }
                                     tv_no_data_found.setVisibility(View.VISIBLE);
-                                    gridview.setVisibility(View.INVISIBLE);
+                                    gridviewcurrent.setVisibility(View.INVISIBLE);
+                                    gridviewpast.setVisibility(View.INVISIBLE);
                                 }
 
                             } catch (JSONException e) {
 
                                 tv_no_data_found.setVisibility(View.VISIBLE);
-                                gridview.setVisibility(View.INVISIBLE);
+                                gridviewcurrent.setVisibility(View.INVISIBLE);
+                                gridviewpast.setVisibility(View.INVISIBLE);
+
                                 if (hud != null && hud.isShowing())
                                 {
                                     hud.dismiss();
@@ -493,7 +683,8 @@ public class Auction_Gallary_Activity  extends AppCompatActivity {
                         public void onErrorResponse(VolleyError error)
                         {
                             tv_no_data_found.setVisibility(View.VISIBLE);
-                            gridview.setVisibility(View.INVISIBLE);
+                            gridviewcurrent.setVisibility(View.INVISIBLE);
+                            gridviewpast.setVisibility(View.INVISIBLE);
                             hud.dismiss();
                         }
                     });
@@ -507,5 +698,48 @@ public class Auction_Gallary_Activity  extends AppCompatActivity {
                     .show();
         }
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+
+            case R.id.lay_current_auction:
+                tv_current_auction.setTextColor(Color.parseColor("#a78e69"));
+                tv_past_auction.setTextColor(Color.parseColor("#000000"));
+
+
+                view_current_auction.setVisibility(View.VISIBLE);
+                view_past_auction.setVisibility(View.INVISIBLE);
+
+                gridviewcurrent.setVisibility(View.VISIBLE);
+                gridviewpast.setVisibility(View.GONE);
+                startRepeatingTask();
+
+                //scroller.scrollTo(0, 0);
+                // getUpcomingAuction(Application_Constants.Main_URL+"lotspopular?api_key=c6935db431c0609280823dc52e092388a9a35c5f8793412ff89519e967fd27ed&filter=online%20=%2027&related=*");
+
+                break;
+
+            case R.id.lay_past_auction:
+                tv_current_auction.setTextColor(Color.parseColor("#000000"));
+                tv_past_auction.setTextColor(Color.parseColor("#a78e69"));
+
+                view_current_auction.setVisibility(View.INVISIBLE);
+                view_past_auction.setVisibility(View.VISIBLE);
+
+                gridviewcurrent.setVisibility(View.GONE);
+                gridviewpast.setVisibility(View.VISIBLE);
+
+                stopRepeatingTask();
+                // scroller.scrollTo(0, 0);
+                // getUpcomingAuction(Application_Constants.Main_URL+"lotslatest?api_key=c6935db431c0609280823dc52e092388a9a35c5f8793412ff89519e967fd27ed&filter=online%20=%2027&related=*");
+
+                break;
+
+
+            default:
+                break;
+        }
     }
 }

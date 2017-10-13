@@ -126,6 +126,19 @@ TextView tv_textemail,tv_mob_not_verify,tv_email_not_verify;
         str_mobile = edt_mobile.getText().toString();
         str_username = data.getObjectAsString("name");
 
+        firstname = data.getObjectAsString("firstname");
+        lastname = data.getObjectAsString("lastname");
+        address = data.getObjectAsString("address");
+        city = data.getObjectAsString("city");
+        zip = data.getObjectAsString("zip");
+        state = data.getObjectAsString("state");
+        country = data.getObjectAsString("country");
+        telephone = data.getObjectAsString("telephone");
+        email = data.getObjectAsString("email");
+        username = data.getObjectAsString("name");
+        password = data.getObjectAsString("password");
+        fax = data.getObjectAsString("fax");
+
 
 
 
@@ -134,18 +147,6 @@ TextView tv_textemail,tv_mob_not_verify,tv_email_not_verify;
         {
 
             activity  = intent.getStringExtra("Activity");
-            firstname = intent.getStringExtra("firstname");
-            lastname = intent.getStringExtra("lastname");
-            address = intent.getStringExtra("address");
-            city = intent.getStringExtra("city");
-            zip = intent.getStringExtra("zip");
-            state = intent.getStringExtra("state");
-            country = intent.getStringExtra("country");
-            telephone = intent.getStringExtra("telephone");
-            email = intent.getStringExtra("email");
-            username = intent.getStringExtra("username");
-            password = intent.getStringExtra("password");
-            fax = intent.getStringExtra("fax");
 
         }
 
@@ -684,10 +685,10 @@ TextView tv_textemail,tv_mob_not_verify,tv_email_not_verify;
             params.put("template","newsletter");
             params.put("subject","Warm Greetings from AstaGuru Online Auction House");
             params.put("body_text",msg);
-            params.put("from_name","NetSpace India SES");
-            params.put("from_email","beta@netspaceindia.com");
-            params.put("reply_to_name","NetSpace India");
-            params.put("reply_to_email","beta@netspaceindia.com");
+            params.put("from_name","AstaGuru");
+            params.put("from_email","info@infomanav.com");
+            params.put("reply_to_name","AstaGuru");
+            params.put("reply_to_email","info@infomanav.com");
 
             JSONObject parameters = new JSONObject(params);
             parameters.put("to",array);

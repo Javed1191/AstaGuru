@@ -41,6 +41,7 @@ public class FragmentHomeTab extends Fragment
 	String url_string,fragment="current",type="",key="",auction="";
 	TabLayout tabLayout;
 	MainActivity mainActivity;
+	private HomeTabAdapter adapter;
 	public FragmentHomeTab()
 	{
 	}
@@ -50,6 +51,13 @@ public class FragmentHomeTab extends Fragment
 	public void onResume()
 	{
 		super.onResume();
+
+		/*if (!(adapter == null)) {
+
+			adapter.notifyDataSetChanged();
+
+
+		}*/
 	}
 
 	@Override
@@ -167,7 +175,7 @@ public class FragmentHomeTab extends Fragment
 
 		final ViewPager viewPager = (ViewPager) view.findViewById(R.id.pager);
 		FragmentManager fm = getActivity().getSupportFragmentManager();
-		final HomeTabAdapter adapter = new HomeTabAdapter(context,fm, tabLayout.getTabCount(),url_string,fragment,key,auction,type);
+		adapter = new HomeTabAdapter(context,fm, tabLayout.getTabCount(),url_string,fragment,key,auction,type);
 		viewPager.setAdapter(adapter);
 		changeTabsFont();
 		viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
@@ -192,7 +200,6 @@ public class FragmentHomeTab extends Fragment
 							tabLayout.getTabAt(1).select();
 						}
 					}, 100);
-
 
 		}
 		else
@@ -260,6 +267,7 @@ public class FragmentHomeTab extends Fragment
 						view2.setBackgroundResource( R.drawable.selector_tab_indicator_blue );
 						view3.setBackgroundResource( R.drawable.selector_tab_indicator_blue );
 						view4.setBackgroundResource( R.drawable.selector_tab_indicator_blue );
+						adapter.notifyDataSetChanged();
 						break;
 
 					case 1:
@@ -269,6 +277,7 @@ public class FragmentHomeTab extends Fragment
 						view2.setBackgroundResource( R.drawable.selector_tab_indicator_white );
 						view3.setBackgroundResource( R.drawable.selector_tab_indicator_blue );
 						view4.setBackgroundResource( R.drawable.selector_tab_indicator_blue );
+
 						break;
 
 					case 2:
@@ -276,6 +285,7 @@ public class FragmentHomeTab extends Fragment
 						view2.setBackgroundResource( R.drawable.selector_tab_indicator_blue );
 						view3.setBackgroundResource( R.drawable.selector_tab_indicator_white );
 						view4.setBackgroundResource( R.drawable.selector_tab_indicator_blue );
+						adapter.notifyDataSetChanged();
 						break;
 					case 3:
 						view1.setBackgroundResource( R.drawable.selector_tab_indicator_blue );
@@ -290,7 +300,10 @@ public class FragmentHomeTab extends Fragment
 						view2.setBackgroundResource( R.drawable.selector_tab_indicator_blue );
 						view3.setBackgroundResource( R.drawable.selector_tab_indicator_blue );
 						break;
+
+
 				}
+
 			}
 
 			@Override
@@ -313,8 +326,6 @@ public class FragmentHomeTab extends Fragment
 					ImageView iv_logo  = (ImageView) ((getActivity()).findViewById(R.id.iv_logo));
 					iv_logo.setVisibility(View.VISIBLE);
 
-
-
 				}
 				if (tab.getPosition() == 1)
 				{
@@ -325,7 +336,6 @@ public class FragmentHomeTab extends Fragment
 
 					toolbarTextView.setText("Current Auction");
 					toolbarTextView.setVisibility(View.VISIBLE);
-
 
 				}
 
@@ -367,6 +377,7 @@ public class FragmentHomeTab extends Fragment
 
 		return view;
 	}
+
 
 
 	private void changeTabsFont() {

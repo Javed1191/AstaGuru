@@ -75,7 +75,7 @@
                 android:id="@+id/lot_image"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:src="@drawable/placeholder"
+                android:src="@drawable/img_default"
                 />
 
             <View
@@ -84,6 +84,8 @@
                 android:layout_marginTop="10dp"
 
                 android:background="@drawable/line"/>
+
+
 
             <com.infomanav.astaguru.WorkSansMedium
                 android:id="@+id/tv_title"
@@ -107,45 +109,67 @@
                 android:textColor="@color/colorBodyText"
                 android:textSize="12sp"/>
 
+            <LinearLayout
+                android:id="@+id/lay_bought_in"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/lay_winning_bid"
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
+                <LinearLayout
+                    android:id="@+id/lay_winning_bid"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-            <com.infomanav.astaguru.WorkSansRegular
-                android:id="@+id/tv_winning_bid_price_title"
+                    <com.infomanav.astaguru.WorkSansRegular
+                        android:id="@+id/tv_winning_bid_price_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Winning Bid"
+                        android:textColor="@color/colorBodyText"
+                        android:textSize="11sp"
+                        />
+                    <com.infomanav.astaguru.WorkSansRegular
+                        android:id="@+id/tv_winning_bid_prizrs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold"
+                        />
+                    <com.infomanav.astaguru.WorkSansRegular
+                        android:id="@+id/tv_tax"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="(Inclusive of 15% Buyer's Premium)"
+                        android:textColor="@color/colorBodyText"
+                        android:textSize="11sp"
+                        />
+                </LinearLayout>
+                </LinearLayout>
+
+            <com.infomanav.astaguru.WorkSansMedium
+                android:visibility="gone"
+                android:id="@+id/tv_bought_in"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_gravity="center"
                 android:gravity="center"
-                android:text="Winning Bid"
-                android:textColor="@color/colorBodyText"
-                android:textSize="11sp"
-                />
-            <com.infomanav.astaguru.WorkSansRegular
-                android:id="@+id/tv_winning_bid_prizrs"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text=""
+                android:text="Bought In"
+                android:textSize="12sp"
                 android:textColor="@color/colorPrimary"
-                android:textStyle="bold"
-                />
-            <com.infomanav.astaguru.WorkSansRegular
-                android:id="@+id/tv_tax"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="(Inclusive of 15% Buyer's Premium)"
-                android:textColor="@color/colorBodyText"
-                android:textSize="11sp"
-                />
-            </LinearLayout>
+                android:textStyle="bold"/>
+
+
+
 
             <LinearLayout
                 android:id="@+id/lay_bids"
@@ -411,7 +435,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -425,7 +448,6 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:visibility="gone"
                         android:id="@+id/iv_addgallary"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
@@ -505,7 +527,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="left"
-
                 android:layout_margin="5dp"
                 android:layout_marginTop="10dp"
                 android:gravity="left"
@@ -536,10 +557,8 @@
                         android:id="@+id/rel_desc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
                         android:layout_toRightOf="@+id/iv_main_img"
                         android:gravity="left"
-
                         android:orientation="vertical">
 
                         <com.infomanav.astaguru.WorkSansMedium
@@ -570,14 +589,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_toRightOf="@+id/iv_main_img"
-
                             android:gravity="left"
                             android:orientation="vertical"
-
                             >
-
-
-
                             <com.infomanav.astaguru.WorkSansMedium
                                 android:id="@+id/testartist"
                                 android:layout_width="wrap_content"
@@ -617,7 +631,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Medium: "
-
                                 android:textColor="@color/colorPrimary"/>
 
                             <com.infomanav.astaguru.WorkSansRegular
@@ -625,7 +638,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_toRightOf="@+id/testmidium"
-
                                 android:textColor="@color/colorBodyText"/>
 
                         </RelativeLayout>
@@ -646,7 +658,6 @@
                                 android:id="@+id/testyear"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-
                                 android:text="Year: "
                                 android:textColor="@color/colorPrimary"/>
 
@@ -655,7 +666,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_toRightOf="@+id/testyear"
-
                                 android:textColor="@color/colorBodyText"/>
 
                         </RelativeLayout>
@@ -672,7 +682,6 @@
                         android:layout_marginTop="5dp"
                         android:layout_toRightOf="@+id/iv_main_img"
                         android:gravity="left"
-
                         android:orientation="vertical">
 
 
@@ -681,7 +690,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Size: "
-
                             android:textColor="@color/colorPrimary"/>
 
                         <com.infomanav.astaguru.WorkSansRegular
@@ -702,7 +710,6 @@
                         android:layout_marginTop="5dp"
                         android:layout_toRightOf="@+id/iv_main_img"
                         android:gravity="left"
-
                         android:orientation="vertical">
 
 
@@ -711,7 +718,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Estimate: "
-
                             android:textColor="@color/colorPrimary"/>
 
                         <com.infomanav.astaguru.WorkSansRegular
@@ -719,7 +725,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_toRightOf="@+id/testcsize"
-
                             android:textColor="@color/colorBodyText"/>
 
                     </RelativeLayout>
@@ -748,16 +753,12 @@
 
                 <com.infomanav.astaguru.WorkSansRegular
                     android:id="@+id/tv_addinfo_one"
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:gravity="left"
-
                     android:textColor="@color/colorBodyText"
                     />
-
-
 
                 <com.infomanav.astaguru.WorkSansMedium
                     android:layout_width="wrap_content"
@@ -774,8 +775,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
                     android:layout_marginTop="15dp"
-
-
                     android:gravity="left"
                     android:orientation="horizontal">
 

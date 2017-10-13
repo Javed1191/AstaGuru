@@ -79,7 +79,7 @@ public class Bid_History extends AppCompatActivity {
     TextView tv_lot,tv_ac_artist,tv_ac_category,tv_ac_medium
             ,tv_ac_year,tv_ac_size,tv_estimate,tv_noofbid;
     ImageView iv_main_img;
-    TextView iv_one,iv_two,tv_bidding;
+    TextView iv_one,iv_two,tv_bidding,tv_no_data_found;
     String str_image,Str_obj_size,fragment_type,MyUserID,doller_rate="";
     TextView tv_current_bid,tv_nextbid,tv_desc;
     Button btn_bidnow,btn_proxybid;
@@ -90,7 +90,7 @@ public class Bid_History extends AppCompatActivity {
     private TextView tvDay, tvHour, tvMinute, tvSecond;
     String value_for_cmpr;
     String rs_value,usvalue;
-    AlertDialog bid_now,bid_proxy,dilog_alert;
+    AlertDialog bid_now,bid_proxy,dilog_alert,dilog_bid_access;
 
 
     LinearLayout tv_countdown,tv_countdownback,lin_count,lin_countback,lay_art_details;
@@ -172,6 +172,7 @@ public class Bid_History extends AppCompatActivity {
         tv_bidding = (TextView) findViewById(R.id.tv_bidding);
         lay_art_details = (LinearLayout) findViewById(R.id.lay_art_details);
         rel_desc = (RelativeLayout) findViewById(R.id.rel_desc);
+        tv_no_data_found = (TextView) findViewById(R.id.tv_no_data_found);
 
 
         Auctionname = intent.getStringExtra("Auctionname");
@@ -183,7 +184,11 @@ public class Bid_History extends AppCompatActivity {
             lay_art_details.setVisibility(View.VISIBLE);
             rel_desc.setVisibility(View.GONE);
 
-            tv_ac_artist.setText(intent.getStringExtra("str_FirstName").trim());
+            String strArtistFirstName="",strArtistLastName="";
+            strArtistFirstName = intent.getStringExtra("str_FirstName");
+            strArtistLastName = intent.getStringExtra("str_LastName");
+
+            tv_ac_artist.setText(strArtistFirstName+" "+ strArtistLastName);
 
            /* String strCategory = intent.getStringExtra("str_category");
             if(!strCategory.equals("null"))
@@ -592,7 +597,8 @@ public class Bid_History extends AppCompatActivity {
                         }
                         else
                         {
-                            Toast.makeText(context, "You do not have bidding access", Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(context, "You do not have bidding access", Toast.LENGTH_SHORT).show();
+                            bidAccessDialog("Astaguru","You don't have access to Bid Please contact Astaguru.");
                         }
 
                     }
@@ -638,6 +644,8 @@ public class Bid_History extends AppCompatActivity {
                             edt_proxy = (EditText) dialogView.findViewById(R.id.edt_proxy);
                             final TextView tv_bidvalue = (TextView) dialogView.findViewById(R.id.tv_bidvalue);
                             final TextView tv_proxylot = (TextView) dialogView.findViewById(R.id.tv_proxylot);
+                            final LinearLayout lay_bid_values = (LinearLayout) dialogView.findViewById(R.id.lay_bid_values);
+                            final TextView tv_confirm_bid = (TextView) dialogView.findViewById(R.id.tv_confirm_bid);
 
                             final TextView iv_iconproxy = (TextView) dialogView.findViewById(R.id.iv_iconproxy);
                             iv_iconproxy.setVisibility(View.GONE);
@@ -710,65 +718,74 @@ public class Bid_History extends AppCompatActivity {
 
                                         if (int_entered_value >= int_bid_value)
                                         {
-                                            if (is_us)
+                                            if(lay_bid_values.getVisibility()==View.VISIBLE)
                                             {
-
-                                                String str_Proxy_for_us = edt_proxy.getText().toString();
-
-                                                int fb1 = Integer.parseInt(dollerRate);
-                                                int rl1 = Integer.parseInt(str_Proxy_for_us);
-
-                                                int str_ProxyAmtrs = rl1 * fb1;
-
-                                                String proxy_amt_for_rs = Integer.toString(str_ProxyAmtrs);
-                                               // Toast.makeText(context, "from US", Toast.LENGTH_SHORT).show();
-
-
-                                                if (utility.checkInternet())
-                                                {
-                                                   // ProxyBid(str_ProxyAmt, productID, siteUserID, dollerRate, proxy_amt_for_rs, f_lot);
-
-                                                    makeBid.ProxyBid(proxy_amt_for_rs, productID, siteUserID, dollerRate, str_ProxyAmt, f_lot,str_Bidclosingtime,
-                                                            Thumbnail,Reference,OldPriceRs,OldPriceUs,Auctionid,Ufirst_name,Ulastname,"Untiteled");
-
-                                                    makeBid.bidResult(new OnBidResult() {
-                                                        @Override
-                                                        public void bidResult(String currentStatus, String msg) {
-                                                            bid_proxy.dismiss();
-                                                            getTimeCountdown(productID);
-                                                        }
-                                                    });
-
-                                                } else {
-                                                    show_dailog("Please Check Internet Connection");
-
-                                                }
-
-
-                                            } else {
-                                              //  Toast.makeText(context, "From RS", Toast.LENGTH_SHORT).show();
-
-                                                if (utility.checkInternet())
-                                                {
-                                                    //ProxyBid(str_ProxyAmt, productID, siteUserID, dollerRate, proxy_amt_us, f_lot);
-
-                                                    makeBid.ProxyBid(str_ProxyAmt, productID, siteUserID, dollerRate, proxy_amt_us, f_lot,str_Bidclosingtime,
-                                                            Thumbnail,Reference,OldPriceRs,OldPriceUs,Auctionid,Ufirst_name,Ulastname,"Untiteled");
-
-                                                    makeBid.bidResult(new OnBidResult() {
-                                                        @Override
-                                                        public void bidResult(String currentStatus, String msg) {
-                                                            bid_proxy.dismiss();
-                                                            getTimeCountdown(productID);
-                                                        }
-                                                    });
-                                                } else {
-
-                                                    show_dailog("Please Check Internet Connection");
-                                                }
-
-
+                                                lay_bid_values.setVisibility(View.GONE);
+                                                tv_confirm_bid.setVisibility(View.VISIBLE);
                                             }
+                                            else
+                                            {
+                                                if (is_us)
+                                                {
+
+                                                    String str_Proxy_for_us = edt_proxy.getText().toString();
+
+                                                    int fb1 = Integer.parseInt(dollerRate);
+                                                    int rl1 = Integer.parseInt(str_Proxy_for_us);
+
+                                                    int str_ProxyAmtrs = rl1 * fb1;
+
+                                                    String proxy_amt_for_rs = Integer.toString(str_ProxyAmtrs);
+                                                    // Toast.makeText(context, "from US", Toast.LENGTH_SHORT).show();
+
+
+                                                    if (utility.checkInternet())
+                                                    {
+                                                        // ProxyBid(str_ProxyAmt, productID, siteUserID, dollerRate, proxy_amt_for_rs, f_lot);
+
+                                                        makeBid.ProxyBid(proxy_amt_for_rs, productID, siteUserID, dollerRate, str_ProxyAmt, f_lot,str_Bidclosingtime,
+                                                                Thumbnail,Reference,OldPriceRs,OldPriceUs,Auctionid,Ufirst_name,Ulastname,"Untiteled");
+
+                                                        makeBid.bidResult(new OnBidResult() {
+                                                            @Override
+                                                            public void bidResult(String currentStatus, String msg) {
+                                                                bid_proxy.dismiss();
+                                                                getTimeCountdown(productID);
+                                                            }
+                                                        });
+
+                                                    } else {
+                                                        show_dailog("Please Check Internet Connection");
+
+                                                    }
+
+
+                                                } else {
+                                                    //  Toast.makeText(context, "From RS", Toast.LENGTH_SHORT).show();
+
+                                                    if (utility.checkInternet())
+                                                    {
+                                                        //ProxyBid(str_ProxyAmt, productID, siteUserID, dollerRate, proxy_amt_us, f_lot);
+
+                                                        makeBid.ProxyBid(str_ProxyAmt, productID, siteUserID, dollerRate, proxy_amt_us, f_lot,str_Bidclosingtime,
+                                                                Thumbnail,Reference,OldPriceRs,OldPriceUs,Auctionid,Ufirst_name,Ulastname,"Untiteled");
+
+                                                        makeBid.bidResult(new OnBidResult() {
+                                                            @Override
+                                                            public void bidResult(String currentStatus, String msg) {
+                                                                bid_proxy.dismiss();
+                                                                getTimeCountdown(productID);
+                                                            }
+                                                        });
+                                                    } else {
+
+                                                        show_dailog("Please Check Internet Connection");
+                                                    }
+
+
+                                                }
+                                            }
+
 
                                         }else {
 
@@ -808,7 +825,8 @@ public class Bid_History extends AppCompatActivity {
                         }
                         else
                         {
-                            Toast.makeText(context, "You do not have bidding access", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(context, "You do not have bidding access", Toast.LENGTH_SHORT).show();
+                            bidAccessDialog("Astaguru","You don't have access to Bid Please contact Astaguru.");
                         }
                     }
                     else
@@ -928,6 +946,8 @@ public class Bid_History extends AppCompatActivity {
                             if (jsonArray.length() > 0)
                             {
                                 Str_obj_size = String.valueOf(jsonArray.length());
+                                tv_no_data_found.setVisibility(View.GONE);
+                                recyclerView.setVisibility(View.VISIBLE);
 
 
                                 for (int i = 0; i < jsonArray.length(); i++) {
@@ -981,8 +1001,12 @@ public class Bid_History extends AppCompatActivity {
 
                                 startRepeatingTask();
 
-                            } else {
-                                Toast.makeText(context, "Records Not Found", Toast.LENGTH_SHORT).show();
+                            }
+                            else
+                                {
+                                    tv_no_data_found.setVisibility(View.VISIBLE);
+                                    recyclerView.setVisibility(View.GONE);
+                               // Toast.makeText(context, "Records Not Found", Toast.LENGTH_SHORT).show();
                                 startRepeatingTask();
                             }
                         } else {
@@ -1610,6 +1634,17 @@ public class Bid_History extends AppCompatActivity {
                                             {
                                                 btn_bidnow.setVisibility(View.GONE);
                                                 btn_proxybid.setVisibility(View.GONE);
+
+
+                                                if(!is_after)
+                                                {
+                                                    tv_bidding.setText("Lot Won");
+                                                }
+                                                else
+                                                {
+                                                    tv_bidding.setText("You are currently the highest bidder.");
+
+                                                }
                                                 tv_bidding.setVisibility(View.VISIBLE);
                                             }
                                             else
@@ -1710,5 +1745,45 @@ public class Bid_History extends AppCompatActivity {
                     .show();
         }
 
+    }
+
+    public void bidAccessDialog(String strTitle, String strMessage)
+    {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(Bid_History.this);
+        LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View dialogView = inflater.inflate(R.layout.dailog_bid_access, null);
+        dialogBuilder.setView(dialogView);
+
+
+        final TextView tv_title = (TextView) dialogView.findViewById(R.id.tv_title);
+        final TextView tv_message = (TextView) dialogView.findViewById(R.id.tv_message);
+        final TextView tv_confim = (TextView) dialogView.findViewById(R.id.tv_confim);
+
+        tv_title.setText(strTitle);
+        tv_message.setText(strMessage);
+        tv_confim.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dilog_bid_access.dismiss();
+
+            }
+        });
+
+        dilog_bid_access = dialogBuilder.create();
+        dilog_bid_access.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+
+
+
+        dilog_bid_access.show();
+
+
+
+        // dilog_bid_access.getWindow().setLayout(700, LinearLayout.LayoutParams.MATCH_PARENT);
+        Window window = dilog_bid_access.getWindow();
+        window.setLayout(width-200, LinearLayout.LayoutParams.WRAP_CONTENT);
+        window.setGravity(Gravity.CENTER);
+        dilog_bid_access.setCanceledOnTouchOutside(false);
     }
 }

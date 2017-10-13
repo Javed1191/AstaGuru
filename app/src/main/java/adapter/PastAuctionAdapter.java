@@ -94,14 +94,20 @@ public class PastAuctionAdapter extends ArrayAdapter<PastAuction> {
         auction_name.setText(Html.fromHtml(cp.getAuctionname()));
         tv_date.setText(cp.getAuctiondate());
 
+        String strTotalSaleUs = cp.getTotalSaleValueUs();
+        strTotalSaleUs = strTotalSaleUs.replace("\n", "").replace("\r", "");
+
+        String strTotalSaleRs = cp.getTotalSaleValueRs();
+        strTotalSaleRs = strTotalSaleRs.replace("\n", "").replace("\r", "");
+
         if(is_us)
         {
-            tv_total_value.setText("US$ "+cp.getTotalSaleValueUs());
+            tv_total_value.setText("US$ "+strTotalSaleUs);
            // iv_two.setImageResource(R.drawable.rupee);
         }
         else
         {
-            tv_total_value.setText("₹ "+cp.getTotalSaleValueRs());
+            tv_total_value.setText("₹ "+strTotalSaleRs);
         }
 
 

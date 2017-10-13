@@ -28,7 +28,6 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -154,6 +153,7 @@ public class Past_Auction_SubActivity extends AppCompatActivity {
                     is_search = true;
 
                     int int_word_count = FragmentCurrentAuction.countWords(key);
+                    key = key.replaceAll(" ","%20");
 
                     if(auctiontype.equalsIgnoreCase("past"))
                     {
@@ -275,7 +275,7 @@ public class Past_Auction_SubActivity extends AppCompatActivity {
         tv_auction_anyalsis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(Past_Auction_SubActivity.this,ShowWebView.class);
+                Intent intent=new Intent(Past_Auction_SubActivity.this,AuctionAnalysis.class);
                 intent.putExtra("auction_id",Auction_id);
                 startActivity(intent);
             }
@@ -486,6 +486,11 @@ public class Past_Auction_SubActivity extends AppCompatActivity {
                             intent.putExtra("Profile",apps.getStr_Profile());
                             intent.putExtra("is_us",is_us);
                             intent.putExtra("dollar_rate",apps.getDollarRate());
+                                if (Double.parseDouble(apps.getPricers()) < Double.parseDouble(apps.getPricelow()))
+                                {
+                                    intent.putExtra("is_bought_in",true);
+                                }
+
                             startActivity(intent);
                             break;
 
@@ -526,6 +531,8 @@ public class Past_Auction_SubActivity extends AppCompatActivity {
                                         final TextView tv_bidvalue = (TextView) dialogView.findViewById(R.id.tv_bidvalue);
                                         final TextView tv_proxylot = (TextView) dialogView.findViewById(R.id.tv_proxylot);
                                         final TextView tv_bit_text = (TextView) dialogView.findViewById(R.id.username);
+                                        final LinearLayout lay_bid_values = (LinearLayout) dialogView.findViewById(R.id.lay_bid_values);
+                                        final TextView tv_confirm_bid = (TextView) dialogView.findViewById(R.id.tv_confirm_bid);
 
                                         tv_bit_text.setText("Start Price");
 
@@ -629,74 +636,83 @@ public class Past_Auction_SubActivity extends AppCompatActivity {
 
                                                         if (int_entered_value >= int_bid_value)
                                                         {
-                                                            if (is_us) {
-
-                                                                String str_Proxy_for_us = edt_proxy.getText().toString();
-                                                               // String str_us = Get_US_value(dollerRate, str_Proxy_for_us);
-                                                                String str_us = MakeBid.Get_US_value(dollerRate, str_Proxy_for_us);
-
-                                                                String Createdby = strUserName;
-                                                                String Auction_id = apps.getAuction_id();
-                                                                double fb1 = Double.parseDouble(dollerRate);
-                                                                double rl1 = Double.parseDouble(str_Proxy_for_us);
-
-                                                                double str_ProxyAmtrs = rl1 * fb1;
-
-                                                                //String proxy_amt_for_rs = Integer.toString(str_ProxyAmtrs);
-                                                                int int_proxy_new = (int) Math.round(str_ProxyAmtrs);
-                                                                String proxy_amt_for_rs = String.valueOf(int_proxy_new);
-                                                                //  Toast.makeText(mContext, "from US", Toast.LENGTH_SHORT).show();
-
-
-                                                                if (utility.checkInternet()) {
-
-                                                                    //ProxyBid(siteUserID, productID, proxy_amt_for_rs, proxy_amt_for_rs, "0", "", Createdby, Auction_id)
-
-                                                                    makeBid.proxyBidForUpcoming(siteUserID, productID, proxy_amt_for_rs, str_Proxy_for_us, Createdby, Auction_id, f_lot,Auctionname);
-                                                                    makeBid.bidResult(new OnBidResult() {
-                                                                        @Override
-                                                                        public void bidResult(String currentStatus, String msg) {
-                                                                            bid_proxy.dismiss();
-                                                                        }
-                                                                    });
-
-                                                                } else {
-                                                                    show_dailog("Please Check Internet Connection");
-                                                                    bid_proxy.dismiss();
-
-                                                                }
-
-
-                                                            } else {
-                                                                //  Toast.makeText(mContext, "From RS", Toast.LENGTH_SHORT).show();
-
-                                                                String str_Proxy = edt_proxy.getText().toString();
-                                                                String Rate = apps.getDollarRate();
-                                                               // String str_us = Get_US_value(Rate, str_Proxy);
-                                                                String str_us = MakeBid.Get_US_value(Rate, str_Proxy);
-
-
-                                                                String Createdby = strUserName;
-                                                                String Auction_id = apps.getAuction_id();
-
-                                                                if (utility.checkInternet()) {
-
-                                                                    ///ProxyBid(siteUserID, productID, str_Proxy, str_us, "0", "", Createdby, Auction_id);
-                                                                    makeBid.proxyBidForUpcoming(siteUserID, productID, str_Proxy, str_us, Createdby, Auction_id, f_lot,Auctionname);
-                                                                    makeBid.bidResult(new OnBidResult() {
-                                                                        @Override
-                                                                        public void bidResult(String currentStatus, String msg) {
-                                                                            bid_proxy.dismiss();
-                                                                        }
-                                                                    });
-                                                                } else {
-
-                                                                    show_dailog("Please Check Internet Connection");
-                                                                    bid_proxy.dismiss();
-                                                                }
-
-
+                                                            if(lay_bid_values.getVisibility()==View.VISIBLE)
+                                                            {
+                                                                lay_bid_values.setVisibility(View.GONE);
+                                                                tv_confirm_bid.setVisibility(View.VISIBLE);
                                                             }
+                                                            else
+                                                            {
+                                                                if (is_us) {
+
+                                                                    String str_Proxy_for_us = edt_proxy.getText().toString();
+                                                                    // String str_us = Get_US_value(dollerRate, str_Proxy_for_us);
+                                                                    String str_us = MakeBid.Get_US_value(dollerRate, str_Proxy_for_us);
+
+                                                                    String Createdby = strUserName;
+                                                                    String Auction_id = apps.getAuction_id();
+                                                                    double fb1 = Double.parseDouble(dollerRate);
+                                                                    double rl1 = Double.parseDouble(str_Proxy_for_us);
+
+                                                                    double str_ProxyAmtrs = rl1 * fb1;
+
+                                                                    //String proxy_amt_for_rs = Integer.toString(str_ProxyAmtrs);
+                                                                    int int_proxy_new = (int) Math.round(str_ProxyAmtrs);
+                                                                    String proxy_amt_for_rs = String.valueOf(int_proxy_new);
+                                                                    //  Toast.makeText(mContext, "from US", Toast.LENGTH_SHORT).show();
+
+
+                                                                    if (utility.checkInternet()) {
+
+                                                                        //ProxyBid(siteUserID, productID, proxy_amt_for_rs, proxy_amt_for_rs, "0", "", Createdby, Auction_id)
+
+                                                                        makeBid.proxyBidForUpcoming(siteUserID, productID, proxy_amt_for_rs, str_Proxy_for_us, Createdby, Auction_id, f_lot,Auctionname);
+                                                                        makeBid.bidResult(new OnBidResult() {
+                                                                            @Override
+                                                                            public void bidResult(String currentStatus, String msg) {
+                                                                                bid_proxy.dismiss();
+                                                                            }
+                                                                        });
+
+                                                                    } else {
+                                                                        show_dailog("Please Check Internet Connection");
+                                                                        bid_proxy.dismiss();
+
+                                                                    }
+
+
+                                                                } else {
+                                                                    //  Toast.makeText(mContext, "From RS", Toast.LENGTH_SHORT).show();
+
+                                                                    String str_Proxy = edt_proxy.getText().toString();
+                                                                    String Rate = apps.getDollarRate();
+                                                                    // String str_us = Get_US_value(Rate, str_Proxy);
+                                                                    String str_us = MakeBid.Get_US_value(Rate, str_Proxy);
+
+
+                                                                    String Createdby = strUserName;
+                                                                    String Auction_id = apps.getAuction_id();
+
+                                                                    if (utility.checkInternet()) {
+
+                                                                        ///ProxyBid(siteUserID, productID, str_Proxy, str_us, "0", "", Createdby, Auction_id);
+                                                                        makeBid.proxyBidForUpcoming(siteUserID, productID, str_Proxy, str_us, Createdby, Auction_id, f_lot,Auctionname);
+                                                                        makeBid.bidResult(new OnBidResult() {
+                                                                            @Override
+                                                                            public void bidResult(String currentStatus, String msg) {
+                                                                                bid_proxy.dismiss();
+                                                                            }
+                                                                        });
+                                                                    } else {
+
+                                                                        show_dailog("Please Check Internet Connection");
+                                                                        bid_proxy.dismiss();
+                                                                    }
+
+
+                                                                }
+                                                            }
+
 
                                                         } else {
 
@@ -744,7 +760,7 @@ public class Past_Auction_SubActivity extends AppCompatActivity {
                                     {
                                         //Toast.makeText(getApplicationContext(), "You do not have bidding access", Toast.LENGTH_SHORT).show();
                                        // show_dailog("You don't have access to Bid Please contact Astagru.");
-                                        bidAccessDialog("Astaguru","You don't have access to Bid Please contact Astagru.");
+                                        bidAccessDialog("Astaguru","You don't have access to Bid Please contact Astaguru.");
 
                                     }
                                 }
@@ -922,7 +938,7 @@ public class Past_Auction_SubActivity extends AppCompatActivity {
     }
 
 
-    private void getPastAuction(String strPastAuctionUrl)
+    private void getPastAuction(final String strPastAuctionUrl)
     {
 
         if(utility.checkInternet())
@@ -937,6 +953,7 @@ public class Past_Auction_SubActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(String result) {
                     System.out.println("str_get_category_url Json responce" + result);
+                    System.out.println("Past_Auction" + strPastAuctionUrl);
 
                     String str_json = result;
 
@@ -1028,7 +1045,7 @@ public class Past_Auction_SubActivity extends AppCompatActivity {
                                 lay_records_not_found.setVisibility(View.VISIBLE);
                                 if(auctiontype.equalsIgnoreCase("upcomming"))
                                 {
-                                    tv_no_data_found.setText("There is no any upcoming auction still yet. ");
+                                    tv_no_data_found.setText("There is no Upcoming Auction. We will notify you whenever any Upcoming Auction is live.");
 
                                 }
                                 gridview.setVisibility(View.INVISIBLE);
@@ -1148,7 +1165,7 @@ public class Past_Auction_SubActivity extends AppCompatActivity {
                             }
                             else
                             {
-
+                                tv_no_data_found.setText("No record found, please try some other filtration options. ");
                                 lay_records_not_found.setVisibility(View.VISIBLE);
                                 gridview.setVisibility(View.INVISIBLE);
                                 mListView.setVisibility(View.INVISIBLE);
