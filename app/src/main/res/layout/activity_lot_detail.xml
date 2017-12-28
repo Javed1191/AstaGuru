@@ -746,7 +746,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
                     android:layout_marginTop="20dp"
-                    android:text="Addtional Information"
+                    android:text="Additional Information"
                     android:textColor="@color/colorPrimary"
                     android:textSize="15sp"
                     android:textStyle="bold"/>

@@ -332,7 +332,7 @@ public class FragmentHome extends Fragment
 			}
 		});*/
 
-
+		new CheckForUpdates().execute();
 
 		return view;
 	}
@@ -1032,6 +1032,10 @@ public class FragmentHome extends Fragment
 					}
 				}
 			} catch (PackageManager.NameNotFoundException e) {
+				e.printStackTrace();
+			}
+			catch (Exception e)
+			{
 				e.printStackTrace();
 			}
 		}

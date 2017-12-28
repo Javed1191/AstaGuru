@@ -2,18 +2,24 @@ package com.infomanav.astaguru;
 
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +27,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import org.jsoup.Jsoup;
 
 import adapter.HomeTabAdapter;
 import services.SessionData;
@@ -73,6 +81,7 @@ public class FragmentHomeTab extends Fragment
 				ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
 		context = getActivity();
+		utility = new Utility(getActivity());
 
 		mainActivity = (MainActivity) getActivity();
 		data = new SessionData(context);
@@ -375,6 +384,10 @@ public class FragmentHomeTab extends Fragment
 			}
 		});
 
+		/*if(utility.checkInternet())
+		{
+			new GetVersionCode().execute();
+		}*/
 		return view;
 	}
 
@@ -465,4 +478,62 @@ public class FragmentHomeTab extends Fragment
 
 	}
 
+	private class GetVersionCode extends AsyncTask<Void, String, String> {
+		@Override
+		protected String doInBackground(Void... voids) {
+			String newVersion = null;
+			String strPkg = getActivity().getPackageName();
+			try {
+				newVersion = Jsoup.connect("https://play.google.com/store/apps/details?id=" + getActivity().getPackageName() + "&hl=it")
+						.timeout(30000)
+						.userAgent("Mozilla/5.0 (Windows; U; WindowsNT 5.1; en-US; rv1.8.1.6) Gecko/20070725 Firefox/2.0.0.6")
+						.referrer("http://www.google.com")
+						.get()
+						.select("div[itemprop=softwareVersion]")
+						.first()
+						.ownText();
+				return newVersion;
+			} catch (Exception e) {
+				return newVersion;
+			}
+		}
+
+		@Override
+		protected void onPostExecute(String onlineVersion)
+		{
+			super.onPostExecute(onlineVersion);
+			String currentVersion =  BuildConfig.VERSION_NAME;
+			if (onlineVersion != null && !onlineVersion.isEmpty()) {
+				if (Float.valueOf(currentVersion) < Float.valueOf(onlineVersion))
+				{
+					final AlertDialog.Builder builder;
+					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+						builder = new AlertDialog.Builder(context, android.R.style.Theme_Material_Dialog_Alert);
+					} else {
+						builder = new AlertDialog.Builder(context);
+					}
+					builder.setTitle("Asta Guru")
+							.setMessage("Please update the latest version of application for smooth functioning.")
+							.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog, int which) {
+									final String appPackageName = getActivity().getPackageName(); // getPackageName() from Context or Activity object
+									try {
+										startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+									} catch (android.content.ActivityNotFoundException anfe) {
+										startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+									}
+								}
+							})
+							.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog, int which) {
+								}
+							})
+							.setIcon(android.R.drawable.ic_dialog_alert)
+							.show();
+					//show dialog
+				}
+			}
+			Log.d("update", "Current version " + currentVersion + "playstore version " + onlineVersion);
+		}
+	}
 }

@@ -20,6 +20,8 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Text;
+
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -43,10 +45,10 @@ public class AdditionalCharges_Activity extends AppCompatActivity {
     private TextView tv_billing_name,tv_billing_address,tv_city,tv_state,tv_zip,tv_cntry,tv_tel_phn,
             tv_emaiid,tv_lot,tv_ac_artist,tv_ac_category,tv_ac_medium
             ,tv_ac_year,tv_ac_size,tv_ac_hummerprice,tv_ac_byerprimium,tv_ac_vatonhummer,
-            tv_ac_servicetax,tv_ac_grandtotal,tv_ac_estimate,tv_desc;
+            tv_ac_servicetax,tv_ac_grandtotal,tv_ac_estimate,tv_desc,tv_gst;
 
     private ImageView iv_main_img,iv_closeactivity;
-    String str_priceus,str_pricers,Auctionname,Prdescription;
+    String str_priceus,str_pricers,Auctionname,Prdescription,PrVat;
     TextView tv_update_address;
     LinearLayout lin_user_details;
     SessionData data;
@@ -70,6 +72,7 @@ public class AdditionalCharges_Activity extends AppCompatActivity {
         rel_desc = (RelativeLayout) findViewById(R.id.rel_desc);
         lay_art_details = (LinearLayout) findViewById(R.id.lay_art_details);
         rel_cat = (RelativeLayout) findViewById(R.id.rel_cat);
+        tv_gst = (TextView) findViewById(R.id.tv_gst);
 
         String status = data.getObjectAsString("login");
         if (status.equalsIgnoreCase("false")||status.isEmpty()||status.equalsIgnoreCase("Empty"))
@@ -139,6 +142,12 @@ public class AdditionalCharges_Activity extends AppCompatActivity {
         String str_second = intent.getStringExtra("str_LastName");
         String fullname = str_first +" "+ str_second;
         String Size = intent.getStringExtra("str_productsize");
+        PrVat = intent.getStringExtra("PrVat");
+        if(PrVat.isEmpty()||PrVat.equals(null)||PrVat.equals("null"))
+        {
+            PrVat = "0";
+        }
+        tv_gst.setText("GST on Art Work ("+PrVat.trim()+"%) (including buyer's premium)");
 
         tv_lot.setText("Lot:"+str_refrence.trim());
 
@@ -171,6 +180,9 @@ public class AdditionalCharges_Activity extends AppCompatActivity {
 
         if (is_us)
         {
+            // NO GST for us
+            PrVat = "0";
+            tv_gst.setText("GST on Art Work ("+PrVat.trim()+"%) (including buyer's premium)");
             NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(Locale.US);
             double priceInUSD = Double.parseDouble(str_priceus);
             String d_value=  currencyFormat.format(priceInUSD);
@@ -188,7 +200,7 @@ public class AdditionalCharges_Activity extends AppCompatActivity {
 
             tv_ac_byerprimium.setText("US$ "+d_byerprimium.replaceAll("\\.00", "").replace("$",""));
 
-            double vatonhummer = (amount / 100.0f) * 12;
+            double vatonhummer = (amount / 100.0f) *Double.parseDouble(PrVat.trim());
 
             int intvatonhummer = (int) vatonhummer;
             String valuevatonhummer = String.valueOf(intvatonhummer);
@@ -199,7 +211,7 @@ public class AdditionalCharges_Activity extends AppCompatActivity {
 
             tv_ac_vatonhummer.setText("US$ "+d_vatonhummer.replaceAll("\\.00", "").replace("$",""));
 
-            double servicetax = (dbyerprimium / 100.0f) * 18;
+           /* double servicetax = (dbyerprimium / 100.0f) * 18;
 
             int intservicetax = (int) servicetax;
 
@@ -210,14 +222,14 @@ public class AdditionalCharges_Activity extends AppCompatActivity {
             String d_servicetax;
             d_servicetax = currencyFormat.format(dservicetax);
             //d_servicetax = calculatePercentage(String.valueOf(intbyerprimium));
-            tv_ac_servicetax.setText("US$ "+d_servicetax.replaceAll("\\.00", "").replace("$",""));
+            tv_ac_servicetax.setText("US$ "+d_servicetax.replaceAll("\\.00", "").replace("$",""));*/
 
 
             Double a = new Double(Double.parseDouble(str_priceus));
             Double b = new Double(Double.parseDouble(valuebyerprimium));
             Double c = new Double(Double.parseDouble(valuevatonhummer));
-            Double d = new Double(Double.parseDouble(valueservicetax));
-            double sum = round(a)+round(b) +round(c)+round(d);
+            //Double d = new Double(Double.parseDouble(valueservicetax));
+            double sum = round(a)+round(b) +round(c);
 
             int intgrandtotal = (int) sum;
 
@@ -243,7 +255,7 @@ public class AdditionalCharges_Activity extends AppCompatActivity {
             String vale_byerprimium = rupeeFormat(valuebyerprimium);
             tv_ac_byerprimium.setText("₹ "+vale_byerprimium);
 
-            double vatonhummer = (amount / 100.0f) * 12;
+            double vatonhummer = ((amount+byerprimium) / 100.0f) * Double.parseDouble(PrVat.trim());
 
             int intvatonhummer = (int) vatonhummer;
             String valuevatonhummer = String.valueOf(intvatonhummer);
@@ -252,7 +264,7 @@ public class AdditionalCharges_Activity extends AppCompatActivity {
             String vale_vatonhummer = rupeeFormat(valuevatonhummer);
             tv_ac_vatonhummer.setText("₹ "+vale_vatonhummer);
 
-            double servicetax = (vatonhummer / 100.0f) * 18;
+           /* double servicetax = (vatonhummer / 100.0f) * 18;
 
             int intservicetax = (int) servicetax;
 
@@ -262,22 +274,22 @@ public class AdditionalCharges_Activity extends AppCompatActivity {
            String strSeviceTax = calculatePercentage(String.valueOf(intbyerprimium));
             String vale_servicetax = rupeeFormat(strSeviceTax);
 
-            tv_ac_servicetax.setText("₹ "+vale_servicetax);
+            tv_ac_servicetax.setText("₹ "+vale_servicetax);*/
 
 
             Double a = new Double(Double.parseDouble(str_pricers));
             Double b = new Double(Double.parseDouble(valuebyerprimium));
             Double c = new Double(Double.parseDouble(valuevatonhummer));
-            Double d = new Double(Double.parseDouble(valueservicetax));
-            double sum = round(a)+round(b) +round(c)+round(d);
+          //  Double d = new Double(Double.parseDouble(valueservicetax));
+            double sum = round(a)+round(b) +round(c);
 
            // int intgrandtotal = (int) sum;
 
 
             str_pricers = str_pricers.replaceAll(",","");
             vale_vatonhummer = vale_vatonhummer.replaceAll(",","");
-            strSeviceTax = strSeviceTax.replaceAll(",","");
-            int intgrandtotal = Integer.parseInt(str_pricers) + intbyerprimium+Integer.parseInt(vale_vatonhummer)+ Integer.parseInt(strSeviceTax);
+           // strSeviceTax = strSeviceTax.replaceAll(",","");
+            int intgrandtotal = Integer.parseInt(str_pricers) + intbyerprimium+Integer.parseInt(vale_vatonhummer);
             String vale_grandtotal = rupeeFormat(String.valueOf(intgrandtotal));
             tv_ac_grandtotal.setText("₹ "+vale_grandtotal);
         }

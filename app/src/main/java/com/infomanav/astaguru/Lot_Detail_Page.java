@@ -107,7 +107,7 @@ public class Lot_Detail_Page extends AppCompatActivity {
     ProgressDialog pDialog;
     String currentDate, Ulastname, Ufirst_name, MyUserID, Userid, fragment_type, Auction_id, Thumbnail, Reference,
             Bidclosingtime, OldPriceUs, OldPriceRs, Auctionid, HumanFigure, str_Bidclosingtime, str_CurrentDate,
-            Auctionname,medium,FirstName,LastName,Profile,category;
+            Auctionname,medium,FirstName,LastName,Profile,category,PrVat;
     private RelativeLayout rel_desc;
     private LinearLayout lay_winning_bid,lay_bids,lay_date_time;
     int height=0,width=0;
@@ -422,7 +422,7 @@ public class Lot_Detail_Page extends AppCompatActivity {
                 lin_countdown.setVisibility(View.GONE);
                 btn_bid_now_lot.setVisibility(View.INVISIBLE);
 
-                tv_winning_bid_price_title.setText("Start Price");
+                tv_winning_bid_price_title.setText("Opening Bid");
 
             }
             else if (fragment_type.equalsIgnoreCase("Current"))
@@ -540,6 +540,8 @@ public class Lot_Detail_Page extends AppCompatActivity {
                 intent.putExtra("str_estimate",str_collectors);
                 intent.putExtra("Auctionname",Auctionname);
                 intent.putExtra("Prdescription",Prdescription);
+                intent.putExtra("PrVat",PrVat);
+
 
 //                intent.putExtra("str_lot",);
 
@@ -855,7 +857,7 @@ public class Lot_Detail_Page extends AppCompatActivity {
 
                      if(fragment_type.equalsIgnoreCase("upcomming"))
                      {
-                                tv_bit_text.setText("Start Price");
+                                tv_bit_text.setText("Opening Bid");
                      }
 
 
@@ -1235,6 +1237,14 @@ public class Lot_Detail_Page extends AppCompatActivity {
                             str_estamiate = jobject.getString("estamiate");
                             str_title = jobject.getString("title");
                             HumanFigure = jobject.getString("HumanFigure");
+
+                            JSONObject category_by_categoryid = jobject.getJSONObject("category_by_categoryid");
+                            if(category_by_categoryid.length()>0)
+                            {
+                                PrVat = category_by_categoryid.getString("PrVat");
+
+                            }
+
 
 
                             str_CurrentDate = "2017-01-10 19:55:27";
@@ -2570,7 +2580,7 @@ public class Lot_Detail_Page extends AppCompatActivity {
                                                 lin_countdown.setVisibility(View.GONE);
                                                 btn_bid_now_lot.setVisibility(View.INVISIBLE);
 
-                                                tv_winning_bid_price_title.setText("Start Price");
+                                                tv_winning_bid_price_title.setText("Opening Bid");
 
                                             }
                                             else if (fragment_type.equalsIgnoreCase("Current"))

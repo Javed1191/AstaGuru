@@ -223,16 +223,16 @@ public class Auction_Gallary_Activity  extends AppCompatActivity implements View
                         }
 
                     }
-                    if(auctionGallaryAdpterUpcoming!=null)
+                    if(auctionGalleryUpcomingAdpter!=null)
                     {
                         if (tv_rs_type.getText().toString().equals("USD"))
                         {
-                            auctionGallaryAdpterUpcoming.changeCurrency(true);
+                            auctionGalleryUpcomingAdpter.changeCurrency(true);
                             activity_changeCurrency();
                         }
                         else if (tv_rs_type.getText().toString().equals("INR"))
                         {
-                            auctionGallaryAdpterUpcoming.changeCurrency(false);
+                            auctionGalleryUpcomingAdpter.changeCurrency(false);
                             activity_changeCurrency();
                         }
 

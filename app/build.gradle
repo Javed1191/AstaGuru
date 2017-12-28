@@ -1,17 +1,16 @@
 apply plugin: 'com.android.application'
-apply plugin: 'android-apt'
 
 
 android {
     compileSdkVersion 24
-    buildToolsVersion '25.0.0'
+    buildToolsVersion '26.0.2'
     useLibrary 'org.apache.http.legacy'
     defaultConfig {
         applicationId "com.astaguru"
         minSdkVersion 15
         targetSdkVersion 24
-        versionCode 6
-        versionName "1.5"
+        versionCode 8
+        versionName "1.6"
 
         multiDexEnabled true
     }
@@ -45,8 +44,8 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile files('libs/volley.jar')
-    compile project(':kprogresshud')
-    compile project(':library')
+    implementation  project(':kprogresshud')
+    implementation  project(':library')
     compile files('libs/YouTubeAndroidPlayerApi.jar')
     compile 'com.android.support:appcompat-v7:24.0.0'
     compile 'com.android.support:design:24.0.0'
@@ -54,15 +53,13 @@ dependencies {
     compile 'io.jsonwebtoken:jjwt:0.6.0'
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.daimajia.androidanimations:library:1.0.3@aar'
-    compile 'com.jakewharton:butterknife:8.4.0'
     compile 'com.google.android.gms:play-services-maps:10.0.1'
     compile 'com.github.bluejamesbond:textjustify-android:2.1.6'
     compile 'com.google.code.gson:gson:2.2.4'
     compile 'com.baoyz.swipemenulistview:library:1.3.0'
     compile 'in.srain.cube:grid-view-with-header-footer:1.0.12'
     testCompile 'junit:junit:4.12'
-    apt 'com.jakewharton:butterknife-compiler:8.4.0'
-    compile project(':library_GridScroll')
+    implementation  project(':library_GridScroll')
     compile 'com.google.firebase:firebase-messaging:10.0.1'
     compile 'com.google.android.gms:play-services:10.0.1'
     compile 'org.jsoup:jsoup:1.8.3'
@@ -70,6 +67,14 @@ dependencies {
     //    compile('org.apache.httpcomponents:httpmime:4.3') {
     //        exclude module: "httpclient"
     //    }
-    compile project(':DismissibleImageViewlibrary')
+    implementation  project(':DismissibleImageViewlibrary')
+    compile 'com.google.dagger:dagger:2.0'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.0'
+    implementation 'com.jakewharton:butterknife:8.6.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
+
+    compileOnly 'org.glassfish:javax.annotation:10.0-b28'
+    compileOnly "org.projectlombok:lombok:1.16.16"
+    annotationProcessor "org.projectlombok:lombok:1.16.16"
 }
 apply plugin: 'com.google.gms.google-services'

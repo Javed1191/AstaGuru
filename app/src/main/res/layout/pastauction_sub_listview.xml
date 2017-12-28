@@ -152,7 +152,7 @@
                                 android:maxLines="1"
                                 android:ellipsize="marquee"
                                 android:textSize="10sp"
-                                android:text="Start Price"
+                                android:text="Opening Bid"
                                 android:textColor="@color/colorBodyText"/>
 
 

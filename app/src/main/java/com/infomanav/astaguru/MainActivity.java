@@ -4,11 +4,15 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -24,6 +28,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import org.jsoup.Jsoup;
 
 import adapter.TabAdapter;
 import services.SessionData;
@@ -344,6 +349,8 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+
+
     }
 
 
@@ -529,4 +536,6 @@ public class MainActivity extends AppCompatActivity
     public void setImageView1Resource(String tab) {
         toolbarTextView.setText(tab);
     }
+
+
 }

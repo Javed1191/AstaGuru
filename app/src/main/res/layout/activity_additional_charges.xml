@@ -763,14 +763,14 @@
                     android:orientation="horizontal">
 
                     <com.infomanav.astaguru.WorkSansRegular
-
+                        android:id="@+id/tv_gst"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="left"
                         android:layout_weight="1"
                         android:gravity="left"
-
-                        android:text="GST On Hammer Price(12%):"
+                        android:layout_marginRight="5dp"
+                        android:text="GST on Art Work (3 %) (including buyer's premium):"
                         android:textColor="@color/colorBodyText"
                         android:textSize="12sp"
                         />
@@ -791,6 +791,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"

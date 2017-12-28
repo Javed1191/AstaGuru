@@ -534,7 +534,7 @@ public class Past_Auction_SubActivity extends AppCompatActivity {
                                         final LinearLayout lay_bid_values = (LinearLayout) dialogView.findViewById(R.id.lay_bid_values);
                                         final TextView tv_confirm_bid = (TextView) dialogView.findViewById(R.id.tv_confirm_bid);
 
-                                        tv_bit_text.setText("Start Price");
+                                        tv_bit_text.setText("Opening Bid");
 
                                         final TextView iv_iconproxy = (TextView) dialogView.findViewById(R.id.iv_iconproxy);
                                         String img_name = apps.getStr_thumbnail();
